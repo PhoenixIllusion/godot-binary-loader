@@ -1,0 +1,19 @@
+{
+  "name": "gen",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsx src/build.ts && rm -fr ./tmp && mkdir tmp && cp ./types.ts ./tmp/. && cd tmp && 7za x ../out.tar"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/node": "22.15.17",
+    "nanotar": "0.2.0",
+    "xml-js": "1.6.11"
+  },
+  "dependencies": {
+    "tsx": "4.19.4"
+  }
+}

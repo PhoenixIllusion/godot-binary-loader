@@ -1,0 +1,22 @@
+{
+  "name": "example",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "visualize": "npx vite-bundle-visualizer"
+  },
+  "devDependencies": {
+    "@types/three": "0.176.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.1"
+  },
+  "dependencies": {
+    "@dweb-browser/zstd-wasm": "1.2.1",
+    "@phoenixillusion/godot-scene-reader": "file:../../godot-scene-reader",
+    "three": "0.176.0"
+  }
+}

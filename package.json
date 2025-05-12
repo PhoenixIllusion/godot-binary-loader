@@ -1,0 +1,23 @@
+{
+  "name": "@phoenixillusion/babylonjs-omi-physics-gltf-loader",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "author": "Phoenix Illusion",
+  "license": "MIT",
+  "repository": "https://github.com/PhoenixIllusion/babylonjs-omi-physics-gltf-loader.git",
+  "scripts": {
+    "prebuild": "sh clean-dist.sh",
+    "build": "tsc"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "README.md",
+    "./dist/**"
+  ],
+  "devDependencies": {
+    "typescript": "5.8.3"
+  }
+}
