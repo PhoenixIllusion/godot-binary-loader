@@ -1,5 +1,3 @@
-import { try_open_bin_config } from "@phoenixillusion/godot-scene-reader/parse/binary/ecfg.js";
-import { try_open_pack } from "@phoenixillusion/godot-scene-reader/pck/parser.js";
 import { Object3D } from "three/src/core/Object3D.js";
 import { FileLoader } from "three/src/loaders/FileLoader.js";
 import { Loader } from "three/src/loaders/Loader.js";
@@ -7,14 +5,29 @@ import { LoadingManager } from "three/src/loaders/LoadingManager.js";
 import { PckLoader } from "../loader/pck-loader";
 import { SceneInstance } from "../loader/instance/scene";
 import { buildScene } from "./scene-builder";
+import { Camera } from "three/src/cameras/Camera.js";
+import { Texture } from "three/src/textures/Texture.js";
+import { Mesh } from "three/src/objects/Mesh.js";
+import { ThreeAnimation } from "./animation";
+import { Skeleton } from "three/src/objects/Skeleton.js";
+import { DefaultPhysicsData, PhysicsData } from "./physics";
+import { BinResource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
+import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
 
 export interface GodotPck {
   scene: Object3D | null;
+  camera: Camera[];
+  mesh: Mesh[];
+  textures: Texture[];
+  skeletons: Skeleton[];
+  animations: ThreeAnimation[];
+  physics: PhysicsData
 }
 
 export class GodotPckLoader extends Loader<GodotPck> {
   main_scene: string | null = null;
 
+  compressed_texture_formats: string[] = [];
 
 	constructor( manager?: LoadingManager ) {
 		super( manager );
@@ -45,25 +58,23 @@ export class GodotPckLoader extends Loader<GodotPck> {
   }
 
   async parse(url: string, buffer: ArrayBuffer): Promise<GodotPck> {
-    const TIMER = performance.now();
-    const pck = try_open_pack(url, buffer);
-    let name = url;
-    const project = pck['project.binary'];
-    const loader = new PckLoader(pck);
-    if(!this.main_scene && project) {
-      const settings = await try_open_bin_config(project.getData());
-      name = settings['application/config/name'] ?? name;
-      this.main_scene = settings['application/run/main_scene'] || null;
-    }
-    let scene: Object3D | null = null;
-    if(this.main_scene) {
-       await loader.resolve(this.main_scene);
-       const main_entry = loader.getExternalScene(this.main_scene)
+  
+    const pckData = await PckLoader.load({ path: url, allowed_extensions: this.compressed_texture_formats, buffer, resolve_scene: this.main_scene })
+    const scene: GodotPck = { scene: null, camera: [], mesh: [], textures: [], skeletons: [], animations: [], physics: DefaultPhysicsData() };
+    if(pckData.resolved_scene) {
+       const main_entry = pckData.scenes[pckData.resolved_scene];
       if(main_entry) {
-        const instance = new SceneInstance(main_entry, loader);
-        scene = buildScene(instance.root);
+        const instance = new SceneInstance(main_entry, {
+          getExternal<T extends BinResource | cTexFile>(path: string): T {
+            return pckData.resources[path] as T;
+          },
+          getExternalScene(path) {
+            return pckData.scenes[path]
+          },
+        });
+        scene.scene = await buildScene(scene, new Object3D(), instance.root);
       }
     }
-    return { scene };
+    return scene;
   }
 }

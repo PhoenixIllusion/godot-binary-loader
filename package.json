@@ -1,7 +1,7 @@
 {
   "name": "@phoenixillusion/babylonjs-omi-physics-gltf-loader",
   "private": true,
-  "version": "1.0.0",
+  "version": "0.0.1",
   "type": "module",
   "author": "Phoenix Illusion",
   "license": "MIT",

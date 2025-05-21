@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "tsx src/build.ts && rm -fr ./tmp && mkdir tmp && cp ./types.ts ./tmp/. && cd tmp && 7za x ../out.tar"
+    "start": "tsx src/build.ts && rm -fr ./dist && mkdir dist && cp ./types.ts ./dist/. && cd dist && 7za x ../out.tar"
   },
   "author": "",
   "license": "ISC",

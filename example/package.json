@@ -17,6 +17,7 @@
   "dependencies": {
     "@dweb-browser/zstd-wasm": "1.2.1",
     "@phoenixillusion/godot-scene-reader": "file:../../godot-scene-reader",
+    "jolt-physics": "0.36.0",
     "three": "0.176.0"
   }
 }

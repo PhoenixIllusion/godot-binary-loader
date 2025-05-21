@@ -67,9 +67,10 @@ const un = (s: string) => s.indexOf('/') >=0 ? `['${s}']` : `.${s}`;
 const cv = (s: string) => s.indexOf('(') >=0 ? `create.${s}` : s.replace('&','');
 
 const BASE_LIST = ['@GlobalScope', 'GlobalScope', 'bool', 'float', 'int', 'String', 'StringName', 'Array',
-  'PackedByteArray','PackedInt32Array','PackedInt64Array','PackedF32Array','PackedF64Array',
+  'PackedByteArray','PackedInt32Array','PackedInt64Array','PackedFloat32Array','PackedFloat64Array',
   'PackedStringArray', 'PackedVector2Array', 'PackedVector3Array', 'PackedColorArray', 'PackedVector4Array',
-  'Basis', 'AABB', 'Rect2', 'Rect2i', 'Transform2D', 'Plane', "Quaternion", 'Projection'
+  'Basis', 'AABB', 'Rect2', 'Rect2i',  'Plane', "Quaternion", 'Projection', 'Color',
+  'Vector2','Vector2i','Vector3','Vector3i','Vector4','Vector4i','Transform2D','Transform3D', "NodePath"
 ]
 
 
@@ -88,13 +89,21 @@ ${props.map(p => {
 }
 `;
 }
+
+function wrapType(type: string) {
+  if(BASE_LIST.includes(type)) {
+    return `type.${type};`
+  }
+  return `{ type: "${type}" , properties: ${type} };`
+}
+
 function printJustType( gclass: GodotClass): string {
   const { name, inherits} = gclass;
   const props = gclass.members;
   return `
 export interface ${name}${ inherits ? ` extends ${inherits}`: ''} {
 ${props.map(p => {
-  return `  ${cn(p.name)}: ${BASE_LIST.includes(p.type)?'type.':''}${p.type};`
+  return `  ${cn(p.name)}: ${wrapType(p.type)}`
 }).join('\n')}  
 }
 `;
@@ -240,6 +249,7 @@ import * as type from './types';\nimport { float, bool, int, create, inf } from 
   let defaults = `/*
   Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
 */
+//@ts-nocheck
 `
   console.log('Printing Index and Defaults');
   const defaultFiles: {name: string, data: string}[] = [];
