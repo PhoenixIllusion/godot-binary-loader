@@ -122,7 +122,7 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
       }
     }
     meshCache.set(mesh, three_mesh)
-    return three_mesh;
+    return three_mesh.clone();
   }
   return null;
 }

@@ -9,11 +9,12 @@ import {
   TextureDataType
  } from "three/src/constants.js";
 import { DataTexture } from "three/src/textures/DataTexture.js";
+import { DataFormat } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2_format.js";
 
 async function parseCTexEntry(file: cTexFile): Promise<Texture> {
   const entry = file.images[0];
   switch (entry.data_format) {
-    case 0://DataFormat.DATA_FORMAT_IMAGE: // compressed/raw
+    case DataFormat.DATA_FORMAT_IMAGE: // compressed/raw
       const { internal_format, format, type, compressed } = parse_ctex_image_format(file.images[0].image_format);
       if(internal_format > 0) {
         if(compressed)
@@ -26,10 +27,10 @@ async function parseCTexEntry(file: cTexFile): Promise<Texture> {
         }
       }
       throw new Error("Unhandled Compressed Texture Type: "+entry.image_format)
-    case 1://DataFormat.DATA_FORMAT_PNG:
-    case 2://DataFormat.DATA_FORMAT_WEBP: 
+    case DataFormat.DATA_FORMAT_PNG:
+    case DataFormat.DATA_FORMAT_WEBP: 
       return createImageBitmap(new Blob([entry.buffer])).then(img => new Texture(img));
-    case 3://DataFormat.DATA_FORMAT_BASIS_UNIVERSAL:
+    case DataFormat.DATA_FORMAT_BASIS_UNIVERSAL:
       break;
   }
   throw new Error("Unhandled Texture Type: "+entry.data_format)

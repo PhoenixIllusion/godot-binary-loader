@@ -12,20 +12,20 @@ import { GodotPck } from "./pck-loader";
 import { Object3D } from "three/src/core/Object3D.js";
 import { unwrap_properties } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 
-export function makeSkeleton(skin_inst: SkinInstance, skeleton_inst: Skeleton3DInstance, mesh: SkinnedMesh): Skeleton {
+export function makeSkeleton(skin_inst: SkinInstance, skeleton_inst: Skeleton3DInstance): Skeleton {
   const bindMap = new Map<string, SkinInstance.Bind>();
-  skin_inst.bind.forEach(b => { bindMap.set(b.name, b)});
+  skin_inst.bind.forEach(b => { bindMap.set(b.name, b) });
   const matrix = new Matrix4();
   const bones: Bone[] = [];
   skeleton_inst.bone.forEach(b => {
     const bind = bindMap.get(b.name)!;
 
     const bone = new Bone();
-    bone.name = b.name;
+    bone.name = b.name.replace(/\./g, '_');
     setTransform3D(matrix, bind.pose);
     matrix.invert().decompose(bone.position, bone.quaternion, bone.scale);
     bones.push(bone);
-    if(b.parent < 0xffffffff) {
+    if (b.parent < 0xffffffff) {
       const p = bones[b.parent];
       p.updateWorldMatrix(true, false);
       bone.updateWorldMatrix(true, false);
@@ -34,31 +34,32 @@ export function makeSkeleton(skin_inst: SkinInstance, skeleton_inst: Skeleton3DI
       p.add(bone);
     }
   });
-  const skeleton = new Skeleton(bones);
-  mesh.add(skeleton.bones[0]);
-  mesh.bind(skeleton);
-  skeleton.calculateInverses();
-  
-  skeleton_inst.bone.forEach((b,idx) => {
-    const bone = skeleton.bones[idx];
-    const poseMtrx = new Matrix4();
-    setTransform3D(poseMtrx, b.rest);
-    poseMtrx.decompose(bone.position, bone.quaternion, bone.scale);
-  });
-  return skeleton;
+  return new Skeleton(bones);;
 }
 
-export function setupSkeleton(scene: GodotPck, skeleton3d: Skeleton3D, child: SceneInstance.Node, obj: Object3D|null) {
+export function setupSkeleton(scene: GodotPck, skeleton3d: Skeleton3D, child: SceneInstance.Node, obj: Object3D | null, skeleton: { skeleton?: Skeleton }) {
 
-  if(child.type == 'MeshInstance3D' && obj?.type == 'Mesh') {
+  if (child.type == 'MeshInstance3D' && obj?.type == 'Mesh') {
     const child_node = { type: child.type, properties: unwrap_properties(child.properties) } as NodeExtType;
-    if('skin' in child_node.properties) {
+    if ('skin' in child_node.properties) {
       const mesh_o = obj as Mesh;
-      const skin_inst = new SkinInstance(child_node.properties.skin.properties);
-      const skeleton_inst = new Skeleton3DInstance(skeleton3d);
-      const mesh = new SkinnedMesh( mesh_o.geometry, mesh_o.material );
-      const skeleton = makeSkeleton(skin_inst, skeleton_inst, mesh);
-      scene.skeletons.push(skeleton);
+      const mesh = new SkinnedMesh(mesh_o.geometry, mesh_o.material);
+      if (!skeleton.skeleton) {
+        const skin_inst = new SkinInstance(child_node.properties.skin.properties);
+        const skeleton_inst = new Skeleton3DInstance(skeleton3d);
+        const skel = skeleton.skeleton = makeSkeleton(skin_inst, skeleton_inst);
+        scene.skeletons.push(skel);
+        mesh.add(skel.bones[0]);
+        mesh.bind(skeleton.skeleton);
+        skeleton_inst.bone.forEach((b, idx) => {
+          const bone = skel.bones[idx];
+          const poseMtrx = new Matrix4();
+          setTransform3D(poseMtrx, b.rest);
+          poseMtrx.decompose(bone.position, bone.quaternion, bone.scale);
+        });
+      } else {
+        mesh.bind(skeleton.skeleton);
+      }
       mesh.name = obj.name;
       obj = mesh;
     }

@@ -7,6 +7,11 @@ import { PackedScene } from "@phoenixillusion/godot-scene-reader/process/scene/p
 import UnpackWorker from './binary_unpack.worker?worker';
 import LoadWorker from './pck-loader?worker';
 import { try_open_bin_config } from "@phoenixillusion/godot-scene-reader/parse/binary/ecfg.js";
+import { DefaultProjectSettings } from "./instance/types/gen/defaults/ProjectSettings.default";
+import { ProjectSettings } from "./instance/types/gen";
+import { unwrap_properties, unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
+import { ProjectSettingsI } from "./instance/types/project_settings";
+import { generateUUID } from "three/src/math/MathUtils.js";
 
 export type PckResources = Record<string, BinResource | cTexFile>;
 export type PckScenes = Record<string, PackedScene>;
@@ -20,6 +25,7 @@ interface LoadRequest {
 }
 interface LoadResponse {
   projectName: string;
+  settings: ProjectSettingsI | null;
   resolved_scene: string | null;
   scenes: PckScenes,
   resources: PckResources;
@@ -81,6 +87,9 @@ export class PckLoader {
           const { path, data } = event.data;
           if(this.worker_results[path]) {
             this.worker_results[path](data);
+            delete this.worker_results[path];
+          } else {
+            console.error("Unknown path: ", path)
           }
         }
       }
@@ -95,17 +104,31 @@ export class PckLoader {
       return try_open_bin_resource(res_path, arrayBuffer, p_no_resource, p_keep_uuid_paths);
     }
     return new Promise<BinResource>(resolve => {
-      this.worker_results[res_path] = resolve as any;
-      this.queue_worker_task('try_open_bin_resource', res_path, { arrayBuffer, p_no_resource, p_keep_uuid_paths});
+      const guid = generateUUID();
+      this.worker_results[guid] = resolve as any;
+      this.queue_worker_task('try_open_bin_resource', guid, { arrayBuffer, p_no_resource, p_keep_uuid_paths});
     })
   }
-  async try_open_ctex(path: string, arrayBuffer: ArrayBuffer): Promise<cTexFile> {
+  async try_open_ctex(arrayBuffer: ArrayBuffer): Promise<cTexFile> {
     if(this.worker_count == 0) {
       return try_open_ctex(arrayBuffer);
     }
     return new Promise<cTexFile>(resolve => {
-      this.worker_results[path] = resolve as any;
-      this.queue_worker_task('try_open_ctex', path, arrayBuffer);
+      const guid = generateUUID();
+      this.worker_results[guid] = resolve as any;
+      this.queue_worker_task('try_open_ctex', guid, arrayBuffer);
+    })
+  }
+  async try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile> {
+    if(this.worker_count == 0) {
+      return {
+        flags: 0, height: 0, images: [], mipmap_limit: 0, version: 0, width: 0
+      };
+    }
+    return new Promise<cTexFile>(resolve => {
+      const guid = generateUUID();
+      this.worker_results[guid] = resolve as any;
+      this.queue_worker_task('try_open_ctex3d', guid, arrayBuffer);
     })
   }
 
@@ -118,7 +141,13 @@ export class PckLoader {
     if (this.resourceCache[path]) {
       return this.resourceCache[path];
     }
-    if (entry.path.endsWith('.scn') || entry.path.endsWith('res')) {
+    let isBinary = false;
+    ['.scn','.res','.mesh','.material','.occ','.ogg','.wav'].forEach(ext => {
+      if(path.endsWith(ext) || entry.path.endsWith(ext)) {
+        isBinary = true;
+      }
+    })
+    if (isBinary) {
       const data = await this.cacheResource(path, entry, entry => this.try_open_bin_resource(path, entry.getData(), false, false));
       await Promise.all(data?.external_resources?.map(ext =>
         this.resolve(ext.path)) || []
@@ -140,7 +169,11 @@ export class PckLoader {
       );
     }
     if (entry.path.endsWith('.ctex')) {
-      const data = await this.cacheResource(path, entry, entry => this.try_open_ctex(path, entry.getData()));
+      const data = await this.cacheResource(path, entry, entry => this.try_open_ctex(entry.getData()));
+      return data;
+    }
+    if(entry.path.endsWith('.ctex3d')) {
+      const data = await this.cacheResource(path, entry, entry => this.try_open_ctex3d(entry.getData()));
       return data;
     }
     return undefined;
@@ -167,9 +200,13 @@ export class PckLoader {
     const project = pck['project.binary'];
 
     let projectName = path;
-    if(!resolve_scene && project) {
-      const settings = await try_open_bin_config(project.getData());
+    let settings: ProjectSettings | null = null;
+    if(project) {
+      settings = <ProjectSettings>unwrap_properties(await try_open_bin_config(project.getData()))!;
+      DefaultProjectSettings(settings);
       projectName = settings['application/config/name'] ?? name;
+    }
+    if(!resolve_scene && settings) {
       resolve_scene = settings['application/run/main_scene'] || null;
     }
     if(resolve_scene) {
@@ -177,6 +214,7 @@ export class PckLoader {
     }
     return {
       projectName,
+      settings: settings ? unwrap_property_paths(settings): null,
       resolved_scene: resolve_scene || null,
       scenes: loader.sceneCache,
       resources: loader.resourceCache

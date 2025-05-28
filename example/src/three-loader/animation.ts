@@ -12,6 +12,7 @@ import { NumberKeyframeTrack } from "three/src/animation/tracks/NumberKeyframeTr
 import { VectorKeyframeTrack } from "three/src/animation/tracks/VectorKeyframeTrack.js";
 import { QuaternionKeyframeTrack } from "three/src/animation/tracks/QuaternionKeyframeTrack.js";
 import { animation_transition_ease } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
+import { degToRad } from "three/src/math/MathUtils.js";
 
 /**
  * A basic linear interpolant.
@@ -128,6 +129,9 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
           if(x == '..') {
             prefix.pop();
           } else {
+            if(x == '.') {
+              x = target.name;
+            }
             prefix.push(x);
           }
         });
@@ -144,12 +148,12 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
             break;
         }
 
-        const subNames = [... prefix, ... track.path.subnames, ... overrideProp];
+        const subNames = [... prefix, ... track.path.subnames, ... overrideProp].map(x => x.replace(/\./g,'_'));
         let propName = subNames.pop();
         let { values, KeyFrameType }  = this.convertTrack(track.keys.values)
         let times = track.keys.times;
         if(values) {
-          if(propName == 'rotation') {
+          if(propName == 'rotation' || propName == 'rotation_degrees') {
             propName = 'quaternion';
             const quatValues: number[][] = [];
             const eu = new Euler();
@@ -158,7 +162,11 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
             eu.order = 'YXZ';
             const quat = new Quaternion();
             for(let i=0;i<times.length;i++) {
-              eu.fromArray(<any>values.slice(i*3, i*3+3));
+              const v3 = values.slice(i*3, i*3+3);
+              if(propName == 'rotation_degrees')
+                eu.fromArray(<any>v3.map(x => degToRad(x)));
+              else 
+                eu.fromArray(<any>v3);
               if(i > 0) {
                 new_times.push((times[i]+times[i-1])/2);
                 const { x, y, z} = eu;

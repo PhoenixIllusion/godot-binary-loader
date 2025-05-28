@@ -2,7 +2,7 @@
   Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
 */
 import * as type from './types';
-import { int } from './types';
+import { float, bool, int, create, inf } from './types';
 
 export interface PhysicsBody3D extends CollisionObject3D {
   axis_lock_angular_x: type.bool;
@@ -129,7 +129,7 @@ export const enum ActionMode {
 
 export interface MeshInstance3D extends GeometryInstance3D {
   mesh: { type: "Mesh" , properties: Mesh };
-  skeleton: { type: "NodePath" , properties:type.NodePath };
+  skeleton: type.NodePath;
   skin: { type: "Skin" , properties: Skin };  
 }
 
@@ -1684,7 +1684,7 @@ export interface Gradient extends Resource {
   colors: type.PackedColorArray;
   interpolation_color_space: type.int;
   interpolation_mode: type.int;
-  offsets: { type: "PackedFloat32Array" , properties: PackedFloat32Array };  
+  offsets: type.PackedFloat32Array;  
 }
 
 export namespace Gradient {export const enum InterpolationMode {
@@ -1886,6 +1886,7 @@ export namespace VisualShaderNodeVectorFunc {export const enum Function {
 }
 
 }
+
 
 export interface TileMapPattern extends Resource {
   
@@ -2362,9 +2363,9 @@ export namespace WorldBoundaryShape3D {
 
 
 export interface SkeletonModification2DLookAt extends SkeletonModification2D {
-  bone2d_node: { type: "NodePath" , properties:type.NodePath };
+  bone2d_node: type.NodePath;
   bone_index: type.int;
-  target_nodepath: { type: "NodePath" , properties:type.NodePath };  
+  target_nodepath: type.NodePath;  
 }
 
 export namespace SkeletonModification2DLookAt {
@@ -2446,7 +2447,7 @@ export namespace MenuButton {
 
 
 export interface RootMotionView extends VisualInstance3D {
-  animation_path: { type: "NodePath" , properties:type.NodePath };
+  animation_path: type.NodePath;
   cell_size: type.float;
   color: type.Color;
   radius: type.float;
@@ -2611,7 +2612,7 @@ export namespace StreamPeerTCP {export const enum Status {
 
 
 export interface XRFaceTracker extends XRTracker {
-  blend_shapes: { type: "PackedFloat32Array" , properties: PackedFloat32Array };
+  blend_shapes: type.PackedFloat32Array;
   type: type.int;  
 }
 
@@ -2774,7 +2775,7 @@ export namespace AnimatableBody2D {
 
 
 export interface MultiMesh extends Resource {
-  buffer: { type: "PackedFloat32Array" , properties: PackedFloat32Array };
+  buffer: type.PackedFloat32Array;
   color_array: type.PackedColorArray;
   custom_aabb: type.AABB;
   custom_data_array: type.PackedColorArray;
@@ -2971,14 +2972,6 @@ export const enum EnvironmentMode {
   ENVIRONMENT_MODE_CUSTOM_COLOR = 3,
 }
 
-}
-
-
-export interface PackedFloat32Array {
-  
-}
-
-export namespace PackedFloat32Array {
 }
 
 
@@ -3401,7 +3394,7 @@ export interface Polygon2D extends Node2D {
   offset: type.Vector2;
   polygon: type.PackedVector2Array;
   polygons: type.Array;
-  skeleton: { type: "NodePath" , properties:type.NodePath };
+  skeleton: type.NodePath;
   texture: { type: "Texture2D" , properties: Texture2D };
   texture_offset: type.Vector2;
   texture_rotation: type.float;
@@ -3621,7 +3614,7 @@ export interface Node3D extends Node {
   scale: type.Vector3;
   top_level: type.bool;
   transform: type.Transform3D;
-  visibility_parent: { type: "NodePath" , properties:type.NodePath };
+  visibility_parent: type.NodePath;
   visible: type.bool;  
 }
 
@@ -3925,7 +3918,7 @@ export interface SkeletonIK3D extends SkeletonModifier3D {
   override_tip_basis: type.bool;
   root_bone: type.StringName;
   target: type.Transform3D;
-  target_node: { type: "NodePath" , properties:type.NodePath };
+  target_node: type.NodePath;
   tip_bone: type.StringName;
   use_magnet: type.bool;  
 }
@@ -4239,7 +4232,7 @@ export namespace PhysicsTestMotionParameters2D {
 
 export interface VisibleOnScreenEnabler3D extends VisibleOnScreenNotifier3D {
   enable_mode: type.int;
-  enable_node_path: { type: "NodePath" , properties:type.NodePath };  
+  enable_node_path: type.NodePath;  
 }
 
 export namespace VisibleOnScreenEnabler3D {export const enum EnableMode {
@@ -4277,7 +4270,7 @@ export namespace XRAnchor3D {
 
 export interface SkeletonModification2DFABRIK extends SkeletonModification2D {
   fabrik_data_chain_length: type.int;
-  target_nodepath: { type: "NodePath" , properties:type.NodePath };  
+  target_nodepath: type.NodePath;  
 }
 
 export namespace SkeletonModification2DFABRIK {
@@ -4369,7 +4362,7 @@ export namespace VisualShaderNodeMix {export const enum OpType {
 
 export interface XRFaceModifier3D extends Node3D {
   face_tracker: type.StringName;
-  target: { type: "NodePath" , properties:type.NodePath };  
+  target: type.NodePath;  
 }
 
 export namespace XRFaceModifier3D {
@@ -4486,7 +4479,7 @@ export namespace KinematicCollision2D {
 
 
 export interface ViewportTexture extends Texture2D {
-  viewport_path: { type: "NodePath" , properties:type.NodePath };  
+  viewport_path: type.NodePath;  
 }
 
 export namespace ViewportTexture {
@@ -4606,7 +4599,7 @@ export interface SkeletonModification2DJiggle extends SkeletonModification2D {
   jiggle_data_chain_length: type.int;
   mass: type.float;
   stiffness: type.float;
-  target_nodepath: { type: "NodePath" , properties:type.NodePath };
+  target_nodepath: type.NodePath;
   use_gravity: type.bool;  
 }
 
@@ -4623,12 +4616,12 @@ export interface Control extends CanvasItem {
   clip_contents: type.bool;
   custom_minimum_size: type.Vector2;
   focus_mode: type.int;
-  focus_neighbor_bottom: { type: "NodePath" , properties:type.NodePath };
-  focus_neighbor_left: { type: "NodePath" , properties:type.NodePath };
-  focus_neighbor_right: { type: "NodePath" , properties:type.NodePath };
-  focus_neighbor_top: { type: "NodePath" , properties:type.NodePath };
-  focus_next: { type: "NodePath" , properties:type.NodePath };
-  focus_previous: { type: "NodePath" , properties:type.NodePath };
+  focus_neighbor_bottom: type.NodePath;
+  focus_neighbor_left: type.NodePath;
+  focus_neighbor_right: type.NodePath;
+  focus_neighbor_top: type.NodePath;
+  focus_next: type.NodePath;
+  focus_previous: type.NodePath;
   global_position: type.Vector2;
   grow_horizontal: type.int;
   grow_vertical: type.int;
@@ -4790,8 +4783,8 @@ export namespace VisualShaderNodeFloatOp {export const enum Operator {
 
 
 export interface AnimationTree extends AnimationMixer {
-  advance_expression_base_node: { type: "NodePath" , properties:type.NodePath };
-  anim_player: { type: "NodePath" , properties:type.NodePath };
+  advance_expression_base_node: type.NodePath;
+  anim_player: type.NodePath;
   callback_mode_discrete: type.int;
   deterministic: type.bool;
   tree_root: { type: "AnimationRootNode" , properties: AnimationRootNode };  
@@ -5054,7 +5047,7 @@ export interface Label extends Control {
   size_flags_vertical: type.int;
   structured_text_bidi_override: type.int;
   structured_text_bidi_override_options: type.Array;
-  tab_stops: { type: "PackedFloat32Array" , properties: PackedFloat32Array };
+  tab_stops: type.PackedFloat32Array;
   text: type.String;
   text_direction: type.int;
   text_overrun_behavior: type.int;
@@ -5531,7 +5524,7 @@ export namespace PlaceholderMesh {
 export interface PhysicalBone2D extends RigidBody2D {
   auto_configure_joint: type.bool;
   bone2d_index: type.int;
-  bone2d_nodepath: { type: "NodePath" , properties:type.NodePath };
+  bone2d_nodepath: type.NodePath;
   follow_bone_when_simulating: type.bool;
   simulate_physics: type.bool;  
 }
@@ -5636,7 +5629,7 @@ export interface GPUParticles2D extends Node2D {
   process_material: { type: "Material" , properties: Material };
   randomness: type.float;
   speed_scale: type.float;
-  sub_emitter: { type: "NodePath" , properties:type.NodePath };
+  sub_emitter: type.NodePath;
   texture: { type: "Texture2D" , properties: Texture2D };
   trail_enabled: type.bool;
   trail_lifetime: type.float;
@@ -6587,7 +6580,7 @@ export interface RichTextLabel extends Control {
   structured_text_bidi_override: type.int;
   structured_text_bidi_override_options: type.Array;
   tab_size: type.int;
-  tab_stops: { type: "PackedFloat32Array" , properties: PackedFloat32Array };
+  tab_stops: type.PackedFloat32Array;
   text: type.String;
   text_direction: type.int;
   threaded: type.bool;
@@ -7107,8 +7100,8 @@ export interface AnimationMixer extends Node {
   callback_mode_process: type.int;
   deterministic: type.bool;
   reset_on_save: type.bool;
-  root_motion_track: { type: "NodePath" , properties:type.NodePath };
-  root_node: { type: "NodePath" , properties:type.NodePath };  
+  root_motion_track: type.NodePath;
+  root_node: type.NodePath;  
 }
 
 export namespace AnimationMixer {export const enum AnimationCallbackModeProcess {
@@ -7290,7 +7283,7 @@ export interface GPUParticles3D extends GeometryInstance3D {
   process_material: { type: "Material" , properties: Material };
   randomness: type.float;
   speed_scale: type.float;
-  sub_emitter: { type: "NodePath" , properties:type.NodePath };
+  sub_emitter: type.NodePath;
   trail_enabled: type.bool;
   trail_lifetime: type.float;
   transform_align: type.int;
@@ -8414,7 +8407,7 @@ export namespace VisualShaderNodeColorConstant {
 
 export interface StatusIndicator extends Node {
   icon: { type: "Texture2D" , properties: Texture2D };
-  menu: { type: "NodePath" , properties:type.NodePath };
+  menu: type.NodePath;
   tooltip: type.String;
   visible: type.bool;  
 }
@@ -8708,7 +8701,7 @@ export interface Area3D extends CollisionObject3D {
   reverb_bus_uniformity: type.float;
   wind_attenuation_factor: type.float;
   wind_force_magnitude: type.float;
-  wind_source_path: { type: "NodePath" , properties:type.NodePath };  
+  wind_source_path: type.NodePath;  
 }
 
 export namespace Area3D {export const enum SpaceOverride {
@@ -8956,7 +8949,7 @@ export const TRANSFORM_TRANSPOSE = 16384;
 
 export interface VisibleOnScreenEnabler2D extends VisibleOnScreenNotifier2D {
   enable_mode: type.int;
-  enable_node_path: { type: "NodePath" , properties:type.NodePath };  
+  enable_node_path: type.NodePath;  
 }
 
 export namespace VisibleOnScreenEnabler2D {export const enum EnableMode {
@@ -9438,7 +9431,7 @@ export interface SkeletonModification2DTwoBoneIK extends SkeletonModification2D 
   flip_bend_direction: type.bool;
   target_maximum_distance: type.float;
   target_minimum_distance: type.float;
-  target_nodepath: { type: "NodePath" , properties:type.NodePath };  
+  target_nodepath: type.NodePath;  
 }
 
 export namespace SkeletonModification2DTwoBoneIK {
@@ -10837,7 +10830,7 @@ export namespace CollisionObject3D {export const enum DisableMode {
 
 
 export interface HeightMapShape3D extends Shape3D {
-  map_data: { type: "PackedFloat32Array" , properties: PackedFloat32Array };
+  map_data: type.PackedFloat32Array;
   map_depth: type.int;
   map_width: type.int;  
 }
@@ -10956,7 +10949,7 @@ export const enum WindowInitialPosition {
 
 
 export interface RemoteTransform3D extends Node3D {
-  remote_path: { type: "NodePath" , properties:type.NodePath };
+  remote_path: type.NodePath;
   update_position: type.bool;
   update_rotation: type.bool;
   update_scale: type.bool;
@@ -11005,16 +10998,8 @@ export namespace InputEventMIDI {
 }
 
 
-export interface PackedFloat64Array {
-  
-}
-
-export namespace PackedFloat64Array {
-}
-
-
 export interface RemoteTransform2D extends Node2D {
-  remote_path: { type: "NodePath" , properties:type.NodePath };
+  remote_path: type.NodePath;
   update_position: type.bool;
   update_rotation: type.bool;
   update_scale: type.bool;
@@ -11937,8 +11922,8 @@ export namespace OmniLight3D {export const enum ShadowMode {
 
 export interface SkeletonModification2DCCDIK extends SkeletonModification2D {
   ccdik_data_chain_length: type.int;
-  target_nodepath: { type: "NodePath" , properties:type.NodePath };
-  tip_nodepath: { type: "NodePath" , properties:type.NodePath };  
+  target_nodepath: type.NodePath;
+  tip_nodepath: type.NodePath;  
 }
 
 export namespace SkeletonModification2DCCDIK {
@@ -12019,7 +12004,7 @@ export interface ImporterMeshInstance3D extends Node3D {
   cast_shadow: type.int;
   layer_mask: type.int;
   mesh: { type: "ImporterMesh" , properties: ImporterMesh };
-  skeleton_path: { type: "NodePath" , properties:type.NodePath };
+  skeleton_path: type.NodePath;
   skin: { type: "Skin" , properties: Skin };
   visibility_range_begin: type.float;
   visibility_range_begin_margin: type.float;
@@ -15099,8 +15084,8 @@ export namespace ResourceSaver {export const enum SaverFlags {
 
 export interface Joint3D extends Node3D {
   exclude_nodes_from_collision: type.bool;
-  node_a: { type: "NodePath" , properties:type.NodePath };
-  node_b: { type: "NodePath" , properties:type.NodePath };
+  node_a: type.NodePath;
+  node_b: type.NodePath;
   solver_priority: type.int;  
 }
 
@@ -15452,8 +15437,8 @@ export namespace SegmentShape2D {
 export interface Joint2D extends Node2D {
   bias: type.float;
   disable_collision: type.bool;
-  node_a: { type: "NodePath" , properties:type.NodePath };
-  node_b: { type: "NodePath" , properties:type.NodePath };  
+  node_a: type.NodePath;
+  node_b: type.NodePath;  
 }
 
 export namespace Joint2D {
@@ -15644,7 +15629,7 @@ export interface SoftBody3D extends MeshInstance3D {
   disable_mode: type.int;
   drag_coefficient: type.float;
   linear_stiffness: type.float;
-  parent_collision_ignore: { type: "NodePath" , properties:type.NodePath };
+  parent_collision_ignore: type.NodePath;
   pressure_coefficient: type.float;
   ray_pickable: type.bool;
   simulation_precision: type.int;
@@ -17680,4 +17665,46 @@ export type AudioStreamTypeMap = {
   [K in AudioStreamTypeNames]: { type: K; properties: AudioStreamProperties[K] };
 }
 export type AudioStreamType = AudioStreamTypeMap[keyof AudioStreamTypeMap];
+
+
+export interface AnimationNodeProperties {
+  AnimationNodeSub2: AnimationNodeSub2
+  AnimationNodeBlendSpace2D: AnimationNodeBlendSpace2D
+  AnimationNodeOutput: AnimationNodeOutput
+  AnimationNodeStateMachine: AnimationNodeStateMachine
+  AnimationRootNode: AnimationRootNode
+  AnimationNode: AnimationNode
+  AnimationNodeAnimation: AnimationNodeAnimation
+  AnimationNodeBlend2: AnimationNodeBlend2
+  AnimationNodeBlend3: AnimationNodeBlend3
+  AnimationNodeTimeScale: AnimationNodeTimeScale
+  AnimationNodeOneShot: AnimationNodeOneShot
+  AnimationNodeTimeSeek: AnimationNodeTimeSeek
+  AnimationNodeSync: AnimationNodeSync
+  AnimationNodeAdd2: AnimationNodeAdd2
+  AnimationNodeAdd3: AnimationNodeAdd3
+  AnimationNodeBlendTree: AnimationNodeBlendTree
+  AnimationNodeBlendSpace1D: AnimationNodeBlendSpace1D
+  AnimationNodeTransition: AnimationNodeTransition
+}
+type AnimationNodeTypeNames = keyof AnimationNodeProperties;
+export type AnimationNodeTypeMap = {
+  [K in AnimationNodeTypeNames]: { type: K; properties: AnimationNodeProperties[K] };
+}
+export type AnimationNodeType = AnimationNodeTypeMap[keyof AnimationNodeTypeMap];
+
+
+export interface AnimationRootNodeProperties {
+  AnimationNodeBlendSpace2D: AnimationNodeBlendSpace2D
+  AnimationNodeStateMachine: AnimationNodeStateMachine
+  AnimationRootNode: AnimationRootNode
+  AnimationNodeAnimation: AnimationNodeAnimation
+  AnimationNodeBlendTree: AnimationNodeBlendTree
+  AnimationNodeBlendSpace1D: AnimationNodeBlendSpace1D
+}
+type AnimationRootNodeTypeNames = keyof AnimationRootNodeProperties;
+export type AnimationRootNodeTypeMap = {
+  [K in AnimationRootNodeTypeNames]: { type: K; properties: AnimationRootNodeProperties[K] };
+}
+export type AnimationRootNodeType = AnimationRootNodeTypeMap[keyof AnimationRootNodeTypeMap];
 

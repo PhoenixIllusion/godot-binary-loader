@@ -13,6 +13,7 @@ import { Skeleton } from "three/src/objects/Skeleton.js";
 import { DefaultPhysicsData, PhysicsData } from "./physics";
 import { BinResource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
+import { ThreeAnimationTree } from "./animation-tree";
 
 export interface GodotPck {
   scene: Object3D | null;
@@ -21,13 +22,18 @@ export interface GodotPck {
   textures: Texture[];
   skeletons: Skeleton[];
   animations: ThreeAnimation[];
-  physics: PhysicsData
+  animationTrees: ThreeAnimationTree[];
+  physics: PhysicsData;
+  maps: {
+    object3d: Map<SceneInstance.Node, Object3D>
+  }
 }
 
 export class GodotPckLoader extends Loader<GodotPck> {
   main_scene: string | null = null;
 
   compressed_texture_formats: string[] = [];
+  worker_count = 0;
 
 	constructor( manager?: LoadingManager ) {
 		super( manager );
@@ -59,8 +65,8 @@ export class GodotPckLoader extends Loader<GodotPck> {
 
   async parse(url: string, buffer: ArrayBuffer): Promise<GodotPck> {
   
-    const pckData = await PckLoader.load({ path: url, allowed_extensions: this.compressed_texture_formats, buffer, resolve_scene: this.main_scene })
-    const scene: GodotPck = { scene: null, camera: [], mesh: [], textures: [], skeletons: [], animations: [], physics: DefaultPhysicsData() };
+    const pckData = await PckLoader.load({ path: url, allowed_extensions: this.compressed_texture_formats, buffer, resolve_scene: this.main_scene, worker_count: this.worker_count })
+    const scene: GodotPck = { scene: null, camera: [], mesh: [], textures: [], skeletons: [], animations: [], animationTrees: [], physics: DefaultPhysicsData(), maps: { object3d: new Map()} };
     if(pckData.resolved_scene) {
        const main_entry = pckData.scenes[pckData.resolved_scene];
       if(main_entry) {

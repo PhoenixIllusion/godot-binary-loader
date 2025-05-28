@@ -180,7 +180,9 @@ const ClassOfType = {
   Mesh: [] as string[],
   Material: [] as string[],
   Shape3D: [] as string[],
-  AudioStream: [] as string[]
+  AudioStream: [] as string[],
+  AnimationNode: [] as string[],
+  AnimationRootNode: [] as string[]
 }
 const testClasses = Object.keys(ClassOfType) as (keyof typeof ClassOfType)[];
 
