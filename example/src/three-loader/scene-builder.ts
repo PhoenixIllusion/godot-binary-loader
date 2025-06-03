@@ -25,6 +25,7 @@ import { DefaultStaticBody3D } from '../loader/instance/types/gen/defaults/Stati
 import { DefaultArea3D } from '../loader/instance/types/gen/defaults/Area3D.default';
 import { ThreeAnimationTree } from './animation-tree';
 import { Skeleton } from 'three';
+import { unwrap_properties_cached } from '../loader/instance/util';
 
 function v3(vlike: Vector3Like): Vector3 {
   return new Vector3().copy(vlike);
@@ -44,17 +45,6 @@ function trySetTransform(node3d: Object3D, transform: Transform3D) {
     setTransform3D(node3d.matrix, transform);
     node3d.matrix.decompose(node3d.position, node3d.quaternion, node3d.scale);
   }
-}
-
-const cachedProperties = new Map();
-function unwrap_properties_cached<T extends Record<string, any>>(properties: Record<string, VariantType>): T {
-  const result = {} as Record<string, any>;
-  for (const [k, v] of Object.entries(properties)) {
-    const u_p = cachedProperties.has(v) ? cachedProperties.get(v) : unwrap_property(v);
-    cachedProperties.set(v, u_p);
-    result[k] = u_p;
-  }
-  return result as T;
 }
 
 function getTransformMatrix(g_node: NodeExtType): Matrix4 {
@@ -126,7 +116,7 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
       }
       break;
     case 'AnimationTree': {
-        const animationTree = new ThreeAnimationTree(godotNode.properties);
+        const animationTree = new ThreeAnimationTree(node);
         node3d!.userData.animationTree = animationTree;
         scene.animationTrees.push(animationTree);
       }

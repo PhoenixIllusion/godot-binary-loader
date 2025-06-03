@@ -13,6 +13,7 @@ import { VectorKeyframeTrack } from "three/src/animation/tracks/VectorKeyframeTr
 import { QuaternionKeyframeTrack } from "three/src/animation/tracks/QuaternionKeyframeTrack.js";
 import { animation_transition_ease } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 import { degToRad } from "three/src/math/MathUtils.js";
+import { AnimationPlayer } from "../loader/instance/types/gen";
 
 /**
  * A basic linear interpolant.
@@ -79,8 +80,10 @@ function flattenV4(v: any): [number,number,number,number] {
   return [x,y,z,w];
 }
 
-export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
-
+export class ThreeAnimation extends AnimationPlayerInstance {
+  constructor(animation: AnimationPlayer, public target: Object3D) {
+    super(animation);
+  }
   convertTrack(values: any[]): {values: Float32Array | null, KeyFrameType: typeof KeyframeTrack } {
     let result: Float32Array | null = null;
     let KeyFrameType: typeof KeyframeTrack = KeyframeTrack;
@@ -91,6 +94,10 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
     if(typeof values[0] == 'number') {
       result = new Float32Array(values);
       KeyFrameType = NumberKeyframeTrack;
+    } else
+    if(values[0] instanceof Float32Array) {
+      result = new Float32Array(values.map(x => [...x]).flat());
+      KeyFrameType = values[0].length == 3 ? VectorKeyframeTrack : QuaternionKeyframeTrack
     } else
     if('type' in values[0]) {
       if(values[0].type == 'vector3') {
@@ -105,7 +112,7 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
     return { values: result, KeyFrameType };
   }
 
-  build(): ClipCollection {
+  build(target: Object3D = this.target, only_animations: string[] = []): ClipCollection {
     const animations = this.animations;
     let max_back = 0;
     // normalize to farthest root so all tracks work on single root
@@ -114,7 +121,7 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
         max_back = Math.max(max_back, track.path.names.filter(x => x == '..').length);
       })
     })
-    let target = this.target
+
     let path_prefix: string[] = [];
     for(let i=0;i<max_back;i++) {
       path_prefix.push(target.name);
@@ -122,6 +129,9 @@ export class ThreeAnimation extends AnimationPlayerInstance<Object3D> {
     }
     const clips: AnimationClip[] = [];
     for(const [name, trackData] of Object.entries(animations)) {
+      if(only_animations.length && !only_animations.includes(name)) {
+        continue;
+      }
       const tracks: KeyframeTrack[] = [];
       trackData.tracks.forEach(track => {
         const prefix = [... path_prefix];

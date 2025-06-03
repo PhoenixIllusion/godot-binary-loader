@@ -26,7 +26,8 @@ export namespace SceneInstance {
     instance: VariantType | null;
     properties: Record<string, VariantType>;
     children: Node[];
-    connections: Connection[]
+    connections: Connection[];
+    parent: Node | null;
   }
 }
 
@@ -124,7 +125,7 @@ export class SceneInstance {
     }
     const children = node.children.map(x => this.resolveNode(packedScene.nodes[x], packedScene));
     const properties = Object.assign({}, node.properties);
-    const result = { path, type, name, instance, properties, children, connections:[] }
+    const result = { path, type, name, instance, properties, children, connections:[], parent: null }
     this.pathMap[path.join('/')] = result;
     this.nodeMap.set(node, result);
     return result;
@@ -161,5 +162,12 @@ export class SceneInstance {
         this.resolveProperties(node.path, node.path, node.properties);
       }
     }
+  }
+  
+  bindParents(node: SceneInstance.Node = this.root) {
+    node.children?.forEach(child => {
+      child.parent = node;
+      this.bindParents(child);
+    })
   }
 }

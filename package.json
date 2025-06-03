@@ -1,11 +1,11 @@
 {
-  "name": "@phoenixillusion/babylonjs-omi-physics-gltf-loader",
+  "name": "@phoenixillusion/godot-binary-loader",
   "private": true,
   "version": "0.0.1",
   "type": "module",
   "author": "Phoenix Illusion",
   "license": "MIT",
-  "repository": "https://github.com/PhoenixIllusion/babylonjs-omi-physics-gltf-loader.git",
+  "repository": "https://github.com/PhoenixIllusion/godot-binary-loader.git",
   "scripts": {
     "prebuild": "sh clean-dist.sh",
     "build": "tsc"

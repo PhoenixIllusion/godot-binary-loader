@@ -19,6 +19,7 @@ export function setupDefaultScene(pckLoader: GodotPckLoader, config: Config) {
     const scene = new Scene();
     const renderer = new WebGLRenderer({ canvas, powerPreference: 'low-power', antialias: true });
     renderer.setSize(canvas.width, canvas.height, false);
+    renderer.setClearColor(0xFF00FF)
     let camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const controls = new OrbitControls(camera, renderer.domElement);
   

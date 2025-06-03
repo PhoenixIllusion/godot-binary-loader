@@ -78,6 +78,7 @@ export class GodotPckLoader extends Loader<GodotPck> {
             return pckData.scenes[path]
           },
         });
+        instance.bindParents();
         scene.scene = await buildScene(scene, new Object3D(), instance.root);
       }
     }

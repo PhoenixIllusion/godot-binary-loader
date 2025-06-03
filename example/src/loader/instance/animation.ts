@@ -2,7 +2,7 @@ import { unwrap_property_array } from "@phoenixillusion/godot-scene-reader/proce
 import { Animation, AnimationPlayer, AnimationLibrary as AnimationLibraryT } from "./types/gen";
 import { DefaultAnimation } from "./types/gen/defaults/Animation.default";
 import { NodePath } from "./types/gen/types";
-import { animation_convert_track_float32_array, TrackKeys, TrackType } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
+import { animation_convert_track_float32_array, TrackKeys, TrackType, UpdateMode } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 
 export interface TrackWithBuffer {
   enabled: boolean;
@@ -22,6 +22,7 @@ export interface Track {
   loop_wrap: boolean;
   path: NodePath;
   type: TrackType;
+  update: UpdateMode;
 }
 
 function convertTrackBufferIfNeeded(track: Track|TrackWithBuffer): Track {
@@ -34,6 +35,7 @@ function convertTrackBufferIfNeeded(track: Track|TrackWithBuffer): Track {
 }
 
 interface AnimationData  extends Animation {
+  update: Animation.UpdateMode;
   tracks: (Track|TrackWithBuffer)[];
 }
 
@@ -54,10 +56,10 @@ export class AnimationInstance {
   }
 }
 
-export class AnimationPlayerInstance<T> {
+export class AnimationPlayerInstance {
   autoPlay: string;
   animations: Record<string, AnimationInstance> = {}
-  constructor(animation: AnimationPlayer, public target: T) {
+  constructor(animation: AnimationPlayer) {
     const { autoplay } = animation;
     this.autoPlay = autoplay;
     const libraries: Record<string, { properties: AnimationLibrary }> = (<any>animation).libraries;
