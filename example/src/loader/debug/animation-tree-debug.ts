@@ -5,9 +5,10 @@ import { Node as AnimationNode } from '../../loader/instance/animation/node'
 import ElkWorker from './elk-worker?worker'
 import { Animation } from "../instance/animation/animation";
 import { AddNode, BlendNode, SubNode } from "../instance/animation/sync";
-import { DefaultVBoxContainer } from "../instance/types/gen/defaults/VBoxContainer.default";
-import { NonAbstractAnimationNodeType } from "../instance/animation/index";
 import { TimeScale } from "../instance/animation/time-scale";
+import { Transition } from "../instance/animation/transition";
+import { OneShot } from "../instance/animation/one-shot";
+import { AnimationNodeOneShot } from "../instance/types/gen";
 
 (<any>window).g = null;
 (<any>window).i = null;
@@ -33,6 +34,7 @@ const bg_colors: Record<string,string> = {
 const style =
 `<style>
   .animation-debug-container {
+  pointer-events: none;
   font-family: monospace;
   position: absolute;
   top: 0;
@@ -46,6 +48,7 @@ const style =
     justify-content: center;
   }
   .animation-debug-container .Node input {
+    pointer-events: auto;
     width: 4em;
     height: 1.2em;
     line-height: 1.2em;
@@ -72,12 +75,18 @@ const style =
     position: absolute;
     z-index: 0;
   }
-  
   .animation-debug-container .progress .progress-text {
     margin-left: 5px;
     position: absolute;
     display: block;
     z-index: 1;
+  }
+  svg .clickable {
+    cursor: pointer;
+  }
+  svg .port.active text {
+    text-decoration: underline;
+    font-weight: bold;
   }
 </style>`
 
@@ -237,7 +246,8 @@ export class AnimationTreeDebug extends HTMLElement {
         this.append(animationDebugContainer);
 
         for(const node of this.nodes) {
-          const ele = this.svg.querySelector('#'+makeNodeId(node))
+          const node_id = makeNodeId(node);
+          const ele = this.svg.querySelector('#'+node_id)
           if(ele) {
             const dim = ele.getBoundingClientRect();
             const div = document.createElement('div');
@@ -249,6 +259,26 @@ export class AnimationTreeDebug extends HTMLElement {
             div.style.left = dim.left+'px'
             animationDebugContainer.append(div);
             wireFeedbackElement(node, div, this.updateRoutines);
+          }
+          if(ele && node instanceof Transition) {
+            const ports = Array.from(this.svg.querySelectorAll('g[id^='+node_id+'-port]'))
+            this.updateRoutines.push(() => {
+              const selectedIndex = node.input_data.findIndex( x => x.name == node.current_state);
+              if(selectedIndex >= 0) {
+                ports.forEach((g,idx) => { {g.classList.add('clickable'); if(idx == selectedIndex) g.classList.add('active'); else g.classList.remove('active') } })
+              }
+            });
+            ports.forEach((g,idx) => g.addEventListener('click', () => { node.transition_request = node.input_data[idx].name }))
+          }
+          if(ele && node instanceof OneShot) {
+            const ports = Array.from(this.svg.querySelectorAll('g[id^='+node_id+'-port]'))
+            this.updateRoutines.push(() => {
+              const selectedIndex = node.active ? 1: 0;
+              if(selectedIndex >= 0) {
+                ports.forEach((g,idx) => { if(idx == selectedIndex) g.classList.add('active'); else g.classList.remove('active') })
+              }
+            });
+            ports.forEach((g,idx) => {g.classList.add('clickable');g.addEventListener('click', () => {if(!node.active && idx== 1) node.request = AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE })})
           }
         }
       })

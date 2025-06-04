@@ -1,12 +1,14 @@
 import { AnimationInstance } from "../animation";
-import { Animation, AnimationMixer } from '../types/gen/index'
-import { PlaybackInfo } from "./blend";
+import { Animation } from '../types/gen/index';
 import {
 	is_zero_approx, is_less_approx,
 	is_greater_approx, fposmod, pingpong, cubic_interpolate_in_time_vec3, spherical_cubic_interpolate_in_time
 } from "../math";
-import { quat, vec3 } from "gl-matrix";
+import { quat, ReadonlyQuat, vec3 } from "gl-matrix";
 import { _interpolate, InterpolateFunctions } from "./interpolate";
+import { TrackCacheTransform } from "./anim-cache";
+import { AnimationInstanceData } from "./player_interface";
+import { AnimationMixerInstance } from "../animation-mixer";
 
 type Error = boolean;
 const OK = true;
@@ -14,59 +16,21 @@ const OK = true;
 const Math_PI = Math.PI;
 const Math_TAU = Math_PI * 2;
 
-const UPDATE_CONTINUOUS = 0,
+export const UPDATE_CONTINUOUS = 0,
 	UPDATE_DISCRETE = 1,
 	UPDATE_CAPTURE = 2;
 
-export interface AnimationInstanceData {
-	animation: AnimationInstance, playback_info: PlaybackInfo, track_weights: Float32Array
-}
-class TrackCache {
-	root_motion = false;
-	setup_pass = 0;
-	type = Animation.TrackType.TYPE_ANIMATION;
-	path: string = '';
-	blend_idx = -1;
-	object_id = 0;
-	total_weight = 0.0;
-}
-class TrackCacheTransform extends TrackCache {
-	loc_used = false;
-	rot_used = false;
-	scale_used = false;
-	init_loc = vec3.set(vec3.create(), 0, 0, 0);
-	init_rot = quat.set(quat.create(), 0, 0, 0, 1);
-	init_scale = vec3.set(vec3.create(), 1, 1, 1);
-	loc: vec3 = vec3.create();
-	rot: quat = quat.create();
-	scale: vec3 = vec3.create();
-}
-class TrackCacheValue extends TrackCache {
-	init_value!: any
-	value!: any;
-
-	is_init = false;
-	use_continuous = false;
-	use_discrete = false;
-	is_using_angle = false;
-	is_variant_interpolatable = true;
-
-}
-class RootMotion {
-	loc: vec3 = vec3.create();
-	rot: quat = quat.create();
-	scale: vec3 = vec3.create();
-}
-
 const vec3_interpolators: InterpolateFunctions<vec3> = {
+	_set: vec3.copy,
 	_interpolate: vec3.lerp,
 	_interpolate_angle: vec3.lerp,
 	_cubic_interpolate_in_time: cubic_interpolate_in_time_vec3,
 	_cubic_interpolate_angle_in_time: cubic_interpolate_in_time_vec3
 }
 const quat_interpolators: InterpolateFunctions<quat> = {
+	_set: quat.copy,
 	_interpolate: quat.slerp,
-	_interpolate_angle: quat.lerp,
+	_interpolate_angle: quat.slerp,
 	_cubic_interpolate_in_time: spherical_cubic_interpolate_in_time,
 	_cubic_interpolate_angle_in_time: spherical_cubic_interpolate_in_time
 }
@@ -90,15 +54,6 @@ function try_rotation_track_interpolate(animation: AnimationInstance, track: num
 	return ok[0];
 }
 
-
-interface Config {
-	deterministic: boolean;
-	root_motion_track: string;
-	trackCache: Map<AnimationInstance, TrackCache[]>,
-	root_motion_cache: RootMotion,
-	callback_mode_discrete: AnimationMixer.AnimationCallbackModeDiscrete
-}
-
 const loc = [vec3.create(), vec3.create()];
 const scale = [vec3.create(), vec3.create()];
 const rot = [quat.create(), quat.create()];
@@ -111,19 +66,18 @@ function add_vec3_delta(dest: vec3, new_val: vec3, old_val: vec3, blend: number)
 
 const q = quat.create();
 const q_ident = quat.identity(quat.create());
-function incremental_quat_delta(dest: quat, new_val: quat, old_val: quat, blend: number) {
-	const old_inv = quat.invert(q, old_val);
-	const delta = quat.multiply(q, old_inv, new_val)
-	quat.slerp(q, q_ident, delta, blend);
-	quat.normalize(q, q);
-	return quat.mul(dest, dest, q);
+function incremental_quat_delta(dest: quat, new_val: ReadonlyQuat, old_val: ReadonlyQuat, blend: number) {
+	quat.invert(q, old_val);
+	quat.multiply(q, q, new_val)
+	quat.slerp(q, q_ident, q, blend);
+	quat.mul(dest, dest, q);
+	quat.normalize(dest, dest);
 }
 
-export function _blend_process(animation_instances: AnimationInstanceData[], _p_delta: number, _p_update_only: boolean, config: Config) {
+export function _blend_process(mixer: AnimationMixerInstance	, animation_instances: AnimationInstanceData[], _p_delta: number, _p_update_only: boolean) {
 	// Apply value/transform/blend/bezier blends to track caches and execute method/audio/animation tracks.
-	const animation_track_num_to_track_cashe = config.trackCache;
-	const { deterministic, root_motion_track, root_motion_cache, callback_mode_discrete } = config;
-	for (const ai: AnimationInstanceData of animation_instances) {
+	const { deterministic, root_motion_track_str, root_motion_cache, animation_track_num_to_track_cache, callback_mode_discrete } = mixer;
+	for (const ai of animation_instances) {
 		const a = ai.animation;
 		const time = ai.playback_info.time;
 		const delta = ai.playback_info.delta;
@@ -139,7 +93,7 @@ export function _blend_process(animation_instances: AnimationInstanceData[], _p_
 		//const seeked_backward = 0 < p_delta;
 		const calc_root = !seeked || is_external_seeking;
 
-		const track_num_to_track_cashe = animation_track_num_to_track_cashe.get(a)!;
+		const track_num_to_track_cashe = animation_track_num_to_track_cache[a.name]!;
 		const tracks_ptr = a.tracks;
 		//const a_length = a.length;
 		const count = tracks_ptr.length;
@@ -149,7 +103,7 @@ export function _blend_process(animation_instances: AnimationInstanceData[], _p_
 				continue;
 			}
 			const track = track_num_to_track_cashe[i];
-			if (track == undefined) {
+			if (track == null) {
 				continue; // No path, but avoid error spamming.
 			}
 			const blend_idx = track.blend_idx;
@@ -163,7 +117,7 @@ export function _blend_process(animation_instances: AnimationInstanceData[], _p_
 				blend = blend / track.total_weight;
 			}
 			const ttype = animation_track.type;
-			track.root_motion = root_motion_track == animation_track.path.names.join('/');
+			track.root_motion = root_motion_track_str == animation_track.path_str;
 			switch (ttype) {
 				case 'position_3d': {
 					if (is_zero_approx(blend)) {
@@ -697,3 +651,4 @@ export function _blend_process(animation_instances: AnimationInstanceData[], _p_
 			}
 		}
 	}
+}

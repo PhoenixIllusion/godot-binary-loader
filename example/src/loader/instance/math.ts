@@ -1,4 +1,5 @@
-import { quat, ReadonlyQuat, vec3 } from "gl-matrix";
+import { mat3, mat4, quat, ReadonlyQuat, vec3 } from "gl-matrix";
+import { Transform3D } from "./types/gen/types";
 
 export const CMP_EPSILON = 0.00001;
 export function is_zero_approx(val: number) {
@@ -212,4 +213,56 @@ export function spherical_cubic_interpolate_in_time(res: quat, p_a: quat, p_b: q
 	const q2 = quat_exp(tmp_q.q2, quat.multiply(tmp_q.q2, to_q, ln));
 
 	return quat.slerp(res, q1, q2, p_weight);
+}
+
+export function transform3d_to_mat4(transform: Transform3D, out: mat4 = mat4.create()): mat3 {
+	mat4.identity(out);
+	const r = transform.basis.rows;
+	const t = transform.origin;
+	mat4.set(out,
+		r[0].x, r[1].x, r[2].x, 0,
+		r[0].y, r[1].y, r[2].y, 0,
+		r[0].z, r[1].z, r[2].z, 0,
+		t.x, t.y, t.z, 1
+	)
+	return out;
+}
+
+const quat_slerp_to1 = quat.create()
+export function quat_slerp(out: quat, p_from: quat, p_to: quat, p_weight: number) {
+	let omega = 0, cosom = 0, sinom = 0, scale0 = 0, scale1 = 0;
+
+	// calc cosine
+	cosom = quat.dot(p_from,p_to);
+
+	// adjust signs (if necessary)
+	if (cosom < 0.0) {
+		cosom = -cosom;
+		quat.scale(quat_slerp_to1, p_to, -1);
+	} else {
+		quat.copy(quat_slerp_to1, p_to);
+	}
+
+	// calculate coefficients
+
+	if ((1.0 - cosom) > CMP_EPSILON) {
+		// standard case (slerp)
+		omega = Math.acos(cosom);
+		sinom = Math.sin(omega);
+		scale0 = Math.sin((1.0 - p_weight) * omega) / sinom;
+		scale1 = Math.sin(p_weight * omega) / sinom;
+	} else {
+		// "from" and "to" quaternions are very close
+		//  ... so we can do a linear interpolation
+		scale0 = 1.0 - p_weight;
+		scale1 = p_weight;
+	}
+	const to1 = quat_slerp_to1;
+	const [x, y, z, w] = p_from;
+	// calculate final values
+	return quat.set(out, 
+			scale0 * x + scale1 * to1[0],
+			scale0 * y + scale1 * to1[1],
+			scale0 * z + scale1 * to1[2],
+			scale0 * w + scale1 * to1[3]);
 }

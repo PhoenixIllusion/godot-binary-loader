@@ -14,8 +14,8 @@ export interface Config {
 
 export function setupDefaultScene(pckLoader: GodotPckLoader, config: Config) {
     const canvas = document.getElementById('app') as HTMLCanvasElement;
-    canvas.width = (canvas.parentElement?.clientWidth || 640);
-    canvas.height = (canvas.parentElement?.clientHeight || 640);
+    canvas.width = (canvas.clientWidth || 640);
+    canvas.height = (canvas.clientHeight || 640);
     const scene = new Scene();
     const renderer = new WebGLRenderer({ canvas, powerPreference: 'low-power', antialias: true });
     renderer.setSize(canvas.width, canvas.height, false);

@@ -110,7 +110,7 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
       }
       break;
     case 'AnimationPlayer': {
-      const animationPlayer = new ThreeAnimation(godotNode.properties, parent);
+      const animationPlayer = new ThreeAnimation(node, parent);
       node3d!.userData.animationPlayer = animationPlayer;
       scene.animations.push(animationPlayer);
       }
@@ -154,7 +154,7 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
     }
       break;
     case 'Skeleton3D': {
-      const skeleton: { skeleton?: Skeleton } = {};
+      const skeleton: { skeleton?: Skeleton } = node3d!.userData;
       onChild = (child, obj) => setupSkeleton(scene, godotNode.properties, child, obj, skeleton);
       }
       break;

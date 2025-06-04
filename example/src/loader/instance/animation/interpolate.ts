@@ -23,7 +23,7 @@ function _find(times: Float32Array, p_time: number, p_backward: boolean, p_limit
 	let middle = 0;
 
   while (low <= high) {
-		middle = (low + high) / 2;
+		middle = Math.floor((low + high) / 2);
 
 		if (is_equal_approx(p_time, times[middle])) { //match
 			return middle;
@@ -53,6 +53,7 @@ function _find(times: Float32Array, p_time: number, p_backward: boolean, p_limit
 }
 
 export interface InterpolateFunctions<T> {
+	_set(out: T, a: T): T;
   _interpolate(out: T, a: T, b: T, p: number): T;
   _interpolate_angle(out: T, a: T, b: T, p: number): T;
   _cubic_interpolate_in_time(out: T, p_a: T, p_b: T, p_pre_a: T, p_post_b: T, p_weight: number, p_b_t: number, p_pre_a_t: number, p_post_b_t: number): T
@@ -75,7 +76,7 @@ export function _interpolate<T>(out: T, p_keys: TrackKeys, p_time: number, p_int
 		if (p_ok) {
 			p_ok[0] = true;
 		}
-		return p_keys.values[0];
+		return funcs._set(out, p_keys.values[0]);
 	}
 
   const { times, transitions, values } = p_keys;
@@ -204,7 +205,7 @@ export function _interpolate<T>(out: T, p_keys: TrackKeys, p_time: number, p_int
 	const tr = transitions[idx];
 	if (tr == 0) {
 		// Don't interpolate if not needed.
-		return values[idx];
+		return funcs._set(out, values[idx]);
 	}
 
 	if (tr != 1.0) {
@@ -260,5 +261,6 @@ export function _interpolate<T>(out: T, p_keys: TrackKeys, p_time: number, p_int
 					to_t, pre_t, post_t);
 		} break;
 		default:
-			return values[idx];
+			return func._set(out, values[idx]);
 	}
+}

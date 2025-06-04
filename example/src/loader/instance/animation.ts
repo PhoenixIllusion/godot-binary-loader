@@ -1,27 +1,40 @@
-import { unwrap_property_array } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { Animation, AnimationPlayer, AnimationLibrary as AnimationLibraryT } from "./types/gen";
-import { DefaultAnimation } from "./types/gen/defaults/Animation.default";
+import { Animation } from "./types/gen";
 import { NodePath } from "./types/gen/types";
-import { animation_convert_track_float32_array, TrackKeys, TrackType, UpdateMode } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
+import type { TrackType } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
+import { animation_convert_track_float32_array, TrackKeys, UpdateMode } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
+import { node_path_string } from "./util";
 
-export interface TrackWithBuffer {
-  enabled: boolean;
-  imported: false;
-  interp: Animation.InterpolationType;
-  keys: Float32Array;
-  loop_wrap: boolean;
-  path: NodePath;
-  type: TrackType;
+export function get_cache_type(p_type: TrackType): TrackType {
+  if (p_type == 'bezier') {
+    return 'value';
+  }
+  if (p_type == 'rotation_3d' || p_type == 'scale_3d') {
+    return 'position_3d'; // Reference them as position3D tracks, even if they modify rotation or scale.
+  }
+  return p_type;
+}
+export function get_cache_type_thash(track: TrackBase): string {
+  return get_cache_type(track.type) + '!' + track.path_str
 }
 
-export interface Track {
+export { TrackType };
+interface TrackBase {
   enabled: boolean;
   imported: false;
   interp: Animation.InterpolationType;
-  keys: TrackKeys;
   loop_wrap: boolean;
   path: NodePath;
+  path_str: string;
   type: TrackType;
+  thash: string;
+}
+
+export interface TrackWithBuffer extends TrackBase {
+  keys: Float32Array;
+}
+
+export interface Track extends TrackBase {
+  keys: TrackKeys;
   update: UpdateMode;
 }
 
@@ -30,18 +43,16 @@ function convertTrackBufferIfNeeded(track: Track|TrackWithBuffer): Track {
     const keys= track.keys;
     track.keys = animation_convert_track_float32_array(track.type, keys);
   }
-  
+  track.path_str = node_path_string(track.path);
+  track.thash = get_cache_type_thash(track);
   return track as Track;
 }
 
-interface AnimationData  extends Animation {
+export interface AnimationData  extends Animation {
   update: Animation.UpdateMode;
   tracks: (Track|TrackWithBuffer)[];
 }
 
-interface AnimationLibrary extends AnimationLibraryT {
-  _data: Record<string, {'properties': AnimationData}>;
-}
 
 export class AnimationInstance {
   length: number;
@@ -53,24 +64,5 @@ export class AnimationInstance {
     this.length = data.length;
     this.loop_mode = data.loop_mode;
     this.step = data.step;
-  }
-}
-
-export class AnimationPlayerInstance {
-  autoPlay: string;
-  animations: Record<string, AnimationInstance> = {}
-  constructor(animation: AnimationPlayer) {
-    const { autoplay } = animation;
-    this.autoPlay = autoplay;
-    const libraries: Record<string, { properties: AnimationLibrary }> = (<any>animation).libraries;
-    for(const [libName, lib] of Object.entries(libraries)) {
-      for(const [animName, data] of Object.entries(lib.properties._data)) {
-        const { properties } = data;
-        DefaultAnimation(properties);
-        properties.tracks = unwrap_property_array(properties, 'tracks', ['enabled', 'imported', 'interp', 'keys', 'loop_wrap','path', 'type']);
-        const name = libName.length ? `${libName}/${animName}` : animName;
-        this.animations[name] = new AnimationInstance(name, properties)
-      }
-    }
   }
 }

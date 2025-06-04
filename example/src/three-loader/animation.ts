@@ -1,5 +1,5 @@
 import { Object3D } from "three/src/core/Object3D.js";
-import { AnimationPlayerInstance } from "../loader/instance/animation";
+import { AnimationPlayerInstance } from "../loader/instance/animation-player";
 import { AnimationClip } from "three/src/animation/AnimationClip.js";
 import { Interpolant } from "three/src/math/Interpolant.js";
 import { KeyframeTrack } from "three/src/animation/KeyframeTrack.js";
@@ -14,6 +14,7 @@ import { QuaternionKeyframeTrack } from "three/src/animation/tracks/QuaternionKe
 import { animation_transition_ease } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 import { degToRad } from "three/src/math/MathUtils.js";
 import { AnimationPlayer } from "../loader/instance/types/gen";
+import { SceneInstance } from "../loader/instance/scene";
 
 /**
  * A basic linear interpolant.
@@ -81,7 +82,7 @@ function flattenV4(v: any): [number,number,number,number] {
 }
 
 export class ThreeAnimation extends AnimationPlayerInstance {
-  constructor(animation: AnimationPlayer, public target: Object3D) {
+  constructor(animation: SceneInstance.Node, public target: Object3D) {
     super(animation);
   }
   convertTrack(values: any[]): {values: Float32Array | null, KeyFrameType: typeof KeyframeTrack } {

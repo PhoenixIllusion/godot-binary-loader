@@ -36,6 +36,7 @@ export class Animation extends Node {
 
 
   get_node_time_info() {
+    super.get_node_time_info();
     const nti = this._nti;
     if(!this.animationInstance)
       return nti;

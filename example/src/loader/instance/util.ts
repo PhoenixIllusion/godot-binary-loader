@@ -22,6 +22,12 @@ export function resolve_nodepath(currentPath: string[], nodePath: string[], abso
   return finalPath;
 }
 
+export function node_path_string(nodePath: NodePath|undefined) {
+  if(!nodePath)
+    return '';
+  return nodePath.names.join('/') + (nodePath.subnames?.length ? ':' + nodePath.subnames.join(':'): '')
+}
+
 interface ParentChildSystem<T> {
   name: string;
   parent: ParentChildSystem<T>|null,
@@ -42,6 +48,37 @@ export function navigate_nodepath<T extends  ParentChildSystem<T>>(obj: T, nodeP
     }
   }
   return result as T;
+}
+export function navigate_nodepath_subpath<T extends Record<string,any>>(obj: T, nodePath: NodePath, leftover_path: string[], last_is_property = 1): any | null {
+  let result: T | null = null;
+  const { subnames } = nodePath;
+  if(subnames.length) {
+    let j = 0;
+    for(;j < subnames.length - last_is_property; j++) {
+      const subname = subnames[j];
+      let test_obj = j == 0 ? obj : result
+      let new_res_v: any|null = null;
+      let obj_has_property = (typeof test_obj == 'object') && ('properties' in test_obj!);
+      if(obj_has_property) {
+        new_res_v = obj.properties[subname];
+        if(!new_res_v) {
+          return null;
+        }
+        if(!((typeof test_obj == 'object') && ('properties' in test_obj!))) {
+          break;
+        }
+        result = new_res_v;
+      } else {
+        return null;
+      }
+    }
+		for (; j < subnames.length; j++) {
+			// Put the rest of the subpath in the leftover path
+			leftover_path.push(subnames[j]);
+		}
+  }
+
+  return result;
 }
 
 const cachedProperties = new Map();

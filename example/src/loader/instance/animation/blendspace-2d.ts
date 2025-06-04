@@ -110,7 +110,10 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
   x_label!: string;
   y_label!: string;
 
-  blend_position: vec2 = vec2.create()
+  _blend_position: vec2 = vec2.create()
+  set blend_position(v: Vector2) {vec2.set(this._blend_position, v.x, v.y);}
+  get blend_position(): Vector2 { return {x: this._blend_position[0], y: this._blend_position[1]} }
+
   _points: Float32Array;
   triangles!: Uint32Array;
   closest = -1;
@@ -143,7 +146,7 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
       return new NodeTimeInfo();
     }
 
-    const blend_pos = this.blend_position;
+    const blend_pos = this._blend_position;
     let cur_closest = this.closest;
     let mind: NodeTimeInfo | undefined = undefined; //time of min distance point
 
@@ -159,7 +162,7 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
       let blend_triangle = -1;
       const blend_weights: [number, number, number] = [0, 0, 0];
 
-      for (let i = 0; i < triangles.length; i++) {
+      for (let i = 0; i < triangles.length; i+=3) {
         const points: [ReadonlyVec2, ReadonlyVec2, ReadonlyVec2] = [
           blend_points[triangles[i]].pos,
           blend_points[triangles[i + 1]].pos,
@@ -197,7 +200,7 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
         }
       }
 
-      const triangle_points = triangles.slice(blend_triangle, blend_triangle + 3);
+      const triangle_points = triangles.slice(blend_triangle, blend_triangle*3 + 3);
 
       first = true;
 
