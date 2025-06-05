@@ -14,11 +14,13 @@ import { CapsuleGeometry } from 'three/src/geometries/CapsuleGeometry.js';
 import { CylinderGeometry } from 'three/src/geometries/CylinderGeometry.js';
 import { BufferAttribute } from 'three/src/core/BufferAttribute.js';
 import { BufferGeometry } from 'three/src/core/BufferGeometry.js';
-import { Shape3DType } from '../loader/instance/types/gen';
+import type { Shape3DType } from '@phoenixillusion/godot-binary-loader/instance/types/gen/index.js';
 import { Matrix4 } from 'three/src/math/Matrix4.js';
-import { DefaultBoxShape3D } from '../loader/instance/types/gen/defaults/BoxShape3D.default';
-import { DefaultSphereShape3D } from '../loader/instance/types/gen/defaults/SphereShape3D.default';
-import { DefaultCapsuleShape3D } from '../loader/instance/types/gen/defaults/CapsuleShape3D.default';
+import { DefaultBoxShape3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/BoxShape3D.default.js';
+import { DefaultSphereShape3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/SphereShape3D.default.js';
+import { DefaultCapsuleShape3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CapsuleShape3D.default.js';
+
+
 
 // Physics variables
 // List of objects spawned

@@ -1,0 +1,107 @@
+/*
+  Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
+*/
+//@ts-nocheck
+import { create } from './../types';
+import { DefaultResource } from './Resource.default';
+export function DefaultEnvironment(item) {
+    DefaultResource(item);
+    item.adjustment_brightness ?? (item.adjustment_brightness = 1.0);
+    //adjustment_color_correction
+    item.adjustment_contrast ?? (item.adjustment_contrast = 1.0);
+    item.adjustment_enabled ?? (item.adjustment_enabled = false);
+    item.adjustment_saturation ?? (item.adjustment_saturation = 1.0);
+    item.ambient_light_color ?? (item.ambient_light_color = create.Color(0, 0, 0, 1));
+    item.ambient_light_energy ?? (item.ambient_light_energy = 1.0);
+    item.ambient_light_sky_contribution ?? (item.ambient_light_sky_contribution = 1.0);
+    item.ambient_light_source ?? (item.ambient_light_source = 0);
+    item.background_camera_feed_id ?? (item.background_camera_feed_id = 1);
+    item.background_canvas_max_layer ?? (item.background_canvas_max_layer = 0);
+    item.background_color ?? (item.background_color = create.Color(0, 0, 0, 1));
+    item.background_energy_multiplier ?? (item.background_energy_multiplier = 1.0);
+    item.background_intensity ?? (item.background_intensity = 30000.0);
+    item.background_mode ?? (item.background_mode = 0);
+    item.fog_aerial_perspective ?? (item.fog_aerial_perspective = 0.0);
+    item.fog_density ?? (item.fog_density = 0.01);
+    item.fog_depth_begin ?? (item.fog_depth_begin = 10.0);
+    item.fog_depth_curve ?? (item.fog_depth_curve = 1.0);
+    item.fog_depth_end ?? (item.fog_depth_end = 100.0);
+    item.fog_enabled ?? (item.fog_enabled = false);
+    item.fog_height ?? (item.fog_height = 0.0);
+    item.fog_height_density ?? (item.fog_height_density = 0.0);
+    item.fog_light_color ?? (item.fog_light_color = create.Color(0.518, 0.553, 0.608, 1));
+    item.fog_light_energy ?? (item.fog_light_energy = 1.0);
+    item.fog_mode ?? (item.fog_mode = 0);
+    item.fog_sky_affect ?? (item.fog_sky_affect = 1.0);
+    item.fog_sun_scatter ?? (item.fog_sun_scatter = 0.0);
+    item.glow_blend_mode ?? (item.glow_blend_mode = 2);
+    item.glow_bloom ?? (item.glow_bloom = 0.0);
+    item.glow_enabled ?? (item.glow_enabled = false);
+    item.glow_hdr_luminance_cap ?? (item.glow_hdr_luminance_cap = 12.0);
+    item.glow_hdr_scale ?? (item.glow_hdr_scale = 2.0);
+    item.glow_hdr_threshold ?? (item.glow_hdr_threshold = 1.0);
+    item.glow_intensity ?? (item.glow_intensity = 0.8);
+    item['glow_levels/1'] ?? (item['glow_levels/1'] = 0.0);
+    item['glow_levels/2'] ?? (item['glow_levels/2'] = 0.0);
+    item['glow_levels/3'] ?? (item['glow_levels/3'] = 1.0);
+    item['glow_levels/4'] ?? (item['glow_levels/4'] = 0.0);
+    item['glow_levels/5'] ?? (item['glow_levels/5'] = 1.0);
+    item['glow_levels/6'] ?? (item['glow_levels/6'] = 0.0);
+    item['glow_levels/7'] ?? (item['glow_levels/7'] = 0.0);
+    //glow_map
+    item.glow_map_strength ?? (item.glow_map_strength = 0.8);
+    item.glow_mix ?? (item.glow_mix = 0.05);
+    item.glow_normalized ?? (item.glow_normalized = false);
+    item.glow_strength ?? (item.glow_strength = 1.0);
+    item.reflected_light_source ?? (item.reflected_light_source = 0);
+    item.sdfgi_bounce_feedback ?? (item.sdfgi_bounce_feedback = 0.5);
+    item.sdfgi_cascade0_distance ?? (item.sdfgi_cascade0_distance = 12.8);
+    item.sdfgi_cascades ?? (item.sdfgi_cascades = 4);
+    item.sdfgi_enabled ?? (item.sdfgi_enabled = false);
+    item.sdfgi_energy ?? (item.sdfgi_energy = 1.0);
+    item.sdfgi_max_distance ?? (item.sdfgi_max_distance = 204.8);
+    item.sdfgi_min_cell_size ?? (item.sdfgi_min_cell_size = 0.2);
+    item.sdfgi_normal_bias ?? (item.sdfgi_normal_bias = 1.1);
+    item.sdfgi_probe_bias ?? (item.sdfgi_probe_bias = 1.1);
+    item.sdfgi_read_sky_light ?? (item.sdfgi_read_sky_light = true);
+    item.sdfgi_use_occlusion ?? (item.sdfgi_use_occlusion = false);
+    item.sdfgi_y_scale ?? (item.sdfgi_y_scale = 1);
+    //sky
+    item.sky_custom_fov ?? (item.sky_custom_fov = 0.0);
+    item.sky_rotation ?? (item.sky_rotation = create.Vector3(0, 0, 0));
+    item.ssao_ao_channel_affect ?? (item.ssao_ao_channel_affect = 0.0);
+    item.ssao_detail ?? (item.ssao_detail = 0.5);
+    item.ssao_enabled ?? (item.ssao_enabled = false);
+    item.ssao_horizon ?? (item.ssao_horizon = 0.06);
+    item.ssao_intensity ?? (item.ssao_intensity = 2.0);
+    item.ssao_light_affect ?? (item.ssao_light_affect = 0.0);
+    item.ssao_power ?? (item.ssao_power = 1.5);
+    item.ssao_radius ?? (item.ssao_radius = 1.0);
+    item.ssao_sharpness ?? (item.ssao_sharpness = 0.98);
+    item.ssil_enabled ?? (item.ssil_enabled = false);
+    item.ssil_intensity ?? (item.ssil_intensity = 1.0);
+    item.ssil_normal_rejection ?? (item.ssil_normal_rejection = 1.0);
+    item.ssil_radius ?? (item.ssil_radius = 5.0);
+    item.ssil_sharpness ?? (item.ssil_sharpness = 0.98);
+    item.ssr_depth_tolerance ?? (item.ssr_depth_tolerance = 0.2);
+    item.ssr_enabled ?? (item.ssr_enabled = false);
+    item.ssr_fade_in ?? (item.ssr_fade_in = 0.15);
+    item.ssr_fade_out ?? (item.ssr_fade_out = 2.0);
+    item.ssr_max_steps ?? (item.ssr_max_steps = 64);
+    item.tonemap_exposure ?? (item.tonemap_exposure = 1.0);
+    item.tonemap_mode ?? (item.tonemap_mode = 0);
+    item.tonemap_white ?? (item.tonemap_white = 1.0);
+    item.volumetric_fog_albedo ?? (item.volumetric_fog_albedo = create.Color(1, 1, 1, 1));
+    item.volumetric_fog_ambient_inject ?? (item.volumetric_fog_ambient_inject = 0.0);
+    item.volumetric_fog_anisotropy ?? (item.volumetric_fog_anisotropy = 0.2);
+    item.volumetric_fog_density ?? (item.volumetric_fog_density = 0.05);
+    item.volumetric_fog_detail_spread ?? (item.volumetric_fog_detail_spread = 2.0);
+    item.volumetric_fog_emission ?? (item.volumetric_fog_emission = create.Color(0, 0, 0, 1));
+    item.volumetric_fog_emission_energy ?? (item.volumetric_fog_emission_energy = 1.0);
+    item.volumetric_fog_enabled ?? (item.volumetric_fog_enabled = false);
+    item.volumetric_fog_gi_inject ?? (item.volumetric_fog_gi_inject = 1.0);
+    item.volumetric_fog_length ?? (item.volumetric_fog_length = 64.0);
+    item.volumetric_fog_sky_affect ?? (item.volumetric_fog_sky_affect = 1.0);
+    item.volumetric_fog_temporal_reprojection_amount ?? (item.volumetric_fog_temporal_reprojection_amount = 0.9);
+    item.volumetric_fog_temporal_reprojection_enabled ?? (item.volumetric_fog_temporal_reprojection_enabled = true);
+}

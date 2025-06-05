@@ -1,18 +1,19 @@
 import { Object3D } from "three/src/core/Object3D.js";
-import { Environment, MaterialType, NodeTypeMap } from "../loader/instance/types/gen";
-import { Color as ColorT } from "../loader/instance/types/gen/types";
-import { DefaultEnvironment } from "../loader/instance/types/gen/defaults/Environment.default";
 import { SphereGeometry } from "three/src/geometries/SphereGeometry.js";
 import { MeshBasicMaterial } from "three/src/materials/MeshBasicMaterial.js";
 import { cast_ctex, getTexture } from "./texture-loader";
 import { Mesh } from "three/src/objects/Mesh.js";
 import { AmbientLight } from "three/src/lights/AmbientLight.js";
 import { Color } from "three/src/math/Color.js";
-import { DefaultPanoramaSkyMaterial } from "../loader/instance/types/gen/defaults/PanoramaSkyMaterial.default";
 import { Material } from "three/src/materials/Material.js";
 import { ShaderMaterial } from "three/src/materials/ShaderMaterial.js";
 import { Vector4 } from "three/src/math/Vector4.js";
 
+import { Environment, MaterialType, NodeTypeMap } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
+import { DefaultEnvironment } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/Environment.default.js";
+import { DefaultPanoramaSkyMaterial } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/PanoramaSkyMaterial.default.js";
+
+import type { Color as ColorT } from "@phoenixillusion/godot-binary-loader/instance/types/gen/types.js";
 
 const proceduralSky = {
   vertexShader:

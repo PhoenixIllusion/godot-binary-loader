@@ -10,15 +10,13 @@
     "visualize": "npx vite-bundle-visualizer"
   },
   "devDependencies": {
-    "@types/delaunator": "5.0.3",
     "@types/three": "0.176.0",
     "typescript": "~5.7.2",
     "vite": "^6.3.1"
   },
   "dependencies": {
-    "@dweb-browser/zstd-wasm": "1.2.1",
-    "@phoenixillusion/godot-scene-reader": "file:../../godot-scene-reader",
-    "delaunator": "5.0.1",
+    "@phoenixillusion/godot-binary-loader": "file:..",
+    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.3",
     "gl-matrix": "3.4.1",
     "jolt-physics": "0.36.0",
     "three": "0.176.0"

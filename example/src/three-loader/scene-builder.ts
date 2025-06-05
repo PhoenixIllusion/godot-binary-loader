@@ -1,31 +1,31 @@
 import { Matrix4 } from 'three/src/math/Matrix4.js';
-import { SceneInstance } from '../loader/instance/scene';
 import { Object3D } from 'three/src/core/Object3D.js';
 import { Vector3, Vector3Like } from 'three/src/math/Vector3.js';
 import { Group } from 'three/src/objects/Group.js';
-import { NodeExtType } from '../loader/instance/types';
 import { loadMesh } from './mesh-loader';
-import { Camera3D } from '../loader/instance/types/gen';
-import { Basis, Transform3D } from '../loader/instance/types/gen/types';
 import { loadWorldEnvironment } from './environment';
-import { DefaultDirectionalLight3D } from '../loader/instance/types/gen/defaults/DirectionalLight3D.default';
 import { DirectionalLight } from 'three/src/lights/DirectionalLight.js';
-import { DefaultCamera3D } from '../loader/instance/types/gen/defaults/Camera3D.default';
 import { GodotPck } from './pck-loader';
 import { PerspectiveCamera } from 'three/src/cameras/PerspectiveCamera.js';
 import { setupSkeleton } from './skeleton';
 import { ThreeAnimation } from './animation';
 import { gridmap_get_instance_mesh } from './grid-map';
-import { unwrap_properties, unwrap_property } from '@phoenixillusion/godot-scene-reader/process/scene/unwrap.js';
-import { VariantType } from '@phoenixillusion/godot-scene-reader/parse/binary/variant.js';
+import { unwrap_properties } from '@phoenixillusion/godot-scene-reader/process/scene/unwrap.js';
 import { PhysicsShapeData } from './physics';
-import { DefaultCharacterBody3D } from '../loader/instance/types/gen/defaults/CharacterBody3D.default';
-import { DefaultRigidBody3D } from '../loader/instance/types/gen/defaults/RigidBody3D.default';
-import { DefaultStaticBody3D } from '../loader/instance/types/gen/defaults/StaticBody3D.default';
-import { DefaultArea3D } from '../loader/instance/types/gen/defaults/Area3D.default';
 import { ThreeAnimationTree } from './animation-tree';
-import { Skeleton } from 'three';
-import { unwrap_properties_cached } from '../loader/instance/util';
+import { Skeleton } from 'three/src/objects/Skeleton.js';
+
+import { SceneInstance } from '@phoenixillusion/godot-binary-loader/instance/scene.js';
+import { NodeExtType } from '@phoenixillusion/godot-binary-loader/instance/types/index.js';
+import { Camera3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/index.js';
+import { Basis, Transform3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/types.js';
+import { DefaultDirectionalLight3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/DirectionalLight3D.default.js';
+import { DefaultCamera3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/Camera3D.default.js';
+import { DefaultCharacterBody3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CharacterBody3D.default.js';
+import { DefaultRigidBody3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/RigidBody3D.default.js';
+import { DefaultStaticBody3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/StaticBody3D.default.js';
+import { DefaultArea3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/Area3D.default.js';
+import { unwrap_properties_cached } from '@phoenixillusion/godot-binary-loader/instance/util.js';
 
 function v3(vlike: Vector3Like): Vector3 {
   return new Vector3().copy(vlike);

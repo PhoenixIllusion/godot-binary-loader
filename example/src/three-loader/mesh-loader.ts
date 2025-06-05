@@ -9,13 +9,13 @@ import { CylinderGeometry } from "three/src/geometries/CylinderGeometry.js";
 import { BufferAttribute } from "three/src/core/BufferAttribute.js";
 import { PlaneGeometry } from "three/src/geometries/PlaneGeometry.js";
 import { BufferGeometryUtils } from "three/examples/jsm/Addons.js";
-import * as GodotMesh from '../loader/instance/types/mesh';
-import { MeshType, Node3DTypeMap, Mesh as MeshNS } from "../loader/instance/types/gen";
-import { HasSurfaceMaterialOverride } from "../loader/instance/types";
-import { MeshWithDefaults } from "../loader/instance/types/mesh";
 import { FA } from "@phoenixillusion/godot-scene-reader/process/scene/mesh/mesh_get_arrays.js";
 import { configureMaterial } from "./material";
 
+import * as GodotMesh from '@phoenixillusion/godot-binary-loader/instance/types/mesh.js';
+import { MeshType, Node3DTypeMap, Mesh as MeshNS } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
+import { HasSurfaceMaterialOverride } from "@phoenixillusion/godot-binary-loader/instance/types/index.js";
+import { MeshWithDefaults } from "@phoenixillusion/godot-binary-loader/instance/types/mesh.js";
 
 const standardMaterial = new MeshStandardMaterial({ color: 0xffffff });
 const meshCache = new Map<MeshType, Mesh | null>()

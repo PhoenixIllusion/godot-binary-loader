@@ -2,54 +2,13 @@ import { MeshStandardMaterial } from "three/src/materials/MeshStandardMaterial.j
 import { Color } from "three/src/math/Color.js";
 import { Texture } from "three/src/textures/Texture.js";
 import { cast_ctex, getTexture } from "./texture-loader";
-import { MaterialType, TextureType, BaseMaterial3D } from "../loader/instance/types/gen";
-import { DefaultGradientTexture2D } from "../loader/instance/types/gen/defaults/GradientTexture2D.default";
 import { AdditiveBlending, ClampToEdgeWrapping, LinearFilter, MultiplyBlending, NearestFilter, NormalBlending, RepeatWrapping, SRGBColorSpace, SubtractiveBlending } from "three/src/constants.js";
-import { GradientTexture2D } from "../loader/instance/types/gen";
-import { DefaultStandardMaterial3D } from "../loader/instance/types/gen/defaults/StandardMaterial3D.default";
-import { DefaultBaseMaterial3D } from "../loader/instance/types/gen/defaults/BaseMaterial3D.default";
 
-export function createGradientCanvas( gradientData: GradientTexture2D): HTMLCanvasElement {
-  const canvas = document.createElement("canvas");
-  const width = canvas.width = gradientData.width;
-  const height = canvas.height = gradientData.height;
-  const ctx = canvas.getContext("2d")!;
-  
-  // Convert normalized fill_from and fill_to to actual pixel values
-  const [fx, fy] = [gradientData.fill_from.x * width, gradientData.fill_from.y * height];
-  const [tx, ty] = [gradientData.fill_to.x * width, gradientData.fill_to.y * height];
-
-  let gradient: CanvasGradient;
-  
-  if (gradientData.fill === GradientTexture2D.Fill.FILL_LINEAR) {
-      gradient = ctx.createLinearGradient(fx, fy, tx, ty);
-  } else if (gradientData.fill === GradientTexture2D.Fill.FILL_RADIAL) {
-      const radius = Math.hypot(tx - fx, ty - fy); // Approximate size
-      gradient = ctx.createRadialGradient(fx, fy, 0, fx, fy, radius);
-  } else if (gradientData.fill === GradientTexture2D.Fill.FILL_SQUARE) {
-      gradient = ctx.createRadialGradient(fx, fy, 0, fx, fy, Math.min(width, height) / 2);
-  } else {
-      throw new Error("Invalid fill type");
-  }
-
-  // Apply color stops
-  const g_props = gradientData.gradient.properties;
-  g_props.colors.forEach((color, index) => {
-      const offset = (<Float32Array><any>g_props.offsets)[index] ?? (index / (g_props.colors.length - 1));
-      const rgba = `rgba(${color.r * 255}, ${color.g * 255}, ${color.b * 255}, ${color.a.toFixed(2)})`;
-      gradient.addColorStop(offset, rgba);
-  });
-
-  ctx.clearRect(0, 0, width, height); // Clears canvas to fully transparent
-  ctx.globalCompositeOperation = "source-over"; // Ensures proper alpha blending
-
-  // Apply gradient to canvas
-  ctx.fillStyle = gradient;
-  ctx.fillRect(0, 0, width, height);
-
-  return canvas;
-}
-
+import { MaterialType, TextureType, BaseMaterial3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
+import { DefaultGradientTexture2D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/GradientTexture2D.default.js";
+import { DefaultStandardMaterial3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/StandardMaterial3D.default.js";
+import { DefaultBaseMaterial3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/BaseMaterial3D.default.js";
+import { create_gradient_canvas } from "@phoenixillusion/godot-binary-loader/instance/material.js";
 
 function parseTexture(tex: TextureType): Promise<Texture> {
   if(<any>(tex.type) == 'ctex') {
@@ -58,7 +17,7 @@ function parseTexture(tex: TextureType): Promise<Texture> {
   }
   if(tex.type == 'GradientTexture2D') {
      DefaultGradientTexture2D(tex.properties);
-    return Promise.resolve(new Texture(createGradientCanvas(tex.properties)))
+    return Promise.resolve(new Texture(create_gradient_canvas(tex.properties)))
   }
   throw new Error("Unknown tex type");
 }

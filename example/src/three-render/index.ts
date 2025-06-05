@@ -41,7 +41,7 @@ export async function render(config: Config = {}) {
 
   const mixers: AnimationMixer[] = animations.map((x,idx) => {
     const mixer = new AnimationMixer(x.target);
-    const clip = AnimationClip.findByName( x.clips, pck.animations[idx].autoPlay||'walk');
+    const clip = AnimationClip.findByName( x.clips, pck.animations[idx].autoplay||'walk');
     if(clip) {
       const action = mixer.clipAction( clip );
       action.play();

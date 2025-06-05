@@ -1,0 +1,34 @@
+import { AnimationInstance } from "./animation";
+import { RootMotion, TrackCache } from "./animation/anim-cache";
+import { SceneInstance } from "./scene";
+import { AnimationMixer } from "./types/gen";
+import { NodePath } from "./types/gen/types";
+import { AnimationInstanceData } from "./animation/player_interface";
+export declare class AnimationMixerInstance {
+    active: boolean;
+    audio_max_polyphony: number;
+    callback_mode_discrete: AnimationMixer.AnimationCallbackModeDiscrete;
+    callback_mode_method: AnimationMixer.AnimationCallbackModeMethod;
+    callback_mode_process: AnimationMixer.AnimationCallbackModeProcess;
+    deterministic: boolean;
+    reset_on_save: boolean;
+    root_motion_track: NodePath;
+    root_motion_track_str: string;
+    root_node: NodePath;
+    rootNode: SceneInstance.Node;
+    animations: Record<string, AnimationInstance>;
+    animation_set: string[];
+    root_motion_cache: RootMotion;
+    track_cache: Record<string, TrackCache>;
+    track_map: Record<string, number>;
+    animation_track_num_to_track_cache: Record<string, (TrackCache | null)[]>;
+    track_count: number;
+    animation_instances: AnimationInstanceData[];
+    has_animation(name: string): boolean;
+    get_animation(name: string): AnimationInstance;
+    constructor(node: SceneInstance.Node);
+    _blend_init(): void;
+    _blend_calc_total_weight(): void;
+    cache_valid: boolean;
+    _update_caches(): boolean;
+}

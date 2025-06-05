@@ -1,11 +1,12 @@
 import * as GridMap from '@phoenixillusion/godot-scene-reader/process/scene/grid_map.js'
 import { Matrix4 } from "three/src/math/Matrix4.js";
 import { InstancedMesh } from "three/src/objects/InstancedMesh.js";
-import * as GodotNode from '../loader/instance/types/node';
 import { loadMesh } from "./mesh-loader";
-import { MeshInstance3D, MeshType, Shape3DType, StaticBody3D } from "../loader/instance/types/gen";
 import { StaticBodyData } from "./physics";
 import { setTransform3D } from "./scene-builder";
+
+import type { MeshInstance3D, MeshType, Shape3DType, StaticBody3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
+import type * as GodotNode from "@phoenixillusion/godot-binary-loader/instance/types/node.js";
 
 import { MeshLibrary, MeshLibraryItem, meshlibray_extract_items } from "@phoenixillusion/godot-scene-reader/process/scene/mesh_library.js";
 
@@ -25,14 +26,12 @@ function getMeshLibrary(meshLibrary: MeshLibraryGen) {
 
 export async function gridmap_get_instance_mesh(gridmap: GodotNode.GridMap): Promise<{instances: InstancedMesh[], static_bodies: StaticBodyData[]}> {
     const items = getMeshLibrary(gridmap.mesh_library.properties);
-    //gridmap.cell_scale = 1;
-    //GridMap.DefaultGridMap(gridmap);
-    //Object.assign(gridmap.cell_size, { x: 1, y: 1, z: 1});
     const instances = GridMap.gridmap_item_instances(gridmap, items);
     const result: InstancedMesh[] = [];
 
     const { physics_material } = gridmap;
-    const static_body_physics: StaticBody3D = <StaticBody3D>{ physics_material_override: physics_material ? { type: 'PhysicsMaterial', properties: physics_material } : undefined };
+    const static_body_physics: StaticBody3D = <StaticBody3D>{ physics_material_override: physics_material ? 
+        { type: 'PhysicsMaterial', properties: physics_material } : undefined };
     const static_bodies: StaticBodyData[] = [];
     for(const inst of instances) {
       const data = GridMap.gridmap_cell_data(inst);

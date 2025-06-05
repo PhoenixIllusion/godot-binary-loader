@@ -1,6 +1,5 @@
 import { parse_ctex_image_format } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2_image_format_gl_map.js";
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
-import { Texture as TextureT } from "../loader/instance/types/gen";
 import { Texture } from "three/src/textures/Texture.js";
 import { CompressedTexture } from "three/src/textures/CompressedTexture.js";
 import { 
@@ -9,6 +8,8 @@ import {
   TextureDataType
  } from "three/src/constants.js";
 import { DataTexture } from "three/src/textures/DataTexture.js";
+
+import { Texture as TextureT } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
 import { DataFormat } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2_format.js";
 
 async function parseCTexEntry(file: cTexFile): Promise<Texture> {

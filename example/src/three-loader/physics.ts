@@ -1,7 +1,8 @@
 
 import { Object3D } from "three/src/core/Object3D.js";
-import { Area3D, CharacterBody3D, RigidBody3D, Shape3DType, StaticBody3D } from "../loader/instance/types/gen";
 import { Matrix4 } from "three/src/math/Matrix4.js";
+
+import type { Area3D, CharacterBody3D, RigidBody3D, Shape3DType, StaticBody3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
 
 export interface PhysicsShapeData {
   matrix: Matrix4, shape: Shape3DType

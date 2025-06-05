@@ -1,16 +1,17 @@
 import { Skeleton } from "three/src/objects/Skeleton.js";
-import { Skeleton3DInstance, SkinInstance } from "../loader/instance/skeleton";
 import { Bone } from "three/src/objects/Bone.js";
 import { setTransform3D } from "./scene-builder";
 import { SkinnedMesh } from "three/src/objects/SkinnedMesh.js";
 import { Matrix4 } from "three/src/math/Matrix4.js";
-import { Skeleton3D } from "../loader/instance/types/gen";
-import { NodeExtType } from "../loader/instance/types";
-import { SceneInstance } from "../loader/instance/scene";
 import { Mesh } from "three/src/objects/Mesh.js";
 import { GodotPck } from "./pck-loader";
 import { Object3D } from "three/src/core/Object3D.js";
 import { unwrap_properties } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
+
+import { Skeleton3DInstance, SkinInstance } from "@phoenixillusion/godot-binary-loader/instance/skeleton.js";
+import { Skeleton3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
+import { NodeExtType } from "@phoenixillusion/godot-binary-loader/instance/types";
+import { SceneInstance } from "@phoenixillusion/godot-binary-loader/instance/scene.js";
 
 export function makeSkeleton(skin_inst: SkinInstance, skeleton_inst: Skeleton3DInstance): Skeleton {
   const bindMap = new Map<string, SkinInstance.Bind>();

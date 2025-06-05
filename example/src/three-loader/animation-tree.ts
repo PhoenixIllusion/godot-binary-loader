@@ -1,7 +1,7 @@
 import { Object3D } from "three/src/core/Object3D.js";
-import { AnimationTreeInstance } from "../loader/instance/animation-tree";
-import { SceneInstance } from "../loader/instance/scene";
-import { TrackCacheTransform } from "../loader/instance/animation/anim-cache";
+import { SceneInstance } from "@phoenixillusion/godot-binary-loader/instance/scene.js";
+import { AnimationTreeInstance } from '@phoenixillusion/godot-binary-loader/instance/animation-tree.js'
+import { TrackCacheTransform } from '@phoenixillusion/godot-binary-loader/instance/animation/anim-cache.js'
 import { Skeleton } from "three/src/objects/Skeleton.js";
 
 

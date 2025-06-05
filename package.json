@@ -11,13 +11,27 @@
     "build": "tsc"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/index.js",
+    "./*.js": "./dist/*.js",
+    "./instance": "./dist/instance/index.js",
+    "./instance/*.js": "./dist/instance/*.js",
+    "./instance/animation": "./dist/instance/animation/index.js",
+    "./instance/animation/*.js": "./dist/instance/animation/*.js",
+    "./instance/types": "./dist/instance/types/index.js",
+    "./instance/types/*.js": "./dist/instance/types/*.js",
+    "./instance/types/default/*.js": "./dist/instance/types/default/*.js"
   },
   "files": [
     "README.md",
     "./dist/**"
   ],
   "devDependencies": {
+    "@types/delaunator": "5.0.3",
     "typescript": "5.8.3"
+  },
+  "dependencies": {
+    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.3",
+    "delaunator": "5.0.1",
+    "gl-matrix": "3.4.1"
   }
 }

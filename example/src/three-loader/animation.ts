@@ -1,65 +1,17 @@
 import { Object3D } from "three/src/core/Object3D.js";
-import { AnimationPlayerInstance } from "../loader/instance/animation-player";
 import { AnimationClip } from "three/src/animation/AnimationClip.js";
-import { Interpolant } from "three/src/math/Interpolant.js";
 import { KeyframeTrack } from "three/src/animation/KeyframeTrack.js";
-import { TypedArray } from "three/src/core/BufferAttribute.js";
-import { Vector3,Vector4 } from "../loader/instance/types/gen/types";
 import { Euler } from "three/src/math/Euler.js";
 import { Quaternion } from "three/src/math/Quaternion.js";
 import { BooleanKeyframeTrack } from "three/src/animation/tracks/BooleanKeyframeTrack.js";
 import { NumberKeyframeTrack } from "three/src/animation/tracks/NumberKeyframeTrack.js";
 import { VectorKeyframeTrack } from "three/src/animation/tracks/VectorKeyframeTrack.js";
 import { QuaternionKeyframeTrack } from "three/src/animation/tracks/QuaternionKeyframeTrack.js";
-import { animation_transition_ease } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 import { degToRad } from "three/src/math/MathUtils.js";
-import { AnimationPlayer } from "../loader/instance/types/gen";
-import { SceneInstance } from "../loader/instance/scene";
 
-/**
- * A basic linear interpolant.
- *
- * @augments Interpolant
- */
-export abstract class GodotInterpolant extends Interpolant {
-
-	/**
-	 * Constructs a new linear interpolant.
-	 *
-	 * @param {TypedArray} parameterPositions - The parameter positions hold the interpolation factors.
-	 * @param {TypedArray} sampleValues - The sample values.
-	 * @param {number} sampleSize - The sample size
-	 * @param {TypedArray} [resultBuffer] - The result buffer.
-	 */
-	constructor( parameterPositions: TypedArray, sampleValues: TypedArray, sampleSize: number, resultBuffer: TypedArray ) {
-		super( parameterPositions, sampleValues, sampleSize, resultBuffer );
-	}
-
-  abstract getTransitionEasing(): number[];
-
-	interpolate_( i1: number, t0: number, t: number, t1: number ) {
-
-		const result = this.resultBuffer;
-		const values = this.sampleValues;
-		const stride = this.valueSize;
-
-    const offset1 = i1 * stride;
-    const offset0 = offset1 - stride;
-
-    const weight = ( t - t0 ) / ( t1 - t0 );
-
-		for ( let i = 0; i !== stride; ++ i ) {
-      const val0 = values[offset0 + i];
-      const val1 = values[offset0 + i];
-			result[ i ] = val0 + (val1-val0) * animation_transition_ease(weight, this.getTransitionEasing()[i1-1]);
-
-		}
-
-		return result;
-
-	}
-
-}
+import { SceneInstance } from "@phoenixillusion/godot-binary-loader/instance/scene.js";
+import { AnimationPlayerInstance } from '@phoenixillusion/godot-binary-loader/instance/animation-player.js'
+import type { Vector3,Vector4 } from "@phoenixillusion/godot-binary-loader/instance/types/gen/types.js";
 
 declare module "three/src/math/Euler.js" {
   export interface Euler {

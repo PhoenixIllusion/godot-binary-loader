@@ -3,10 +3,12 @@ import { AnimationMixer } from "three/src/animation/AnimationMixer.js";
 import { AnimationClip } from "three/src/animation/AnimationClip.js";
 import { DirectionalLight } from "three/src/lights/DirectionalLight.js";
 import { Config, setupDefaultScene } from "./default-scene";
-import { AnimationTreeDebug } from "../loader/debug/animation-tree-debug";
 import { Bone } from "three/src/objects/Bone.js";
-import { AnimationTreeInstance } from "../loader/instance/animation-tree";
-import { TrackCacheTransform } from "../loader/instance/animation/anim-cache";
+import { AnimationTreeDebug } from "../debug/animation-tree-debug";
+
+import { AnimationTreeInstance } from '@phoenixillusion/godot-binary-loader/instance/animation-tree.js'
+import { TrackCacheTransform } from '@phoenixillusion/godot-binary-loader/instance/animation/anim-cache.js'
+
 const pckLoader = new GodotPckLoader();
 
 export async function render(config: Config = {}) {
@@ -69,17 +71,6 @@ export async function render(config: Config = {}) {
   }
 
   renderer.setAnimationLoop(animate);
-}
-
-function set_tree_values(tree: AnimationTreeInstance, args: Record<string,Record<string,number|string>>) {
-  for(const [node_name, val] of Object.entries(args)) {
-    const node = tree.nodes.find( x => x.name == node_name);
-    if(node) {
-      for(const [attrib, attrib_v] of Object.entries(val)) {
-        (<any>node)[attrib] = attrib_v;
-      }
-    }
-  }
 }
 
 function log_godot_animation(tree: AnimationTreeInstance) {

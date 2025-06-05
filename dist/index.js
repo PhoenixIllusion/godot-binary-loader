@@ -1,1 +1,1 @@
-"use strict";
+export { PckLoader } from './pck-loader';

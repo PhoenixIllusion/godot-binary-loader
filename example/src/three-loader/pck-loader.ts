@@ -2,8 +2,7 @@ import { Object3D } from "three/src/core/Object3D.js";
 import { FileLoader } from "three/src/loaders/FileLoader.js";
 import { Loader } from "three/src/loaders/Loader.js";
 import { LoadingManager } from "three/src/loaders/LoadingManager.js";
-import { PckLoader } from "../loader/pck-loader";
-import { SceneInstance } from "../loader/instance/scene";
+import { PckLoader } from "../../../src/pck-loader";
 import { buildScene } from "./scene-builder";
 import { Camera } from "three/src/cameras/Camera.js";
 import { Texture } from "three/src/textures/Texture.js";
@@ -14,6 +13,8 @@ import { DefaultPhysicsData, PhysicsData } from "./physics";
 import { BinResource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
 import { ThreeAnimationTree } from "./animation-tree";
+
+import { SceneInstance } from "@phoenixillusion/godot-binary-loader/instance/scene.js";
 
 export interface GodotPck {
   scene: Object3D | null;
