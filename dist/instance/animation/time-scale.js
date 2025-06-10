@@ -15,3 +15,4 @@ export class TimeScale extends Node {
         return this.blend_input(0, pi, FilterAction.FILTER_IGNORE, true);
     }
 }
+TimeScale.registerType('AnimationNodeTimeScale', TimeScale);

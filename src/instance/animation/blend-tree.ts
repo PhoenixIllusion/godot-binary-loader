@@ -1,9 +1,8 @@
 
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import { AnimationNodeBlendTree } from "../types/gen";
-import { Node as BaseNode } from './node';
+import { Node as BaseNode, NonAbstractAnimationNodeType } from './node';
 import { Vector2 } from "../types/gen/types";
-import { create, NonAbstractAnimationNodeType } from "./index";
 import { _pi, FilterAction, NodeTimeInfo, PlaybackInfo } from "./blend";
 
 export interface Node {
@@ -33,7 +32,7 @@ export class BlendTree extends BaseNode {
     for (const [name, treeNode] of Object.entries(nodes)) {
       const { node, position } = treeNode;
       if (node) {
-        nodeMap[name] = create(node, name);
+        nodeMap[name] = BlendTree.create(node, name);
         nodeMap[name].position = position
       }
     }
@@ -77,3 +76,4 @@ export class BlendTree extends BaseNode {
   }
 
 }
+BlendTree.registerType('AnimationNodeBlendTree', BlendTree);

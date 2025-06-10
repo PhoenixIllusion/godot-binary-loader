@@ -1,6 +1,5 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import { AnimationRootNodeType, AnimationTree } from "./types/gen";
-import { create } from './animation/index';
 import { Node } from './animation/node';
 import { AnimationInstanceData, PlayerInterface } from "./animation/player_interface";
 import { AnimationInstance } from "./animation";
@@ -38,14 +37,14 @@ export class AnimationTreeInstance extends AnimationMixerInstance implements Pla
     }
 
     const animationPlayer = navigate_nodepath<SceneInstance.Node>(node, animationTree.anim_player);
-    if(animationPlayer == null || animationPlayer.type != 'AnimationPlayer') {
-      throw new Error(`Failed to find AnimationPlayer for AnimationTree: [${ animationTree.anim_player.names.join(', ')}]`)
+    if (animationPlayer == null || animationPlayer.type != 'AnimationPlayer') {
+      throw new Error(`Failed to find AnimationPlayer for AnimationTree: [${animationTree.anim_player.names.join(', ')}]`)
     }
     this.animationPlayerNode = animationPlayer;
-    this.animationPlayer =  new AnimationPlayerInstance(animationPlayer);
+    this.animationPlayer = new AnimationPlayerInstance(animationPlayer);
     this.animations = this.animationPlayer.animations;
 
-    this.root = create(root, 'root');
+    this.root = Node.create(root, 'root');
     this.root.configure(this);
     this._update_caches();
     this.nodes.forEach(node => this.setupNode(node));
@@ -55,10 +54,10 @@ export class AnimationTreeInstance extends AnimationMixerInstance implements Pla
 
   setupNode<T extends Node>(node: T): void {
     node.node_state.track_weights = new Float32Array(this.track_count);
-    if(node.filter_enabled) {
+    if (node.filter_enabled) {
       const filter_mask = node.filter_mask = new Float32Array(this.track_count);
       node.filters.forEach(filter => {
-        if(this.track_map[filter] == undefined) {
+        if (this.track_map[filter] == undefined) {
           throw new Error('attempted to filter non-existent node')
         }
         filter_mask[this.track_map[filter]] = 1;
@@ -67,18 +66,18 @@ export class AnimationTreeInstance extends AnimationMixerInstance implements Pla
   }
 
   configureNode<T extends Node>(node: T): void {
-    if(node instanceof Animation) {
+    if (node instanceof Animation) {
       node.animationInstance = this.animationPlayer.animations[node.animation];
-      if(!this.animation_set.includes(node.animation))
+      if (!this.animation_set.includes(node.animation))
         this.animation_set.push(node.animation);
     }
     this.nodes.push(node);
   }
 
   make_animation_instance(animation: AnimationInstance, playback_info: PlaybackInfo, track_weights: Float32Array): void {
-    for(const w of track_weights) {
-      if(!is_zero_approx(w)) {
-        this.animation_instances.push({ animation, playback_info, track_weights  })
+    for (const w of track_weights) {
+      if (!is_zero_approx(w)) {
+        this.animation_instances.push({ animation, playback_info, track_weights })
         return;
       }
     }

@@ -16,7 +16,7 @@ export async function render(config: Config = {}) {
   var dirLight = new DirectionalLight(0xffffff, 1);
   dirLight.position.set(10, 10, 5);
   scene.add(dirLight);
-  
+
   pckLoader.main_scene = 'res://player/player.tscn';
   //pckLoader.main_scene = 'res://coin/coin.tscn';
   //pckLoader.main_scene = 'res://enemy/enemy.tscn';
@@ -30,18 +30,18 @@ export async function render(config: Config = {}) {
 
 
   const mixer = new AnimationMixer(scene);
-  animations.forEach((x,idx) => {
+  animations.forEach((x, idx) => {
     console.log(x.clips.map(x => x.name).join('\n'))
-    const clip = AnimationClip.findByName( x.clips, pck.animations[idx].autoplay||'jump_4_falling');
-    if(clip) {
-      const action = mixer.clipAction( clip, x.target );
+    const clip = AnimationClip.findByName(x.clips, pck.animations[idx].autoplay || 'jump_4_falling');
+    if (clip) {
+      const action = mixer.clipAction(clip, x.target);
       action.play();
     }
     return mixer;
   });
 
   let animationTreeDebug: AnimationTreeDebug | null = null;
-  if(pck.animationTrees?.length) {
+  if (pck.animationTrees?.length) {
     animationTreeDebug = new AnimationTreeDebug();
     pck.animationTrees[0].configure(pck.maps.object3d)
     animationTreeDebug.init(pck.animationTrees[0]);
@@ -50,7 +50,7 @@ export async function render(config: Config = {}) {
       'eye_blend': { 'blend_amount': 0},
       'state': { 'current_index': 0, 'current_state': 'jump_down' }
     }) */
-    animationTreeDebug.tree!.process_animation(0/30.0)
+    animationTreeDebug.tree!.process_animation(0 / 30.0)
 
     log_godot_animation(pck.animationTrees[0])
     //action?.play();
@@ -59,10 +59,10 @@ export async function render(config: Config = {}) {
 
   let last_delta = 0;
   const animate = (delta: number) => {
-    const tick = (delta-last_delta)/1000;
+    const tick = (delta - last_delta) / 1000;
     renderer.render(scene, camera);
     controls.update();
-    if(last_delta != 0) {
+    if (last_delta != 0) {
       //mixer.update(tick)
     }
     last_delta = delta;
@@ -77,7 +77,7 @@ function log_godot_animation(tree: AnimationTreeInstance) {
   const _set = new Set<string>();
   console.log(JSON.stringify(tree.animation_track_num_to_track_cache.jump_4_falling.map(y => {
     const x = y as TrackCacheTransform;
-    if(_set.has(x.bone_idx!.name)) return null;
+    if (_set.has(x.bone_idx!.name)) return null;
     _set.add(x.bone_idx!.name)
     return ({
       bone: x.bone_idx!.name,
@@ -89,8 +89,8 @@ function log_godot_animation(tree: AnimationTreeInstance) {
       rot: [...x.rot]
     })
   }).filter(x => x)
-  , undefined, '  '))
+    , undefined, '  '))
 }
 function log_object3d_bones(bones: Bone[]) {
-  console.log(JSON.stringify(bones.map(x => ({bone: x.name, loc: x.position.toArray(), scale: x.scale.toArray(), rot: x.quaternion.toArray() })), undefined, '  '))
+  console.log(JSON.stringify(bones.map(x => ({ bone: x.name, loc: x.position.toArray(), scale: x.scale.toArray(), rot: x.quaternion.toArray() })), undefined, '  '))
 }

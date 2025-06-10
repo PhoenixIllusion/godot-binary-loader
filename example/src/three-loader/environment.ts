@@ -17,7 +17,7 @@ import type { Color as ColorT } from "@phoenixillusion/godot-binary-loader/insta
 
 const proceduralSky = {
   vertexShader:
-`varying vec3 vWorldPosition;
+    `varying vec3 vWorldPosition;
 varying vec2 vUv;
 
 void main() {
@@ -30,7 +30,7 @@ void main() {
 }
 `,
   fragmentShader:
-`uniform vec4 sky_top_color;
+    `uniform vec4 sky_top_color;
 uniform vec4 sky_horizon_color;
 uniform float sky_curve;
 uniform float sky_energy; // In Lux.
@@ -76,15 +76,15 @@ export function loadWorldEnvironment(root: Object3D, world: NodeTypeMap['WorldEn
   const environment = world.properties.environment?.properties || {};
   DefaultEnvironment(environment);
 
-  switch(environment.background_mode) {
+  switch (environment.background_mode) {
     case Environment.BGMode.BG_SKY: {
-      const { sky  } = environment;
-      const sky_mat = <MaterialType|undefined>sky?.properties?.sky_material;
+      const { sky } = environment;
+      const sky_mat = <MaterialType | undefined>sky?.properties?.sky_material;
       let material: Material | undefined = undefined;
-      if(sky_mat) {
-        const geometry = new SphereGeometry( 500, 60, 40 );
-        geometry.scale( - 1, -1, -1 );
-        if(sky_mat.type == 'PanoramaSkyMaterial') {
+      if (sky_mat) {
+        const geometry = new SphereGeometry(500, 60, 40);
+        geometry.scale(- 1, -1, -1);
+        if (sky_mat.type == 'PanoramaSkyMaterial') {
           const panorama_mat = sky_mat.properties;
           DefaultPanoramaSkyMaterial(panorama_mat);
           const sky_tex = cast_ctex(panorama_mat.panorama)!;
@@ -95,7 +95,7 @@ export function loadWorldEnvironment(root: Object3D, world: NodeTypeMap['WorldEn
             mesh_material.needsUpdate = true;
           })
         }
-        if(sky_mat.type == 'ProceduralSkyMaterial') {
+        if (sky_mat.type == 'ProceduralSkyMaterial') {
           const p = sky_mat.properties;
           function c(c: ColorT): Vector4 {
             return new Vector4(c.r, c.g, c.b, c.a);
@@ -103,35 +103,35 @@ export function loadWorldEnvironment(root: Object3D, world: NodeTypeMap['WorldEn
           const vertexShader = proceduralSky.vertexShader;
           const fragmentShader = proceduralSky.fragmentShader;
           const uniforms = {
-              sky_top_color: { value: p.sky_top_color ? c(p.sky_top_color) : new Vector4(0.385, 0.454, 0.55, 1.0) },
-              sky_horizon_color: { value: p.sky_horizon_color ? c(p.sky_horizon_color) : new Vector4(0.646, 0.656, 0.67, 1.0) },
-              sky_curve: { value: p.sky_curve ?? 0.15 },
-              sky_energy: { value: p.sky_energy_multiplier ?? 1.0 }, // In Lux.
-              sky_cover_modulate: { value: p.sky_cover_modulate ? c(p.sky_cover_modulate) :new Vector4(1.0, 1.0, 1.0, 1.0) },
-              ground_bottom_color: { value: p.ground_bottom_color ? c(p.ground_bottom_color) :new Vector4(0.2, 0.169, 0.133, 1.0) },
-              ground_horizon_color: { value: p.ground_horizon_color ? c(p.ground_horizon_color) :new Vector4(0.646, 0.656, 0.67, 1.0) },
-              ground_curve: { value: p.ground_curve ?? 0.02 },
-              ground_energy: { value: p.ground_energy_multiplier ?? 1.0 },
-              sun_angle_max: { value: p.sun_angle_max ?? 30.0 },
-              sun_curve: { value: p.sun_curve ??0.15 },
-              exposure: { value: 1.0 },
+            sky_top_color: { value: p.sky_top_color ? c(p.sky_top_color) : new Vector4(0.385, 0.454, 0.55, 1.0) },
+            sky_horizon_color: { value: p.sky_horizon_color ? c(p.sky_horizon_color) : new Vector4(0.646, 0.656, 0.67, 1.0) },
+            sky_curve: { value: p.sky_curve ?? 0.15 },
+            sky_energy: { value: p.sky_energy_multiplier ?? 1.0 }, // In Lux.
+            sky_cover_modulate: { value: p.sky_cover_modulate ? c(p.sky_cover_modulate) : new Vector4(1.0, 1.0, 1.0, 1.0) },
+            ground_bottom_color: { value: p.ground_bottom_color ? c(p.ground_bottom_color) : new Vector4(0.2, 0.169, 0.133, 1.0) },
+            ground_horizon_color: { value: p.ground_horizon_color ? c(p.ground_horizon_color) : new Vector4(0.646, 0.656, 0.67, 1.0) },
+            ground_curve: { value: p.ground_curve ?? 0.02 },
+            ground_energy: { value: p.ground_energy_multiplier ?? 1.0 },
+            sun_angle_max: { value: p.sun_angle_max ?? 30.0 },
+            sun_curve: { value: p.sun_curve ?? 0.15 },
+            exposure: { value: 1.0 },
           };
-          material= new ShaderMaterial( {
+          material = new ShaderMaterial({
             uniforms: uniforms,
             vertexShader: vertexShader,
             fragmentShader: fragmentShader
-          } );
+          });
         }
-        if(material)
-          root.add(new Mesh( geometry, material));
+        if (material)
+          root.add(new Mesh(geometry, material));
       }
-    }break;
+    } break;
   }
-  switch(environment.ambient_light_source) {
+  switch (environment.ambient_light_source) {
     case Environment.AmbientSource.AMBIENT_SOURCE_COLOR:
     case Environment.AmbientSource.AMBIENT_SOURCE_SKY:
-      const {r,g,b} = environment.ambient_light_color;
-      const ambientLight = new AmbientLight(new Color(r,g,b));
+      const { r, g, b } = environment.ambient_light_color;
+      const ambientLight = new AmbientLight(new Color(r, g, b));
       root.add(ambientLight);
       break;
   }

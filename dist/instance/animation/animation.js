@@ -173,3 +173,4 @@ export class Animation extends Node {
         return nti;
     }
 }
+Animation.registerType('AnimationNodeAnimation', Animation);

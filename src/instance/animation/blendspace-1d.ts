@@ -172,3 +172,4 @@ export class BlendSpace1D extends BlendSpace<number> {
     return mind!;
   }
 }
+BlendSpace1D.registerType('AnimationNodeBlendSpace1D', BlendSpace1D);

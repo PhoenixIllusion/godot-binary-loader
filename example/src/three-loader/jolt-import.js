@@ -6,11 +6,11 @@ let Jolt;
 let _lastJolt = 0;
 
 export const loadJolt = async (importSettings) => {
-    if(_lastJolt === Jolt) {
+    if (_lastJolt === Jolt) {
         return;
     }
     const j = await import('jolt-physics/wasm').then(module => module.default({
-        ... importSettings,
+        ...importSettings,
         locateFile: () => joltWasmUrl,
     }));
     Object.assign(_jolt, j);

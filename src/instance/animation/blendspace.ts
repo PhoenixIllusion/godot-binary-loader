@@ -1,6 +1,5 @@
 import { SyncNode } from "./sync";
-import { Node } from './node';
-import { create, NonAbstractAnimationNodeType } from "./index";
+import { Node, NonAbstractAnimationNodeType } from './node';
 
 export interface BlendPointRaw<T> {
   node: NonAbstractAnimationNodeType;
@@ -22,6 +21,6 @@ export abstract class BlendSpace<T> extends SyncNode {
 export function convertRaw<T>(_in: BlendPointRaw<T>, prefix: string, idx: number): BlendPoint<T> {
   return {
     pos: _in.pos,
-    node: create(_in.node, prefix+'_blend_input'+idx)
+    node: Node.create(_in.node, prefix + '_blend_input' + idx)
   }
 }

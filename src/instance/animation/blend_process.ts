@@ -74,7 +74,7 @@ function incremental_quat_delta(dest: quat, new_val: ReadonlyQuat, old_val: Read
 	quat.normalize(dest, dest);
 }
 
-export function _blend_process(mixer: AnimationMixerInstance	, animation_instances: AnimationInstanceData[], _p_delta: number, _p_update_only: boolean) {
+export function _blend_process(mixer: AnimationMixerInstance, animation_instances: AnimationInstanceData[], _p_delta: number, _p_update_only: boolean) {
 	// Apply value/transform/blend/bezier blends to track caches and execute method/audio/animation tracks.
 	const { deterministic, root_motion_track_str, root_motion_cache, animation_track_num_to_track_cache } = mixer;
 	for (const ai of animation_instances) {

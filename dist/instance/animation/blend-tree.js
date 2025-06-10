@@ -1,6 +1,5 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import { Node as BaseNode } from './node';
-import { create } from "./index";
 import { _pi, FilterAction } from "./blend";
 export class BlendTree extends BaseNode {
     constructor(blendTree, name = 'blend-tree') {
@@ -12,7 +11,7 @@ export class BlendTree extends BaseNode {
         for (const [name, treeNode] of Object.entries(nodes)) {
             const { node, position } = treeNode;
             if (node) {
-                nodeMap[name] = create(node, name);
+                nodeMap[name] = BlendTree.create(node, name);
                 nodeMap[name].position = position;
             }
         }
@@ -55,3 +54,4 @@ export class BlendTree extends BaseNode {
         return this.blend_input(output, pi, FilterAction.FILTER_IGNORE, true);
     }
 }
+BlendTree.registerType('AnimationNodeBlendTree', BlendTree);

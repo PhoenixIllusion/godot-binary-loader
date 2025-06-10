@@ -244,3 +244,4 @@ export class BlendSpace2D extends BlendSpace {
         return mind;
     }
 }
+BlendSpace2D.registerType('AnimationNodeBlendSpace2D', BlendSpace2D);

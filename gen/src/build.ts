@@ -72,26 +72,28 @@ const BASE_LIST = ['@GlobalScope', 'GlobalScope', 'bool', 'float', 'int', 'Strin
   'Basis', 'AABB', 'Rect2', 'Rect2i',  'Plane', "Quaternion", 'Projection', 'Color',
   'Vector2','Vector2i','Vector3','Vector3i','Vector4','Vector4i','Transform2D','Transform3D', "NodePath"
 ]
-
+function checkBase(type:string) {
+  return BASE_LIST.includes(type.replace('[]',''))
+}
 
 function printType( gclass: GodotClass): string {
   const { name, inherits} = gclass;
   const props = gclass.members;
   const propTypes: Set<string> = new Set();
   props.forEach(x => propTypes.add(x.type));
-  const propNames = Array.from(propTypes.values()).filter(x => ![...BASE_LIST, name].includes(x));
+  const propNames = Array.from(propTypes.values()).filter(x => ![...BASE_LIST, name].includes(x.replace('[]','')));
   return `import * as type from './types'; ${inherits? `\nimport { ${inherits} } from './${inherits}';\nexport * from './${inherits}';`:''}
 ${ propNames.map(x => `import { ${x} } from './${x}';`).join('\n')}
 export interface ${name}${ inherits ? ` extends ${inherits}`: ''} {
 ${props.map(p => {
-  return `  ${cn(p.name)}: ${BASE_LIST.includes(p.type)?'type.':''}${p.type};`
+  return `  ${cn(p.name)}: ${checkBase(p.type)?'type.':''}${p.type};`
 }).join('\n')}  
 }
 `;
 }
 
 function wrapType(type: string) {
-  if(BASE_LIST.includes(type)) {
+  if(checkBase(type)) {
     return `type.${type};`
   }
   return `{ type: "${type}" , properties: ${type} };`
@@ -240,14 +242,14 @@ export type ${c}Type = ${c}TypeMap[keyof ${c}TypeMap];
 }
 
 (async() => {
-  const file = await readFile('../public/classes.tar');
+  const file = await readFile('./godot-classes.tar');
   const files = parseTar(file).filter(x => x.name.endsWith('.xml') && !x.name.includes('/PaxHeader/'));
   const classes: GodotClass[] = files.map(readXML);
 
   let defs = `/*
   Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
 */
-import * as type from './types';\nimport { float, bool, int, create, inf } from './types';\n`
+import * as type from './types';\n`
   let defaults = `/*
   Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
 */

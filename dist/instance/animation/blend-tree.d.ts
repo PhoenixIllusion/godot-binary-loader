@@ -1,7 +1,6 @@
 import { AnimationNodeBlendTree } from "../types/gen";
-import { Node as BaseNode } from './node';
+import { Node as BaseNode, NonAbstractAnimationNodeType } from './node';
 import { Vector2 } from "../types/gen/types";
-import { NonAbstractAnimationNodeType } from "./index";
 import { NodeTimeInfo, PlaybackInfo } from "./blend";
 export interface Node {
     node?: NonAbstractAnimationNodeType;

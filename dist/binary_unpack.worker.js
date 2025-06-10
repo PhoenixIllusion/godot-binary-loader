@@ -12,9 +12,11 @@ globalThis.onmessage = async (evt) => {
     }
     else if (method == 'try_open_ctex3d') {
         const arrayBuffer = payload;
-        globalThis.postMessage({ path, data: {
+        globalThis.postMessage({
+            path, data: {
                 flags: 0, height: 0, images: [arrayBuffer], mipmap_limit: 0, version: 0, width: 0
-            } });
+            }
+        });
     }
     else
         throw new Error("uknown command: " + method);

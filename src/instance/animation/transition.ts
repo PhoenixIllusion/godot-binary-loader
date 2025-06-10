@@ -194,3 +194,4 @@ export class Transition extends SyncNode {
   }
 
 }
+Transition.registerType('AnimationNodeTransition', Transition);

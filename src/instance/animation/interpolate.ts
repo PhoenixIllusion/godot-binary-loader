@@ -13,7 +13,7 @@ const INTERPOLATION_LINEAR_ANGLE = Animation.InterpolationType.INTERPOLATION_LIN
 const INTERPOLATION_CUBIC_ANGLE = Animation.InterpolationType.INTERPOLATION_CUBIC_ANGLE;
 
 function _find(times: Float32Array, p_time: number, p_backward: boolean, p_limit: boolean = false) {
-  const len = times.length;
+	const len = times.length;
 	if (len == 0) {
 		return -2;
 	}
@@ -22,7 +22,7 @@ function _find(times: Float32Array, p_time: number, p_backward: boolean, p_limit
 	let high = len - 1;
 	let middle = 0;
 
-  while (low <= high) {
+	while (low <= high) {
 		middle = Math.floor((low + high) / 2);
 
 		if (is_equal_approx(p_time, times[middle])) { //match
@@ -54,14 +54,14 @@ function _find(times: Float32Array, p_time: number, p_backward: boolean, p_limit
 
 export interface InterpolateFunctions<T> {
 	_set(out: T, a: T): T;
-  _interpolate(out: T, a: T, b: T, p: number): T;
-  _interpolate_angle(out: T, a: T, b: T, p: number): T;
-  _cubic_interpolate_in_time(out: T, p_a: T, p_b: T, p_pre_a: T, p_post_b: T, p_weight: number, p_b_t: number, p_pre_a_t: number, p_post_b_t: number): T
-  _cubic_interpolate_angle_in_time(out: T, p_a: T, p_b: T, p_pre_a: T, p_post_b: T, p_weight: number, p_b_t: number, p_pre_a_t: number, p_post_b_t: number): T
+	_interpolate(out: T, a: T, b: T, p: number): T;
+	_interpolate_angle(out: T, a: T, b: T, p: number): T;
+	_cubic_interpolate_in_time(out: T, p_a: T, p_b: T, p_pre_a: T, p_post_b: T, p_weight: number, p_b_t: number, p_pre_a_t: number, p_post_b_t: number): T
+	_cubic_interpolate_angle_in_time(out: T, p_a: T, p_b: T, p_pre_a: T, p_post_b: T, p_weight: number, p_b_t: number, p_pre_a_t: number, p_post_b_t: number): T
 }
 
 export function _interpolate<T>(out: T, p_keys: TrackKeys, p_time: number, p_interp: Animation.InterpolationType, p_loop_wrap: boolean, p_ok: [boolean], p_backward: boolean,
-    loop_mode: Animation.LoopMode, funcs: InterpolateFunctions<T>): T {
+	loop_mode: Animation.LoopMode, funcs: InterpolateFunctions<T>): T {
 	const len = p_keys.times.length; // try to find last key (there may be more past the end)
 
 	if (len <= 0) {
@@ -79,7 +79,7 @@ export function _interpolate<T>(out: T, p_keys: TrackKeys, p_time: number, p_int
 		return funcs._set(out, p_keys.values[0]);
 	}
 
-  const { times, transitions, values } = p_keys;
+	const { times, transitions, values } = p_keys;
 
 	let idx = _find(times, p_time, p_backward);
 
@@ -252,13 +252,13 @@ export function _interpolate<T>(out: T, p_keys: TrackKeys, p_time: number, p_int
 			}
 
 			if (p_interp == INTERPOLATION_CUBIC_ANGLE) {
-				return funcs._cubic_interpolate_angle_in_time(out, 
+				return funcs._cubic_interpolate_angle_in_time(out,
 					values[idx], values[next], values[pre], values[post], c,
 					to_t, pre_t, post_t);
 			}
-			return funcs._cubic_interpolate_in_time(out, 
-					values[idx], values[next], values[pre], values[post], c,
-					to_t, pre_t, post_t);
+			return funcs._cubic_interpolate_in_time(out,
+				values[idx], values[next], values[pre], values[post], c,
+				to_t, pre_t, post_t);
 		} break;
 		default:
 			return funcs._set(out, values[idx]);

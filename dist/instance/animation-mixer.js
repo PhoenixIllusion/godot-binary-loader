@@ -7,6 +7,7 @@ import { navigate_nodepath, navigate_nodepath_subpath, node_path_string, unwrap_
 import { ERR_PRINT, WARN_PRINT } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
 import { Skeleton3DInstance } from "./skeleton";
 import { transform3d_to_mat4 } from "./math";
+import './animation/index';
 const UPDATE_DISCRETE = 1;
 function is_variant_interpolatable(_v) {
     return false;
@@ -104,9 +105,9 @@ export class AnimationMixerInstance {
                     {
                         /*
                         const t = <TrackCacheAudio>(track);
-                for (KeyValue<ObjectID, PlayingAudioTrackInfo> &L : t.playing_streams) {
-                            PlayingAudioTrackInfo &track_info = L.value;
-                            track_info.volume = 0.0;
+                        for (KeyValue<ObjectID, PlayingAudioTrackInfo> &L : t.playing_streams) {
+                          PlayingAudioTrackInfo &track_info = L.value;
+                          track_info.volume = 0.0;
                         }*/
                     }
                     break;
@@ -357,11 +358,11 @@ export class AnimationMixerInstance {
                             {
                                 const track_audio = new TrackCacheAudio();
                                 /*
-                                            track_audio.object_id = child;
-                                            track_audio.audio_stream.instantiate();
-                                            track_audio.audio_stream.set_polyphony(audio_max_polyphony);
-                                            track_audio.playback_type = (AudioServer::PlaybackType)(int)(child.call(SNAME("get_playback_type")));
-                                            track_audio.bus = (StringName)(child.call(SNAME("get_bus")));
+                                track_audio.object_id = child;
+                                track_audio.audio_stream.instantiate();
+                                track_audio.audio_stream.set_polyphony(audio_max_polyphony);
+                                track_audio.playback_type = (AudioServer::PlaybackType)(int)(child.call(SNAME("get_playback_type")));
+                                track_audio.bus = (StringName)(child.call(SNAME("get_bus")));
                                 */
                                 track = track_audio;
                             }

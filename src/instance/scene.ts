@@ -36,7 +36,7 @@ function buildConnection(from: SceneInstance.Node, to: SceneInstance.Node, conne
   return { from, to, signal, method, flags, binds, unbinds }
 }
 
-const propertyCache = new Map<VariantType,VariantType>();
+const propertyCache = new Map<VariantType, VariantType>();
 export class SceneInstance {
 
   public root: SceneInstance.Node;
@@ -44,12 +44,12 @@ export class SceneInstance {
   private nodeMap: Map<SceneNode, SceneInstance.Node> = new Map();
   constructor(scene: PackedScene, private resolver: SceneInstance.Resolver, private rootPath: string[] = []) {
     this.root = this.resolveNode(scene.nodes[0], scene);
-    scene.connections.forEach( conn => {
+    scene.connections.forEach(conn => {
       const fromNode = this.nodeMap.get(scene.nodes[conn.from])!
       const toNode = this.nodeMap.get(scene.nodes[conn.to])!
       const connection = buildConnection(fromNode, toNode, conn);
       fromNode.connections.push(connection);
-      if(fromNode != toNode) {
+      if (fromNode != toNode) {
         toNode.connections.push(connection);
       }
     })
@@ -62,7 +62,7 @@ export class SceneInstance {
   }
   private resolveProperty(path: string[], property_path: string[], val: VariantType): VariantType {
     const val_o = val;
-    if(propertyCache.has(val)) {
+    if (propertyCache.has(val)) {
       return propertyCache.get(val)!;
     }
     if (val?.type == 'ext_res') {
@@ -74,23 +74,23 @@ export class SceneInstance {
         ? this.resolveInternalProperties(path, path, loaded_ref) : { 'type': 'ctex', value: loaded_ref } as VariantType;
       val = { 'type': 'ref', value } as VariantType;
     } else
-    if (val?.type == 'array') {
-      const arr = <ArrayT>val;
-      arr.value.forEach((x, i) => {
-        arr.value[i] = this.resolveProperty(path, [...property_path, '' + i], x);
-      })
-    } else
-    if (val?.type == 'dictionary') {
-      const dic = <Dictionary>val;
-      for (const [k, v] of dic.value.entries()) {
-        dic.value.set(k, this.resolveProperty(path, [... property_path, (<StringName>k).value], v))
-      }
-    } else
-    if (val?.type == 'ref') {
-      const intResource = val as { type: 'ref', value: InternalResourceEntry };
-      if (intResource.value.type != 'ctex')
-        this.resolveProperties(path, path, intResource.value.properties)
-    }
+      if (val?.type == 'array') {
+        const arr = <ArrayT>val;
+        arr.value.forEach((x, i) => {
+          arr.value[i] = this.resolveProperty(path, [...property_path, '' + i], x);
+        })
+      } else
+        if (val?.type == 'dictionary') {
+          const dic = <Dictionary>val;
+          for (const [k, v] of dic.value.entries()) {
+            dic.value.set(k, this.resolveProperty(path, [...property_path, (<StringName>k).value], v))
+          }
+        } else
+          if (val?.type == 'ref') {
+            const intResource = val as { type: 'ref', value: InternalResourceEntry };
+            if (intResource.value.type != 'ctex')
+              this.resolveProperties(path, path, intResource.value.properties)
+          }
     propertyCache.set(val_o, val);
     return val
   }
@@ -125,7 +125,7 @@ export class SceneInstance {
     }
     const children = node.children.map(x => this.resolveNode(packedScene.nodes[x], packedScene));
     const properties = Object.assign({}, node.properties);
-    const result = { path, type, name, instance, properties, children, connections:[], parent: null }
+    const result = { path, type, name, instance, properties, children, connections: [], parent: null }
     this.pathMap[path.join('/')] = result;
     this.nodeMap.set(node, result);
     return result;
@@ -148,22 +148,22 @@ export class SceneInstance {
       current.children.push(this.resolveNode(node, scene));
     }
   }
-  
+
   applyModifications(modifications: { path: string[], node: SceneNode }[], scene: PackedScene) {
     modifications.forEach(({ path, node }) => this.applyModification(path, node, scene));
   }
-  
+
   resolveAllProperties() {
-    const nodes: SceneInstance.Node[] = [ this.root ];
-    while(nodes.length > 0) {
+    const nodes: SceneInstance.Node[] = [this.root];
+    while (nodes.length > 0) {
       const node = nodes.shift();
-      if(node) {
-        nodes.push(... node.children);
+      if (node) {
+        nodes.push(...node.children);
         this.resolveProperties(node.path, node.path, node.properties);
       }
     }
   }
-  
+
   bindParents(node: SceneInstance.Node = this.root) {
     node.children?.forEach(child => {
       child.parent = node;

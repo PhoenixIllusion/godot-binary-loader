@@ -19,3 +19,4 @@ export class TimeSeek extends Node {
         return this.blend_input(0, pi, FilterAction.FILTER_IGNORE, true);
     }
 }
+TimeSeek.registerType('AnimationNodeTimeSeek', TimeSeek);

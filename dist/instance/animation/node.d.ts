@@ -1,7 +1,11 @@
-import { AnimationNode, AnimationNodeProperties } from "../types/gen";
+import { AnimationNode, AnimationNodeProperties, AnimationNodeTypeMap } from "../types/gen";
 import { Vector2 } from "../types/gen/types";
 import { NodeState, NodeTimeInfo, PlaybackInfo, FilterAction } from "./blend";
 import { PlayerInterface } from "./player_interface";
+type NonAbstractConstructor<T> = new (...args: any[]) => T;
+type ExcludeNodeTypes = 'AnimationNode' | 'AnimationRootNode' | 'AnimationNodeSync';
+type NonAbstractAnimationNodes = Exclude<keyof AnimationNodeProperties, ExcludeNodeTypes>;
+export type NonAbstractAnimationNodeType = AnimationNodeTypeMap[NonAbstractAnimationNodes];
 export declare abstract class Node {
     name: string;
     type: keyof AnimationNodeProperties;
@@ -26,4 +30,8 @@ export declare abstract class Node {
     blend_node(node: Node, p_playback_info: PlaybackInfo, p_filter: FilterAction, p_sync: boolean): NodeTimeInfo;
     process(p_playback_info: PlaybackInfo): NodeTimeInfo;
     abstract _process(p_playback_info: PlaybackInfo): NodeTimeInfo;
+    private static _typeMap;
+    static registerType(type: keyof AnimationNodeProperties, _class: NonAbstractConstructor<Node>): NonAbstractConstructor<Node>;
+    static create(node: NonAbstractAnimationNodeType, name: string): Node;
 }
+export {};

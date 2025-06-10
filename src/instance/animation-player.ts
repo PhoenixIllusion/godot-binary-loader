@@ -8,7 +8,7 @@ import { unwrap_properties_cached } from "./util";
 import { DefaultAnimationPlayer } from "./types/gen/defaults/AnimationPlayer.default";
 
 interface AnimationLibrary extends AnimationLibraryT {
-  _data: Record<string, {'properties': AnimationData}>;
+  _data: Record<string, { 'properties': AnimationData }>;
 }
 
 export class AnimationPlayerInstance extends AnimationMixerInstance {
@@ -22,11 +22,11 @@ export class AnimationPlayerInstance extends AnimationMixerInstance {
     DefaultAnimationPlayer(animationPlayer);
     Object.assign(this, animationPlayer);
     const libraries: Record<string, { properties: AnimationLibrary }> = (<any>animationPlayer).libraries;
-    for(const [libName, lib] of Object.entries(libraries)) {
-      for(const [animName, data] of Object.entries(lib.properties._data)) {
+    for (const [libName, lib] of Object.entries(libraries)) {
+      for (const [animName, data] of Object.entries(lib.properties._data)) {
         const { properties } = data;
         DefaultAnimation(properties);
-        properties.tracks = unwrap_property_array(properties, 'tracks', ['enabled', 'imported', 'interp', 'keys', 'loop_wrap','path', 'type']);
+        properties.tracks = unwrap_property_array(properties, 'tracks', ['enabled', 'imported', 'interp', 'keys', 'loop_wrap', 'path', 'type']);
         const name = libName.length ? `${libName}/${animName}` : animName;
         this.animations[name] = new AnimationInstance(name, properties);
         this.animation_set.push(name);

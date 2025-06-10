@@ -11,7 +11,7 @@ import { degToRad } from "three/src/math/MathUtils.js";
 
 import { SceneInstance } from "@phoenixillusion/godot-binary-loader/instance/scene.js";
 import { AnimationPlayerInstance } from '@phoenixillusion/godot-binary-loader/instance/animation-player.js'
-import type { Vector3,Vector4 } from "@phoenixillusion/godot-binary-loader/instance/types/gen/types.js";
+import type { Vector3, Vector4 } from "@phoenixillusion/godot-binary-loader/instance/types/gen/types.js";
 
 declare module "three/src/math/Euler.js" {
   export interface Euler {
@@ -24,44 +24,44 @@ interface ClipCollection {
   clips: AnimationClip[]
 }
 
-function flattenV3(v: any): [number,number,number] {
-  const  { x, y, z } = <Vector3>v;
-  return [x,y,z];
+function flattenV3(v: any): [number, number, number] {
+  const { x, y, z } = <Vector3>v;
+  return [x, y, z];
 }
-function flattenV4(v: any): [number,number,number,number] {
-  const  { x, y, z, w } = <Vector4>v;
-  return [x,y,z,w];
+function flattenV4(v: any): [number, number, number, number] {
+  const { x, y, z, w } = <Vector4>v;
+  return [x, y, z, w];
 }
 
 export class ThreeAnimation extends AnimationPlayerInstance {
-  constructor(animation: SceneInstance.Node, public target: Object3D) {
-    super(animation);
+  constructor(public node: SceneInstance.Node, public target: Object3D) {
+    super(node);
   }
-  convertTrack(values: any[]): {values: Float32Array | null, KeyFrameType: typeof KeyframeTrack } {
+  convertTrack(values: any[]): { values: Float32Array | null, KeyFrameType: typeof KeyframeTrack } {
     let result: Float32Array | null = null;
     let KeyFrameType: typeof KeyframeTrack = KeyframeTrack;
-    if(typeof values[0] == 'boolean') {
-      result = new Float32Array(values.map(x => x ? 1: 0));
+    if (typeof values[0] == 'boolean') {
+      result = new Float32Array(values.map(x => x ? 1 : 0));
       KeyFrameType = BooleanKeyframeTrack;
     } else
-    if(typeof values[0] == 'number') {
-      result = new Float32Array(values);
-      KeyFrameType = NumberKeyframeTrack;
-    } else
-    if(values[0] instanceof Float32Array) {
-      result = new Float32Array(values.map(x => [...x]).flat());
-      KeyFrameType = values[0].length == 3 ? VectorKeyframeTrack : QuaternionKeyframeTrack
-    } else
-    if('type' in values[0]) {
-      if(values[0].type == 'vector3') {
-        result = new Float32Array(values.map(flattenV3).flat())
-        KeyFrameType = VectorKeyframeTrack
+      if (typeof values[0] == 'number') {
+        result = new Float32Array(values);
+        KeyFrameType = NumberKeyframeTrack;
       } else
-      if(values[0].type == 'quaternion') {
-        result = new Float32Array(values.map(flattenV4).flat())
-        KeyFrameType = QuaternionKeyframeTrack
-      }
-    }
+        if (values[0] instanceof Float32Array) {
+          result = new Float32Array(values.map(x => [...x]).flat());
+          KeyFrameType = values[0].length == 3 ? VectorKeyframeTrack : QuaternionKeyframeTrack
+        } else
+          if ('type' in values[0]) {
+            if (values[0].type == 'vector3') {
+              result = new Float32Array(values.map(flattenV3).flat())
+              KeyFrameType = VectorKeyframeTrack
+            } else
+              if (values[0].type == 'quaternion') {
+                result = new Float32Array(values.map(flattenV4).flat())
+                KeyFrameType = QuaternionKeyframeTrack
+              }
+          }
     return { values: result, KeyFrameType };
   }
 
@@ -76,30 +76,30 @@ export class ThreeAnimation extends AnimationPlayerInstance {
     })
 
     let path_prefix: string[] = [];
-    for(let i=0;i<max_back;i++) {
+    for (let i = 0; i < max_back; i++) {
       path_prefix.push(target.name);
       target = target.parent!;
     }
     const clips: AnimationClip[] = [];
-    for(const [name, trackData] of Object.entries(animations)) {
-      if(only_animations.length && !only_animations.includes(name)) {
+    for (const [name, trackData] of Object.entries(animations)) {
+      if (only_animations.length && !only_animations.includes(name)) {
         continue;
       }
       const tracks: KeyframeTrack[] = [];
       trackData.tracks.forEach(track => {
-        const prefix = [... path_prefix];
+        const prefix = [...path_prefix];
         track.path.names.forEach(x => {
-          if(x == '..') {
+          if (x == '..') {
             prefix.pop();
           } else {
-            if(x == '.') {
+            if (x == '.') {
               x = target.name;
             }
             prefix.push(x);
           }
         });
         const overrideProp: string[] = [];
-        switch(track.type) {
+        switch (track.type) {
           case 'rotation_3d':
             overrideProp.push('quaternion');
             break;
@@ -111,12 +111,12 @@ export class ThreeAnimation extends AnimationPlayerInstance {
             break;
         }
 
-        const subNames = [... prefix, ... track.path.subnames, ... overrideProp].map(x => x.replace(/\./g,'_'));
+        const subNames = [...prefix, ...track.path.subnames, ...overrideProp].map(x => x.replace(/\./g, '_'));
         let propName = subNames.pop();
-        let { values, KeyFrameType }  = this.convertTrack(track.keys.values)
+        let { values, KeyFrameType } = this.convertTrack(track.keys.values)
         let times = track.keys.times;
-        if(values) {
-          if(propName == 'rotation' || propName == 'rotation_degrees') {
+        if (values) {
+          if (propName == 'rotation' || propName == 'rotation_degrees') {
             propName = 'quaternion';
             const quatValues: number[][] = [];
             const eu = new Euler();
@@ -124,15 +124,15 @@ export class ThreeAnimation extends AnimationPlayerInstance {
             const new_times: number[] = [];
             eu.order = 'YXZ';
             const quat = new Quaternion();
-            for(let i=0;i<times.length;i++) {
-              const v3 = values.slice(i*3, i*3+3);
-              if(propName == 'rotation_degrees')
+            for (let i = 0; i < times.length; i++) {
+              const v3 = values.slice(i * 3, i * 3 + 3);
+              if (propName == 'rotation_degrees')
                 eu.fromArray(<any>v3.map(x => degToRad(x)));
-              else 
+              else
                 eu.fromArray(<any>v3);
-              if(i > 0) {
-                new_times.push((times[i]+times[i-1])/2);
-                const { x, y, z} = eu;
+              if (i > 0) {
+                new_times.push((times[i] + times[i - 1]) / 2);
+                const { x, y, z } = eu;
                 prev_eu.x += x; prev_eu.x /= 2;
                 prev_eu.y += y; prev_eu.y /= 2;
                 prev_eu.z += z; prev_eu.z /= 2;
@@ -146,14 +146,14 @@ export class ThreeAnimation extends AnimationPlayerInstance {
             values = new Float32Array(quatValues.flat());
             times = new Float32Array(new_times.flat());
           }
-          if(times.length == 1 && times[0] == 0) {
-            values = new Float32Array([... values, ... values]);
+          if (times.length == 1 && times[0] == 0) {
+            values = new Float32Array([...values, ...values]);
             times = new Float32Array([0, trackData.length]);
           }
-          tracks.push( new KeyFrameType(subNames.join('/') +'.'+propName, times, values));
+          tracks.push(new KeyFrameType(subNames.join('/') + '.' + propName, times, values));
         }
       });
-      if(tracks.length > 0)
+      if (tracks.length > 0)
         clips.push(new AnimationClip(name, trackData.length, tracks));
     }
     return { target, clips }

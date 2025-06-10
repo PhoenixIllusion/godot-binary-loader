@@ -166,3 +166,4 @@ export class Transition extends SyncNode {
         return cur_nti;
     }
 }
+Transition.registerType('AnimationNodeTransition', Transition);

@@ -480,14 +480,14 @@ export function buildCharacter(physics: JoltPhysics, data: CharacterBody3DData) 
 
 
   function initShape() {
-    const {shape, matrix } = data.shapes[0];
+    const { shape, matrix } = data.shapes[0];
     const shapeSettings = createJoltShape(shape, _tmpVec3)!;
-    if('height' in shape.properties) {
+    if ('height' in shape.properties) {
       characterRadiusStanding = shape.properties.height / 2;
-    } else if ('size' in shape.properties){
+    } else if ('size' in shape.properties) {
       const { y } = shape.properties.size;
-      characterRadiusStanding = y/2;
-    } else if ('radius' in shape.properties){
+      characterRadiusStanding = y / 2;
+    } else if ('radius' in shape.properties) {
       characterRadiusStanding = shape.properties.radius;
     }
     decomposeMatrix(matrix, _tmpVec3, _tmpQuat);
@@ -567,7 +567,7 @@ export function buildCharacter(physics: JoltPhysics, data: CharacterBody3DData) 
     _tmpVec3.Set(newVelocity.x, newVelocity.y, newVelocity.z);
     character.SetLinearVelocity(_tmpVec3);
   }
-  if(allowSliding) {}
+  if (allowSliding) { }
   data.node.add(getThreeObjectForBody(character, 0xFFFFFF));
   return { prePhysicsUpdate, handleInput, character }
 }

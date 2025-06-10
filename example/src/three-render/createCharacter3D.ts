@@ -7,7 +7,7 @@ import { CharacterBody3DData } from "../three-loader/physics";
 
 export function createCharacter3D(camera: Camera, charData: CharacterBody3DData, jolt: JoltPhysics) {
   const input = setupInput();
-  const cameraRotation = new Quaternion(); 
+  const cameraRotation = new Quaternion();
   const character = buildCharacter(jolt, charData)
   camera.position.copy(charData.node.position);
   camera.position.z += 5;

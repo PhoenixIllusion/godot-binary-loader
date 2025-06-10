@@ -190,7 +190,7 @@ export interface ProjectSettingsI {
     }
   },
   input: {
-    [key: string]: {deadzone: number, events: InputEvent[]}
+    [key: string]: { deadzone: number, events: InputEvent[] }
   },
   physics: {
     common: {

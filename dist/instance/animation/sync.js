@@ -100,3 +100,8 @@ export class Sub2 extends SubNode {
         return this.blend_input(0, pi, FilterAction.FILTER_IGNORE, this.sync);
     }
 }
+Node.registerType('AnimationNodeAdd2', Add2);
+Node.registerType('AnimationNodeAdd3', Add3);
+Node.registerType('AnimationNodeBlend2', Blend2);
+Node.registerType('AnimationNodeBlend3', Blend3);
+Node.registerType('AnimationNodeSub2', Sub2);

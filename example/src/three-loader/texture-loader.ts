@@ -2,11 +2,11 @@ import { parse_ctex_image_format } from "@phoenixillusion/godot-scene-reader/par
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
 import { Texture } from "three/src/textures/Texture.js";
 import { CompressedTexture } from "three/src/textures/CompressedTexture.js";
-import { 
+import {
   CompressedPixelFormat,
   PixelFormat,
   TextureDataType
- } from "three/src/constants.js";
+} from "three/src/constants.js";
 import { DataTexture } from "three/src/textures/DataTexture.js";
 
 import { Texture as TextureT } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
@@ -17,24 +17,24 @@ async function parseCTexEntry(file: cTexFile): Promise<Texture> {
   switch (entry.data_format) {
     case DataFormat.DATA_FORMAT_IMAGE: // compressed/raw
       const { internal_format, format, type, compressed } = parse_ctex_image_format(file.images[0].image_format);
-      if(internal_format > 0) {
-        if(compressed)
-          return new CompressedTexture(file.images.map(x => ({width: x.width, height: x.height, data: x.buffer})),
-              entry.width, entry.height, <CompressedPixelFormat>internal_format, <TextureDataType>type);
+      if (internal_format > 0) {
+        if (compressed)
+          return new CompressedTexture(file.images.map(x => ({ width: x.width, height: x.height, data: x.buffer })),
+            entry.width, entry.height, <CompressedPixelFormat>internal_format, <TextureDataType>type);
         else {
           const data_tex = new DataTexture(entry.buffer, entry.width, entry.height, <PixelFormat>format, <TextureDataType>type)
-          data_tex.mipmaps = file.images.map(x => ({width: x.width, height: x.height, data: x.buffer}));
+          data_tex.mipmaps = file.images.map(x => ({ width: x.width, height: x.height, data: x.buffer }));
           return data_tex;
         }
       }
-      throw new Error("Unhandled Compressed Texture Type: "+entry.image_format)
+      throw new Error("Unhandled Compressed Texture Type: " + entry.image_format)
     case DataFormat.DATA_FORMAT_PNG:
-    case DataFormat.DATA_FORMAT_WEBP: 
+    case DataFormat.DATA_FORMAT_WEBP:
       return createImageBitmap(new Blob([entry.buffer])).then(img => new Texture(img));
     case DataFormat.DATA_FORMAT_BASIS_UNIVERSAL:
       break;
   }
-  throw new Error("Unhandled Texture Type: "+entry.data_format)
+  throw new Error("Unhandled Texture Type: " + entry.data_format)
 }
 
 

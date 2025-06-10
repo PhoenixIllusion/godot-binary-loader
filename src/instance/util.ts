@@ -3,68 +3,68 @@ import { NodePath } from "./types/gen/types";
 import { unwrap_property } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 
 export function resolve_nodepath(currentPath: string[], nodePath: string[], absolute: boolean): string[] {
-  if(absolute) {
+  if (absolute) {
     return nodePath;
   }
   // Process path to handle "." and ".."
-  const finalPath: string[] = [... currentPath];
+  const finalPath: string[] = [...currentPath];
   for (const segment of nodePath) {
-      if (segment === ".") continue; // Ignore current directory
-      if (segment === "..") {
-          if (finalPath.length > 0) {
-              finalPath.pop(); // Move up one directory
-          }
-      } else {
-          finalPath.push(segment); // Add valid segment
+    if (segment === ".") continue; // Ignore current directory
+    if (segment === "..") {
+      if (finalPath.length > 0) {
+        finalPath.pop(); // Move up one directory
       }
+    } else {
+      finalPath.push(segment); // Add valid segment
+    }
   }
 
   return finalPath;
 }
 
-export function node_path_string(nodePath: NodePath|undefined) {
-  if(!nodePath)
+export function node_path_string(nodePath: NodePath | undefined) {
+  if (!nodePath)
     return '';
-  return nodePath.names.join('/') + (nodePath.subnames?.length ? ':' + nodePath.subnames.join(':'): '')
+  return nodePath.names.join('/') + (nodePath.subnames?.length ? ':' + nodePath.subnames.join(':') : '')
 }
 
 interface ParentChildSystem<T> {
   name: string;
-  parent: ParentChildSystem<T>|null,
+  parent: ParentChildSystem<T> | null,
   children: ParentChildSystem<T>[]
 }
 
-export function navigate_nodepath<T extends  ParentChildSystem<T>>(obj: T, nodePath: NodePath): T | null {
+export function navigate_nodepath<T extends ParentChildSystem<T>>(obj: T, nodePath: NodePath): T | null {
   let result: T | null = obj;
-  const path = [... nodePath.names ];
-  while(path.length) {
+  const path = [...nodePath.names];
+  while (path.length) {
     const p = path.shift();
-    if(p == '.') continue;
-    if(p == '..') result = result.parent as T;
+    if (p == '.') continue;
+    if (p == '..') result = result.parent as T;
     else
       result = result.children.find(x => x.name == p) as T || null;
-    if(!result) {
+    if (!result) {
       return null;
     }
   }
   return result as T;
 }
-export function navigate_nodepath_subpath<T extends Record<string,any>>(obj: T, nodePath: NodePath, leftover_path: string[], last_is_property = 1): any | null {
+export function navigate_nodepath_subpath<T extends Record<string, any>>(obj: T, nodePath: NodePath, leftover_path: string[], last_is_property = 1): any | null {
   let result: T | null = null;
   const { subnames } = nodePath;
-  if(subnames.length) {
+  if (subnames.length) {
     let j = 0;
-    for(;j < subnames.length - last_is_property; j++) {
+    for (; j < subnames.length - last_is_property; j++) {
       const subname = subnames[j];
       let test_obj = j == 0 ? obj : result
-      let new_res_v: any|null = null;
+      let new_res_v: any | null = null;
       let obj_has_property = (typeof test_obj == 'object') && ('properties' in test_obj!);
-      if(obj_has_property) {
+      if (obj_has_property) {
         new_res_v = obj.properties[subname];
-        if(!new_res_v) {
+        if (!new_res_v) {
           return null;
         }
-        if(!((typeof test_obj == 'object') && ('properties' in test_obj!))) {
+        if (!((typeof test_obj == 'object') && ('properties' in test_obj!))) {
           break;
         }
         result = new_res_v;
@@ -72,10 +72,10 @@ export function navigate_nodepath_subpath<T extends Record<string,any>>(obj: T, 
         return null;
       }
     }
-		for (; j < subnames.length; j++) {
-			// Put the rest of the subpath in the leftover path
-			leftover_path.push(subnames[j]);
-		}
+    for (; j < subnames.length; j++) {
+      // Put the rest of the subpath in the leftover path
+      leftover_path.push(subnames[j]);
+    }
   }
 
   return result;

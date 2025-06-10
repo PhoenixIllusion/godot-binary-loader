@@ -1,5 +1,5 @@
 import { SyncNode } from "./sync";
-import { create } from "./index";
+import { Node } from './node';
 export class BlendSpace extends SyncNode {
     constructor() {
         super(...arguments);
@@ -9,6 +9,6 @@ export class BlendSpace extends SyncNode {
 export function convertRaw(_in, prefix, idx) {
     return {
         pos: _in.pos,
-        node: create(_in.node, prefix + '_blend_input' + idx)
+        node: Node.create(_in.node, prefix + '_blend_input' + idx)
     };
 }

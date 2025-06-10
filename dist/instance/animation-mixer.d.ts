@@ -4,6 +4,7 @@ import { SceneInstance } from "./scene";
 import { AnimationMixer } from "./types/gen";
 import { NodePath } from "./types/gen/types";
 import { AnimationInstanceData } from "./animation/player_interface";
+import './animation/index';
 export declare class AnimationMixerInstance {
     active: boolean;
     audio_max_polyphony: number;

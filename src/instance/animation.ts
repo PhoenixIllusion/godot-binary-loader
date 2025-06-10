@@ -38,9 +38,9 @@ export interface Track extends TrackBase {
   update: UpdateMode;
 }
 
-function convertTrackBufferIfNeeded(track: Track|TrackWithBuffer): Track {
-  if(track.keys instanceof Float32Array){
-    const keys= track.keys;
+function convertTrackBufferIfNeeded(track: Track | TrackWithBuffer): Track {
+  if (track.keys instanceof Float32Array) {
+    const keys = track.keys;
     track.keys = animation_convert_track_float32_array(track.type, keys);
   }
   track.path_str = node_path_string(track.path);
@@ -48,9 +48,9 @@ function convertTrackBufferIfNeeded(track: Track|TrackWithBuffer): Track {
   return track as Track;
 }
 
-export interface AnimationData  extends Animation {
+export interface AnimationData extends Animation {
   update: Animation.UpdateMode;
-  tracks: (Track|TrackWithBuffer)[];
+  tracks: (Track | TrackWithBuffer)[];
 }
 
 

@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "start": "tsx src/build.ts",
+    "build": "npm run start",
     "poststart": "sh deploy.sh"
   },
   "author": "",

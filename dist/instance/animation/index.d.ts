@@ -1,7 +1,11 @@
-import { AnimationNodeProperties, AnimationNodeTypeMap } from "../types/gen";
-import { Node } from './node';
-type ExcludeNodeTypes = 'AnimationNode' | 'AnimationRootNode' | 'AnimationNodeSync';
-type NonAbstractAnimationNodes = Exclude<keyof AnimationNodeProperties, ExcludeNodeTypes>;
-export type NonAbstractAnimationNodeType = AnimationNodeTypeMap[NonAbstractAnimationNodes];
-export declare function create(node: NonAbstractAnimationNodeType, name: string): Node;
-export {};
+import '../types/gen';
+import './animation';
+import './blend-tree';
+import './blendspace-1d';
+import './blendspace-2d';
+import './one-shot';
+import './output';
+import './sync';
+import './time-scale';
+import './time-seek';
+import './transition';

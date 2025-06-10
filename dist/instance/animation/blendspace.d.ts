@@ -1,6 +1,5 @@
 import { SyncNode } from "./sync";
-import { Node } from './node';
-import { NonAbstractAnimationNodeType } from "./index";
+import { Node, NonAbstractAnimationNodeType } from './node';
 export interface BlendPointRaw<T> {
     node: NonAbstractAnimationNodeType;
     pos: T;

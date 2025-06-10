@@ -26,6 +26,7 @@ import { DefaultRigidBody3D } from '@phoenixillusion/godot-binary-loader/instanc
 import { DefaultStaticBody3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/StaticBody3D.default.js';
 import { DefaultArea3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/Area3D.default.js';
 import { unwrap_properties_cached } from '@phoenixillusion/godot-binary-loader/instance/util.js';
+import { ThreeParticleEmitter } from './particle';
 
 function v3(vlike: Vector3Like): Vector3 {
   return new Vector3().copy(vlike);
@@ -67,6 +68,7 @@ function collectPhysicsShapes(collision_object_3d: PhysicsShapeData[]) {
   }
 }
 
+const _typeCheck: Set<string> = new Set();
 export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneInstance.Node): Promise<Object3D | null> {
   const godotNode = { type: node.type, properties: unwrap_properties_cached(node.properties) } as NodeExtType;
   let node3d: Object3D | null = null;
@@ -87,6 +89,7 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
     case 'AnimationTree':
     case 'VehicleBody3D':
     case 'VehicleWheel3D':
+    case 'CPUParticles3D':
     case 'Node3D': {
       node3d = new Object3D();
       node3d.name = node.name;
@@ -96,6 +99,7 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
       }
     }
   }
+
   switch (godotNode.type) {
     case 'Camera3D':
       const camera = godotNode.properties;
@@ -113,13 +117,15 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
       const animationPlayer = new ThreeAnimation(node, parent);
       node3d!.userData.animationPlayer = animationPlayer;
       scene.animations.push(animationPlayer);
-      }
+    }
       break;
     case 'AnimationTree': {
-        const animationTree = new ThreeAnimationTree(node);
-        node3d!.userData.animationTree = animationTree;
-        scene.animationTrees.push(animationTree);
-      }
+      const animationTree = new ThreeAnimationTree(node);
+      node3d!.userData.animationTree = animationTree;
+      scene.animationTrees.push(animationTree);
+    }
+      break;
+    case 'VehicleBody3D':
       break;
     case 'Area3D':
     case 'CharacterBody3D':
@@ -156,7 +162,7 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
     case 'Skeleton3D': {
       const skeleton: { skeleton?: Skeleton } = node3d!.userData;
       onChild = (child, obj) => setupSkeleton(scene, godotNode.properties, child, obj, skeleton);
-      }
+    }
       break;
     case 'DirectionalLight3D':
       const dirLight = godotNode.properties;
@@ -202,15 +208,24 @@ export async function buildScene(scene: GodotPck, parent: Object3D, node: SceneI
       }
       break;
     }
+    case 'CPUParticles3D':
+      const emitter = new ThreeParticleEmitter(node);
+      scene.particles.push(emitter);
+      break;
+    default:
+      if (!_typeCheck.has(node.type)) {
+        if (!node3d) {
+          console.warn('Not Implemented: ', node.type);
+        } else
+          console.warn('No special logic for type: ', node.type);
+        _typeCheck.add(node.type)
+      }
   }
-  if (!node3d) {
-    console.log(node.type)
-  }
-  if(node3d) {
+  if (node3d) {
     scene.maps.object3d.set(node, node3d);
     node3d.userData.node = node;
     node3d.userData.godot = godotNode;
-    if('visible' in godotNode.properties) {
+    if ('visible' in godotNode.properties) {
       node3d.visible = godotNode.properties.visible;
     }
   }

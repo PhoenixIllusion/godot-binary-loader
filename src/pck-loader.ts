@@ -39,10 +39,10 @@ export class PckLoader {
   worker_count = 0;
   current_worker = 0;
   workers: Worker[] = [];
-  worker_results: Record<string, (result: BinResource|cTexFile|BinResource|undefined) => void> = {}
+  worker_results: Record<string, (result: BinResource | cTexFile | BinResource | undefined) => void> = {}
 
   constructor(private pack: PckFile) { /* */ }
-  
+
   private remapPath(pckEntry: PckEntry): Record<string, string> | null {
     return parse_remap(pckEntry.getData());
   }
@@ -82,12 +82,12 @@ export class PckLoader {
     return this.resourceCache[path] as T;
   }
   private queue_worker_task(method: string, path: string, payload: any) {
-    if(this.workers.length == 0) {
-      for(let i=0;i<this.worker_count;i++) {
+    if (this.workers.length == 0) {
+      for (let i = 0; i < this.worker_count; i++) {
         this.workers[i] = UnpackWorker();
         this.workers[i].onmessage = (event) => {
           const { path, data } = event.data;
-          if(this.worker_results[path]) {
+          if (this.worker_results[path]) {
             this.worker_results[path](data);
             delete this.worker_results[path];
           } else {
@@ -97,22 +97,22 @@ export class PckLoader {
       }
     }
     const idx = this.current_worker++;
-    this.workers[idx].postMessage({method, path, payload})
+    this.workers[idx].postMessage({ method, path, payload })
     this.current_worker %= this.worker_count;
   }
 
   try_open_bin_resource(res_path: string, arrayBuffer: ArrayBuffer, p_no_resource: boolean, p_keep_uuid_paths: boolean): Promise<BinResource> {
-    if(this.worker_count == 0) {
+    if (this.worker_count == 0) {
       return try_open_bin_resource(res_path, arrayBuffer, p_no_resource, p_keep_uuid_paths);
     }
     return new Promise<BinResource>(resolve => {
       const guid = generateUUID();
       this.worker_results[guid] = resolve as any;
-      this.queue_worker_task('try_open_bin_resource', guid, { arrayBuffer, p_no_resource, p_keep_uuid_paths});
+      this.queue_worker_task('try_open_bin_resource', guid, { arrayBuffer, p_no_resource, p_keep_uuid_paths });
     })
   }
   async try_open_ctex(arrayBuffer: ArrayBuffer): Promise<cTexFile> {
-    if(this.worker_count == 0) {
+    if (this.worker_count == 0) {
       return try_open_ctex(arrayBuffer);
     }
     return new Promise<cTexFile>(resolve => {
@@ -122,7 +122,7 @@ export class PckLoader {
     })
   }
   async try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile> {
-    if(this.worker_count == 0) {
+    if (this.worker_count == 0) {
       return {
         flags: 0, height: 0, images: [], mipmap_limit: 0, version: 0, width: 0
       };
@@ -144,8 +144,8 @@ export class PckLoader {
       return this.resourceCache[path];
     }
     let isBinary = false;
-    ['.scn','.res','.mesh','.material','.occ','.ogg','.wav'].forEach(ext => {
-      if(path.endsWith(ext) || entry.path.endsWith(ext)) {
+    ['.scn', '.res', '.mesh', '.material', '.occ', '.ogg', '.wav'].forEach(ext => {
+      if (path.endsWith(ext) || entry.path.endsWith(ext)) {
         isBinary = true;
       }
     })
@@ -174,7 +174,7 @@ export class PckLoader {
       const data = await this.cacheResource(path, entry, entry => this.try_open_ctex(entry.getData()));
       return data;
     }
-    if(entry.path.endsWith('.ctex3d')) {
+    if (entry.path.endsWith('.ctex3d')) {
       const data = await this.cacheResource(path, entry, entry => this.try_open_ctex3d(entry.getData()));
       return data;
     }
@@ -192,31 +192,31 @@ export class PckLoader {
   static async load(request: LoadRequest): Promise<LoadResponse> {
     const path = request.path;
     let resolve_scene = request.resolve_scene;
-    const allowed_extensions: string[] = request.allowed_extensions ?? []; 
+    const allowed_extensions: string[] = request.allowed_extensions ?? [];
     const buffer: ArrayBuffer = request.buffer ?? await (fetch(request.path).then(res => res.arrayBuffer()));
 
     const pck = try_open_pack(path, buffer);
     const loader = new PckLoader(pck);
     loader.worker_count = request.worker_count || 0;
-    loader.allowed_extensions.push(... allowed_extensions);
+    loader.allowed_extensions.push(...allowed_extensions);
     const project = pck['project.binary'];
 
     let projectName = path;
     let settings: ProjectSettings | null = null;
-    if(project) {
+    if (project) {
       settings = <ProjectSettings>unwrap_properties(await try_open_bin_config(project.getData()))!;
       DefaultProjectSettings(settings);
       projectName = settings['application/config/name'] ?? name;
     }
-    if(!resolve_scene && settings) {
+    if (!resolve_scene && settings) {
       resolve_scene = settings['application/run/main_scene'] || null;
     }
-    if(resolve_scene) {
+    if (resolve_scene) {
       await loader.resolve(resolve_scene);
     }
     return {
       projectName,
-      settings: settings ? unwrap_property_paths(settings): null,
+      settings: settings ? unwrap_property_paths(settings) : null,
       resolved_scene: resolve_scene || null,
       scenes: loader.sceneCache,
       resources: loader.resourceCache
@@ -238,7 +238,7 @@ function isWebWorker(): boolean {
 }
 
 
-if(isWebWorker()) {
+if (isWebWorker()) {
   globalThis.onmessage = async (ev) => {
     const request = ev.data as LoadRequest;
     PckLoader.load(request).then(response => {

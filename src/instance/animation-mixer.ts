@@ -11,6 +11,7 @@ import { ERR_PRINT, WARN_PRINT } from "@phoenixillusion/godot-scene-reader/util/
 import { Skeleton3DInstance } from "./skeleton";
 import { transform3d_to_mat4 } from "./math";
 import { AnimationInstanceData } from "./animation/player_interface";
+import './animation/index';
 
 const UPDATE_DISCRETE = 1;
 
@@ -19,15 +20,15 @@ function is_variant_interpolatable(_v: any): boolean {
 }
 
 function variant_zero(v: any): any {
-  if(typeof v == 'number') {
+  if (typeof v == 'number') {
     return 0;
   }
-  if(typeof v == 'boolean') {
+  if (typeof v == 'boolean') {
     return false;
   }
-  if(typeof v == 'object') {
-    if('type' in v) {
-      switch(v.type) {
+  if (typeof v == 'object') {
+    if ('type' in v) {
+      switch (v.type) {
         case 'vector2':
         case 'vector2i':
         case 'vector3':
@@ -35,11 +36,11 @@ function variant_zero(v: any): any {
         case 'vector4':
         case 'vector4i':
         case 'quaternion':
-          return {type: v.type, x: 0, y: 0, z: 0, w: 0};
+          return { type: v.type, x: 0, y: 0, z: 0, w: 0 };
       }
     }
   }
-  
+
 }
 
 
@@ -62,12 +63,12 @@ export class AnimationMixerInstance {
 
   root_motion_cache = new RootMotion()
   track_cache: Record<string, TrackCache> = {};
-  track_map: Record<string,number> = {}
-  animation_track_num_to_track_cache: Record<string, (TrackCache|null)[]> = {}
+  track_map: Record<string, number> = {}
+  animation_track_num_to_track_cache: Record<string, (TrackCache | null)[]> = {}
   track_count = 0;
 
   animation_instances: AnimationInstanceData[] = []
-  
+
   has_animation(name: string) {
     return !!this.animations[name];
   }
@@ -87,89 +88,89 @@ export class AnimationMixerInstance {
     this.rootNode = rootNode;
     this.root_motion_track_str = node_path_string(this.root_motion_track)
   }
-_blend_init() {
-	if (!this.cache_valid) {
-		if (!this._update_caches()) {
-			return;
-		}
-	}
+  _blend_init() {
+    if (!this.cache_valid) {
+      if (!this._update_caches()) {
+        return;
+      }
+    }
 
-	// Init all value/transform/blend/bezier tracks that track_cache has.
-	for (const K of Object.values(this.track_cache)) {
-		const track = K;
+    // Init all value/transform/blend/bezier tracks that track_cache has.
+    for (const K of Object.values(this.track_cache)) {
+      const track = K;
 
-		track.total_weight = 0.0;
-    const root_motion_cache = this.root_motion_cache;
+      track.total_weight = 0.0;
+      const root_motion_cache = this.root_motion_cache;
 
-		switch (track.type) {
-			case 'position_3d': {
-				const t = <TrackCacheTransform>(track);
-				if (track.root_motion) {
-					vec3.set(root_motion_cache.loc, 0, 0, 0);
-					quat.set(root_motion_cache.rot, 0, 0, 0, 1);
-					vec3.set(root_motion_cache.scale, 1, 1, 1);
-				}
-				vec3.copy(t.loc, t.init_loc);
-				quat.copy(t.rot, t.init_rot);
-				vec3.copy(t.scale, t.init_scale);
-			} break;
-			case 'blend_shape': {
-				const t = <TrackCacheBlendShape>(track);
-				t.value = t.init_value;
-			} break;
-			case 'value': {
-				const t = <TrackCacheValue>(track);
-				//t.value = Animation::cast_to_blendwise(t.init_value);
-				//t.element_size = t.init_value.is_string() ? (real_t)(t.init_value.operator String()).length() : 0;
-				t.use_continuous = false;
-				t.use_discrete = false;
-			} break;
-			case 'audio': {
-				/*
-				const t = <TrackCacheAudio>(track);
-        for (KeyValue<ObjectID, PlayingAudioTrackInfo> &L : t.playing_streams) {
-					PlayingAudioTrackInfo &track_info = L.value;
-					track_info.volume = 0.0;
-				}*/
-			} break;
-			default: {
-			} break;
-		}
-	}
-}
-_blend_calc_total_weight() {
-	for (const ai of this.animation_instances) {
-		const a = ai.animation;
-		const weight = ai.playback_info.weight;
-		const track_weights_ptr = ai.track_weights;
-		const track_weights_count = track_weights_ptr.length;
-		//ERR_CONTINUE_EDMSG(!animation_track_num_to_track_cashe.has(a), "No animation in cache.");
-		const track_num_to_track_cache = this.animation_track_num_to_track_cache[a.name];
+      switch (track.type) {
+        case 'position_3d': {
+          const t = <TrackCacheTransform>(track);
+          if (track.root_motion) {
+            vec3.set(root_motion_cache.loc, 0, 0, 0);
+            quat.set(root_motion_cache.rot, 0, 0, 0, 1);
+            vec3.set(root_motion_cache.scale, 1, 1, 1);
+          }
+          vec3.copy(t.loc, t.init_loc);
+          quat.copy(t.rot, t.init_rot);
+          vec3.copy(t.scale, t.init_scale);
+        } break;
+        case 'blend_shape': {
+          const t = <TrackCacheBlendShape>(track);
+          t.value = t.init_value;
+        } break;
+        case 'value': {
+          const t = <TrackCacheValue>(track);
+          //t.value = Animation::cast_to_blendwise(t.init_value);
+          //t.element_size = t.init_value.is_string() ? (real_t)(t.init_value.operator String()).length() : 0;
+          t.use_continuous = false;
+          t.use_discrete = false;
+        } break;
+        case 'audio': {
+          /*
+          const t = <TrackCacheAudio>(track);
+          for (KeyValue<ObjectID, PlayingAudioTrackInfo> &L : t.playing_streams) {
+            PlayingAudioTrackInfo &track_info = L.value;
+            track_info.volume = 0.0;
+          }*/
+        } break;
+        default: {
+        } break;
+      }
+    }
+  }
+  _blend_calc_total_weight() {
+    for (const ai of this.animation_instances) {
+      const a = ai.animation;
+      const weight = ai.playback_info.weight;
+      const track_weights_ptr = ai.track_weights;
+      const track_weights_count = track_weights_ptr.length;
+      //ERR_CONTINUE_EDMSG(!animation_track_num_to_track_cashe.has(a), "No animation in cache.");
+      const track_num_to_track_cache = this.animation_track_num_to_track_cache[a.name];
 
-    const tracks = a.tracks;
-		const tracks_ptr = tracks;
-		const count = tracks.length;
-    const processed_hashes: Set<string> = new Set();
-		for (let i = 0; i < count; i++) {
-			const animation_track = tracks_ptr[i];
-			if (!animation_track.enabled) {
-				continue;
-			}
-			const thash = animation_track.thash;
-			const track = track_num_to_track_cache[i];
-			if (track == null || processed_hashes.has(thash)) {
-				// No path, but avoid error spamming.
-				// Or, there is the case different track type with same path; These can be distinguished by hash. So don't add the weight doubly.
-				continue;
-			}
-			const blend_idx = track.blend_idx;
-			//ERR_CONTINUE(blend_idx < 0 || blend_idx >= this.track_count);
-			const blend = blend_idx < track_weights_count ? track_weights_ptr[blend_idx] * weight : weight;
-			track.total_weight += blend;
-      processed_hashes.add(thash);
-		}
-	}
-}
+      const tracks = a.tracks;
+      const tracks_ptr = tracks;
+      const count = tracks.length;
+      const processed_hashes: Set<string> = new Set();
+      for (let i = 0; i < count; i++) {
+        const animation_track = tracks_ptr[i];
+        if (!animation_track.enabled) {
+          continue;
+        }
+        const thash = animation_track.thash;
+        const track = track_num_to_track_cache[i];
+        if (track == null || processed_hashes.has(thash)) {
+          // No path, but avoid error spamming.
+          // Or, there is the case different track type with same path; These can be distinguished by hash. So don't add the weight doubly.
+          continue;
+        }
+        const blend_idx = track.blend_idx;
+        //ERR_CONTINUE(blend_idx < 0 || blend_idx >= this.track_count);
+        const blend = blend_idx < track_weights_count ? track_weights_ptr[blend_idx] * weight : weight;
+        track.total_weight += blend;
+        processed_hashes.add(thash);
+      }
+    }
+  }
 
   cache_valid = false;
   _update_caches(): boolean {
@@ -358,38 +359,38 @@ _blend_calc_total_weight() {
 							}
 						}
 					} break;*/
-					case 'method': {
-						const track_method = new TrackCacheMethod();
+            case 'method': {
+              const track_method = new TrackCacheMethod();
 
-						if (resource) {
-							track_method.object_id = resource;
-						} else {
-							track_method.object_id = child;
-						}
+              if (resource) {
+                track_method.object_id = resource;
+              } else {
+                track_method.object_id = child;
+              }
 
-						track = track_method;
+              track = track_method;
 
-					} break;
-					case 'audio': {
-						const track_audio = new TrackCacheAudio();
-            /*
-						track_audio.object_id = child;
-						track_audio.audio_stream.instantiate();
-						track_audio.audio_stream.set_polyphony(audio_max_polyphony);
-						track_audio.playback_type = (AudioServer::PlaybackType)(int)(child.call(SNAME("get_playback_type")));
-						track_audio.bus = (StringName)(child.call(SNAME("get_bus")));
-            */
-						track = track_audio;
+            } break;
+            case 'audio': {
+              const track_audio = new TrackCacheAudio();
+              /*
+              track_audio.object_id = child;
+              track_audio.audio_stream.instantiate();
+              track_audio.audio_stream.set_polyphony(audio_max_polyphony);
+              track_audio.playback_type = (AudioServer::PlaybackType)(int)(child.call(SNAME("get_playback_type")));
+              track_audio.bus = (StringName)(child.call(SNAME("get_bus")));
+              */
+              track = track_audio;
 
-					} break;
-					case 'animation': {
-						const track_animation = new TrackCacheAnimation();
+            } break;
+            case 'animation': {
+              const track_animation = new TrackCacheAnimation();
 
-						track_animation.object_id = child;
+              track_animation.object_id = child;
 
-						track = track_animation;
+              track = track_animation;
 
-					} break;
+            } break;
             default: {
               ERR_PRINT("Animation corrupted (invalid track type).");
               continue;
@@ -449,7 +450,7 @@ _blend_calc_total_weight() {
     for (const E of sname_list) {
       const anim = this.get_animation(E);
       const tracks = anim.tracks;
-      const track_num_to_track_cashe: (TrackCache|null)[] = [];
+      const track_num_to_track_cashe: (TrackCache | null)[] = [];
       for (let i = 0; i < tracks.length; i++) {
         const track_ptr = track_cache[tracks[i].thash] || null;
         if (track_ptr == null) {

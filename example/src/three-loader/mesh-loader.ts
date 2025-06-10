@@ -15,12 +15,18 @@ import { configureMaterial } from "./material";
 import * as GodotMesh from '@phoenixillusion/godot-binary-loader/instance/types/mesh.js';
 import { MeshType, Node3DTypeMap, Mesh as MeshNS } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
 import { HasSurfaceMaterialOverride } from "@phoenixillusion/godot-binary-loader/instance/types/index.js";
-import { MeshWithDefaults } from "@phoenixillusion/godot-binary-loader/instance/types/mesh.js";
+import { DefaultBoxMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/BoxMesh.default.js";
+import { DefaultPlaneMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/PlaneMesh.default.js";
+import { DefaultQuadMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/QuadMesh.default.js";
+import { DefaultSphereMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/SphereMesh.default.js";
+import { DefaultCapsuleMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CapsuleMesh.default.js";
+import { DefaultCylinderMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CylinderMesh.default.js";
+import { DefaultArrayMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/ArrayMesh.default.js";
 
 const standardMaterial = new MeshStandardMaterial({ color: 0xffffff });
 const meshCache = new Map<MeshType, Mesh | null>()
 export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<Mesh | null> {
-  const mesh = MeshWithDefaults(node.properties.mesh as MeshType);
+  const mesh = node.properties.mesh as MeshType;
   const m = mesh;
   const p = 'properties';
 
@@ -32,43 +38,55 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
   let geo: BufferGeometry[] = [];
   let material: Material[] = [standardMaterial];
   let name: string = mesh.type;
+  let isBillboard = false;
   switch (m.type) {
     case 'BoxMesh': {
+      DefaultBoxMesh(m[p]);
       const { subdivide_width, subdivide_height, subdivide_depth, size } = m[p];
       const { x, y, z } = size;
       geo.push(new BoxGeometry(x, y, z, subdivide_width + 1, subdivide_height + 1, subdivide_depth + 1));
       break;
     }
+    case 'PlaneMesh': {
+      DefaultPlaneMesh(m[p]);
+      const { x, y } = m[p].size;
+      geo.push(new PlaneGeometry(x * 10, y * 10));
+      break;
+    }
     case 'QuadMesh': {
+      DefaultQuadMesh(m[p]);
       const { x, y } = m[p].size;
       geo.push(new PlaneGeometry(x, y));
       break;
     }
     case 'SphereMesh': {
+      DefaultSphereMesh(m[p]);
       const { radius, radial_segments, rings } = m[p];
       geo.push(new SphereGeometry(radius, radial_segments, rings));
     }
       break;
     case "CapsuleMesh": {
+      DefaultCapsuleMesh(m[p]);
       const { radius, radial_segments, height, rings } = m[p];
       geo.push(new CapsuleGeometry(radius, height, undefined, radial_segments, rings));
     }
       break;
     case "CylinderMesh": {
+      DefaultCylinderMesh(m[p]);
       const { top_radius, bottom_radius, height, radial_segments, rings } = m[p];
       geo.push(new CylinderGeometry(top_radius, bottom_radius, height, radial_segments, rings));
     }
       break;
     case "ArrayMesh": {
       material = [];
-
+      DefaultArrayMesh(m[p]);
       function flat(arr: Uint8Array<ArrayBufferLike>[] | FA): number[] {
         return (<number[][]>arr).flat();
       }
 
       const g_mesh = new GodotMesh.Mesh(m[p]);
       name = m[p].resource_name ?? '<no name>'
-      for(const surface of g_mesh.surfaces) {
+      for (const surface of g_mesh.surfaces) {
         const [pos, normal, _tan, _, uv] = surface.arrays;
         const index = surface.arrays[MeshNS.ArrayType.ARRAY_INDEX];
         const bone_index = surface.arrays[MeshNS.ArrayType.ARRAY_BONES];
@@ -80,7 +98,7 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
           s_geo.setAttribute('normal', new BufferAttribute(new Float32Array(flat(normal)), 3));
         if (uv)
           s_geo.setAttribute('uv', new BufferAttribute(new Float32Array(flat(uv)), 2));
-        if(bone_index && bone_weights) {
+        if (bone_index && bone_weights) {
           s_geo.setAttribute('skinIndex', new BufferAttribute(new Uint16Array(flat(bone_index)), (<number[][]>bone_index)[0].length));
           s_geo.setAttribute('skinWeight', new BufferAttribute(new Float32Array(flat(bone_weights)), (<number[][]>bone_weights)[0].length));
         }
@@ -94,6 +112,10 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
         }
         const mat_props = surface?.material?.properties;
         if (mat_props) {
+          if ('billboard_mode' in mat_props) {
+            if (mat_props.billboard_mode > 0)
+              isBillboard = true;
+          }
           s_material = await configureMaterial(s_material, surface.material!);
         }
         geo.push(s_geo);
@@ -102,10 +124,17 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
     }
       break;
   }
+  if ('material' in mesh.properties) {
+    material[0] = await configureMaterial(<MeshStandardMaterial>material[0], mesh.properties.material);
+  }
   if (geo.length) {
-    const mat= (node.properties as any as HasSurfaceMaterialOverride)['surface_material_override/0'];
+    const mat = (node.properties as any as HasSurfaceMaterialOverride)['surface_material_override/0'];
     if (mat?.properties) {
-      material[0] = await configureMaterial( <MeshStandardMaterial>material[0], mat);
+      if ('billboard_mode' in mat.properties) {
+        if (mat.properties.billboard_mode > 1)
+          isBillboard = true;
+      }
+      material[0] = await configureMaterial(<MeshStandardMaterial>material[0], mat);
     }
     let three_mesh: Mesh;
     if (geo.length == 1) {
@@ -115,7 +144,7 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
       three_mesh = new Mesh(combo_geo, material);
     }
     three_mesh.name = name;
-    if(m.type == 'QuadMesh' && three_mesh) {
+    if (isBillboard) {
       three_mesh.onBeforeRender = (_renderer, _scene, camera, _geo, _material) => {
         _material.depthWrite = false
         three_mesh.quaternion.copy(camera.quaternion);

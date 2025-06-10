@@ -114,9 +114,9 @@ export class OneShot extends SyncNode {
                 use_blend = true;
                 blend = (fade_in - cur_fade_in_remaining) / fade_in;
                 /* TODO CURVE
-                      if (fade_in_curve.is_valid()) {
-                          blend = fade_in_curve->sample(blend);
-                      } */
+                if (fade_in_curve.is_valid()) {
+                    blend = fade_in_curve->sample(blend);
+                } */
             }
             else {
                 blend = 0; // Should not happen.
@@ -127,9 +127,9 @@ export class OneShot extends SyncNode {
             if (is_greater_approx(fade_out, 0)) {
                 blend = cur_fade_out_remaining / fade_out;
                 /* TODO CURVE
-                      if (fade_out_curve.is_valid()) {
-                          blend = 1.0 - fade_out_curve->sample(1.0 - blend);
-                      } */
+                if (fade_out_curve.is_valid()) {
+                    blend = 1.0 - fade_out_curve->sample(1.0 - blend);
+                } */
             }
             else {
                 blend = 0;
@@ -182,3 +182,4 @@ export class OneShot extends SyncNode {
         return cur_internal_active ? os_nti : main_nti;
     }
 }
+OneShot.registerType('AnimationNodeOneShot', OneShot);

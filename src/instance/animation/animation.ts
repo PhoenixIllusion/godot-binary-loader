@@ -38,9 +38,9 @@ export class Animation extends Node {
   get_node_time_info() {
     super.get_node_time_info();
     const nti = this._nti;
-    if(!this.animationInstance)
+    if (!this.animationInstance)
       return nti;
-    if(this.use_custom_timeline) {
+    if (this.use_custom_timeline) {
       nti.length = this.timeline_length;
       nti.loop_mode = this.loop_mode;
     } else {
@@ -185,3 +185,4 @@ export class Animation extends Node {
     return nti;
   }
 }
+Animation.registerType('AnimationNodeAnimation', Animation);

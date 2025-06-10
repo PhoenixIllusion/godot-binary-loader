@@ -48,4 +48,16 @@ export class Node {
         this.set_node_time_info(nti);
         return nti;
     }
+    static registerType(type, _class) {
+        this._typeMap[type] = _class;
+        return _class;
+    }
+    static create(node, name) {
+        const ctor = this._typeMap[node.type] || null;
+        if (ctor) {
+            return new ctor(node.properties, name);
+        }
+        throw new Error(`Unknown Node Type ${node.type}`);
+    }
 }
+Node._typeMap = {};

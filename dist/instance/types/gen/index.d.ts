@@ -1,5 +1,4 @@
 import * as type from './types';
-import { int } from './types';
 export interface PhysicsBody3D extends CollisionObject3D {
     axis_lock_angular_x: type.bool;
     axis_lock_angular_y: type.bool;
@@ -4047,10 +4046,7 @@ export interface PhysicsTestMotionParameters2D extends RefCounted {
         type: "RID[]";
         properties: RID[];
     };
-    exclude_objects: {
-        type: "int[]";
-        properties: int[];
-    };
+    exclude_objects: type.int[];
     from: type.Transform2D;
     margin: type.float;
     motion: type.Vector2;
@@ -8127,10 +8123,7 @@ export interface PhysicsTestMotionParameters3D extends RefCounted {
         type: "RID[]";
         properties: RID[];
     };
-    exclude_objects: {
-        type: "int[]";
-        properties: int[];
-    };
+    exclude_objects: type.int[];
     from: type.Transform3D;
     margin: type.float;
     max_collisions: type.int;
@@ -10891,18 +10884,9 @@ export interface CodeEdit extends TextEdit {
         properties: Dictionary;
     };
     code_completion_enabled: type.bool;
-    code_completion_prefixes: {
-        type: "String[]";
-        properties: String[];
-    };
-    delimiter_comments: {
-        type: "String[]";
-        properties: String[];
-    };
-    delimiter_strings: {
-        type: "String[]";
-        properties: String[];
-    };
+    code_completion_prefixes: type.String[];
+    delimiter_comments: type.String[];
+    delimiter_strings: type.String[];
     gutters_draw_bookmarks: type.bool;
     gutters_draw_breakpoints_gutter: type.bool;
     gutters_draw_executing_lines: type.bool;
@@ -10910,18 +10894,12 @@ export interface CodeEdit extends TextEdit {
     gutters_draw_line_numbers: type.bool;
     gutters_zero_pad_line_numbers: type.bool;
     indent_automatic: type.bool;
-    indent_automatic_prefixes: {
-        type: "String[]";
-        properties: String[];
-    };
+    indent_automatic_prefixes: type.String[];
     indent_size: type.int;
     indent_use_spaces: type.bool;
     layout_direction: type.int;
     line_folding: type.bool;
-    line_length_guidelines: {
-        type: "int[]";
-        properties: int[];
-    };
+    line_length_guidelines: type.int[];
     symbol_lookup_on_click: type.bool;
     text_direction: type.int;
 }
@@ -13224,10 +13202,7 @@ export interface RDPipelineMultisampleState extends RefCounted {
     enable_sample_shading: type.bool;
     min_sample_shading: type.float;
     sample_count: type.int;
-    sample_masks: {
-        type: "int[]";
-        properties: int[];
-    };
+    sample_masks: type.int[];
 }
 export declare namespace RDPipelineMultisampleState {
 }

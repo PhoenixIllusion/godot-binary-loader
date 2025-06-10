@@ -111,8 +111,8 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
   y_label!: string;
 
   _blend_position: vec2 = vec2.create()
-  set blend_position(v: Vector2) {vec2.set(this._blend_position, v.x, v.y);}
-  get blend_position(): Vector2 { return {x: this._blend_position[0], y: this._blend_position[1]} }
+  set blend_position(v: Vector2) { vec2.set(this._blend_position, v.x, v.y); }
+  get blend_position(): Vector2 { return { x: this._blend_position[0], y: this._blend_position[1] } }
 
   _points: Float32Array;
   triangles!: Uint32Array;
@@ -133,7 +133,7 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
     }
     DefaultAnimationNodeBlendSpace2D(blendSpace2DProperties as AnimationNodeBlendSpace2D);
     Object.assign(this, blendSpace2DProperties);
-    this._points = new Float32Array(this.blend_points.map(point => [... point.pos]).flat())
+    this._points = new Float32Array(this.blend_points.map(point => [...point.pos]).flat())
     if (this.auto_triangles || !this.triangles) {
       const del = new Delaunator(this._points);
       this.triangles = del.triangles;
@@ -162,7 +162,7 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
       let blend_triangle = -1;
       const blend_weights: [number, number, number] = [0, 0, 0];
 
-      for (let i = 0; i < triangles.length; i+=3) {
+      for (let i = 0; i < triangles.length; i += 3) {
         const points: [ReadonlyVec2, ReadonlyVec2, ReadonlyVec2] = [
           blend_points[triangles[i]].pos,
           blend_points[triangles[i + 1]].pos,
@@ -200,7 +200,7 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
         }
       }
 
-      const triangle_points = triangles.slice(blend_triangle, blend_triangle*3 + 3);
+      const triangle_points = triangles.slice(blend_triangle, blend_triangle * 3 + 3);
 
       first = true;
 
@@ -279,3 +279,4 @@ export class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
     return mind!;
   }
 }
+BlendSpace2D.registerType('AnimationNodeBlendSpace2D', BlendSpace2D);

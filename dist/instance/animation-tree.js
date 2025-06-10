@@ -1,5 +1,5 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { create } from './animation/index';
+import { Node } from './animation/node';
 import { allocPlaybackInfo } from "./animation/blend";
 import { navigate_nodepath, unwrap_properties_cached } from "./util";
 import { Animation } from "./animation/animation";
@@ -30,7 +30,7 @@ export class AnimationTreeInstance extends AnimationMixerInstance {
         this.animationPlayerNode = animationPlayer;
         this.animationPlayer = new AnimationPlayerInstance(animationPlayer);
         this.animations = this.animationPlayer.animations;
-        this.root = create(root, 'root');
+        this.root = Node.create(root, 'root');
         this.root.configure(this);
         this._update_caches();
         this.nodes.forEach(node => this.setupNode(node));
