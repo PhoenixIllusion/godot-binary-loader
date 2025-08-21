@@ -1,4 +1,4 @@
-import { DefaultTileSetSource } from './TileSetSource.default';
+import { DefaultTileSetSource } from './TileSetSource.default.js';
 export function DefaultTileSetScenesCollectionSource(item) {
     DefaultTileSetSource(item);
 }

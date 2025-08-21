@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultConfirmationDialog } from './ConfirmationDialog.default';
+import { DefaultConfirmationDialog } from './ConfirmationDialog.default.js';
 export function DefaultFileDialog(item) {
     DefaultConfirmationDialog(item);
     item.access ?? (item.access = 0);

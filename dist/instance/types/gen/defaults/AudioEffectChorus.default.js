@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectChorus(item) {
     DefaultAudioEffect(item);
     item.dry ?? (item.dry = 1.0);

@@ -1,4 +1,4 @@
-import { DefaultPlaceholderTextureLayered } from './PlaceholderTextureLayered.default';
+import { DefaultPlaceholderTextureLayered } from './PlaceholderTextureLayered.default.js';
 export function DefaultPlaceholderCubemap(item) {
     DefaultPlaceholderTextureLayered(item);
 }

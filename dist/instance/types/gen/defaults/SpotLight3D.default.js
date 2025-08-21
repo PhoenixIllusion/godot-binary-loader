@@ -1,4 +1,4 @@
-import { DefaultLight3D } from './Light3D.default';
+import { DefaultLight3D } from './Light3D.default.js';
 export function DefaultSpotLight3D(item) {
     DefaultLight3D(item);
     item.shadow_bias ?? (item.shadow_bias = 0.03);

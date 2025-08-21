@@ -1,4 +1,4 @@
-import { DefaultPacketPeer } from './PacketPeer.default';
+import { DefaultPacketPeer } from './PacketPeer.default.js';
 export function DefaultPacketPeerStream(item) {
     DefaultPacketPeer(item);
     item.input_buffer_max_size ?? (item.input_buffer_max_size = 65532);

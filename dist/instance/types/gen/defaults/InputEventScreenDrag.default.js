@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultInputEventFromWindow } from './InputEventFromWindow.default';
+import { DefaultInputEventFromWindow } from './InputEventFromWindow.default.js';
 export function DefaultInputEventScreenDrag(item) {
     DefaultInputEventFromWindow(item);
     item.index ?? (item.index = 0);

@@ -1,4 +1,4 @@
-import { DefaultShape3D } from './Shape3D.default';
+import { DefaultShape3D } from './Shape3D.default.js';
 export function DefaultCylinderShape3D(item) {
     DefaultShape3D(item);
     item.height ?? (item.height = 2.0);

@@ -2,7 +2,7 @@ import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.
 import { BinResource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 import { PckFile } from "@phoenixillusion/godot-scene-reader/pck/parser.js";
 import { PackedScene } from "@phoenixillusion/godot-scene-reader/process/scene/packed_scene.js";
-import { ProjectSettingsI } from "./instance/types/project_settings";
+import { ProjectSettingsI } from "./instance/types/project_settings.js";
 export type GDShader = {
     type: 'Shader';
     path: string;
@@ -42,7 +42,7 @@ export declare class PckLoader {
     private queue_worker_task;
     try_open_bin_resource(res_path: string, arrayBuffer: ArrayBuffer, p_no_resource: boolean, p_keep_uuid_paths: boolean): Promise<BinResource>;
     try_open_ctex(arrayBuffer: ArrayBuffer): Promise<cTexFile>;
-    try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile>;
+    try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile[]>;
     try_open_ctexarray(arrayBuffer: ArrayBuffer): Promise<cTexFile[]>;
     private cacheResource;
     private resolveFile;
@@ -51,14 +51,14 @@ export declare class PckLoader {
         uid: bigint;
         script_class: string;
         string_map: Record<number, string>;
-        internal_entries: import("@phoenixillusion/godot-scene-reader").InternalResourceEntry[];
+        internal_entries: import("@phoenixillusion/godot-scene-reader/parse/binary/resource.js").InternalResourceEntry[];
         res_path: string;
         using_named_scene_ids: boolean;
-        internal_resources: import("@phoenixillusion/godot-scene-reader").IntResource[];
-        internal_index_cache: Record<string, import("@phoenixillusion/godot-scene-reader").VariantType>;
-        external_resources: import("@phoenixillusion/godot-scene-reader").ExtResource[];
+        internal_resources: import("@phoenixillusion/godot-scene-reader/parse/binary/resource.js").IntResource[];
+        internal_index_cache: Record<string, VariantType>;
+        external_resources: import("@phoenixillusion/godot-scene-reader/parse/binary/resource.js").ExtResource[];
         remaps: Record<string, string>;
-    } | cTexFile | GDShader | cTexFile[] | null | undefined>;
+    } | cTexFile | cTexFile[] | GDShader | null | undefined>;
     static load(request: LoadRequest): Promise<LoadResponse>;
     static loadWithWorker(request: LoadRequest): Promise<LoadResponse>;
 }

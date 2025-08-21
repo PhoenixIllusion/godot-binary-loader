@@ -1,4 +1,4 @@
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultTileMap(item) {
     DefaultNode2D(item);
     item.collision_animatable ?? (item.collision_animatable = false);

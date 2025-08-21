@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultSpriteBase3D } from './SpriteBase3D.default';
+import { DefaultSpriteBase3D } from './SpriteBase3D.default.js';
 export function DefaultSprite3D(item) {
     DefaultSpriteBase3D(item);
     item.frame ?? (item.frame = 0);

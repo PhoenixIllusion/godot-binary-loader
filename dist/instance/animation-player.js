@@ -1,9 +1,9 @@
 import { unwrap_property_array } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { DefaultAnimation } from "./types/gen/defaults/Animation.default";
-import { AnimationInstance } from "./animation";
-import { AnimationMixerInstance } from "./animation-mixer";
-import { unwrap_properties_cached } from "./util";
-import { DefaultAnimationPlayer } from "./types/gen/defaults/AnimationPlayer.default";
+import { DefaultAnimation } from "./types/gen/defaults/Animation.default.js";
+import { AnimationInstance } from "./animation.js";
+import { AnimationMixerInstance } from "./animation-mixer.js";
+import { unwrap_properties_cached } from "./util.js";
+import { DefaultAnimationPlayer } from "./types/gen/defaults/AnimationPlayer.default.js";
 export class AnimationPlayerInstance extends AnimationMixerInstance {
     constructor(node) {
         super(node);

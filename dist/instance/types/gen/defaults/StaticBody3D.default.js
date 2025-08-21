@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPhysicsBody3D } from './PhysicsBody3D.default';
+import { DefaultPhysicsBody3D } from './PhysicsBody3D.default.js';
 export function DefaultStaticBody3D(item) {
     DefaultPhysicsBody3D(item);
     item.constant_angular_velocity ?? (item.constant_angular_velocity = create.Vector3(0, 0, 0));

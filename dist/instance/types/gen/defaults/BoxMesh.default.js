@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultBoxMesh(item) {
     DefaultPrimitiveMesh(item);
     item.size ?? (item.size = create.Vector3(1, 1, 1));

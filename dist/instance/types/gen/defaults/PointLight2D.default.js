@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultLight2D } from './Light2D.default';
+import { DefaultLight2D } from './Light2D.default.js';
 export function DefaultPointLight2D(item) {
     DefaultLight2D(item);
     item.height ?? (item.height = 0.0);

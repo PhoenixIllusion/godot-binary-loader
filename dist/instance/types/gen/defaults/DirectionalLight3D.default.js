@@ -1,4 +1,4 @@
-import { DefaultLight3D } from './Light3D.default';
+import { DefaultLight3D } from './Light3D.default.js';
 export function DefaultDirectionalLight3D(item) {
     DefaultLight3D(item);
     item.directional_shadow_blend_splits ?? (item.directional_shadow_blend_splits = false);

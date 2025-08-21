@@ -1,5 +1,5 @@
-import { Node } from './node';
-import { _pi, FilterAction } from "./blend";
+import { Node } from './node.js';
+import { _pi, FilterAction } from "./blend.js";
 export class TimeScale extends Node {
     constructor(properties, name) {
         super(properties, name, 'AnimationNodeTimeScale');

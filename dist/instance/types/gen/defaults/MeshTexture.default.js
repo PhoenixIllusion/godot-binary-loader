@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultMeshTexture(item) {
     DefaultTexture2D(item);
     //base_texture

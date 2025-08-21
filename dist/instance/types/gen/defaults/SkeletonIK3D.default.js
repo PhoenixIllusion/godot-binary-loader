@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultSkeletonModifier3D } from './SkeletonModifier3D.default';
+import { DefaultSkeletonModifier3D } from './SkeletonModifier3D.default.js';
 export function DefaultSkeletonIK3D(item) {
     DefaultSkeletonModifier3D(item);
     //interpolation

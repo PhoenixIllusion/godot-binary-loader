@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultXRPose(item) {
     DefaultRefCounted(item);
     item.angular_velocity ?? (item.angular_velocity = create.Vector3(0, 0, 0));

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultCanvasItem } from './CanvasItem.default';
+import { DefaultCanvasItem } from './CanvasItem.default.js';
 export function DefaultNode2D(item) {
     DefaultCanvasItem(item);
     //global_position

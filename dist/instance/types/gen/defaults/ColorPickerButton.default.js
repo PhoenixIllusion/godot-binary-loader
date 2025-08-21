@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultButton } from './Button.default';
+import { DefaultButton } from './Button.default.js';
 export function DefaultColorPickerButton(item) {
     DefaultButton(item);
     item.color ?? (item.color = create.Color(0, 0, 0, 1));

@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultTextEdit(item) {
     DefaultControl(item);
     item.autowrap_mode ?? (item.autowrap_mode = 3);

@@ -1,5 +1,5 @@
-import { is_zero_approx } from '../math';
-import { Animation } from '../types/gen/index';
+import { is_zero_approx } from '../math.js';
+import { Animation } from '../types/gen/index.js';
 export const _pi = clonePlaybackInfo;
 const HUGE_LENGTH = 31540000;
 export var FilterAction;

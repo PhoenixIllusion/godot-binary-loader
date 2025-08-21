@@ -1,4 +1,4 @@
-import { DefaultInputEventWithModifiers } from './InputEventWithModifiers.default';
+import { DefaultInputEventWithModifiers } from './InputEventWithModifiers.default.js';
 export function DefaultInputEventKey(item) {
     DefaultInputEventWithModifiers(item);
     item.echo ?? (item.echo = false);

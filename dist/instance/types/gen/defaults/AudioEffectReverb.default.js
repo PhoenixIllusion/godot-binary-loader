@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectReverb(item) {
     DefaultAudioEffect(item);
     item.damping ?? (item.damping = 0.5);

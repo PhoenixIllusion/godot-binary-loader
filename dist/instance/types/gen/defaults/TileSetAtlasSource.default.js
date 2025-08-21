@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultTileSetSource } from './TileSetSource.default';
+import { DefaultTileSetSource } from './TileSetSource.default.js';
 export function DefaultTileSetAtlasSource(item) {
     DefaultTileSetSource(item);
     item.margins ?? (item.margins = create.Vector2i(0, 0));

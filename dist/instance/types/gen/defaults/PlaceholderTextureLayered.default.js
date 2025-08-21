@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultTextureLayered } from './TextureLayered.default';
+import { DefaultTextureLayered } from './TextureLayered.default.js';
 export function DefaultPlaceholderTextureLayered(item) {
     DefaultTextureLayered(item);
     item.layers ?? (item.layers = 1);

@@ -1,8 +1,8 @@
-import { is_greater_or_equal_approx, is_zero_approx, is_less_approx, is_less_or_equal_approx, is_greater_approx, fposmod, pingpong } from "../math";
-import { AnimationNodeAnimation, Animation as AnimationT } from "../types/gen";
-import { DefaultAnimationNodeAnimation } from "../types/gen/defaults/AnimationNodeAnimation.default";
-import { NodeTimeInfo, _pi } from "./blend";
-import { Node } from './node';
+import { is_greater_or_equal_approx, is_zero_approx, is_less_approx, is_less_or_equal_approx, is_greater_approx, fposmod, pingpong } from "../math.js";
+import { AnimationNodeAnimation, Animation as AnimationT } from "../types/gen/index.js";
+import { DefaultAnimationNodeAnimation } from "../types/gen/defaults/AnimationNodeAnimation.default.js";
+import { NodeTimeInfo, _pi } from "./blend.js";
+import { Node } from './node.js';
 const LOOP_NONE = AnimationT.LoopMode.LOOP_NONE;
 const LOOP_LINEAR = AnimationT.LoopMode.LOOP_LINEAR;
 const LOOP_PINGPONG = AnimationT.LoopMode.LOOP_PINGPONG;

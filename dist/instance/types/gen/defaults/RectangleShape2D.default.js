@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultShape2D } from './Shape2D.default';
+import { DefaultShape2D } from './Shape2D.default.js';
 export function DefaultRectangleShape2D(item) {
     DefaultShape2D(item);
     item.size ?? (item.size = create.Vector2(20, 20));

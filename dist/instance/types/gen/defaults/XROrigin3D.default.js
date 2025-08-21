@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultXROrigin3D(item) {
     DefaultNode3D(item);
     item.current ?? (item.current = false);

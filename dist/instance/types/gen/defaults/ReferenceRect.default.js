@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultReferenceRect(item) {
     DefaultControl(item);
     item.border_color ?? (item.border_color = create.Color(1, 0, 0, 1));

@@ -1,4 +1,4 @@
-import * as type from './types';
+import * as type from './types.js';
 export interface PhysicsBody3D extends CollisionObject3D {
     axis_lock_angular_x: type.bool;
     axis_lock_angular_y: type.bool;
@@ -14701,10 +14701,6 @@ export interface Button extends BaseButton {
     clip_text: type.bool;
     expand_icon: type.bool;
     flat: type.bool;
-    icon: {
-        type: "Texture2D";
-        properties: Texture2D;
-    };
     icon_alignment: type.int;
     language: type.String;
     text: type.String;
@@ -14733,6 +14729,10 @@ export interface Button extends BaseButton {
         properties: Font;
     };
     font_size: type.int;
+    icon: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
     disabled_mirrored: {
         type: "StyleBox";
         properties: StyleBox;

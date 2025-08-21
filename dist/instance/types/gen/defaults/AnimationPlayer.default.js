@@ -1,4 +1,4 @@
-import { DefaultAnimationMixer } from './AnimationMixer.default';
+import { DefaultAnimationMixer } from './AnimationMixer.default.js';
 export function DefaultAnimationPlayer(item) {
     DefaultAnimationMixer(item);
     //assigned_animation

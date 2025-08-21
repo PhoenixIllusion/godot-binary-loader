@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultOccluderPolygon2D(item) {
     DefaultResource(item);
     item.closed ?? (item.closed = true);

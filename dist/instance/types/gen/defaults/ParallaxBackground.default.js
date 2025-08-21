@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultCanvasLayer } from './CanvasLayer.default';
+import { DefaultCanvasLayer } from './CanvasLayer.default.js';
 export function DefaultParallaxBackground(item) {
     DefaultCanvasLayer(item);
     item.layer ?? (item.layer = -100);

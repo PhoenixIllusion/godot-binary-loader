@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultGPUParticlesCollision3D } from './GPUParticlesCollision3D.default';
+import { DefaultGPUParticlesCollision3D } from './GPUParticlesCollision3D.default.js';
 export function DefaultGPUParticlesCollisionHeightField3D(item) {
     DefaultGPUParticlesCollision3D(item);
     item.follow_camera_enabled ?? (item.follow_camera_enabled = false);

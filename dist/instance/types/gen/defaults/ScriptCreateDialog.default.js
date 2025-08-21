@@ -1,4 +1,4 @@
-import { DefaultConfirmationDialog } from './ConfirmationDialog.default';
+import { DefaultConfirmationDialog } from './ConfirmationDialog.default.js';
 export function DefaultScriptCreateDialog(item) {
     DefaultConfirmationDialog(item);
     item.dialog_hide_on_ok ?? (item.dialog_hide_on_ok = false);

@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultCrypto(item) {
     DefaultRefCounted(item);
 }

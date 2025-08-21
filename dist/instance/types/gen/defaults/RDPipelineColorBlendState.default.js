@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDPipelineColorBlendState(item) {
     DefaultRefCounted(item);
     item.attachments ?? (item.attachments = []);

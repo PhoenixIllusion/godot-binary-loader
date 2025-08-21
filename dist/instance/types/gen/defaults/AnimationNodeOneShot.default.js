@@ -1,4 +1,4 @@
-import { DefaultAnimationNodeSync } from './AnimationNodeSync.default';
+import { DefaultAnimationNodeSync } from './AnimationNodeSync.default.js';
 export function DefaultAnimationNodeOneShot(item) {
     DefaultAnimationNodeSync(item);
     item.autorestart ?? (item.autorestart = false);

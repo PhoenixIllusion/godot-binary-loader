@@ -1,4 +1,4 @@
-import { DefaultCollisionObject3D } from './CollisionObject3D.default';
+import { DefaultCollisionObject3D } from './CollisionObject3D.default.js';
 export function DefaultPhysicsBody3D(item) {
     DefaultCollisionObject3D(item);
     item.axis_lock_angular_x ?? (item.axis_lock_angular_x = false);

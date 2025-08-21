@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultViewportTexture(item) {
     DefaultTexture2D(item);
     item.viewport_path ?? (item.viewport_path = create.NodePath(""));

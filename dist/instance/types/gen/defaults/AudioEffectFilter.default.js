@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectFilter(item) {
     DefaultAudioEffect(item);
     item.cutoff_hz ?? (item.cutoff_hz = 2000.0);

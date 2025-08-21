@@ -1,4 +1,4 @@
-import { DefaultInputEvent } from './InputEvent.default';
+import { DefaultInputEvent } from './InputEvent.default.js';
 export function DefaultInputEventJoypadButton(item) {
     DefaultInputEvent(item);
     item.button_index ?? (item.button_index = 0);

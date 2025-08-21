@@ -1,4 +1,4 @@
-import { DefaultRange } from './Range.default';
+import { DefaultRange } from './Range.default.js';
 export function DefaultSlider(item) {
     DefaultRange(item);
     item.editable ?? (item.editable = true);

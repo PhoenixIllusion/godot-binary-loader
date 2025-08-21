@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultInputEventGesture } from './InputEventGesture.default';
+import { DefaultInputEventGesture } from './InputEventGesture.default.js';
 export function DefaultInputEventPanGesture(item) {
     DefaultInputEventGesture(item);
     item.delta ?? (item.delta = create.Vector2(0, 0));

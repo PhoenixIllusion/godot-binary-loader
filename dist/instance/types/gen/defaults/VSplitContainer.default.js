@@ -1,4 +1,4 @@
-import { DefaultSplitContainer } from './SplitContainer.default';
+import { DefaultSplitContainer } from './SplitContainer.default.js';
 export function DefaultVSplitContainer(item) {
     DefaultSplitContainer(item);
 }

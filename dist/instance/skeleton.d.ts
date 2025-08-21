@@ -1,5 +1,5 @@
-import { Skeleton3D, Skin } from "./types/gen";
-import { Quaternion, Transform3D, Vector3 } from "./types/gen/types";
+import { Skeleton3D, Skin } from "./types/gen/index.js";
+import { Quaternion, Transform3D, Vector3 } from "./types/gen/types.js";
 export declare class SkinInstance {
     bind: SkinInstance.Bind[];
     constructor(skin: Skin);

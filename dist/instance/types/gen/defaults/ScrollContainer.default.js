@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultScrollContainer(item) {
     DefaultContainer(item);
     item.clip_contents ?? (item.clip_contents = true);

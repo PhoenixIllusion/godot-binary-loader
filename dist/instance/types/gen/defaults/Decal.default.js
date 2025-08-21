@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualInstance3D } from './VisualInstance3D.default';
+import { DefaultVisualInstance3D } from './VisualInstance3D.default.js';
 export function DefaultDecal(item) {
     DefaultVisualInstance3D(item);
     item.albedo_mix ?? (item.albedo_mix = 1.0);

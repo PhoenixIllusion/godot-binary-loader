@@ -1,4 +1,4 @@
-import { DefaultShape3D } from './Shape3D.default';
+import { DefaultShape3D } from './Shape3D.default.js';
 export function DefaultSeparationRayShape3D(item) {
     DefaultShape3D(item);
     item.length ?? (item.length = 1.0);

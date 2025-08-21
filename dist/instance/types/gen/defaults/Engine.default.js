@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultEngine(item) {
     DefaultObject(item);
     item.max_fps ?? (item.max_fps = 0);

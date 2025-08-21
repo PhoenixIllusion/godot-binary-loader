@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultPhysicsPointQueryParameters2D(item) {
     DefaultRefCounted(item);
     item.canvas_instance_id ?? (item.canvas_instance_id = 0);

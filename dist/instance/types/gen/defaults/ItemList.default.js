@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultItemList(item) {
     DefaultControl(item);
     item.allow_reselect ?? (item.allow_reselect = false);

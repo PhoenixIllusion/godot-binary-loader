@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultXRTracker(item) {
     DefaultRefCounted(item);
     item.description ?? (item.description = "");

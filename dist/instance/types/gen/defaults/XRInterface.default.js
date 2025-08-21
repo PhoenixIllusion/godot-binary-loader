@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultXRInterface(item) {
     DefaultRefCounted(item);
     item.ar_is_anchor_detection_enabled ?? (item.ar_is_anchor_detection_enabled = false);

@@ -1,4 +1,4 @@
-import { DefaultAnimationNodeSync } from './AnimationNodeSync.default';
+import { DefaultAnimationNodeSync } from './AnimationNodeSync.default.js';
 export function DefaultAnimationNodeTransition(item) {
     DefaultAnimationNodeSync(item);
     item.allow_transition_to_self ?? (item.allow_transition_to_self = false);

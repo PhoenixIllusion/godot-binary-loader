@@ -1,4 +1,4 @@
-import { DefaultTweener } from './Tweener.default';
+import { DefaultTweener } from './Tweener.default.js';
 export function DefaultCallbackTweener(item) {
     DefaultTweener(item);
 }

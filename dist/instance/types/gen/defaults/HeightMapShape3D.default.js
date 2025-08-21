@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultShape3D } from './Shape3D.default';
+import { DefaultShape3D } from './Shape3D.default.js';
 export function DefaultHeightMapShape3D(item) {
     DefaultShape3D(item);
     item.map_data ?? (item.map_data = create.PackedFloat32Array(0, 0, 0, 0));

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMaterial } from './Material.default';
+import { DefaultMaterial } from './Material.default.js';
 export function DefaultParticleProcessMaterial(item) {
     DefaultMaterial(item);
     //alpha_curve

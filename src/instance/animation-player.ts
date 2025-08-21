@@ -1,11 +1,11 @@
 import { unwrap_property_array } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { AnimationPlayer, AnimationLibrary as AnimationLibraryT } from "./types/gen";
-import { DefaultAnimation } from "./types/gen/defaults/Animation.default";
-import { AnimationData, AnimationInstance } from "./animation";
-import { AnimationMixerInstance } from "./animation-mixer";
-import { SceneInstance } from "./scene";
-import { unwrap_properties_cached } from "./util";
-import { DefaultAnimationPlayer } from "./types/gen/defaults/AnimationPlayer.default";
+import { AnimationPlayer, AnimationLibrary as AnimationLibraryT } from "./types/gen/index.js";
+import { DefaultAnimation } from "./types/gen/defaults/Animation.default.js";
+import { AnimationData, AnimationInstance } from "./animation.js";
+import { AnimationMixerInstance } from "./animation-mixer.js";
+import { SceneInstance } from "./scene.js";
+import { unwrap_properties_cached } from "./util.js";
+import { DefaultAnimationPlayer } from "./types/gen/defaults/AnimationPlayer.default.js";
 
 interface AnimationLibrary extends AnimationLibraryT {
   _data: Record<string, { 'properties': AnimationData }>;

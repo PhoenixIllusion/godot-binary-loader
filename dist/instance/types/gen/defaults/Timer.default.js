@@ -1,4 +1,4 @@
-import { DefaultNode } from './Node.default';
+import { DefaultNode } from './Node.default.js';
 export function DefaultTimer(item) {
     DefaultNode(item);
     item.autostart ?? (item.autostart = false);

@@ -1,4 +1,4 @@
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultCurveTexture(item) {
     DefaultTexture2D(item);
     //curve

@@ -1,4 +1,4 @@
-import { DefaultMaterial } from './Material.default';
+import { DefaultMaterial } from './Material.default.js';
 export function DefaultPanoramaSkyMaterial(item) {
     DefaultMaterial(item);
     item.energy_multiplier ?? (item.energy_multiplier = 1.0);

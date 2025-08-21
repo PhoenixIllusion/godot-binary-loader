@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultCurve(item) {
     DefaultResource(item);
     item.bake_resolution ?? (item.bake_resolution = 100);

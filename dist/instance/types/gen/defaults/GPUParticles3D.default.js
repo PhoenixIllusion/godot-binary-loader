@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultGeometryInstance3D } from './GeometryInstance3D.default';
+import { DefaultGeometryInstance3D } from './GeometryInstance3D.default.js';
 export function DefaultGPUParticles3D(item) {
     DefaultGeometryInstance3D(item);
     item.amount ?? (item.amount = 8);

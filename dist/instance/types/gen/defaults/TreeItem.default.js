@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultTreeItem(item) {
     DefaultObject(item);
     //collapsed

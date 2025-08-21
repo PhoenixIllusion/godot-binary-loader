@@ -1,4 +1,4 @@
-import { DefaultAudioEffectFilter } from './AudioEffectFilter.default';
+import { DefaultAudioEffectFilter } from './AudioEffectFilter.default.js';
 export function DefaultAudioEffectNotchFilter(item) {
     DefaultAudioEffectFilter(item);
 }

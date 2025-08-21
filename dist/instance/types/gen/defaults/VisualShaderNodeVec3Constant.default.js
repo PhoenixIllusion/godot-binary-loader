@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default';
+import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default.js';
 export function DefaultVisualShaderNodeVec3Constant(item) {
     DefaultVisualShaderNodeConstant(item);
     item.constant ?? (item.constant = create.Vector3(0, 0, 0));

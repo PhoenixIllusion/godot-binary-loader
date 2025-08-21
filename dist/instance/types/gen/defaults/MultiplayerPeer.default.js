@@ -1,4 +1,4 @@
-import { DefaultPacketPeer } from './PacketPeer.default';
+import { DefaultPacketPeer } from './PacketPeer.default.js';
 export function DefaultMultiplayerPeer(item) {
     DefaultPacketPeer(item);
     item.refuse_new_connections ?? (item.refuse_new_connections = false);

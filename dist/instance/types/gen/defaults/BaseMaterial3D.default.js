@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMaterial } from './Material.default';
+import { DefaultMaterial } from './Material.default.js';
 export function DefaultBaseMaterial3D(item) {
     DefaultMaterial(item);
     item.albedo_color ?? (item.albedo_color = create.Color(1, 1, 1, 1));

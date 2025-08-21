@@ -1,4 +1,4 @@
-import { DefaultRange } from './Range.default';
+import { DefaultRange } from './Range.default.js';
 export function DefaultScrollBar(item) {
     DefaultRange(item);
     item.custom_step ?? (item.custom_step = -1.0);

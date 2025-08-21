@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDShaderSource(item) {
     DefaultRefCounted(item);
     item.language ?? (item.language = 0);

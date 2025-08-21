@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultSubViewportContainer(item) {
     DefaultContainer(item);
     item.focus_mode ?? (item.focus_mode = 1);

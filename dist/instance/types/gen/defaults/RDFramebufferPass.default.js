@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDFramebufferPass(item) {
     DefaultRefCounted(item);
     item.color_attachments ?? (item.color_attachments = create.PackedInt32Array());

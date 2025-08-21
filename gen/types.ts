@@ -1,6 +1,6 @@
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
-import { RID } from './index'
-export * as Godot from './index';
+import { RID } from './index.js'
+export * as Godot from './index.js';
 
 export type V2Like = { x: number, y: number };
 export type V3Like = { x: number, y: number, z: number };

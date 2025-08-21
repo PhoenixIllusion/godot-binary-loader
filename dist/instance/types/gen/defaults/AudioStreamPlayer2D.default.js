@@ -1,4 +1,4 @@
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultAudioStreamPlayer2D(item) {
     DefaultNode2D(item);
     item.area_mask ?? (item.area_mask = 1);

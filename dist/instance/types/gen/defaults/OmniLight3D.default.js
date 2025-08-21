@@ -1,4 +1,4 @@
-import { DefaultLight3D } from './Light3D.default';
+import { DefaultLight3D } from './Light3D.default.js';
 export function DefaultOmniLight3D(item) {
     DefaultLight3D(item);
     item.omni_attenuation ?? (item.omni_attenuation = 1.0);

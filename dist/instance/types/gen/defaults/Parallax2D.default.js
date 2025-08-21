@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultParallax2D(item) {
     DefaultNode2D(item);
     item.autoscroll ?? (item.autoscroll = create.Vector2(0, 0));

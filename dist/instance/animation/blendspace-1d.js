@@ -1,9 +1,9 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { AnimationNodeBlendSpace1D } from "../types/gen";
-import { DefaultAnimationNodeBlendSpace2D } from "../types/gen/defaults/AnimationNodeBlendSpace2D.default";
-import { BlendSpace, convertRaw } from "./blendspace";
-import { _pi, FilterAction, NodeTimeInfo } from "./blend";
-import { Animation } from "./animation";
+import { AnimationNodeBlendSpace1D } from "../types/gen/index.js";
+import { DefaultAnimationNodeBlendSpace2D } from "../types/gen/defaults/AnimationNodeBlendSpace2D.default.js";
+import { BlendSpace, convertRaw } from "./blendspace.js";
+import { _pi, FilterAction, NodeTimeInfo } from "./blend.js";
+import { Animation } from "./animation.js";
 const BLEND_MODE_INTERPOLATED = AnimationNodeBlendSpace1D.BlendMode.BLEND_MODE_INTERPOLATED;
 const BLEND_MODE_DISCRETE_CARRY = AnimationNodeBlendSpace1D.BlendMode.BLEND_MODE_DISCRETE_CARRY;
 export class BlendSpace1D extends BlendSpace {

@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultResource(item) {
     DefaultRefCounted(item);
     item.resource_local_to_scene ?? (item.resource_local_to_scene = false);

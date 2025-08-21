@@ -1,4 +1,4 @@
-import { DefaultXRPositionalTracker } from './XRPositionalTracker.default';
+import { DefaultXRPositionalTracker } from './XRPositionalTracker.default.js';
 export function DefaultXRHandTracker(item) {
     DefaultXRPositionalTracker(item);
     item.hand ?? (item.hand = 1);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualShaderNodeParameter } from './VisualShaderNodeParameter.default';
+import { DefaultVisualShaderNodeParameter } from './VisualShaderNodeParameter.default.js';
 export function DefaultVisualShaderNodeVec3Parameter(item) {
     DefaultVisualShaderNodeParameter(item);
     item.default_value ?? (item.default_value = create.Vector3(0, 0, 0));

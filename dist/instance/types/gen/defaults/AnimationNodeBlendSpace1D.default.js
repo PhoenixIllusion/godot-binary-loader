@@ -1,4 +1,4 @@
-import { DefaultAnimationRootNode } from './AnimationRootNode.default';
+import { DefaultAnimationRootNode } from './AnimationRootNode.default.js';
 export function DefaultAnimationNodeBlendSpace1D(item) {
     DefaultAnimationRootNode(item);
     item.blend_mode ?? (item.blend_mode = 0);

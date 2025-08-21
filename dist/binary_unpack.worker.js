@@ -1,4 +1,5 @@
-import { try_open_bin_resource, try_open_ctex } from "@phoenixillusion/godot-scene-reader";
+import { try_open_ctex, try_open_ctexarray } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
+import { try_open_bin_resource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 globalThis.onmessage = async (evt) => {
     const { method, path, payload } = evt.data;
     if (method == 'try_open_bin_resource') {
@@ -12,11 +13,11 @@ globalThis.onmessage = async (evt) => {
     }
     else if (method == 'try_open_ctex3d') {
         const arrayBuffer = payload;
-        globalThis.postMessage({
-            path, data: {
-                flags: 0, height: 0, images: [arrayBuffer], mipmap_limit: 0, version: 0, width: 0
-            }
-        });
+        globalThis.postMessage({ path, data: try_open_ctexarray(arrayBuffer) });
+    }
+    else if (method == 'try_open_ctexarray') {
+        const arrayBuffer = payload;
+        globalThis.postMessage({ path, data: try_open_ctexarray(arrayBuffer) });
     }
     else
         throw new Error("uknown command: " + method);

@@ -1,9 +1,9 @@
 
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { AnimationNodeBlendTree } from "../types/gen";
-import { Node as BaseNode, NonAbstractAnimationNodeType } from './node';
-import { Vector2 } from "../types/gen/types";
-import { _pi, FilterAction, NodeTimeInfo, PlaybackInfo } from "./blend";
+import { AnimationNodeBlendTree } from "../types/gen/index.js";
+import { Node as BaseNode, NonAbstractAnimationNodeType } from './node.js';
+import { Vector2 } from "../types/gen/types.js";
+import { _pi, FilterAction, NodeTimeInfo, PlaybackInfo } from "./blend.js";
 
 export interface Node {
   node?: NonAbstractAnimationNodeType;

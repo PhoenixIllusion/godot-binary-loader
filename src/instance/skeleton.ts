@@ -1,6 +1,6 @@
 import { unwrap_property_array } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { Skeleton3D, Skin } from "./types/gen";
-import { Quaternion, Transform3D, Vector3 } from "./types/gen/types";
+import { Skeleton3D, Skin } from "./types/gen/index.js";
+import { Quaternion, Transform3D, Vector3 } from "./types/gen/types.js";
 
 
 export class SkinInstance {

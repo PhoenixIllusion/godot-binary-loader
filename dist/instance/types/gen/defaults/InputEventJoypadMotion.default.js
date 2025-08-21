@@ -1,4 +1,4 @@
-import { DefaultInputEvent } from './InputEvent.default';
+import { DefaultInputEvent } from './InputEvent.default.js';
 export function DefaultInputEventJoypadMotion(item) {
     DefaultInputEvent(item);
     item.axis ?? (item.axis = 0);

@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNodeParameter } from './VisualShaderNodeParameter.default';
+import { DefaultVisualShaderNodeParameter } from './VisualShaderNodeParameter.default.js';
 export function DefaultVisualShaderNodeTextureParameter(item) {
     DefaultVisualShaderNodeParameter(item);
     item.color_default ?? (item.color_default = 0);

@@ -1,4 +1,4 @@
-import { DefaultSlider } from './Slider.default';
+import { DefaultSlider } from './Slider.default.js';
 export function DefaultVSlider(item) {
     DefaultSlider(item);
     item.size_flags_horizontal ?? (item.size_flags_horizontal = 0);

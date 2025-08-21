@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRigidBody2D } from './RigidBody2D.default';
+import { DefaultRigidBody2D } from './RigidBody2D.default.js';
 export function DefaultPhysicalBone2D(item) {
     DefaultRigidBody2D(item);
     item.auto_configure_joint ?? (item.auto_configure_joint = true);

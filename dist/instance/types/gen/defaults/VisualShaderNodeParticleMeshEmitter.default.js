@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNodeParticleEmitter } from './VisualShaderNodeParticleEmitter.default';
+import { DefaultVisualShaderNodeParticleEmitter } from './VisualShaderNodeParticleEmitter.default.js';
 export function DefaultVisualShaderNodeParticleMeshEmitter(item) {
     DefaultVisualShaderNodeParticleEmitter(item);
     //mesh

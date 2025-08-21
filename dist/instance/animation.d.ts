@@ -1,5 +1,5 @@
-import { Animation } from "./types/gen";
-import { NodePath } from "./types/gen/types";
+import { Animation } from "./types/gen/index.js";
+import { NodePath } from "./types/gen/types.js";
 import type { TrackType } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 import { TrackKeys, UpdateMode } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 export declare function get_cache_type(p_type: TrackType): TrackType;

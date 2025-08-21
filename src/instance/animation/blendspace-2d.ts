@@ -1,13 +1,13 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import Delaunator from "delaunator";
-import { AnimationNodeBlendSpace2D } from "../types/gen";
-import { DefaultAnimationNodeBlendSpace2D } from "../types/gen/defaults/AnimationNodeBlendSpace2D.default";
-import { Vector2 } from "../types/gen/types";
-import { BlendPointRaw, BlendSpace, convertRaw } from "./blendspace";
-import { Animation } from './animation';
-import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend";
+import { AnimationNodeBlendSpace2D } from "../types/gen/index.js";
+import { DefaultAnimationNodeBlendSpace2D } from "../types/gen/defaults/AnimationNodeBlendSpace2D.default.js";
+import { Vector2 } from "../types/gen/types.js";
+import { BlendPointRaw, BlendSpace, convertRaw } from "./blendspace.js";
+import { Animation } from './animation.js';
+import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend.js";
 import { ReadonlyVec2, vec2 } from 'gl-matrix';
-import { is_zero_approx } from "../math";
+import { is_zero_approx } from "../math.js";
 
 const tmp: [vec2, vec2, vec2, vec2] = [vec2.create(), vec2.create(), vec2.create(), vec2.create()]
 

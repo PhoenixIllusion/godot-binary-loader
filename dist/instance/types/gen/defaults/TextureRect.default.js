@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultTextureRect(item) {
     DefaultControl(item);
     item.expand_mode ?? (item.expand_mode = 0);

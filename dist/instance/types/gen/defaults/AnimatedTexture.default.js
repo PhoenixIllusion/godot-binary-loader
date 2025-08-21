@@ -1,4 +1,4 @@
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultAnimatedTexture(item) {
     DefaultTexture2D(item);
     //current_frame

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultCollisionObject2D } from './CollisionObject2D.default';
+import { DefaultCollisionObject2D } from './CollisionObject2D.default.js';
 export function DefaultArea2D(item) {
     DefaultCollisionObject2D(item);
     item.angular_damp ?? (item.angular_damp = 1.0);

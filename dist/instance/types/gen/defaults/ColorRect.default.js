@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultColorRect(item) {
     DefaultControl(item);
     item.color ?? (item.color = create.Color(1, 1, 1, 1));

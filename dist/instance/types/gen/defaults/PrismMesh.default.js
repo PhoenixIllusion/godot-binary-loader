@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultPrismMesh(item) {
     DefaultPrimitiveMesh(item);
     item.left_to_right ?? (item.left_to_right = 0.5);

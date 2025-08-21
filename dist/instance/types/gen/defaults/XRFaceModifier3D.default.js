@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultXRFaceModifier3D(item) {
     DefaultNode3D(item);
     item.face_tracker ?? (item.face_tracker = "/user/face_tracker");

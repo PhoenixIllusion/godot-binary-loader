@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultTabBar(item) {
     DefaultControl(item);
     item.clip_tabs ?? (item.clip_tabs = true);

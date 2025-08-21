@@ -1,4 +1,4 @@
-import { DefaultSkeletonModifier3D } from './SkeletonModifier3D.default';
+import { DefaultSkeletonModifier3D } from './SkeletonModifier3D.default.js';
 export function DefaultXRBodyModifier3D(item) {
     DefaultSkeletonModifier3D(item);
     item.body_tracker ?? (item.body_tracker = "/user/body_tracker");

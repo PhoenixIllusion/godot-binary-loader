@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultNavigationPathQueryResult2D(item) {
     DefaultRefCounted(item);
     item.path ?? (item.path = create.PackedVector2Array());

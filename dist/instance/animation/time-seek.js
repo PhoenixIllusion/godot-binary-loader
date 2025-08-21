@@ -1,6 +1,6 @@
-import { Node } from './node';
-import { _pi, FilterAction } from "./blend";
-import { is_greater_or_equal_approx } from '../math';
+import { Node } from './node.js';
+import { _pi, FilterAction } from "./blend.js";
+import { is_greater_or_equal_approx } from '../math.js';
 export class TimeSeek extends Node {
     constructor(properties, name) {
         super(properties, name, 'AnimationNodeTimeSeek');

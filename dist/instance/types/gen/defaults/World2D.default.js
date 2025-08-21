@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultWorld2D(item) {
     DefaultResource(item);
     //canvas

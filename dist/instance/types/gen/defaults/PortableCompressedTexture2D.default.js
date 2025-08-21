@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultPortableCompressedTexture2D(item) {
     DefaultTexture2D(item);
     item.keep_compressed_buffer ?? (item.keep_compressed_buffer = false);

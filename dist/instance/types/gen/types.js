@@ -1,4 +1,4 @@
-export * as Godot from './index';
+export * as Godot from './index.js';
 export const inf = Number.POSITIVE_INFINITY;
 export var create;
 (function (create) {

@@ -1,4 +1,4 @@
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultTubeTrailMesh(item) {
     DefaultPrimitiveMesh(item);
     item.cap_bottom ?? (item.cap_bottom = true);

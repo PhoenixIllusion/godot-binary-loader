@@ -1,5 +1,5 @@
-import { Color, Vector2, Vector3 } from "./gen/types"
-import { InputEvent } from './gen/index';
+import { Color, Vector2, Vector3 } from "./gen/types.js"
+import { InputEvent } from './gen/index.js';
 
 export interface ProjectSettingsI {
   application: {

@@ -1,4 +1,4 @@
-import { DefaultButton } from './Button.default';
+import { DefaultButton } from './Button.default.js';
 export function DefaultMenuButton(item) {
     DefaultButton(item);
     item.action_mode ?? (item.action_mode = 0);

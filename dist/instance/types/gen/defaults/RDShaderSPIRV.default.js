@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultRDShaderSPIRV(item) {
     DefaultResource(item);
     item.bytecode_compute ?? (item.bytecode_compute = create.PackedByteArray());

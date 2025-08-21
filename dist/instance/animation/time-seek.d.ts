@@ -1,6 +1,6 @@
-import { Node } from './node';
-import { PlaybackInfo, NodeTimeInfo } from "./blend";
-import { AnimationNodeTimeSeek } from '../types/gen';
+import { Node } from './node.js';
+import { PlaybackInfo, NodeTimeInfo } from "./blend.js";
+import { AnimationNodeTimeSeek } from '../types/gen/index.js';
 export declare class TimeSeek extends Node {
     seek_pos_request: number;
     constructor(properties: AnimationNodeTimeSeek, name: string);

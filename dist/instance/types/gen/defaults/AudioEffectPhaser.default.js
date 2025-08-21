@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectPhaser(item) {
     DefaultAudioEffect(item);
     item.depth ?? (item.depth = 1.0);

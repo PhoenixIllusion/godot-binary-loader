@@ -1,9 +1,9 @@
 import { TrackType } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 import { quat, vec3 } from "gl-matrix";
-import { _interpolate } from "./interpolate";
-import { SceneInstance } from "../scene";
-import { Skeleton3DInstance } from "../skeleton";
-import { NodePath } from "../types/gen/types";
+import { _interpolate } from "./interpolate.js";
+import { SceneInstance } from "../scene.js";
+import { Skeleton3DInstance } from "../skeleton.js";
+import { NodePath } from "../types/gen/types.js";
 
 export class TrackCache {
   root_motion = false;

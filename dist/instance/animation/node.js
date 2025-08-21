@@ -1,4 +1,4 @@
-import { NodeTimeInfo, blend_node, _pi } from "./blend";
+import { NodeTimeInfo, blend_node, _pi } from "./blend.js";
 export class Node {
     constructor(properties, name, type) {
         this.name = name;

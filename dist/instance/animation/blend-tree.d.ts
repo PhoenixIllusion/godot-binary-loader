@@ -1,7 +1,7 @@
-import { AnimationNodeBlendTree } from "../types/gen";
-import { Node as BaseNode, NonAbstractAnimationNodeType } from './node';
-import { Vector2 } from "../types/gen/types";
-import { NodeTimeInfo, PlaybackInfo } from "./blend";
+import { AnimationNodeBlendTree } from "../types/gen/index.js";
+import { Node as BaseNode, NonAbstractAnimationNodeType } from './node.js';
+import { Vector2 } from "../types/gen/types.js";
+import { NodeTimeInfo, PlaybackInfo } from "./blend.js";
 export interface Node {
     node?: NonAbstractAnimationNodeType;
     position: Vector2;

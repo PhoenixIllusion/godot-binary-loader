@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultOccluder3D } from './Occluder3D.default';
+import { DefaultOccluder3D } from './Occluder3D.default.js';
 export function DefaultQuadOccluder3D(item) {
     DefaultOccluder3D(item);
     item.size ?? (item.size = create.Vector2(1, 1));

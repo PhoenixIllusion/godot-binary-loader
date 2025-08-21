@@ -1,4 +1,4 @@
-import { DefaultPhysicsDirectBodyState2D } from './PhysicsDirectBodyState2D.default';
+import { DefaultPhysicsDirectBodyState2D } from './PhysicsDirectBodyState2D.default.js';
 export function DefaultPhysicsDirectBodyState2DExtension(item) {
     DefaultPhysicsDirectBodyState2D(item);
 }

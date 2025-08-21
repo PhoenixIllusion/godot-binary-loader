@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultInput(item) {
     DefaultObject(item);
     //emulate_mouse_from_touch

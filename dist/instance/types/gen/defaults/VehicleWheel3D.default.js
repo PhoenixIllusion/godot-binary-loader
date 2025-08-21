@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultVehicleWheel3D(item) {
     DefaultNode3D(item);
     item.brake ?? (item.brake = 0.0);

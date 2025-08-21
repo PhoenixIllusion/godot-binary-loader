@@ -1,9 +1,9 @@
-import { SceneInstance } from "./scene";
-import { LightmapGI, LightmapGIData } from "./types/gen";
-import { DefaultLightmapGI } from "./types/gen/defaults/LightmapGI.default";
-import { NodePath, Rect2 } from "./types/gen/types";
+import { SceneInstance } from "./scene.js";
+import { LightmapGI, LightmapGIData } from "./types/gen/index.js";
+import { DefaultLightmapGI } from "./types/gen/defaults/LightmapGI.default.js";
+import { NodePath, Rect2 } from "./types/gen/types.js";
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
-import { unwrap_properties_cached } from "./util";
+import { unwrap_properties_cached } from "./util.js";
 
 interface HasUserData {
   user_data: any[];

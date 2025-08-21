@@ -1,4 +1,4 @@
-import { DefaultMaterial } from './Material.default';
+import { DefaultMaterial } from './Material.default.js';
 export function DefaultCanvasItemMaterial(item) {
     DefaultMaterial(item);
     item.blend_mode ?? (item.blend_mode = 0);

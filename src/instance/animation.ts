@@ -1,8 +1,8 @@
-import { Animation } from "./types/gen";
-import { NodePath } from "./types/gen/types";
+import { Animation } from "./types/gen/index.js";
+import { NodePath } from "./types/gen/types.js";
 import type { TrackType } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
 import { animation_convert_track_float32_array, TrackKeys, UpdateMode } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
-import { node_path_string } from "./util";
+import { node_path_string } from "./util.js";
 
 export function get_cache_type(p_type: TrackType): TrackType {
   if (p_type == 'bezier') {

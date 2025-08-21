@@ -1,6 +1,6 @@
-import { Node } from './node';
-import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend";
-import { AnimationNodeOutput } from '../types/gen';
+import { Node } from './node.js';
+import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend.js";
+import { AnimationNodeOutput } from '../types/gen/index.js';
 
 export class Output extends Node {
   constructor(properties: AnimationNodeOutput, name: string) {

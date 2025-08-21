@@ -1,4 +1,4 @@
-import { DefaultJoint3D } from './Joint3D.default';
+import { DefaultJoint3D } from './Joint3D.default.js';
 export function DefaultHingeJoint3D(item) {
     DefaultJoint3D(item);
     item['angular_limit/bias'] ?? (item['angular_limit/bias'] = 0.3);

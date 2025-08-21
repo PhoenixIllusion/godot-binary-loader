@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode } from './Node.default';
+import { DefaultNode } from './Node.default.js';
 export function DefaultCanvasItem(item) {
     DefaultNode(item);
     item.clip_children ?? (item.clip_children = 0);

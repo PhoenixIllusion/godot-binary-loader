@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNode } from './VisualShaderNode.default';
+import { DefaultVisualShaderNode } from './VisualShaderNode.default.js';
 export function DefaultVisualShaderNodeCompare(item) {
     DefaultVisualShaderNode(item);
     item.condition ?? (item.condition = 0);

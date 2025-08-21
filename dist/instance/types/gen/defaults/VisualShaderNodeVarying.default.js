@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNode } from './VisualShaderNode.default';
+import { DefaultVisualShaderNode } from './VisualShaderNode.default.js';
 export function DefaultVisualShaderNodeVarying(item) {
     DefaultVisualShaderNode(item);
     item.varying_name ?? (item.varying_name = "[None]");

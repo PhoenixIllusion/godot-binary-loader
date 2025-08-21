@@ -1,4 +1,4 @@
-import { DefaultJoint2D } from './Joint2D.default';
+import { DefaultJoint2D } from './Joint2D.default.js';
 export function DefaultPinJoint2D(item) {
     DefaultJoint2D(item);
     item.angular_limit_enabled ?? (item.angular_limit_enabled = false);

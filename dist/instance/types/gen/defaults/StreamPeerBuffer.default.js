@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultStreamPeer } from './StreamPeer.default';
+import { DefaultStreamPeer } from './StreamPeer.default.js';
 export function DefaultStreamPeerBuffer(item) {
     DefaultStreamPeer(item);
     item.data_array ?? (item.data_array = create.PackedByteArray());

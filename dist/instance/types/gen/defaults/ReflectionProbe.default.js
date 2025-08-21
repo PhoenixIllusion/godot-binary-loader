@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualInstance3D } from './VisualInstance3D.default';
+import { DefaultVisualInstance3D } from './VisualInstance3D.default.js';
 export function DefaultReflectionProbe(item) {
     DefaultVisualInstance3D(item);
     item.ambient_color ?? (item.ambient_color = create.Color(0, 0, 0, 1));

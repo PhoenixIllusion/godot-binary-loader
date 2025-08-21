@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultMeshConvexDecompositionSettings(item) {
     DefaultRefCounted(item);
     item.convex_hull_approximation ?? (item.convex_hull_approximation = true);

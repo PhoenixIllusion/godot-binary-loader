@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultHTTPClient(item) {
     DefaultRefCounted(item);
     item.blocking_mode_enabled ?? (item.blocking_mode_enabled = false);

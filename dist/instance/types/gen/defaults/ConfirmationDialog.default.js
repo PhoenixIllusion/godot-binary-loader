@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultAcceptDialog } from './AcceptDialog.default';
+import { DefaultAcceptDialog } from './AcceptDialog.default.js';
 export function DefaultConfirmationDialog(item) {
     DefaultAcceptDialog(item);
     item.cancel_button_text ?? (item.cancel_button_text = "Cancel");

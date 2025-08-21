@@ -1,4 +1,4 @@
-import { DefaultJoint3D } from './Joint3D.default';
+import { DefaultJoint3D } from './Joint3D.default.js';
 export function DefaultPinJoint3D(item) {
     DefaultJoint3D(item);
     item['params/bias'] ?? (item['params/bias'] = 0.3);

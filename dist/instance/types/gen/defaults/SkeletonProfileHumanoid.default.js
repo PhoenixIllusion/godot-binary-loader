@@ -1,4 +1,4 @@
-import { DefaultSkeletonProfile } from './SkeletonProfile.default';
+import { DefaultSkeletonProfile } from './SkeletonProfile.default.js';
 export function DefaultSkeletonProfileHumanoid(item) {
     DefaultSkeletonProfile(item);
     item.bone_size ?? (item.bone_size = 56);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultGraphElement } from './GraphElement.default';
+import { DefaultGraphElement } from './GraphElement.default.js';
 export function DefaultGraphFrame(item) {
     DefaultGraphElement(item);
     item.autoshrink_enabled ?? (item.autoshrink_enabled = true);

@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDTextureFormat(item) {
     DefaultRefCounted(item);
     item.array_layers ?? (item.array_layers = 1);

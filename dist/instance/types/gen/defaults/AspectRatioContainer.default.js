@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultAspectRatioContainer(item) {
     DefaultContainer(item);
     item.alignment_horizontal ?? (item.alignment_horizontal = 1);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPhysicsBody3D } from './PhysicsBody3D.default';
+import { DefaultPhysicsBody3D } from './PhysicsBody3D.default.js';
 export function DefaultCharacterBody3D(item) {
     DefaultPhysicsBody3D(item);
     item.floor_block_on_wall ?? (item.floor_block_on_wall = true);

@@ -1,6 +1,6 @@
-import { is_zero_approx } from '../math';
-import { Node } from './node';
-import { Animation } from '../types/gen/index';
+import { is_zero_approx } from '../math.js';
+import { Node } from './node.js';
+import { Animation } from '../types/gen/index.js';
 
 export const _pi = clonePlaybackInfo;
 

@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "module": "ESNext",
+    "module": "nodenext",
     "outDir": "dist",
     "lib": ["ES2020", "DOM", "DOM.Iterable", "WebWorker"],
     "isolatedModules": true,
     "skipLibCheck": true,
     
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "nodenext",
     "resolveJsonModule": true,
     "declaration": true,
 

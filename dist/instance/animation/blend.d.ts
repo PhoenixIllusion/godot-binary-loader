@@ -1,5 +1,5 @@
-import { Node } from './node';
-import { Animation } from '../types/gen/index';
+import { Node } from './node.js';
+import { Animation } from '../types/gen/index.js';
 export declare const _pi: typeof clonePlaybackInfo;
 export declare const enum FilterAction {
     FILTER_IGNORE = 0,

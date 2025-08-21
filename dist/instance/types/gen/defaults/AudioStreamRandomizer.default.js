@@ -1,4 +1,4 @@
-import { DefaultAudioStream } from './AudioStream.default';
+import { DefaultAudioStream } from './AudioStream.default.js';
 export function DefaultAudioStreamRandomizer(item) {
     DefaultAudioStream(item);
     item.playback_mode ?? (item.playback_mode = 0);

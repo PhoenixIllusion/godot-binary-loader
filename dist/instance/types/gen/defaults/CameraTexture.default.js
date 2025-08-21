@@ -1,4 +1,4 @@
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultCameraTexture(item) {
     DefaultTexture2D(item);
     item.camera_feed_id ?? (item.camera_feed_id = 0);

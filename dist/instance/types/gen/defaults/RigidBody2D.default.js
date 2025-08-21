@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPhysicsBody2D } from './PhysicsBody2D.default';
+import { DefaultPhysicsBody2D } from './PhysicsBody2D.default.js';
 export function DefaultRigidBody2D(item) {
     DefaultPhysicsBody2D(item);
     item.angular_damp ?? (item.angular_damp = 0.0);

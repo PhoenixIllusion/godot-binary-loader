@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectStereoEnhance(item) {
     DefaultAudioEffect(item);
     item.pan_pullout ?? (item.pan_pullout = 1.0);

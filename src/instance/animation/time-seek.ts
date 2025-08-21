@@ -1,7 +1,7 @@
-import { Node } from './node';
-import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend";
-import { AnimationNodeTimeSeek } from '../types/gen';
-import { is_greater_or_equal_approx } from '../math';
+import { Node } from './node.js';
+import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend.js";
+import { AnimationNodeTimeSeek } from '../types/gen/index.js';
+import { is_greater_or_equal_approx } from '../math.js';
 
 export class TimeSeek extends Node {
   seek_pos_request = -1;

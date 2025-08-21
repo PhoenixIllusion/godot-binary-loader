@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDSamplerState(item) {
     DefaultRefCounted(item);
     item.anisotropy_max ?? (item.anisotropy_max = 1.0);

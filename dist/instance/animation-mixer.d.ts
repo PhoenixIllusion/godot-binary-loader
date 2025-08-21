@@ -1,9 +1,9 @@
-import { AnimationInstance } from "./animation";
-import { RootMotion, TrackCache } from "./animation/anim-cache";
-import { SceneInstance } from "./scene";
-import { AnimationMixer } from "./types/gen";
-import { NodePath } from "./types/gen/types";
-import { AnimationInstanceData } from "./animation/player_interface";
+import { AnimationInstance } from "./animation.js";
+import { RootMotion, TrackCache } from "./animation/anim-cache.js";
+import { SceneInstance } from "./scene.js";
+import { NodePath } from "./types/gen/types.js";
+import { AnimationMixer } from "./types/gen/index.js";
+import { AnimationInstanceData } from "./animation/player_interface.js";
 import './animation/index';
 export declare class AnimationMixerInstance {
     active: boolean;

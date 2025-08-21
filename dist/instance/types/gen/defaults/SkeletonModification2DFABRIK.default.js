@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultSkeletonModification2D } from './SkeletonModification2D.default';
+import { DefaultSkeletonModification2D } from './SkeletonModification2D.default.js';
 export function DefaultSkeletonModification2DFABRIK(item) {
     DefaultSkeletonModification2D(item);
     item.fabrik_data_chain_length ?? (item.fabrik_data_chain_length = 0);

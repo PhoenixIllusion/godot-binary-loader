@@ -1,4 +1,4 @@
-import { DefaultNode } from './Node.default';
+import { DefaultNode } from './Node.default.js';
 export function DefaultViewport(item) {
     DefaultNode(item);
     item.audio_listener_enable_2d ?? (item.audio_listener_enable_2d = false);

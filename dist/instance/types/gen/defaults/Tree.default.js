@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultTree(item) {
     DefaultControl(item);
     item.allow_reselect ?? (item.allow_reselect = false);

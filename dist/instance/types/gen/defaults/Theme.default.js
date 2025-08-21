@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultTheme(item) {
     DefaultResource(item);
     item.default_base_scale ?? (item.default_base_scale = 0.0);

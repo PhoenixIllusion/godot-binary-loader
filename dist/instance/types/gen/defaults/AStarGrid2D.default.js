@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultAStarGrid2D(item) {
     DefaultRefCounted(item);
     item.cell_shape ?? (item.cell_shape = 0);

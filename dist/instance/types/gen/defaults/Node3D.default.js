@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode } from './Node.default';
+import { DefaultNode } from './Node.default.js';
 export function DefaultNode3D(item) {
     DefaultNode(item);
     //basis

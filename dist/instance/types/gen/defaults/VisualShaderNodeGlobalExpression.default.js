@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNodeExpression } from './VisualShaderNodeExpression.default';
+import { DefaultVisualShaderNodeExpression } from './VisualShaderNodeExpression.default.js';
 export function DefaultVisualShaderNodeGlobalExpression(item) {
     DefaultVisualShaderNodeExpression(item);
 }

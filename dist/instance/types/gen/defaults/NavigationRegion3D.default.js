@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultNavigationRegion3D(item) {
     DefaultNode3D(item);
     item.enabled ?? (item.enabled = true);

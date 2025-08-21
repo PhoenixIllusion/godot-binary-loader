@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultOS(item) {
     DefaultObject(item);
     item.delta_smoothing ?? (item.delta_smoothing = true);

@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultPathFollow3D(item) {
     DefaultNode3D(item);
     item.cubic_interp ?? (item.cubic_interp = true);

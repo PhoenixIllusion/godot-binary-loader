@@ -1,4 +1,4 @@
-import { DefaultScrollBar } from './ScrollBar.default';
+import { DefaultScrollBar } from './ScrollBar.default.js';
 export function DefaultVScrollBar(item) {
     DefaultScrollBar(item);
     item.size_flags_horizontal ?? (item.size_flags_horizontal = 0);

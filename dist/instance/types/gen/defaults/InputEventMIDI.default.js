@@ -1,4 +1,4 @@
-import { DefaultInputEvent } from './InputEvent.default';
+import { DefaultInputEvent } from './InputEvent.default.js';
 export function DefaultInputEventMIDI(item) {
     DefaultInputEvent(item);
     item.channel ?? (item.channel = 0);

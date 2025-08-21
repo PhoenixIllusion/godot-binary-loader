@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultEditorInterface(item) {
     DefaultObject(item);
     //distraction_free_mode

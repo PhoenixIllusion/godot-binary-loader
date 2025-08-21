@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultSpringArm3D(item) {
     DefaultNode3D(item);
     item.collision_mask ?? (item.collision_mask = 1);

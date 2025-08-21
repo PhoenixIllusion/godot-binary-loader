@@ -1,4 +1,4 @@
-import { GradientTexture2D } from "./types/gen";
+import { GradientTexture2D } from "./types/gen/index.js";
 
 export function create_gradient_canvas(gradientData: GradientTexture2D): HTMLCanvasElement {
     const canvas = document.createElement("canvas");

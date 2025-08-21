@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultNavigationPathQueryParameters3D(item) {
     DefaultRefCounted(item);
     item.map ?? (item.map = create.RID());

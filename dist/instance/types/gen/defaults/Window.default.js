@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultViewport } from './Viewport.default';
+import { DefaultViewport } from './Viewport.default.js';
 export function DefaultWindow(item) {
     DefaultViewport(item);
     item.always_on_top ?? (item.always_on_top = false);

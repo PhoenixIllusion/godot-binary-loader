@@ -1,4 +1,4 @@
-import { DefaultTextEdit } from './TextEdit.default';
+import { DefaultTextEdit } from './TextEdit.default.js';
 export function DefaultCodeEdit(item) {
     DefaultTextEdit(item);
     item.auto_brace_completion_enabled ?? (item.auto_brace_completion_enabled = false);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualInstance3D } from './VisualInstance3D.default';
+import { DefaultVisualInstance3D } from './VisualInstance3D.default.js';
 export function DefaultLight3D(item) {
     DefaultVisualInstance3D(item);
     item.distance_fade_begin ?? (item.distance_fade_begin = 40.0);

@@ -1,2 +1,2 @@
-import * as c from '../index';
+import * as c from '../index.js';
 export declare function DefaultVisualShaderNodeVectorOp(item: c.VisualShaderNodeVectorOp): void;

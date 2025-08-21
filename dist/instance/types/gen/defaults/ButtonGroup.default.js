@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultButtonGroup(item) {
     DefaultResource(item);
     item.allow_unpress ?? (item.allow_unpress = false);

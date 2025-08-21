@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultNavigationMesh(item) {
     DefaultResource(item);
     item.agent_height ?? (item.agent_height = 1.5);

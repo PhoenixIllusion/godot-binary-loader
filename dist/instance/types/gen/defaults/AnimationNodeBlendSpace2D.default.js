@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultAnimationRootNode } from './AnimationRootNode.default';
+import { DefaultAnimationRootNode } from './AnimationRootNode.default.js';
 export function DefaultAnimationNodeBlendSpace2D(item) {
     DefaultAnimationRootNode(item);
     item.auto_triangles ?? (item.auto_triangles = true);

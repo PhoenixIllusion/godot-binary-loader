@@ -1,4 +1,4 @@
-import { DefaultMesh } from './Mesh.default';
+import { DefaultMesh } from './Mesh.default.js';
 export function DefaultImmediateMesh(item) {
     DefaultMesh(item);
 }

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultInputEventWithModifiers } from './InputEventWithModifiers.default';
+import { DefaultInputEventWithModifiers } from './InputEventWithModifiers.default.js';
 export function DefaultInputEventMouse(item) {
     DefaultInputEventWithModifiers(item);
     item.button_mask ?? (item.button_mask = 0);

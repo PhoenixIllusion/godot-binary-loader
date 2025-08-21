@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultPhysicsDirectBodyState3D(item) {
     DefaultObject(item);
     //angular_velocity

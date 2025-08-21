@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRenderSceneBuffersConfiguration(item) {
     DefaultRefCounted(item);
     item.fsr_sharpness ?? (item.fsr_sharpness = 0.0);

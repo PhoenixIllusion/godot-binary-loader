@@ -1,17 +1,17 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { AnimationRootNodeType, AnimationTree } from "./types/gen";
-import { Node } from './animation/node';
-import { AnimationInstanceData, PlayerInterface } from "./animation/player_interface";
-import { AnimationInstance } from "./animation";
-import { allocPlaybackInfo, PlaybackInfo } from "./animation/blend";
-import { SceneInstance } from "./scene";
-import { navigate_nodepath, unwrap_properties_cached } from "./util";
-import { Animation } from "./animation/animation";
-import { AnimationMixerInstance } from "./animation-mixer";
-import { DefaultAnimationTree } from "./types/gen/defaults/AnimationTree.default";
-import { AnimationPlayerInstance } from "./animation-player";
-import { _blend_process } from "./animation/blend_process";
-import { is_zero_approx } from "./math";
+import { AnimationRootNodeType, AnimationTree } from "./types/gen/index.js";
+import { Node } from './animation/node.js';
+import { AnimationInstanceData, PlayerInterface } from "./animation/player_interface.js";
+import { AnimationInstance } from "./animation.js";
+import { allocPlaybackInfo, PlaybackInfo } from "./animation/blend.js";
+import { SceneInstance } from "./scene.js";
+import { navigate_nodepath, unwrap_properties_cached } from "./util.js";
+import { Animation } from "./animation/animation.js";
+import { AnimationMixerInstance } from "./animation-mixer.js";
+import { DefaultAnimationTree } from "./types/gen/defaults/AnimationTree.default.js";
+import { AnimationPlayerInstance } from "./animation-player.js";
+import { _blend_process } from "./animation/blend_process.js";
+import { is_zero_approx } from "./math.js";
 
 export class AnimationTreeInstance extends AnimationMixerInstance implements PlayerInterface {
 

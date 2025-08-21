@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultVisualInstance3D(item) {
     DefaultNode3D(item);
     item.layers ?? (item.layers = 1);

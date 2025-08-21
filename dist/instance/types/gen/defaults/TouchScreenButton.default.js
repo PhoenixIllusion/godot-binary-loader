@@ -1,4 +1,4 @@
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultTouchScreenButton(item) {
     DefaultNode2D(item);
     item.action ?? (item.action = "");

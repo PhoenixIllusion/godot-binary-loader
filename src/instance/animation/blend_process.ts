@@ -1,14 +1,14 @@
-import { AnimationInstance } from "../animation";
-import { Animation } from '../types/gen/index';
+import { AnimationInstance } from "../animation.js";
+import { Animation } from '../types/gen/index.js';
 import {
 	is_zero_approx, is_less_approx,
 	is_greater_approx, fposmod, pingpong, cubic_interpolate_in_time_vec3, spherical_cubic_interpolate_in_time
-} from "../math";
+} from "../math.js";
 import { quat, ReadonlyQuat, vec3 } from "gl-matrix";
-import { _interpolate, InterpolateFunctions } from "./interpolate";
-import { TrackCacheTransform } from "./anim-cache";
-import { AnimationInstanceData } from "./player_interface";
-import { AnimationMixerInstance } from "../animation-mixer";
+import { _interpolate, InterpolateFunctions } from "./interpolate.js";
+import { TrackCacheTransform } from "./anim-cache.js";
+import { AnimationInstanceData } from "./player_interface.js";
+import { AnimationMixerInstance } from "../animation-mixer.js";
 
 type Error = boolean;
 const OK = true;

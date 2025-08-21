@@ -1,4 +1,4 @@
-import { DefaultAnimationRootNode } from './AnimationRootNode.default';
+import { DefaultAnimationRootNode } from './AnimationRootNode.default.js';
 export function DefaultAnimationNodeStateMachine(item) {
     DefaultAnimationRootNode(item);
     item.allow_transition_to_self ?? (item.allow_transition_to_self = false);

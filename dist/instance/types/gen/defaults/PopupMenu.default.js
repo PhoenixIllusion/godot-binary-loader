@@ -1,4 +1,4 @@
-import { DefaultPopup } from './Popup.default';
+import { DefaultPopup } from './Popup.default.js';
 export function DefaultPopupMenu(item) {
     DefaultPopup(item);
     item.allow_search ?? (item.allow_search = true);

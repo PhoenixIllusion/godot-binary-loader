@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultFlowContainer(item) {
     DefaultContainer(item);
     item.alignment ?? (item.alignment = 0);

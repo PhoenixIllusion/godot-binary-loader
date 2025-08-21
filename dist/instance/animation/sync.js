@@ -1,5 +1,5 @@
-import { _pi, FilterAction } from './blend';
-import { Node } from './node';
+import { _pi, FilterAction } from './blend.js';
+import { Node } from './node.js';
 export class SyncNode extends Node {
 }
 export class BlendNode extends SyncNode {

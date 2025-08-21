@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultShape2D } from './Shape2D.default';
+import { DefaultShape2D } from './Shape2D.default.js';
 export function DefaultConvexPolygonShape2D(item) {
     DefaultShape2D(item);
     item.points ?? (item.points = create.PackedVector2Array());

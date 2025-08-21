@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultShape2D } from './Shape2D.default';
+import { DefaultShape2D } from './Shape2D.default.js';
 export function DefaultSegmentShape2D(item) {
     DefaultShape2D(item);
     item.a ?? (item.a = create.Vector2(0, 0));

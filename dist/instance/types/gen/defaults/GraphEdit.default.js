@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultGraphEdit(item) {
     DefaultControl(item);
     item.clip_contents ?? (item.clip_contents = true);

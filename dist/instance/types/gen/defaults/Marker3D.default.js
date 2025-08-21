@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultMarker3D(item) {
     DefaultNode3D(item);
     item.gizmo_extents ?? (item.gizmo_extents = 0.25);

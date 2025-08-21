@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultCollisionShape2D(item) {
     DefaultNode2D(item);
     item.debug_color ?? (item.debug_color = create.Color(0, 0, 0, 1));

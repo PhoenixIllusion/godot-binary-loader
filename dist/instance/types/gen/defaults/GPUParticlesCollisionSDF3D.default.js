@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultGPUParticlesCollision3D } from './GPUParticlesCollision3D.default';
+import { DefaultGPUParticlesCollision3D } from './GPUParticlesCollision3D.default.js';
 export function DefaultGPUParticlesCollisionSDF3D(item) {
     DefaultGPUParticlesCollision3D(item);
     item.bake_mask ?? (item.bake_mask = 4294967295);

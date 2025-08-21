@@ -1,4 +1,4 @@
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultCompressedTexture2D(item) {
     DefaultTexture2D(item);
     item.load_path ?? (item.load_path = "");

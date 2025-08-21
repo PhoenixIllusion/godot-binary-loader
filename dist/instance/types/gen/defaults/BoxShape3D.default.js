@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultShape3D } from './Shape3D.default';
+import { DefaultShape3D } from './Shape3D.default.js';
 export function DefaultBoxShape3D(item) {
     DefaultShape3D(item);
     item.size ?? (item.size = create.Vector3(1, 1, 1));

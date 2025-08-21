@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultEditorSettings(item) {
     DefaultResource(item);
     //asset_library/use_threads

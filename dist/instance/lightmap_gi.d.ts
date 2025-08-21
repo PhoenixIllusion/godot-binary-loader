@@ -1,6 +1,6 @@
-import { SceneInstance } from "./scene";
-import { LightmapGI, LightmapGIData } from "./types/gen";
-import { NodePath, Rect2 } from "./types/gen/types";
+import { SceneInstance } from "./scene.js";
+import { LightmapGI, LightmapGIData } from "./types/gen/index.js";
+import { NodePath, Rect2 } from "./types/gen/types.js";
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
 interface AtlasData {
     path: NodePath;

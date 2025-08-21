@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMaterial } from './Material.default';
+import { DefaultMaterial } from './Material.default.js';
 export function DefaultFogMaterial(item) {
     DefaultMaterial(item);
     item.albedo ?? (item.albedo = create.Color(1, 1, 1, 1));

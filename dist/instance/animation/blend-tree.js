@@ -1,6 +1,6 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { Node as BaseNode } from './node';
-import { _pi, FilterAction } from "./blend";
+import { Node as BaseNode } from './node.js';
+import { _pi, FilterAction } from "./blend.js";
 export class BlendTree extends BaseNode {
     constructor(blendTree, name = 'blend-tree') {
         super(blendTree, name, 'AnimationNodeBlendTree');

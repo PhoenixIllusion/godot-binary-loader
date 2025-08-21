@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultJoint2D(item) {
     DefaultNode2D(item);
     item.bias ?? (item.bias = 0.0);

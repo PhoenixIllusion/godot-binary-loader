@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMesh } from './Mesh.default';
+import { DefaultMesh } from './Mesh.default.js';
 export function DefaultArrayMesh(item) {
     DefaultMesh(item);
     item.blend_shape_mode ?? (item.blend_shape_mode = 1);

@@ -1,4 +1,4 @@
-import { DefaultVisualInstance3D } from './VisualInstance3D.default';
+import { DefaultVisualInstance3D } from './VisualInstance3D.default.js';
 export function DefaultLightmapGI(item) {
     DefaultVisualInstance3D(item);
     item.bias ?? (item.bias = 0.0005);

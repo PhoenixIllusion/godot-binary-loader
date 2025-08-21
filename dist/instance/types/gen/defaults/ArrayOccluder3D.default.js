@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultOccluder3D } from './Occluder3D.default';
+import { DefaultOccluder3D } from './Occluder3D.default.js';
 export function DefaultArrayOccluder3D(item) {
     DefaultOccluder3D(item);
     item.indices ?? (item.indices = create.PackedInt32Array());

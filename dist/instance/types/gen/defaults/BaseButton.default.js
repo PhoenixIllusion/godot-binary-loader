@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultBaseButton(item) {
     DefaultControl(item);
     item.action_mode ?? (item.action_mode = 1);

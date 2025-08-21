@@ -1,5 +1,5 @@
-import { SyncNode } from "./sync";
-import { Node } from './node';
+import { SyncNode } from "./sync.js";
+import { Node } from './node.js';
 export class BlendSpace extends SyncNode {
     constructor() {
         super(...arguments);

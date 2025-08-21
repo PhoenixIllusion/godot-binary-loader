@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultCanvasModulate(item) {
     DefaultNode2D(item);
     item.color ?? (item.color = create.Color(1, 1, 1, 1));

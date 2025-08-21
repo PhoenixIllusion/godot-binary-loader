@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNode } from './VisualShaderNode.default';
+import { DefaultVisualShaderNode } from './VisualShaderNode.default.js';
 export function DefaultVisualShaderNodeCubemap(item) {
     DefaultVisualShaderNode(item);
     //cube_map

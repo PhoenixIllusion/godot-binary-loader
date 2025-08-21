@@ -1,8 +1,8 @@
-import { DefaultBoxMesh } from "./gen/defaults/BoxMesh.default";
-import { DefaultQuadMesh } from "./gen/defaults/QuadMesh.default";
-import { DefaultSphereMesh } from "./gen/defaults/SphereMesh.default";
-import { DefaultCapsuleMesh } from "./gen/defaults/CapsuleMesh.default";
-import { DefaultCylinderMesh } from "./gen/defaults/CylinderMesh.default";
+import { DefaultBoxMesh } from "./gen/defaults/BoxMesh.default.js";
+import { DefaultQuadMesh } from "./gen/defaults/QuadMesh.default.js";
+import { DefaultSphereMesh } from "./gen/defaults/SphereMesh.default.js";
+import { DefaultCapsuleMesh } from "./gen/defaults/CapsuleMesh.default.js";
+import { DefaultCylinderMesh } from "./gen/defaults/CylinderMesh.default.js";
 import { Surface } from "@phoenixillusion/godot-scene-reader/process/scene/mesh/mesh.js";
 export function MeshWithDefaults(mesh) {
     switch (mesh.type) {

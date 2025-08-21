@@ -1,4 +1,4 @@
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultTorusMesh(item) {
     DefaultPrimitiveMesh(item);
     item.inner_radius ?? (item.inner_radius = 0.5);

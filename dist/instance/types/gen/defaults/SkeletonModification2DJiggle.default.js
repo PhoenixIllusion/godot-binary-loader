@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultSkeletonModification2D } from './SkeletonModification2D.default';
+import { DefaultSkeletonModification2D } from './SkeletonModification2D.default.js';
 export function DefaultSkeletonModification2DJiggle(item) {
     DefaultSkeletonModification2D(item);
     item.damping ?? (item.damping = 0.75);

@@ -1,4 +1,4 @@
-import { DefaultInputEvent } from './InputEvent.default';
+import { DefaultInputEvent } from './InputEvent.default.js';
 export function DefaultInputEventAction(item) {
     DefaultInputEvent(item);
     item.action ?? (item.action = "");

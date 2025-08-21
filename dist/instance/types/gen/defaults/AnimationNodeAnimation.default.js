@@ -1,4 +1,4 @@
-import { DefaultAnimationRootNode } from './AnimationRootNode.default';
+import { DefaultAnimationRootNode } from './AnimationRootNode.default.js';
 export function DefaultAnimationNodeAnimation(item) {
     DefaultAnimationRootNode(item);
     item.animation ?? (item.animation = "");

@@ -1,4 +1,4 @@
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultNavigationRegion2D(item) {
     DefaultNode2D(item);
     item.enabled ?? (item.enabled = true);

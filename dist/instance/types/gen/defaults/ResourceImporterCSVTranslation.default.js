@@ -1,4 +1,4 @@
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterCSVTranslation(item) {
     DefaultResourceImporter(item);
     item.compress ?? (item.compress = true);

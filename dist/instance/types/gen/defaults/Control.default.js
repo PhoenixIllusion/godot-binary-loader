@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultCanvasItem } from './CanvasItem.default';
+import { DefaultCanvasItem } from './CanvasItem.default.js';
 export function DefaultControl(item) {
     DefaultCanvasItem(item);
     item.anchor_bottom ?? (item.anchor_bottom = 0.0);

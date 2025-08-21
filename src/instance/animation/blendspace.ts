@@ -1,5 +1,5 @@
-import { SyncNode } from "./sync";
-import { Node, NonAbstractAnimationNodeType } from './node';
+import { SyncNode } from "./sync.js";
+import { Node, NonAbstractAnimationNodeType } from './node.js';
 
 export interface BlendPointRaw<T> {
   node: NonAbstractAnimationNodeType;

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMeshInstance3D } from './MeshInstance3D.default';
+import { DefaultMeshInstance3D } from './MeshInstance3D.default.js';
 export function DefaultSoftBody3D(item) {
     DefaultMeshInstance3D(item);
     item.collision_layer ?? (item.collision_layer = 1);

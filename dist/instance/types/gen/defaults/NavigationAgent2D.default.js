@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode } from './Node.default';
+import { DefaultNode } from './Node.default.js';
 export function DefaultNavigationAgent2D(item) {
     DefaultNode(item);
     item.avoidance_enabled ?? (item.avoidance_enabled = false);

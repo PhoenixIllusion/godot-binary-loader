@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultNavigationObstacle2D(item) {
     DefaultNode2D(item);
     item.affect_navigation_mesh ?? (item.affect_navigation_mesh = false);

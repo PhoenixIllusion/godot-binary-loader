@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultXRTracker } from './XRTracker.default';
+import { DefaultXRTracker } from './XRTracker.default.js';
 export function DefaultXRFaceTracker(item) {
     DefaultXRTracker(item);
     item.blend_shapes ?? (item.blend_shapes = create.PackedFloat32Array());

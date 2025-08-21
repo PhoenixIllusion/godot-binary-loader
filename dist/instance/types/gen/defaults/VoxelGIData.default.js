@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultVoxelGIData(item) {
     DefaultResource(item);
     item.bias ?? (item.bias = 1.5);

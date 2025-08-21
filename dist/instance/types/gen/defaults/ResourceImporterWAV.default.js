@@ -1,4 +1,4 @@
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterWAV(item) {
     DefaultResourceImporter(item);
     item['compress/mode'] ?? (item['compress/mode'] = 2);

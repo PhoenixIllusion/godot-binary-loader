@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultTextLine(item) {
     DefaultRefCounted(item);
     item.alignment ?? (item.alignment = 0);

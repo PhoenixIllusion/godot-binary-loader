@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultSyntaxHighlighter } from './SyntaxHighlighter.default';
+import { DefaultSyntaxHighlighter } from './SyntaxHighlighter.default.js';
 export function DefaultCodeHighlighter(item) {
     DefaultSyntaxHighlighter(item);
     //color_regions = {}

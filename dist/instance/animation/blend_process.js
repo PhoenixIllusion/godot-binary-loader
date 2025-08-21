@@ -1,7 +1,7 @@
-import { Animation } from '../types/gen/index';
-import { is_zero_approx, is_less_approx, is_greater_approx, fposmod, pingpong, cubic_interpolate_in_time_vec3, spherical_cubic_interpolate_in_time } from "../math";
+import { Animation } from '../types/gen/index.js';
+import { is_zero_approx, is_less_approx, is_greater_approx, fposmod, pingpong, cubic_interpolate_in_time_vec3, spherical_cubic_interpolate_in_time } from "../math.js";
 import { quat, vec3 } from "gl-matrix";
-import { _interpolate } from "./interpolate";
+import { _interpolate } from "./interpolate.js";
 const OK = true;
 //const Math_PI = Math.PI;
 //const Math_TAU = Math_PI * 2;

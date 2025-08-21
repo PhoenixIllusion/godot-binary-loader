@@ -1,4 +1,4 @@
-import { DefaultHBoxContainer } from './HBoxContainer.default';
+import { DefaultHBoxContainer } from './HBoxContainer.default.js';
 export function DefaultEditorResourcePicker(item) {
     DefaultHBoxContainer(item);
     item.base_type ?? (item.base_type = "");

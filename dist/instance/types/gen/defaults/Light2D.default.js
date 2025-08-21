@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultLight2D(item) {
     DefaultNode2D(item);
     item.blend_mode ?? (item.blend_mode = 0);

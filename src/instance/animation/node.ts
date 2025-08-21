@@ -1,7 +1,7 @@
-import { AnimationNode, AnimationNodeProperties, AnimationNodeTypeMap } from "../types/gen";
-import { Vector2 } from "../types/gen/types";
-import { NodeState, NodeTimeInfo, PlaybackInfo, FilterAction, blend_node, _pi } from "./blend";
-import { PlayerInterface } from "./player_interface";
+import { AnimationNode, AnimationNodeProperties, AnimationNodeTypeMap } from "../types/gen/index.js";
+import { Vector2 } from "../types/gen/types.js";
+import { NodeState, NodeTimeInfo, PlaybackInfo, FilterAction, blend_node, _pi } from "./blend.js";
+import { PlayerInterface } from "./player_interface.js";
 
 type NonAbstractConstructor<T> = new (...args: any[]) => T;
 type ExcludeNodeTypes = 'AnimationNode' | 'AnimationRootNode' | 'AnimationNodeSync'

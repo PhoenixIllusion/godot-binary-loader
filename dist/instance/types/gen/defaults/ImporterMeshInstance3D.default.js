@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultImporterMeshInstance3D(item) {
     DefaultNode3D(item);
     item.cast_shadow ?? (item.cast_shadow = 1);

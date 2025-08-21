@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectSpectrumAnalyzer(item) {
     DefaultAudioEffect(item);
     item.buffer_length ?? (item.buffer_length = 2.0);

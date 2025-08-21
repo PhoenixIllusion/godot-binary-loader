@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultRange(item) {
     DefaultControl(item);
     item.allow_greater ?? (item.allow_greater = false);

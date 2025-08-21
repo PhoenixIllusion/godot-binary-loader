@@ -1,6 +1,6 @@
 import { animation_transition_ease } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
-import { Animation } from '../types/gen/index';
-import { CLAMP, fposmod, is_equal_approx, is_zero_approx, pingpong, round, signbit } from "../math";
+import { Animation } from '../types/gen/index.js';
+import { CLAMP, fposmod, is_equal_approx, is_zero_approx, pingpong, round, signbit } from "../math.js";
 const LOOP_NONE = Animation.LoopMode.LOOP_NONE;
 const LOOP_LINEAR = Animation.LoopMode.LOOP_LINEAR;
 //const LOOP_PINGPONG = Animation.LoopMode.LOOP_PINGPONG;

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRange } from './Range.default';
+import { DefaultRange } from './Range.default.js';
 export function DefaultTextureProgressBar(item) {
     DefaultRange(item);
     item.fill_mode ?? (item.fill_mode = 0);

@@ -1,4 +1,4 @@
-import { DefaultButton } from './Button.default';
+import { DefaultButton } from './Button.default.js';
 export function DefaultCheckButton(item) {
     DefaultButton(item);
     item.alignment ?? (item.alignment = 0);

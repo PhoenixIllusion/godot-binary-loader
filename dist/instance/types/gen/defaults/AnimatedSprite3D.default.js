@@ -1,4 +1,4 @@
-import { DefaultSpriteBase3D } from './SpriteBase3D.default';
+import { DefaultSpriteBase3D } from './SpriteBase3D.default.js';
 export function DefaultAnimatedSprite3D(item) {
     DefaultSpriteBase3D(item);
     item.animation ?? (item.animation = "default");

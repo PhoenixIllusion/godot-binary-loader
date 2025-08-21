@@ -1,4 +1,4 @@
-import { DefaultRange } from './Range.default';
+import { DefaultRange } from './Range.default.js';
 export function DefaultProgressBar(item) {
     DefaultRange(item);
     //editor_preview_indeterminate

@@ -1,5 +1,5 @@
 import { TrackKeys } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
-import { Animation } from '../types/gen/index';
+import { Animation } from '../types/gen/index.js';
 export interface InterpolateFunctions<T> {
     _set(out: T, a: T): T;
     _interpolate(out: T, a: T, b: T, p: number): T;

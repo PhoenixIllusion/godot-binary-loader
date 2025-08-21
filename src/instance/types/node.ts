@@ -1,4 +1,4 @@
-import { MaterialType, MeshType, Node3D, NodeType, PhysicsMaterial, Shape3DType } from "./gen";
+import { MaterialType, MeshType, Node3D, NodeType, PhysicsMaterial, Shape3DType } from "./gen/index.js";
 import { GridMap as GridMapT } from "@phoenixillusion/godot-scene-reader/process/scene/grid_map.js";
 
 

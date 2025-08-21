@@ -1,8 +1,8 @@
-import { is_zero_approx, is_greater_or_equal_approx, is_less_approx, is_greater_approx, CMP_EPSILON, is_less_or_equal_approx } from '../math';
-import { AnimationNodeOneShot, Curve } from '../types/gen';
-import { DefaultAnimationNodeOneShot } from '../types/gen/defaults/AnimationNodeOneShot.default';
-import { _pi, FilterAction, NodeTimeInfo, PlaybackInfo } from './blend';
-import { SyncNode } from './sync';
+import { is_zero_approx, is_greater_or_equal_approx, is_less_approx, is_greater_approx, CMP_EPSILON, is_less_or_equal_approx } from '../math.js';
+import { AnimationNodeOneShot, Curve } from '../types/gen/index.js';
+import { DefaultAnimationNodeOneShot } from '../types/gen/defaults/AnimationNodeOneShot.default.js';
+import { _pi, FilterAction, NodeTimeInfo, PlaybackInfo } from './blend.js';
+import { SyncNode } from './sync.js';
 
 
 const ONE_SHOT_REQUEST_NONE = AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_NONE;

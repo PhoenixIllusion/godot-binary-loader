@@ -1,12 +1,12 @@
 import { mat4, quat, vec3 } from "gl-matrix";
-import { get_cache_type } from "./animation";
-import { RootMotion, TrackCacheTransform, TrackCacheValue, TrackCacheMethod, TrackCacheAudio, TrackCacheAnimation } from "./animation/anim-cache";
-import { DefaultAnimationMixer } from "./types/gen/defaults/AnimationMixer.default";
-import { Animation } from "./types/gen";
-import { navigate_nodepath, navigate_nodepath_subpath, node_path_string, unwrap_properties_cached } from "./util";
+import { get_cache_type } from "./animation.js";
+import { RootMotion, TrackCacheTransform, TrackCacheValue, TrackCacheMethod, TrackCacheAudio, TrackCacheAnimation } from "./animation/anim-cache.js";
+import { DefaultAnimationMixer } from "./types/gen/defaults/AnimationMixer.default.js";
+import { Animation } from "./types/gen/index.js";
+import { navigate_nodepath, navigate_nodepath_subpath, node_path_string, unwrap_properties_cached } from "./util.js";
 import { ERR_PRINT, WARN_PRINT } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
-import { Skeleton3DInstance } from "./skeleton";
-import { transform3d_to_mat4 } from "./math";
+import { Skeleton3DInstance } from "./skeleton.js";
+import { transform3d_to_mat4 } from "./math.js";
 import './animation/index';
 const UPDATE_DISCRETE = 1;
 function is_variant_interpolatable(_v) {

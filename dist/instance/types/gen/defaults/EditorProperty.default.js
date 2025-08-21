@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultEditorProperty(item) {
     DefaultContainer(item);
     item.checkable ?? (item.checkable = false);

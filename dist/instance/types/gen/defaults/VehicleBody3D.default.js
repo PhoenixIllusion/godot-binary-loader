@@ -1,4 +1,4 @@
-import { DefaultRigidBody3D } from './RigidBody3D.default';
+import { DefaultRigidBody3D } from './RigidBody3D.default.js';
 export function DefaultVehicleBody3D(item) {
     DefaultRigidBody3D(item);
     item.brake ?? (item.brake = 0.0);

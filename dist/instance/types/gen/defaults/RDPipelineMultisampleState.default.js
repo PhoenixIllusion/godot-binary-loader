@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDPipelineMultisampleState(item) {
     DefaultRefCounted(item);
     item.enable_alpha_to_coverage ?? (item.enable_alpha_to_coverage = false);

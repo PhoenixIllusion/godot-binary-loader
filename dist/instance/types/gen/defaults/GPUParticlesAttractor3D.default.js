@@ -1,4 +1,4 @@
-import { DefaultVisualInstance3D } from './VisualInstance3D.default';
+import { DefaultVisualInstance3D } from './VisualInstance3D.default.js';
 export function DefaultGPUParticlesAttractor3D(item) {
     DefaultVisualInstance3D(item);
     item.attenuation ?? (item.attenuation = 1.0);

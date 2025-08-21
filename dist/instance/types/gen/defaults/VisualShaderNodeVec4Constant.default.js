@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default';
+import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default.js';
 export function DefaultVisualShaderNodeVec4Constant(item) {
     DefaultVisualShaderNodeConstant(item);
     item.constant ?? (item.constant = create.Quaternion(0, 0, 0, 1));

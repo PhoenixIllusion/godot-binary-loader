@@ -1,4 +1,4 @@
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultCylinderMesh(item) {
     DefaultPrimitiveMesh(item);
     item.bottom_radius ?? (item.bottom_radius = 0.5);

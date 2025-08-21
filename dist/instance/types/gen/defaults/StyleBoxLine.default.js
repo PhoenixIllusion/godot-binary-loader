@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultStyleBox } from './StyleBox.default';
+import { DefaultStyleBox } from './StyleBox.default.js';
 export function DefaultStyleBoxLine(item) {
     DefaultStyleBox(item);
     item.color ?? (item.color = create.Color(0, 0, 0, 1));

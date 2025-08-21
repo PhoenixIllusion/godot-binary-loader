@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultNinePatchRect(item) {
     DefaultControl(item);
     item.axis_stretch_horizontal ?? (item.axis_stretch_horizontal = 0);

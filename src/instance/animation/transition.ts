@@ -1,10 +1,10 @@
-import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend";
-import { AnimationNodeTransition, ResourceTypeMap } from '../types/gen';
-import { CMP_EPSILON, is_less_or_equal_approx, is_zero_approx } from '../math';
+import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend.js";
+import { AnimationNodeTransition, ResourceTypeMap } from '../types/gen/index.js';
+import { CMP_EPSILON, is_less_or_equal_approx, is_zero_approx } from '../math.js';
 import { unwrap_property_paths } from '@phoenixillusion/godot-scene-reader/process/scene/unwrap.js';
 import { ERR_PRINT } from '@phoenixillusion/godot-scene-reader/util/data-reader.js';
-import { DefaultAnimationNodeTransition } from '../types/gen/defaults/AnimationNodeTransition.default';
-import { SyncNode } from './sync';
+import { DefaultAnimationNodeTransition } from '../types/gen/defaults/AnimationNodeTransition.default.js';
+import { SyncNode } from './sync.js';
 
 interface TransitionState {
   name: string;

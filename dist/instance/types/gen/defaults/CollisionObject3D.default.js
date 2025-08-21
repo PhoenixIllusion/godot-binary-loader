@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultCollisionObject3D(item) {
     DefaultNode3D(item);
     item.collision_layer ?? (item.collision_layer = 1);

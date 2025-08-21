@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPlaneMesh } from './PlaneMesh.default';
+import { DefaultPlaneMesh } from './PlaneMesh.default.js';
 export function DefaultQuadMesh(item) {
     DefaultPlaneMesh(item);
     item.orientation ?? (item.orientation = 2);

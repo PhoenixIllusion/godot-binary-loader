@@ -1,4 +1,4 @@
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultRibbonTrailMesh(item) {
     DefaultPrimitiveMesh(item);
     //curve

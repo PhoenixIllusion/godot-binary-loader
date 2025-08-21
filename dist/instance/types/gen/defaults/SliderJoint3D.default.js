@@ -1,4 +1,4 @@
-import { DefaultJoint3D } from './Joint3D.default';
+import { DefaultJoint3D } from './Joint3D.default.js';
 export function DefaultSliderJoint3D(item) {
     DefaultJoint3D(item);
     item['angular_limit/damping'] ?? (item['angular_limit/damping'] = 0.0);

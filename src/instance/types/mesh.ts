@@ -1,11 +1,11 @@
 import { BlendShapeMode } from "@phoenixillusion/godot-scene-reader/process/scene/mesh/mesh_types.js";
 import { _get_array_from_surface } from "@phoenixillusion/godot-scene-reader/process/scene/mesh/mesh_get_arrays.js"
-import { MaterialType, MeshProperties, MeshType } from "./gen";
-import { DefaultBoxMesh } from "./gen/defaults/BoxMesh.default";
-import { DefaultQuadMesh } from "./gen/defaults/QuadMesh.default";
-import { DefaultSphereMesh } from "./gen/defaults/SphereMesh.default";
-import { DefaultCapsuleMesh } from "./gen/defaults/CapsuleMesh.default";
-import { DefaultCylinderMesh } from "./gen/defaults/CylinderMesh.default";
+import { MaterialType, MeshProperties, MeshType } from "./gen/index.js";
+import { DefaultBoxMesh } from "./gen/defaults/BoxMesh.default.js";
+import { DefaultQuadMesh } from "./gen/defaults/QuadMesh.default.js";
+import { DefaultSphereMesh } from "./gen/defaults/SphereMesh.default.js";
+import { DefaultCapsuleMesh } from "./gen/defaults/CapsuleMesh.default.js";
+import { DefaultCylinderMesh } from "./gen/defaults/CylinderMesh.default.js";
 import { Surface, SurfaceData } from "@phoenixillusion/godot-scene-reader/process/scene/mesh/mesh.js";
 
 export function MeshWithDefaults<T extends MeshType>(mesh: T): T {

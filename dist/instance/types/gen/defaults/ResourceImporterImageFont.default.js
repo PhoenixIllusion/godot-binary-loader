@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterImageFont(item) {
     DefaultResourceImporter(item);
     item.ascent ?? (item.ascent = 0);

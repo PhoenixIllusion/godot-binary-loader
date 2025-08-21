@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default';
+import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default.js';
 export function DefaultVisualShaderNodeTransformConstant(item) {
     DefaultVisualShaderNodeConstant(item);
     item.constant ?? (item.constant = create.Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0));

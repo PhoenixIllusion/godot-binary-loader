@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultAnimationMixer } from './AnimationMixer.default';
+import { DefaultAnimationMixer } from './AnimationMixer.default.js';
 export function DefaultAnimationTree(item) {
     DefaultAnimationMixer(item);
     item.advance_expression_base_node ?? (item.advance_expression_base_node = create.NodePath("."));

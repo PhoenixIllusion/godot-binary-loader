@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultNavigationObstacle3D(item) {
     DefaultNode3D(item);
     item.affect_navigation_mesh ?? (item.affect_navigation_mesh = false);

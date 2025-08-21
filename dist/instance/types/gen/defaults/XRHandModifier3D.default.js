@@ -1,4 +1,4 @@
-import { DefaultSkeletonModifier3D } from './SkeletonModifier3D.default';
+import { DefaultSkeletonModifier3D } from './SkeletonModifier3D.default.js';
 export function DefaultXRHandModifier3D(item) {
     DefaultSkeletonModifier3D(item);
     item.bone_update ?? (item.bone_update = 0);

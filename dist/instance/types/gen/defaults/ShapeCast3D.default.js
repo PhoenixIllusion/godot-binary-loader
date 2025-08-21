@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultShapeCast3D(item) {
     DefaultNode3D(item);
     item.collide_with_areas ?? (item.collide_with_areas = false);

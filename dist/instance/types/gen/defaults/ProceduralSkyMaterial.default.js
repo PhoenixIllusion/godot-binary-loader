@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMaterial } from './Material.default';
+import { DefaultMaterial } from './Material.default.js';
 export function DefaultProceduralSkyMaterial(item) {
     DefaultMaterial(item);
     item.energy_multiplier ?? (item.energy_multiplier = 1.0);

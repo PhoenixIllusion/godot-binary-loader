@@ -1,4 +1,4 @@
-import { DefaultGraphElement } from './GraphElement.default';
+import { DefaultGraphElement } from './GraphElement.default.js';
 export function DefaultGraphNode(item) {
     DefaultGraphElement(item);
     item.ignore_invalid_connection_type ?? (item.ignore_invalid_connection_type = false);

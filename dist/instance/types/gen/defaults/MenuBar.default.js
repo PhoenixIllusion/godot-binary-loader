@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultMenuBar(item) {
     DefaultControl(item);
     item.flat ?? (item.flat = false);

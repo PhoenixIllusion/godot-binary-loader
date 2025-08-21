@@ -5,11 +5,11 @@ import { PckEntry, PckFile, try_open_pack } from "@phoenixillusion/godot-scene-r
 import { PackedScene } from "@phoenixillusion/godot-scene-reader/process/scene/packed_scene.js";
 
 import { try_open_bin_config } from "@phoenixillusion/godot-scene-reader/parse/binary/ecfg.js";
-import { DefaultProjectSettings } from "./instance/types/gen/defaults/ProjectSettings.default";
-import { ProjectSettings } from "./instance/types/gen";
+import { DefaultProjectSettings } from "./instance/types/gen/defaults/ProjectSettings.default.js";
+import { ProjectSettings } from "./instance/types/gen/index.js";
 import { unwrap_properties, unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { ProjectSettingsI } from "./instance/types/project_settings";
-import { generateUUID } from "./instance/math";
+import { ProjectSettingsI } from "./instance/types/project_settings.js";
+import { generateUUID } from "./instance/math.js";
 import { decoder } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
 
 
@@ -124,13 +124,11 @@ export class PckLoader {
       this.queue_worker_task('try_open_ctex', guid, arrayBuffer);
     })
   }
-  async try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile> {
+  async try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile[]> {
     if (this.worker_count == 0) {
-      return {
-        flags: 0, height: 0, images: [], mipmap_limit: 0, version: 0, width: 0
-      };
+      return try_open_ctexarray(arrayBuffer);
     }
-    return new Promise<cTexFile>(resolve => {
+    return new Promise<cTexFile[]>(resolve => {
       const guid = generateUUID();
       this.worker_results[guid] = resolve as any;
       this.queue_worker_task('try_open_ctex3d', guid, arrayBuffer);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultRichTextLabel(item) {
     DefaultControl(item);
     item.autowrap_mode ?? (item.autowrap_mode = 3);

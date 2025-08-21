@@ -1,7 +1,7 @@
-import { AnimationNodeAnimation, Animation as AnimationT } from "../types/gen";
-import { PlaybackInfo, NodeTimeInfo } from "./blend";
-import { Node } from './node';
-import { AnimationInstance } from "../animation";
+import { AnimationNodeAnimation, Animation as AnimationT } from "../types/gen/index.js";
+import { PlaybackInfo, NodeTimeInfo } from "./blend.js";
+import { Node } from './node.js';
+import { AnimationInstance } from "../animation.js";
 export declare class Animation extends Node {
     animation: string;
     loop_mode: AnimationT.LoopMode;

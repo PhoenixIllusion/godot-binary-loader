@@ -1,4 +1,4 @@
-import { DefaultRange } from './Range.default';
+import { DefaultRange } from './Range.default.js';
 export function DefaultEditorSpinSlider(item) {
     DefaultRange(item);
     item.flat ?? (item.flat = false);

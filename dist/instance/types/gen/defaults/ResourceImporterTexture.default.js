@@ -1,4 +1,4 @@
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterTexture(item) {
     DefaultResourceImporter(item);
     item['compress/channel_pack'] ?? (item['compress/channel_pack'] = 0);

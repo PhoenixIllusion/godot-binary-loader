@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultAnimationNodeStateMachineTransition(item) {
     DefaultResource(item);
     item.advance_condition ?? (item.advance_condition = "");

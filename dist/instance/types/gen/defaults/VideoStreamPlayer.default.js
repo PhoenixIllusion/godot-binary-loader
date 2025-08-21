@@ -1,4 +1,4 @@
-import { DefaultControl } from './Control.default';
+import { DefaultControl } from './Control.default.js';
 export function DefaultVideoStreamPlayer(item) {
     DefaultControl(item);
     item.audio_track ?? (item.audio_track = 0);

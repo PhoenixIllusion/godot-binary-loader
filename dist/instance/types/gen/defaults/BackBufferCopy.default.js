@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultBackBufferCopy(item) {
     DefaultNode2D(item);
     item.copy_mode ?? (item.copy_mode = 1);

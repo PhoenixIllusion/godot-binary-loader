@@ -1,4 +1,4 @@
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterTextureAtlas(item) {
     DefaultResourceImporter(item);
     item.atlas_file ?? (item.atlas_file = "");

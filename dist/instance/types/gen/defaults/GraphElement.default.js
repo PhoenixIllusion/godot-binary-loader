@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultGraphElement(item) {
     DefaultContainer(item);
     item.draggable ?? (item.draggable = true);

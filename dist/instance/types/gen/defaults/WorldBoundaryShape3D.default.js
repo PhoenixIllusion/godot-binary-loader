@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultShape3D } from './Shape3D.default';
+import { DefaultShape3D } from './Shape3D.default.js';
 export function DefaultWorldBoundaryShape3D(item) {
     DefaultShape3D(item);
     item.plane ?? (item.plane = create.Plane(0, 1, 0, 0));

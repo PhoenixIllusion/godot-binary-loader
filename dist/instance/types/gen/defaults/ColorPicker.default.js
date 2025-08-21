@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVBoxContainer } from './VBoxContainer.default';
+import { DefaultVBoxContainer } from './VBoxContainer.default.js';
 export function DefaultColorPicker(item) {
     DefaultVBoxContainer(item);
     item.can_add_swatches ?? (item.can_add_swatches = true);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualInstance3D } from './VisualInstance3D.default';
+import { DefaultVisualInstance3D } from './VisualInstance3D.default.js';
 export function DefaultGeometryInstance3D(item) {
     DefaultVisualInstance3D(item);
     item.cast_shadow ?? (item.cast_shadow = 1);

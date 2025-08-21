@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDAttachmentFormat(item) {
     DefaultRefCounted(item);
     item.format ?? (item.format = 36);

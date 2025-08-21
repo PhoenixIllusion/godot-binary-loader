@@ -1,5 +1,5 @@
 import { mat4, quat, vec3 } from "gl-matrix";
-import { Transform3D } from "./types/gen/types";
+import { Transform3D } from "./types/gen/types.js";
 export declare const CMP_EPSILON = 0.00001;
 export declare function is_zero_approx(val: number): boolean;
 export declare function is_equal_approx(a: number, b: number): boolean;

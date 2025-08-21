@@ -1,6 +1,6 @@
-import { PlaybackInfo, NodeTimeInfo } from "./blend";
-import { AnimationNodeTransition, ResourceTypeMap } from '../types/gen';
-import { SyncNode } from './sync';
+import { PlaybackInfo, NodeTimeInfo } from "./blend.js";
+import { AnimationNodeTransition, ResourceTypeMap } from '../types/gen/index.js';
+import { SyncNode } from './sync.js';
 interface TransitionState {
     name: string;
     break_loop_at_end: boolean;

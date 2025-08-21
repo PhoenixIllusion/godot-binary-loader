@@ -1,4 +1,4 @@
-import { DefaultSyntaxHighlighter } from './SyntaxHighlighter.default';
+import { DefaultSyntaxHighlighter } from './SyntaxHighlighter.default.js';
 export function DefaultEditorSyntaxHighlighter(item) {
     DefaultSyntaxHighlighter(item);
 }

@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectDistortion(item) {
     DefaultAudioEffect(item);
     item.drive ?? (item.drive = 0.0);

@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultSkeletonProfile(item) {
     DefaultResource(item);
     item.bone_size ?? (item.bone_size = 0);

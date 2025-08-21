@@ -1,2 +1,2 @@
-import * as c from '../index';
+import * as c from '../index.js';
 export declare function DefaultRenderSceneData(item: c.RenderSceneData): void;

@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultSplitContainer(item) {
     DefaultContainer(item);
     item.collapsed ?? (item.collapsed = false);

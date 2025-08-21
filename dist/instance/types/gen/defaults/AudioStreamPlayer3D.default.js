@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultAudioStreamPlayer3D(item) {
     DefaultNode3D(item);
     item.area_mask ?? (item.area_mask = 1);

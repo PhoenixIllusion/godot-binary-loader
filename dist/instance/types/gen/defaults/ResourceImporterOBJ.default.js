@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterOBJ(item) {
     DefaultResourceImporter(item);
     item.force_disable_mesh_compression ?? (item.force_disable_mesh_compression = false);

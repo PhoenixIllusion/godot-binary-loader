@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultFont } from './Font.default';
+import { DefaultFont } from './Font.default.js';
 export function DefaultSystemFont(item) {
     DefaultFont(item);
     item.allow_system_fallback ?? (item.allow_system_fallback = true);

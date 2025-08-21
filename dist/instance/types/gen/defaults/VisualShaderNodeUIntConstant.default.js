@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default';
+import { DefaultVisualShaderNodeConstant } from './VisualShaderNodeConstant.default.js';
 export function DefaultVisualShaderNodeUIntConstant(item) {
     DefaultVisualShaderNodeConstant(item);
     item.constant ?? (item.constant = 0);

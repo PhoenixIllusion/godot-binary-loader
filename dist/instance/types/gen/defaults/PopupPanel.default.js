@@ -1,4 +1,4 @@
-import { DefaultPopup } from './Popup.default';
+import { DefaultPopup } from './Popup.default.js';
 export function DefaultPopupPanel(item) {
     DefaultPopup(item);
     //panel  

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultInputEventWithModifiers } from './InputEventWithModifiers.default';
+import { DefaultInputEventWithModifiers } from './InputEventWithModifiers.default.js';
 export function DefaultInputEventGesture(item) {
     DefaultInputEventWithModifiers(item);
     item.position ?? (item.position = create.Vector2(0, 0));

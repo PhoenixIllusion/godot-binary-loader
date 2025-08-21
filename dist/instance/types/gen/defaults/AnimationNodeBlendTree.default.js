@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultAnimationRootNode } from './AnimationRootNode.default';
+import { DefaultAnimationRootNode } from './AnimationRootNode.default.js';
 export function DefaultAnimationNodeBlendTree(item) {
     DefaultAnimationRootNode(item);
     item.graph_offset ?? (item.graph_offset = create.Vector2(0, 0));

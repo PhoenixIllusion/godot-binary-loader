@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultStyleBox(item) {
     DefaultResource(item);
     item.content_margin_bottom ?? (item.content_margin_bottom = -1.0);

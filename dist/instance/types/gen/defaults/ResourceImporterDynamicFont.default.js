@@ -1,4 +1,4 @@
-import { DefaultResourceImporter } from './ResourceImporter.default';
+import { DefaultResourceImporter } from './ResourceImporter.default.js';
 export function DefaultResourceImporterDynamicFont(item) {
     DefaultResourceImporter(item);
     item.allow_system_fallback ?? (item.allow_system_fallback = true);

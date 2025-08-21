@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultStyleBox } from './StyleBox.default';
+import { DefaultStyleBox } from './StyleBox.default.js';
 export function DefaultStyleBoxTexture(item) {
     DefaultStyleBox(item);
     item.axis_stretch_horizontal ?? (item.axis_stretch_horizontal = 0);

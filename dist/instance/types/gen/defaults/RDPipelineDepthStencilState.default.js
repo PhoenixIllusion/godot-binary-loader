@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDPipelineDepthStencilState(item) {
     DefaultRefCounted(item);
     item.back_op_compare ?? (item.back_op_compare = 7);

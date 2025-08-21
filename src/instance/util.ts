@@ -1,5 +1,5 @@
 import { VariantType } from "@phoenixillusion/godot-scene-reader/parse/binary/variant.js";
-import { NodePath } from "./types/gen/types";
+import { NodePath } from "./types/gen/types.js";
 import { unwrap_property } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 
 export function resolve_nodepath(currentPath: string[], nodePath: string[], absolute: boolean): string[] {

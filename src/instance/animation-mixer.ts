@@ -1,16 +1,15 @@
 import { mat4, quat, vec3 } from "gl-matrix";
-import { AnimationInstance, get_cache_type } from "./animation";
-import { RootMotion, TrackCache, TrackCacheTransform, TrackCacheValue, TrackCacheMethod, TrackCacheAudio, TrackCacheAnimation, TrackCacheBlendShape } from "./animation/anim-cache";
-import { SceneInstance } from "./scene";
-import { AnimationMixer } from "./types/gen";
-import { DefaultAnimationMixer } from "./types/gen/defaults/AnimationMixer.default";
-import { NodePath } from "./types/gen/types";
-import { Animation } from "./types/gen";
-import { navigate_nodepath, navigate_nodepath_subpath, node_path_string, unwrap_properties_cached } from "./util";
+import { AnimationInstance, get_cache_type } from "./animation.js";
+import { RootMotion, TrackCache, TrackCacheTransform, TrackCacheValue, TrackCacheMethod, TrackCacheAudio, TrackCacheAnimation, TrackCacheBlendShape } from "./animation/anim-cache.js";
+import { SceneInstance } from "./scene.js";
+import { DefaultAnimationMixer } from "./types/gen/defaults/AnimationMixer.default.js";
+import { NodePath } from "./types/gen/types.js";
+import { Animation, AnimationMixer } from "./types/gen/index.js";
+import { navigate_nodepath, navigate_nodepath_subpath, node_path_string, unwrap_properties_cached } from "./util.js";
 import { ERR_PRINT, WARN_PRINT } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
-import { Skeleton3DInstance } from "./skeleton";
-import { transform3d_to_mat4 } from "./math";
-import { AnimationInstanceData } from "./animation/player_interface";
+import { Skeleton3DInstance } from "./skeleton.js";
+import { transform3d_to_mat4 } from "./math.js";
+import { AnimationInstanceData } from "./animation/player_interface.js";
 import './animation/index';
 
 const UPDATE_DISCRETE = 1;

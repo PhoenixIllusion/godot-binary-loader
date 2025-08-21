@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultRemoteTransform3D(item) {
     DefaultNode3D(item);
     item.remote_path ?? (item.remote_path = create.NodePath(""));

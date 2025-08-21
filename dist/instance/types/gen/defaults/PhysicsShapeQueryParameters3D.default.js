@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultPhysicsShapeQueryParameters3D(item) {
     DefaultRefCounted(item);
     item.collide_with_areas ?? (item.collide_with_areas = false);

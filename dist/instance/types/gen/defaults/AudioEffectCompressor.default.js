@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectCompressor(item) {
     DefaultAudioEffect(item);
     item.attack_us ?? (item.attack_us = 20.0);

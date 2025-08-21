@@ -1,6 +1,6 @@
-import { AnimationNodeOneShot, Curve } from '../types/gen';
-import { NodeTimeInfo, PlaybackInfo } from './blend';
-import { SyncNode } from './sync';
+import { AnimationNodeOneShot, Curve } from '../types/gen/index.js';
+import { NodeTimeInfo, PlaybackInfo } from './blend.js';
+import { SyncNode } from './sync.js';
 export declare class OneShot extends SyncNode {
     autorestart: boolean;
     autorestart_delay: number;

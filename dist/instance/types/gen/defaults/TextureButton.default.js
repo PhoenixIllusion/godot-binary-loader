@@ -1,4 +1,4 @@
-import { DefaultBaseButton } from './BaseButton.default';
+import { DefaultBaseButton } from './BaseButton.default.js';
 export function DefaultTextureButton(item) {
     DefaultBaseButton(item);
     item.flip_h ?? (item.flip_h = false);

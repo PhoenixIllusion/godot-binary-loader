@@ -1,12 +1,12 @@
 import { unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import Delaunator from "delaunator";
-import { AnimationNodeBlendSpace2D } from "../types/gen";
-import { DefaultAnimationNodeBlendSpace2D } from "../types/gen/defaults/AnimationNodeBlendSpace2D.default";
-import { BlendSpace, convertRaw } from "./blendspace";
-import { Animation } from './animation';
-import { NodeTimeInfo, _pi, FilterAction } from "./blend";
+import { AnimationNodeBlendSpace2D } from "../types/gen/index.js";
+import { DefaultAnimationNodeBlendSpace2D } from "../types/gen/defaults/AnimationNodeBlendSpace2D.default.js";
+import { BlendSpace, convertRaw } from "./blendspace.js";
+import { Animation } from './animation.js';
+import { NodeTimeInfo, _pi, FilterAction } from "./blend.js";
 import { vec2 } from 'gl-matrix';
-import { is_zero_approx } from "../math";
+import { is_zero_approx } from "../math.js";
 const tmp = [vec2.create(), vec2.create(), vec2.create(), vec2.create()];
 function cross(a, b) {
     return a[0] * b[1] - a[1] * b[0];

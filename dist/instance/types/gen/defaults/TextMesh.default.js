@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultTextMesh(item) {
     DefaultPrimitiveMesh(item);
     item.autowrap_mode ?? (item.autowrap_mode = 0);

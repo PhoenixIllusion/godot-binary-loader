@@ -1,2 +1,2 @@
-import * as c from '../index';
+import * as c from '../index.js';
 export declare function DefaultResourcePreloader(item: c.ResourcePreloader): void;

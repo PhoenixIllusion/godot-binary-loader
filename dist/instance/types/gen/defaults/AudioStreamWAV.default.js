@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultAudioStream } from './AudioStream.default';
+import { DefaultAudioStream } from './AudioStream.default.js';
 export function DefaultAudioStreamWAV(item) {
     DefaultAudioStream(item);
     item.data ?? (item.data = create.PackedByteArray());

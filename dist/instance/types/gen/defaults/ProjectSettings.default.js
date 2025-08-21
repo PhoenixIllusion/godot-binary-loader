@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultProjectSettings(item) {
     DefaultObject(item);
     item['animation/warnings/check_angle_interpolation_type_conflicting'] ?? (item['animation/warnings/check_angle_interpolation_type_conflicting'] = true);

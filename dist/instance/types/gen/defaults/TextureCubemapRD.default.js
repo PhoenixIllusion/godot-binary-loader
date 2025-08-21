@@ -1,4 +1,4 @@
-import { DefaultTextureLayeredRD } from './TextureLayeredRD.default';
+import { DefaultTextureLayeredRD } from './TextureLayeredRD.default.js';
 export function DefaultTextureCubemapRD(item) {
     DefaultTextureLayeredRD(item);
 }

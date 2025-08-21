@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultAudioServer(item) {
     DefaultObject(item);
     item.bus_count ?? (item.bus_count = 1);

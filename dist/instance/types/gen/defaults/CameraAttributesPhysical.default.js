@@ -1,4 +1,4 @@
-import { DefaultCameraAttributes } from './CameraAttributes.default';
+import { DefaultCameraAttributes } from './CameraAttributes.default.js';
 export function DefaultCameraAttributesPhysical(item) {
     DefaultCameraAttributes(item);
     item.auto_exposure_max_exposure_value ?? (item.auto_exposure_max_exposure_value = 10.0);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultViewport } from './Viewport.default';
+import { DefaultViewport } from './Viewport.default.js';
 export function DefaultSubViewport(item) {
     DefaultViewport(item);
     item.render_target_clear_mode ?? (item.render_target_clear_mode = 0);

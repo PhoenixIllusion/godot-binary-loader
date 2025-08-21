@@ -1,4 +1,4 @@
-import { DefaultInputEventFromWindow } from './InputEventFromWindow.default';
+import { DefaultInputEventFromWindow } from './InputEventFromWindow.default.js';
 export function DefaultInputEventWithModifiers(item) {
     DefaultInputEventFromWindow(item);
     item.alt_pressed ?? (item.alt_pressed = false);

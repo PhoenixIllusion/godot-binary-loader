@@ -1,4 +1,4 @@
-import { DefaultGeometryInstance3D } from './GeometryInstance3D.default';
+import { DefaultGeometryInstance3D } from './GeometryInstance3D.default.js';
 export function DefaultMultiMeshInstance3D(item) {
     DefaultGeometryInstance3D(item);
     //multimesh  

@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectLimiter(item) {
     DefaultAudioEffect(item);
     item.ceiling_db ?? (item.ceiling_db = -0.1);

@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDPipelineColorBlendStateAttachment(item) {
     DefaultRefCounted(item);
     item.alpha_blend_op ?? (item.alpha_blend_op = 0);

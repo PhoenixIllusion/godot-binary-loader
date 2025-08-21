@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultTranslationDomain(item) {
     DefaultRefCounted(item);
     item.pseudolocalization_accents_enabled ?? (item.pseudolocalization_accents_enabled = true);

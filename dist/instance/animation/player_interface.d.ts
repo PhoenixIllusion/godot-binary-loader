@@ -1,6 +1,6 @@
-import { AnimationInstance } from '../animation';
-import { PlaybackInfo } from './blend';
-import { Node } from './node';
+import { AnimationInstance } from '../animation.js';
+import { PlaybackInfo } from './blend.js';
+import { Node } from './node.js';
 export interface AnimationInstanceData {
     animation: AnimationInstance;
     playback_info: PlaybackInfo;

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultMesh } from './Mesh.default';
+import { DefaultMesh } from './Mesh.default.js';
 export function DefaultPrimitiveMesh(item) {
     DefaultMesh(item);
     item.add_uv2 ?? (item.add_uv2 = false);

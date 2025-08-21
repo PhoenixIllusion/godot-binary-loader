@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDTextureView(item) {
     DefaultRefCounted(item);
     item.format_override ?? (item.format_override = 218);

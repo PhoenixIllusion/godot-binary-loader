@@ -1,10 +1,10 @@
-import { Node } from './animation/node';
-import { AnimationInstanceData, PlayerInterface } from "./animation/player_interface";
-import { AnimationInstance } from "./animation";
-import { PlaybackInfo } from "./animation/blend";
-import { SceneInstance } from "./scene";
-import { AnimationMixerInstance } from "./animation-mixer";
-import { AnimationPlayerInstance } from "./animation-player";
+import { Node } from './animation/node.js';
+import { AnimationInstanceData, PlayerInterface } from "./animation/player_interface.js";
+import { AnimationInstance } from "./animation.js";
+import { PlaybackInfo } from "./animation/blend.js";
+import { SceneInstance } from "./scene.js";
+import { AnimationMixerInstance } from "./animation-mixer.js";
+import { AnimationPlayerInstance } from "./animation-player.js";
 export declare class AnimationTreeInstance extends AnimationMixerInstance implements PlayerInterface {
     animationPlayer: AnimationPlayerInstance;
     animationPlayerNode: SceneInstance.Node;

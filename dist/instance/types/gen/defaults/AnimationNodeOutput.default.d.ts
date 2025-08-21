@@ -1,2 +1,2 @@
-import * as c from '../index';
+import * as c from '../index.js';
 export declare function DefaultAnimationNodeOutput(item: c.AnimationNodeOutput): void;

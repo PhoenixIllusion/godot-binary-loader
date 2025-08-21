@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultStyleBox } from './StyleBox.default';
+import { DefaultStyleBox } from './StyleBox.default.js';
 export function DefaultStyleBoxFlat(item) {
     DefaultStyleBox(item);
     item.anti_aliasing ?? (item.anti_aliasing = true);

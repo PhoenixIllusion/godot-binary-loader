@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNode } from './VisualShaderNode.default';
+import { DefaultVisualShaderNode } from './VisualShaderNode.default.js';
 export function DefaultVisualShaderNodeDerivativeFunc(item) {
     DefaultVisualShaderNode(item);
     item.function ?? (item.function = 0);

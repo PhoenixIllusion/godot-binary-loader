@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode2D } from './Node2D.default';
+import { DefaultNode2D } from './Node2D.default.js';
 export function DefaultRemoteTransform2D(item) {
     DefaultNode2D(item);
     item.remote_path ?? (item.remote_path = create.NodePath(""));

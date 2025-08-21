@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultInputEventMouse } from './InputEventMouse.default';
+import { DefaultInputEventMouse } from './InputEventMouse.default.js';
 export function DefaultInputEventMouseMotion(item) {
     DefaultInputEventMouse(item);
     item.pen_inverted ?? (item.pen_inverted = false);

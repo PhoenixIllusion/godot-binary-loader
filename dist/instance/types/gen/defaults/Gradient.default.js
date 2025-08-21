@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultGradient(item) {
     DefaultResource(item);
     item.colors ?? (item.colors = create.PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1));

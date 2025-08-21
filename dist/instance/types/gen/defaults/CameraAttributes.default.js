@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultCameraAttributes(item) {
     DefaultResource(item);
     item.auto_exposure_enabled ?? (item.auto_exposure_enabled = false);

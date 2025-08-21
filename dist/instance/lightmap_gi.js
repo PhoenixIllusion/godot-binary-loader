@@ -1,5 +1,5 @@
-import { DefaultLightmapGI } from "./types/gen/defaults/LightmapGI.default";
-import { unwrap_properties_cached } from "./util";
+import { DefaultLightmapGI } from "./types/gen/defaults/LightmapGI.default.js";
+import { unwrap_properties_cached } from "./util.js";
 export class LightmapGIDataInstance {
     constructor(data) {
         this.lightmap_textures = [];

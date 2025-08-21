@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultPlaneMesh(item) {
     DefaultPrimitiveMesh(item);
     item.center_offset ?? (item.center_offset = create.Vector3(0, 0, 0));

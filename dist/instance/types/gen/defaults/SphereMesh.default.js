@@ -1,4 +1,4 @@
-import { DefaultPrimitiveMesh } from './PrimitiveMesh.default';
+import { DefaultPrimitiveMesh } from './PrimitiveMesh.default.js';
 export function DefaultSphereMesh(item) {
     DefaultPrimitiveMesh(item);
     item.height ?? (item.height = 1.0);

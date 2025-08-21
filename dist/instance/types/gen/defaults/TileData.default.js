@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultTileData(item) {
     DefaultObject(item);
     item.flip_h ?? (item.flip_h = false);

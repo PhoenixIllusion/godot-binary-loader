@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultJoint3D(item) {
     DefaultNode3D(item);
     item.exclude_nodes_from_collision ?? (item.exclude_nodes_from_collision = true);

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisualShaderNodeResizableBase } from './VisualShaderNodeResizableBase.default';
+import { DefaultVisualShaderNodeResizableBase } from './VisualShaderNodeResizableBase.default.js';
 export function DefaultVisualShaderNodeFrame(item) {
     DefaultVisualShaderNodeResizableBase(item);
     item.attached_nodes ?? (item.attached_nodes = create.PackedInt32Array());

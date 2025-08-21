@@ -1,4 +1,4 @@
-import { DefaultInputEventMouse } from './InputEventMouse.default';
+import { DefaultInputEventMouse } from './InputEventMouse.default.js';
 export function DefaultInputEventMouseButton(item) {
     DefaultInputEventMouse(item);
     item.button_index ?? (item.button_index = 0);

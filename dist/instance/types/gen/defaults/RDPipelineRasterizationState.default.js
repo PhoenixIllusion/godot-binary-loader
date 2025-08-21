@@ -1,4 +1,4 @@
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultRDPipelineRasterizationState(item) {
     DefaultRefCounted(item);
     item.cull_mode ?? (item.cull_mode = 0);

@@ -1,6 +1,6 @@
-import { Node } from './node';
-import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend";
-import { AnimationNodeTimeScale } from '../types/gen';
+import { Node } from './node.js';
+import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from "./blend.js";
+import { AnimationNodeTimeScale } from '../types/gen/index.js';
 
 export class TimeScale extends Node {
   scale = 1;

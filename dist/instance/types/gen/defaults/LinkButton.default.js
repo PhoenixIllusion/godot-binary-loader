@@ -1,4 +1,4 @@
-import { DefaultBaseButton } from './BaseButton.default';
+import { DefaultBaseButton } from './BaseButton.default.js';
 export function DefaultLinkButton(item) {
     DefaultBaseButton(item);
     item.focus_mode ?? (item.focus_mode = 0);

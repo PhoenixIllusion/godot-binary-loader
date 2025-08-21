@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultTexture3D } from './Texture3D.default';
+import { DefaultTexture3D } from './Texture3D.default.js';
 export function DefaultPlaceholderTexture3D(item) {
     DefaultTexture3D(item);
     item.size ?? (item.size = create.Vector3i(1, 1, 1));

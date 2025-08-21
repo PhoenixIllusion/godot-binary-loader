@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultFont } from './Font.default';
+import { DefaultFont } from './Font.default.js';
 export function DefaultFontVariation(item) {
     DefaultFont(item);
     //base_font

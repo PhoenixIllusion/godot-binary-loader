@@ -1,4 +1,4 @@
-import { DefaultWindow } from './Window.default';
+import { DefaultWindow } from './Window.default.js';
 export function DefaultAcceptDialog(item) {
     DefaultWindow(item);
     item.dialog_autowrap ?? (item.dialog_autowrap = false);

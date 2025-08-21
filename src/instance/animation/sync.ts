@@ -1,6 +1,6 @@
-import { AnimationNodeAdd2, AnimationNodeAdd3, AnimationNodeBlend2, AnimationNodeBlend3, AnimationNodeSub2 } from '../types/gen';
-import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from './blend';
-import { Node } from './node';
+import { AnimationNodeAdd2, AnimationNodeAdd3, AnimationNodeBlend2, AnimationNodeBlend3, AnimationNodeSub2 } from '../types/gen/index.js';
+import { PlaybackInfo, NodeTimeInfo, _pi, FilterAction } from './blend.js';
+import { Node } from './node.js';
 export abstract class SyncNode extends Node {
   sync!: boolean;
 }

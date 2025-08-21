@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNode } from './VisualShaderNode.default';
+import { DefaultVisualShaderNode } from './VisualShaderNode.default.js';
 export function DefaultVisualShaderNodeTexture(item) {
     DefaultVisualShaderNode(item);
     item.source ?? (item.source = 0);

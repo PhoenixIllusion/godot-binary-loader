@@ -1,4 +1,4 @@
-import { DefaultAudioEffect } from './AudioEffect.default';
+import { DefaultAudioEffect } from './AudioEffect.default.js';
 export function DefaultAudioEffectPitchShift(item) {
     DefaultAudioEffect(item);
     item.fft_size ?? (item.fft_size = 3);

@@ -1,4 +1,4 @@
-import { DefaultTexture2D } from './Texture2D.default';
+import { DefaultTexture2D } from './Texture2D.default.js';
 export function DefaultTexture2DRD(item) {
     DefaultTexture2D(item);
     item.resource_local_to_scene ?? (item.resource_local_to_scene = false);

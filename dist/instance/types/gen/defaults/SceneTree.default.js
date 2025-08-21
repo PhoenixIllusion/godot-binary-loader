@@ -1,4 +1,4 @@
-import { DefaultMainLoop } from './MainLoop.default';
+import { DefaultMainLoop } from './MainLoop.default.js';
 export function DefaultSceneTree(item) {
     DefaultMainLoop(item);
     item.auto_accept_quit ?? (item.auto_accept_quit = true);

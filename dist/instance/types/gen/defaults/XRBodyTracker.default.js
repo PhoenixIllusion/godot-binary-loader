@@ -1,4 +1,4 @@
-import { DefaultXRPositionalTracker } from './XRPositionalTracker.default';
+import { DefaultXRPositionalTracker } from './XRPositionalTracker.default.js';
 export function DefaultXRBodyTracker(item) {
     DefaultXRPositionalTracker(item);
     item.body_flags ?? (item.body_flags = 0);

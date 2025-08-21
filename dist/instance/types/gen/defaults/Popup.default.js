@@ -1,4 +1,4 @@
-import { DefaultWindow } from './Window.default';
+import { DefaultWindow } from './Window.default.js';
 export function DefaultPopup(item) {
     DefaultWindow(item);
     item.borderless ?? (item.borderless = true);

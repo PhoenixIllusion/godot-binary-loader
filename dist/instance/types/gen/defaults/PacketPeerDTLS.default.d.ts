@@ -1,2 +1,2 @@
-import * as c from '../index';
+import * as c from '../index.js';
 export declare function DefaultPacketPeerDTLS(item: c.PacketPeerDTLS): void;

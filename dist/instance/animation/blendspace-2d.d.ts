@@ -1,7 +1,7 @@
-import { AnimationNodeBlendSpace2D } from "../types/gen";
-import { Vector2 } from "../types/gen/types";
-import { BlendSpace } from "./blendspace";
-import { PlaybackInfo, NodeTimeInfo } from "./blend";
+import { AnimationNodeBlendSpace2D } from "../types/gen/index.js";
+import { Vector2 } from "../types/gen/types.js";
+import { BlendSpace } from "./blendspace.js";
+import { PlaybackInfo, NodeTimeInfo } from "./blend.js";
 import { ReadonlyVec2, vec2 } from 'gl-matrix';
 export declare class BlendSpace2D extends BlendSpace<ReadonlyVec2> {
     auto_triangles: boolean;

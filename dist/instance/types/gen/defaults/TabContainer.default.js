@@ -1,4 +1,4 @@
-import { DefaultContainer } from './Container.default';
+import { DefaultContainer } from './Container.default.js';
 export function DefaultTabContainer(item) {
     DefaultContainer(item);
     item.all_tabs_in_front ?? (item.all_tabs_in_front = false);

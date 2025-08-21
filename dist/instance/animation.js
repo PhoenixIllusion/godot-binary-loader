@@ -1,5 +1,5 @@
 import { animation_convert_track_float32_array } from "@phoenixillusion/godot-scene-reader/process/scene/animation.js";
-import { node_path_string } from "./util";
+import { node_path_string } from "./util.js";
 export function get_cache_type(p_type) {
     if (p_type == 'bezier') {
         return 'value';

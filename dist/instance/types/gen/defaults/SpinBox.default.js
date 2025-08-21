@@ -1,4 +1,4 @@
-import { DefaultRange } from './Range.default';
+import { DefaultRange } from './Range.default.js';
 export function DefaultSpinBox(item) {
     DefaultRange(item);
     item.alignment ?? (item.alignment = 0);

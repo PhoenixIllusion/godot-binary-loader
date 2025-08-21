@@ -1,4 +1,4 @@
-import { DefaultNode } from './Node.default';
+import { DefaultNode } from './Node.default.js';
 export function DefaultHTTPRequest(item) {
     DefaultNode(item);
     item.accept_gzip ?? (item.accept_gzip = true);

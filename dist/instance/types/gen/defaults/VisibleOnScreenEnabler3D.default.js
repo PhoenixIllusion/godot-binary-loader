@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultVisibleOnScreenNotifier3D } from './VisibleOnScreenNotifier3D.default';
+import { DefaultVisibleOnScreenNotifier3D } from './VisibleOnScreenNotifier3D.default.js';
 export function DefaultVisibleOnScreenEnabler3D(item) {
     DefaultVisibleOnScreenNotifier3D(item);
     item.enable_mode ?? (item.enable_mode = 0);

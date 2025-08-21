@@ -4,9 +4,9 @@ import { parse_remap } from "@phoenixillusion/godot-scene-reader/parse/text/rema
 import { try_open_pack } from "@phoenixillusion/godot-scene-reader/pck/parser.js";
 import { PackedScene } from "@phoenixillusion/godot-scene-reader/process/scene/packed_scene.js";
 import { try_open_bin_config } from "@phoenixillusion/godot-scene-reader/parse/binary/ecfg.js";
-import { DefaultProjectSettings } from "./instance/types/gen/defaults/ProjectSettings.default";
+import { DefaultProjectSettings } from "./instance/types/gen/defaults/ProjectSettings.default.js";
 import { unwrap_properties, unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
-import { generateUUID } from "./instance/math";
+import { generateUUID } from "./instance/math.js";
 import { decoder } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
 const UnpackWorker = () => new Worker(new URL('./binary_unpack.worker.js', import.meta.url), { type: 'module' });
 const LoadWorker = () => new Worker(new URL('./pck-loader.js', import.meta.url), { type: 'module' });
@@ -97,9 +97,7 @@ export class PckLoader {
     }
     async try_open_ctex3d(arrayBuffer) {
         if (this.worker_count == 0) {
-            return {
-                flags: 0, height: 0, images: [], mipmap_limit: 0, version: 0, width: 0
-            };
+            return try_open_ctexarray(arrayBuffer);
         }
         return new Promise(resolve => {
             const guid = generateUUID();

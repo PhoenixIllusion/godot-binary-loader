@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultPhysicsBody2D } from './PhysicsBody2D.default';
+import { DefaultPhysicsBody2D } from './PhysicsBody2D.default.js';
 export function DefaultStaticBody2D(item) {
     DefaultPhysicsBody2D(item);
     item.constant_angular_velocity ?? (item.constant_angular_velocity = 0.0);

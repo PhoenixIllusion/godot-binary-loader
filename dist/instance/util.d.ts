@@ -1,5 +1,5 @@
 import { VariantType } from "@phoenixillusion/godot-scene-reader/parse/binary/variant.js";
-import { NodePath } from "./types/gen/types";
+import { NodePath } from "./types/gen/types.js";
 export declare function resolve_nodepath(currentPath: string[], nodePath: string[], absolute: boolean): string[];
 export declare function node_path_string(nodePath: NodePath | undefined): string;
 interface ParentChildSystem<T> {

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultOccluder3D } from './Occluder3D.default';
+import { DefaultOccluder3D } from './Occluder3D.default.js';
 export function DefaultPolygonOccluder3D(item) {
     DefaultOccluder3D(item);
     item.polygon ?? (item.polygon = create.PackedVector2Array());

@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultNavigationPolygon(item) {
     DefaultResource(item);
     item.agent_radius ?? (item.agent_radius = 10.0);

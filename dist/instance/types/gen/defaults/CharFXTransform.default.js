@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultCharFXTransform(item) {
     DefaultRefCounted(item);
     item.color ?? (item.color = create.Color(0, 0, 0, 1));

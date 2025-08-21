@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultThemeDB(item) {
     DefaultObject(item);
     item.fallback_base_scale ?? (item.fallback_base_scale = 1.0);

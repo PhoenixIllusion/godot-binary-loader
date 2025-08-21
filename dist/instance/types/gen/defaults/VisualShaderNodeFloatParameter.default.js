@@ -1,4 +1,4 @@
-import { DefaultVisualShaderNodeParameter } from './VisualShaderNodeParameter.default';
+import { DefaultVisualShaderNodeParameter } from './VisualShaderNodeParameter.default.js';
 export function DefaultVisualShaderNodeFloatParameter(item) {
     DefaultVisualShaderNodeParameter(item);
     item.default_value ?? (item.default_value = 0.0);

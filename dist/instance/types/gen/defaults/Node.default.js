@@ -1,4 +1,4 @@
-import { DefaultObject } from './Object.default';
+import { DefaultObject } from './Object.default.js';
 export function DefaultNode(item) {
     DefaultObject(item);
     item.auto_translate_mode ?? (item.auto_translate_mode = 0);

@@ -107,7 +107,7 @@ ${props.map(p => {
 function printDefault(gclass: GodotClass): string {
   const { inherits } = gclass;
   return `import { create } from './../types';
-import * as c from '../index';${inherits ? `\nimport { Default${inherits} } from './${inherits}.default'` : ''}
+import * as c from '../index.js';${inherits ? `\nimport { Default${inherits} } from './${inherits}.default.js'` : ''}
 ${printJustDefault(gclass)}
 `
 }
@@ -238,7 +238,7 @@ export type ${c}Type = ${c}TypeMap[keyof ${c}TypeMap];
   let defs = `/*
   Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
 */
-import * as type from './types';\n`
+import * as type from './types.js';\n`
   let defaults = `/*
   Generated via XML source files of https://github.com/godotengine/godot/tree/4.4/doc/classes
 */

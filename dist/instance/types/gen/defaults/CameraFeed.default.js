@@ -3,7 +3,7 @@
 */
 //@ts-nocheck
 import { create } from './../types';
-import { DefaultRefCounted } from './RefCounted.default';
+import { DefaultRefCounted } from './RefCounted.default.js';
 export function DefaultCameraFeed(item) {
     DefaultRefCounted(item);
     item.feed_is_active ?? (item.feed_is_active = false);

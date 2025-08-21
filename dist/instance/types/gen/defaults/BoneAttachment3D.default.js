@@ -1,4 +1,4 @@
-import { DefaultNode3D } from './Node3D.default';
+import { DefaultNode3D } from './Node3D.default.js';
 export function DefaultBoneAttachment3D(item) {
     DefaultNode3D(item);
     item.bone_idx ?? (item.bone_idx = -1);

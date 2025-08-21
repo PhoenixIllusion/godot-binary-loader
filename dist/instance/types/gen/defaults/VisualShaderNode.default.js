@@ -1,4 +1,4 @@
-import { DefaultResource } from './Resource.default';
+import { DefaultResource } from './Resource.default.js';
 export function DefaultVisualShaderNode(item) {
     DefaultResource(item);
     item.linked_parent_graph_frame ?? (item.linked_parent_graph_frame = -1);
