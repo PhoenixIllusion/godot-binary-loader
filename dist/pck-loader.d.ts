@@ -3,7 +3,13 @@ import { BinResource } from "@phoenixillusion/godot-scene-reader/parse/binary/re
 import { PckFile } from "@phoenixillusion/godot-scene-reader/pck/parser.js";
 import { PackedScene } from "@phoenixillusion/godot-scene-reader/process/scene/packed_scene.js";
 import { ProjectSettingsI } from "./instance/types/project_settings";
-export type PckResources = Record<string, BinResource | cTexFile>;
+export type GDShader = {
+    type: 'Shader';
+    path: string;
+    text: string;
+};
+export type ResourceType = BinResource | cTexFile | cTexFile[] | GDShader;
+export type PckResources = Record<string, ResourceType>;
 export type PckScenes = Record<string, PackedScene>;
 interface LoadRequest {
     path: string;
@@ -25,7 +31,7 @@ export declare class PckLoader {
     worker_count: number;
     current_worker: number;
     workers: Worker[];
-    worker_results: Record<string, (result: BinResource | cTexFile | BinResource | undefined) => void>;
+    worker_results: Record<string, (result: ResourceType | undefined) => void>;
     constructor(pack: PckFile);
     private remapPath;
     private resolvePath;
@@ -37,6 +43,7 @@ export declare class PckLoader {
     try_open_bin_resource(res_path: string, arrayBuffer: ArrayBuffer, p_no_resource: boolean, p_keep_uuid_paths: boolean): Promise<BinResource>;
     try_open_ctex(arrayBuffer: ArrayBuffer): Promise<cTexFile>;
     try_open_ctex3d(arrayBuffer: ArrayBuffer): Promise<cTexFile>;
+    try_open_ctexarray(arrayBuffer: ArrayBuffer): Promise<cTexFile[]>;
     private cacheResource;
     private resolveFile;
     resolve(path: string): Promise<{
@@ -51,7 +58,7 @@ export declare class PckLoader {
         internal_index_cache: Record<string, import("@phoenixillusion/godot-scene-reader").VariantType>;
         external_resources: import("@phoenixillusion/godot-scene-reader").ExtResource[];
         remaps: Record<string, string>;
-    } | cTexFile | null | undefined>;
+    } | cTexFile | GDShader | cTexFile[] | null | undefined>;
     static load(request: LoadRequest): Promise<LoadResponse>;
     static loadWithWorker(request: LoadRequest): Promise<LoadResponse>;
 }

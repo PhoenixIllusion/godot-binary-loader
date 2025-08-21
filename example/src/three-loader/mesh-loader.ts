@@ -22,6 +22,7 @@ import { DefaultSphereMesh } from "@phoenixillusion/godot-binary-loader/instance
 import { DefaultCapsuleMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CapsuleMesh.default.js";
 import { DefaultCylinderMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CylinderMesh.default.js";
 import { DefaultArrayMesh } from "@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/ArrayMesh.default.js";
+import { ArrayData } from "@phoenixillusion/godot-scene-reader/process/scene/mesh/mesh.js";
 
 const standardMaterial = new MeshStandardMaterial({ color: 0xffffff });
 const meshCache = new Map<MeshType, Mesh | null>()
@@ -84,23 +85,33 @@ export async function loadMesh(node: Node3DTypeMap['MeshInstance3D']): Promise<M
         return (<number[][]>arr).flat();
       }
 
+      function createBufferAttribute(data: ArrayData): BufferAttribute {
+        return new BufferAttribute(new Float32Array(flat(data)), (<number[][]>data)[0].length);
+      }
+
       const g_mesh = new GodotMesh.Mesh(m[p]);
       name = m[p].resource_name ?? '<no name>'
       for (const surface of g_mesh.surfaces) {
-        const [pos, normal, _tan, _, uv] = surface.arrays;
+        const [pos, normal, tan, colors, uv, uv1] = surface.arrays;
         const index = surface.arrays[MeshNS.ArrayType.ARRAY_INDEX];
         const bone_index = surface.arrays[MeshNS.ArrayType.ARRAY_BONES];
         const bone_weights = surface.arrays[MeshNS.ArrayType.ARRAY_WEIGHTS];
         let s_material = standardMaterial;
         const s_geo = new BufferGeometry();
-        s_geo.setAttribute('position', new BufferAttribute(new Float32Array(flat(pos)), 3));
+        s_geo.setAttribute('position', createBufferAttribute(pos));
         if (normal)
-          s_geo.setAttribute('normal', new BufferAttribute(new Float32Array(flat(normal)), 3));
+          s_geo.setAttribute('normal',  createBufferAttribute(normal));
+        if (tan)
+          s_geo.setAttribute('tan',  createBufferAttribute(tan));
+        if (colors)
+          s_geo.setAttribute('colors',  createBufferAttribute(colors));
         if (uv)
-          s_geo.setAttribute('uv', new BufferAttribute(new Float32Array(flat(uv)), 2));
+          s_geo.setAttribute('uv',  createBufferAttribute(uv));
+        if (uv1)
+          s_geo.setAttribute('uv1',  createBufferAttribute(uv1));
         if (bone_index && bone_weights) {
-          s_geo.setAttribute('skinIndex', new BufferAttribute(new Uint16Array(flat(bone_index)), (<number[][]>bone_index)[0].length));
-          s_geo.setAttribute('skinWeight', new BufferAttribute(new Float32Array(flat(bone_weights)), (<number[][]>bone_weights)[0].length));
+          s_geo.setAttribute('skinIndex',  createBufferAttribute(bone_index));
+          s_geo.setAttribute('skinWeight',  createBufferAttribute(bone_weights));
         }
         if (index) {
           for (let i = 0; i < index.length; i += 3) {

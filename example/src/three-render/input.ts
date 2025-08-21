@@ -1,11 +1,20 @@
+export interface InputDirection {
+  forwardPressed: boolean;
+  backwardPressed: boolean;
+  leftPressed: boolean;
+  rightPressed: boolean;
+  space: boolean;
+  control: boolean;
+}
+
 export function setupInput() {
   const input = {
     forwardPressed: false,
     backwardPressed: false,
     leftPressed: false,
     rightPressed: false,
-    jump: false,
-    crouched: false
+    space: false,
+    control: false
   }
   document.addEventListener("keydown", onDocumentKeyDown, false);
   document.addEventListener("keyup", onDocumentKeyUp, false);
@@ -20,9 +29,9 @@ export function setupInput() {
     } else if (keyCode == 68) {
       input.rightPressed = true;
     } else if (keyCode == 32) {
-      input.jump = true;
+      input.space = true;
     } else if (keyCode == 16) {
-      input.crouched = true;
+      input.control = true;
     }
   };
   function onDocumentKeyUp(event: KeyboardEvent) {
@@ -36,9 +45,9 @@ export function setupInput() {
     } else if (keyCode == 68) {
       input.rightPressed = false;
     } else if (keyCode == 32) {
-      input.jump = false;
+      input.space = false;
     } else if (keyCode == 16) {
-      input.crouched = false;
+      input.control = false;
     }
   };
   return input;

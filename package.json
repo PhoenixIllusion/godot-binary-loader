@@ -30,7 +30,7 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.3",
+    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.4",
     "delaunator": "5.0.1",
     "gl-matrix": "3.4.1"
   }

@@ -2,7 +2,7 @@
 import { Object3D } from "three/src/core/Object3D.js";
 import { Matrix4 } from "three/src/math/Matrix4.js";
 
-import type { Area3D, CharacterBody3D, RigidBody3D, Shape3DType, StaticBody3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
+import type { Area3D, CharacterBody3D, RigidBody3D, Shape3DType, StaticBody3D, VehicleBody3D, VehicleWheel3D } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
 
 export interface PhysicsShapeData {
   matrix: Matrix4, shape: Shape3DType
@@ -15,6 +15,16 @@ export interface StaticBodyData {
 export interface PhysicsBodyData<T> {
   properties: T, node: Object3D, shapes: PhysicsShapeData[]
 }
+export interface VehicleWheel3DData {
+  properties: VehicleWheel3D;
+  node: Object3D;
+}
+export interface Vehicle3DData {
+  properties: VehicleBody3D;
+  node: Object3D;
+  shapes: PhysicsShapeData[];
+  wheels: VehicleWheel3DData[];
+}
 
 export interface RigidBody3DData extends PhysicsBodyData<RigidBody3D> { }
 export interface CharacterBody3DData extends PhysicsBodyData<CharacterBody3D> { }
@@ -24,9 +34,10 @@ export interface PhysicsData {
   character3d_bodies: CharacterBody3DData[]
   rigid_bodies: RigidBody3DData[],
   static_bodies: StaticBodyData[],
-  areas: Area3DData[]
+  areas: Area3DData[],
+  vehicles: Vehicle3DData[]
 }
 
 export function DefaultPhysicsData(): PhysicsData {
-  return { character3d_bodies: [], rigid_bodies: [], static_bodies: [], areas: [] }
+  return { character3d_bodies: [], rigid_bodies: [], static_bodies: [], areas: [], vehicles: [] }
 }

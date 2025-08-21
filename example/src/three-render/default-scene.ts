@@ -14,13 +14,13 @@ export interface Config {
 
 export function setupDefaultScene(pckLoader: GodotPckLoader, config: Config) {
   const canvas = document.getElementById('app') as HTMLCanvasElement;
-  canvas.width = (canvas.clientWidth || 640);
-  canvas.height = (canvas.clientHeight || 640);
+  const WIDTH = canvas.width = (canvas.clientWidth || 640);
+  const HEIGHT = canvas.height = (canvas.clientHeight || 640);
   const scene = new Scene();
   const renderer = new WebGLRenderer({ canvas, powerPreference: 'low-power', antialias: true });
   renderer.setSize(canvas.width, canvas.height, false);
   renderer.setClearColor(0xFF00FF)
-  let camera = new PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  let camera = new PerspectiveCamera(75, WIDTH / HEIGHT, 0.1, 1000);
   const controls = new OrbitControls(camera, renderer.domElement);
 
   ['astc', 'etc', 'pvrtc', 's3tc', 'bptc', 'rgtc'].forEach(s => {

@@ -4,7 +4,7 @@ import { Quaternion } from 'three/src/math/Quaternion.js';
 import { Vector3 } from 'three/src/math/Vector3.js';
 import Jolt from './jolt-import';
 import { loadJolt } from './jolt-import';
-import { Area3DData, CharacterBody3DData, PhysicsShapeData, RigidBody3DData, StaticBodyData } from './physics';
+import { Area3DData, PhysicsShapeData, RigidBody3DData, StaticBodyData } from './physics';
 import { Scene } from 'three/src/scenes/Scene.js';
 import { MeshPhongMaterial } from 'three/src/materials/MeshPhongMaterial.js';
 import { BoxGeometry } from 'three/src/geometries/BoxGeometry.js';
@@ -19,6 +19,9 @@ import { Matrix4 } from 'three/src/math/Matrix4.js';
 import { DefaultBoxShape3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/BoxShape3D.default.js';
 import { DefaultSphereShape3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/SphereShape3D.default.js';
 import { DefaultCapsuleShape3D } from '@phoenixillusion/godot-binary-loader/instance/types/gen/defaults/CapsuleShape3D.default.js';
+import { NearestFilter, RepeatWrapping } from 'three/src/constants.js';
+import { TextureLoader } from 'three/src/loaders/TextureLoader.js';
+import { PlaneGeometry } from 'three/src/geometries/PlaneGeometry.js';
 
 
 
@@ -32,22 +35,22 @@ export interface JoltPhysics {
   dynamicObjects: Object3D[];
 }
 
-const RENDER_COLLISION = 1;
+export const RENDER_COLLISION = 1;
 
 // The update function
-const wrapVec3 = (v: Jolt.Vec3, vec = new Vector3) => { vec.set(v.GetX(), v.GetY(), v.GetZ()); return vec; }
-const unwrapVec3 = (v: Vector3, vec = new Jolt.Vec3()) => { vec.Set(v.x, v.y, v.z); return vec; }
-const wrapRVec3 = (v: Jolt.RVec3, vec = new Vector3) => { vec.set(v.GetX(), v.GetY(), v.GetZ()); return vec; }
-const unwrapRVec3 = (v: Vector3, vec = new Jolt.RVec3()) => { vec.Set(v.x, v.y, v.z); return vec; }
-const wrapQuat = (q: Jolt.Quat, quat = new Quaternion) => { quat.set(q.GetX(), q.GetY(), q.GetZ(), q.GetW()); return quat; }
-const unwrapQuat = (q: Quaternion, quat = new Jolt.Quat()) => { quat.Set(q.x, q.y, q.z, q.w); return quat; }
+export const wrapVec3 = (v: Jolt.Vec3, vec = new Vector3) => { vec.set(v.GetX(), v.GetY(), v.GetZ()); return vec; }
+export const unwrapVec3 = (v: Vector3, vec = new Jolt.Vec3()) => { vec.Set(v.x, v.y, v.z); return vec; }
+export const wrapRVec3 = (v: Jolt.RVec3, vec = new Vector3) => { vec.set(v.GetX(), v.GetY(), v.GetZ()); return vec; }
+export const unwrapRVec3 = (v: Vector3, vec = new Jolt.RVec3()) => { vec.Set(v.x, v.y, v.z); return vec; }
+export const wrapQuat = (q: Jolt.Quat, quat = new Quaternion) => { quat.set(q.GetX(), q.GetY(), q.GetZ(), q.GetW()); return quat; }
+export const unwrapQuat = (q: Quaternion, quat = new Jolt.Quat()) => { quat.Set(q.x, q.y, q.z, q.w); return quat; }
 
-const unwrapFloat3 = (v: Vector3, float3 = new Jolt.Float3(v.x, v.y, v.z)) => { float3.x = v.x; float3.y = v.y; float3.z = v.z; return float3 }
+export const unwrapFloat3 = (v: Vector3, float3 = new Jolt.Float3(v.x, v.y, v.z)) => { float3.x = v.x; float3.y = v.y; float3.z = v.z; return float3 }
 
 // Object layers
-const LAYER_NON_MOVING = 0;
-const LAYER_MOVING = 1;
-const NUM_OBJECT_LAYERS = 2;
+export const LAYER_NON_MOVING = 0;
+export const LAYER_MOVING = 1;
+export const NUM_OBJECT_LAYERS = 2;
 
 function setupCollisionFiltering(settings: Jolt.JoltSettings) {
   // Layer that objects can be in, determines which other objects it can collide with
@@ -97,21 +100,24 @@ const pos_update = {
   scale: new Vector3(1, 1, 1),
   quaternion: new Quaternion()
 }
+
+export function updateNodeFromBody(obj: Object3D, body: GetBodyLike): void {
+  const { matrix, inv_matrix, position, scale, quaternion } = pos_update;
+    wrapRVec3(body.GetPosition(), position);
+    wrapQuat(body.GetRotation(), quaternion);
+    //matrix.compose(position, quaternion, scale);
+    obj.position.copy(position);
+    obj.quaternion.copy(quaternion);
+    obj.updateWorldMatrix(true, true);
+}
+
 export function updatePhysics(jolt: JoltPhysics, deltaTime: number) {
 
   // Update object transforms
   for (let i = 0, il = jolt.dynamicObjects.length; i < il; i++) {
     let obj = jolt.dynamicObjects[i];
     let body = obj.userData.body;
-    const { matrix, inv_matrix, position, scale, quaternion } = pos_update;
-    wrapVec3(body.GetPosition(), position);
-    wrapQuat(body.GetRotation(), quaternion);
-    matrix.compose(position, quaternion, scale);
-    if (obj.parent) {
-      obj.parent.updateWorldMatrix(true, false);
-      inv_matrix.copy(obj.parent.matrixWorld).invert();
-      inv_matrix.multiply(matrix).decompose(obj.position, obj.quaternion, obj.scale);
-    }
+    updateNodeFromBody(obj, body);
   }
 
   // When running below 55 Hz, do 2 steps instead of 1
@@ -120,12 +126,19 @@ export function updatePhysics(jolt: JoltPhysics, deltaTime: number) {
   jolt.jolt.Step(deltaTime, numSteps);
 }
 
-function addToScene(scene: Scene, jolt: JoltPhysics, body: Jolt.Body, color: number, motionType: Jolt.EMotionType, existingBody?: Object3D) {
+export function addJoltBodyToScene(scene: Scene, jolt: JoltPhysics, body: Jolt.Body, color: number, motionType: Jolt.EMotionType, existingBody?: Object3D) {
   jolt.bodyInterface.AddBody(body.GetID(), Jolt.EActivation_Activate);
 
   let threeObject = existingBody;
-  if (RENDER_COLLISION && !existingBody) {
+  if (RENDER_COLLISION) {
     threeObject = getThreeObjectForBody(body, color);
+    if(existingBody) {
+      threeObject.position.set(0,0,0);
+      threeObject.quaternion.set(0,0,0,1);
+      existingBody.add(threeObject);
+      existingBody.removeFromParent();
+      threeObject = existingBody;
+    }
     scene.add(threeObject);
   }
 
@@ -137,7 +150,7 @@ function addToScene(scene: Scene, jolt: JoltPhysics, body: Jolt.Body, color: num
 }
 
 
-function createJoltShape(shape: Shape3DType, v3: Jolt.Vec3): Jolt.ShapeSettings | null {
+export function createJoltShape(shape: Shape3DType, v3: Jolt.Vec3): Jolt.ShapeSettings | null {
 
   switch (shape.type) {
     case 'BoxShape3D': {
@@ -193,14 +206,22 @@ function createJoltShape(shape: Shape3DType, v3: Jolt.Vec3): Jolt.ShapeSettings 
 const three_pos = new Vector3();
 const three_quat = new Quaternion();
 const three_scale = new Vector3();
+const V3_ZERO = new Vector3(0,0,0)
+const Q_IDENTITY = new Quaternion().identity();
 
-function decomposeMatrix(matrix: Matrix4, position: Jolt.Vec3 | Jolt.RVec3, rotation: Jolt.Quat) {
+export function decomposeFromNode(node: Object3D, position: Jolt.Vec3 | Jolt.RVec3, rotation: Jolt.Quat) {
+  node.updateWorldMatrix(true, false);
+  const matrix = node.matrixWorld;
+  decomposeMatrix(matrix, position, rotation);
+}
+
+export function decomposeMatrix(matrix: Matrix4, position: Jolt.Vec3 | Jolt.RVec3, rotation: Jolt.Quat) {
   matrix.decompose(three_pos, three_quat, three_scale);
   position.Set(three_pos.x, three_pos.y, three_pos.z);
   unwrapQuat(three_quat, rotation);
 }
 
-function createShape(shapes: PhysicsShapeData[], position: Jolt.Vec3, rotation: Jolt.Quat, scale: Jolt.Vec3, _tmp: Jolt.Vec3): Jolt.ShapeSettings | null {
+export function createShape(shapes: PhysicsShapeData[], position: Jolt.Vec3, rotation: Jolt.Quat, scale: Jolt.Vec3, _tmp: Jolt.Vec3): Jolt.ShapeSettings | null {
 
   let j_shape: Jolt.ShapeSettings | null = null;
   if (shapes.length == 1) {
@@ -211,8 +232,13 @@ function createShape(shapes: PhysicsShapeData[], position: Jolt.Vec3, rotation: 
       unwrapVec3(three_scale, scale);
       j_shape = new Jolt.ScaledShapeSettings(j_shape, scale);
     }
+    if(j_shape && !(three_pos.equals(V3_ZERO) && three_quat.equals(Q_IDENTITY))) {
+      unwrapVec3(three_pos, position);
+      unwrapQuat(three_quat, rotation)
+      j_shape = new Jolt.RotatedTranslatedShapeSettings(position, rotation, j_shape);
+    }
   }
-  if (shapes.length > 0) {
+  if (shapes.length > 1) {
     const shapeSettings = new Jolt.StaticCompoundShapeSettings();
     shapes.forEach(shape => {
       decomposeMatrix(shape.matrix, position, rotation);
@@ -236,14 +262,9 @@ export function createRigidBody(jolt: JoltPhysics, scene: Scene, data: RigidBody
   const scale = new Jolt.Vec3();
   const rotation = new Jolt.Quat();
 
-
-  data.node.updateWorldMatrix(true, false);
-  const root = data.node.matrixWorld.clone();
   const j_shape = createShape(data.shapes, position, rotation, scale, v3);
   if (j_shape) {
-    root.decompose(three_pos, three_quat, three_scale);
-    unwrapRVec3(three_pos, r_position);
-    unwrapQuat(three_quat, rotation);
+    decomposeFromNode(data.node, r_position, rotation);
     const creationSettings = new Jolt.BodyCreationSettings(j_shape.Create().Get(), r_position, rotation, Jolt.EMotionType_Dynamic, LAYER_MOVING);
     let DOF = Jolt.EAllowedDOFs_All;
     if (data.properties.axis_lock_angular_x)
@@ -261,7 +282,7 @@ export function createRigidBody(jolt: JoltPhysics, scene: Scene, data: RigidBody
     creationSettings.set_mAllowedDOFs(DOF);
     const body = jolt.bodyInterface.CreateBody(creationSettings);
     Jolt.destroy(creationSettings);
-    addToScene(scene, jolt, body, 0x66ff66, Jolt.EMotionType_Dynamic, data.node);
+    addJoltBodyToScene(scene, jolt, body, 0x66ff66, Jolt.EMotionType_Dynamic, data.node);
   }
   Jolt.destroy(v3);
   Jolt.destroy(r_position);
@@ -278,19 +299,14 @@ export function createArea3DBody(jolt: JoltPhysics, scene: Scene, data: Area3DDa
   const scale = new Jolt.Vec3();
   const rotation = new Jolt.Quat();
 
-
-  data.node.updateWorldMatrix(true, false);
-  const root = data.node.matrixWorld.clone();
   const j_shape = createShape(data.shapes, position, rotation, scale, v3);
   if (j_shape) {
-    root.decompose(three_pos, three_quat, three_scale);
-    unwrapRVec3(three_pos, r_position);
-    unwrapQuat(three_quat, rotation);
+    decomposeFromNode(data.node, r_position, rotation);
     const creationSettings = new Jolt.BodyCreationSettings(j_shape.Create().Get(), r_position, rotation, Jolt.EMotionType_Static, LAYER_MOVING);
     creationSettings.mIsSensor = true;
     const body = jolt.bodyInterface.CreateBody(creationSettings);
     Jolt.destroy(creationSettings);
-    addToScene(scene, jolt, body, 0xff0000, Jolt.EMotionType_Static);
+    addJoltBodyToScene(scene, jolt, body, 0xff0000, Jolt.EMotionType_Static);
   }
   Jolt.destroy(v3);
   Jolt.destroy(r_position);
@@ -325,7 +341,7 @@ export function createStaticBody(jolt: JoltPhysics, scene: Scene, data: StaticBo
         const creationSettings = new Jolt.BodyCreationSettings(j_shape.Create().Get(), r_position, rotation, Jolt.EMotionType_Static, LAYER_NON_MOVING);
         const body = jolt.bodyInterface.CreateBody(creationSettings);
         Jolt.destroy(creationSettings);
-        addToScene(scene, jolt, body, 0xFF00FF, Jolt.EMotionType_Static);
+        addJoltBodyToScene(scene, jolt, body, 0xFF00FF, Jolt.EMotionType_Static);
       }
     })
   });
@@ -365,7 +381,7 @@ interface GetBodyLike {
 }
 
 const materials: Record<number, MeshPhongMaterial> = {}
-function getThreeObjectForBody(body: GetBodyLike, color: number) {
+export function getThreeObjectForBody(body: GetBodyLike, color: number) {
   const see_through = false;
   let material = materials[color] || new MeshPhongMaterial({ color: color, wireframe: true, depthTest: !see_through, depthWrite: !see_through });
   materials[color] = material;
@@ -394,180 +410,29 @@ function getThreeObjectForBody(body: GetBodyLike, color: number) {
       threeObject = new Mesh(createMeshForShape(shape), material);
       break;
   }
-
-  wrapRVec3(body.GetPosition(), threeObject.position);
-  wrapQuat(body.GetRotation(), threeObject.quaternion);
+  updateNodeFromBody(threeObject, body);
 
   return threeObject;
 }
 
-export function buildCharacter(physics: JoltPhysics, data: CharacterBody3DData) {
+const texLoader = new TextureLoader();
+const texture = texLoader.load('data:image/gif;base64,R0lGODdhAgACAIABAAAAAP///ywAAAAAAgACAAACA0QCBQA7');
+texture.wrapS = texture.wrapT = RepeatWrapping;
+texture.offset.set(0, 0);
+texture.repeat.set(20, 20);
+texture.magFilter = NearestFilter;
+export const TILE_MATERIAL = new MeshPhongMaterial({ color: 0xffffff });
+TILE_MATERIAL.map = texture;
 
-  const { jolt, physicsSystem } = physics;
-
-  const upRotationX = 0;
-  const upRotationZ = 0;
-
-  let characterRadiusStanding = 1;
-
-  const charSettings = data.properties;
-
-  // Character movement properties
-  const controlMovementDuringJump = true;					///< If false the character cannot change movement direction in mid air
-  const characterSpeed = 3.0;
-  const jumpSpeed = 10.0;
-
-  const enableCharacterInertia = true;
-
-  const maxSlopeAngle = charSettings.floor_max_angle;
-
-  const maxStrength = 100.0;
-  const characterPadding = 0.02;
-  const penetrationRecoverySpeed = 1.0;
-  const predictiveContactDistance = 0.1;
-  const enableWalkStairs = true;
-  const enableStickToFloor = true;
-
-  const updateSettings = new Jolt.ExtendedUpdateSettings();
-
-  const objectVsBroadPhaseLayerFilter = jolt.GetObjectVsBroadPhaseLayerFilter();
-  const objectLayerPairFilter = jolt.GetObjectLayerPairFilter();
-
-  const movingBPFilter = new Jolt.DefaultBroadPhaseLayerFilter(objectVsBroadPhaseLayerFilter, LAYER_MOVING);
-  const movingLayerFilter = new Jolt.DefaultObjectLayerFilter(objectLayerPairFilter, LAYER_MOVING);
-  const bodyFilter = new Jolt.BodyFilter();
-  const shapeFilter = new Jolt.ShapeFilter();
-
-  const _tmpQuat = new Jolt.Quat();
-  const _tmpVec3 = new Jolt.Vec3();
-
-  let desiredVelocity = new Vector3();
-  let allowSliding = false;
-
-  const characterUp = new Vector3().copy(charSettings.up_direction);
-
-  const old_position = new Vector3();
-  const new_position = new Vector3();
-  const prePhysicsUpdate = (deltaTime: number) => {
-    if (!enableStickToFloor) {
-      updateSettings.mStickToFloorStepDown = Jolt.Vec3.prototype.sZero();
-    } else {
-      const vec = characterUp.clone().multiplyScalar(-updateSettings.mStickToFloorStepDown.Length());
-      updateSettings.mStickToFloorStepDown.Set(vec.x, vec.y, vec.z);
-    }
-
-    if (!enableWalkStairs) {
-      updateSettings.mWalkStairsStepUp = Jolt.Vec3.prototype.sZero();
-    } else {
-      const vec = characterUp.clone().multiplyScalar(updateSettings.mWalkStairsStepUp.Length());
-      updateSettings.mWalkStairsStepUp.Set(vec.x, vec.y, vec.z);
-    }
-    characterUp.multiplyScalar(-physicsSystem.GetGravity().Length());
-
-    wrapRVec3(character.GetPosition(), old_position)
-    character.ExtendedUpdate(deltaTime,
-      character.GetUp(),
-      updateSettings,
-      movingBPFilter,
-      movingLayerFilter,
-      bodyFilter,
-      shapeFilter,
-      jolt.GetTempAllocator());
-    wrapRVec3(character.GetPosition(), new_position)
-    data.node.position.copy(new_position);
-    return { old_position, new_position }
-  }
-
-
-  function initShape() {
-    const { shape, matrix } = data.shapes[0];
-    const shapeSettings = createJoltShape(shape, _tmpVec3)!;
-    if ('height' in shape.properties) {
-      characterRadiusStanding = shape.properties.height / 2;
-    } else if ('size' in shape.properties) {
-      const { y } = shape.properties.size;
-      characterRadiusStanding = y / 2;
-    } else if ('radius' in shape.properties) {
-      characterRadiusStanding = shape.properties.radius;
-    }
-    decomposeMatrix(matrix, _tmpVec3, _tmpQuat);
-    const settings = new Jolt.RotatedTranslatedShapeSettings(_tmpVec3, _tmpQuat, shapeSettings);
-    return settings.Create().Get();
-  }
-
-  const settings = new Jolt.CharacterVirtualSettings();
-  settings.mMass = 1000;
-  settings.mMaxSlopeAngle = maxSlopeAngle;
-  settings.mMaxStrength = maxStrength;
-  settings.mShape = initShape();
-  settings.mBackFaceMode = Jolt.EBackFaceMode_CollideWithBackFaces;
-  settings.mCharacterPadding = characterPadding;
-  settings.mPenetrationRecoverySpeed = penetrationRecoverySpeed;
-  settings.mPredictiveContactDistance = predictiveContactDistance;
-  settings.mSupportingVolume = new Jolt.Plane(Jolt.Vec3.prototype.sAxisY(), -characterRadiusStanding);
-  const character = new Jolt.CharacterVirtual(settings, Jolt.RVec3.prototype.sZero(), Jolt.Quat.prototype.sIdentity(), physicsSystem);
-
-  const handleInput = (movementDirection: Vector3, jump: boolean, deltaTime: number) => {
-    const playerControlsHorizontalVelocity = controlMovementDuringJump || character.IsSupported();
-    if (playerControlsHorizontalVelocity) {
-      // True if the player intended to move
-      allowSliding = !(movementDirection.length() < 1.0e-12);
-      // Smooth the player input
-      if (enableCharacterInertia) {
-        desiredVelocity.multiplyScalar(0.75).add(movementDirection.multiplyScalar(0.25 * characterSpeed))
-      } else {
-        desiredVelocity.copy(movementDirection).multiplyScalar(characterSpeed);
-      }
-    } else {
-      // While in air we allow sliding
-      allowSliding = true;
-    }
-    _tmpVec3.Set(upRotationX, 0, upRotationZ);
-    const characterUpRotation = Jolt.Quat.prototype.sEulerAngles(_tmpVec3);
-    character.SetUp(characterUpRotation.RotateAxisY());
-    character.SetRotation(characterUpRotation);
-    const upRotation = wrapQuat(characterUpRotation);
-
-    character.UpdateGroundVelocity();
-    const characterUp = wrapVec3(character.GetUp());
-    const linearVelocity = wrapVec3(character.GetLinearVelocity());
-    const currentVerticalVelocity = characterUp.clone().multiplyScalar(linearVelocity.dot(characterUp));
-    const groundVelocity = wrapVec3(character.GetGroundVelocity());
-    const gravity = wrapVec3(physicsSystem.GetGravity());
-
-    let newVelocity;
-    const movingTowardsGround = (currentVerticalVelocity.y - groundVelocity.y) < 0.1;
-    if (character.GetGroundState() == Jolt.EGroundState_OnGround					// If on ground
-      && (enableCharacterInertia ?
-        movingTowardsGround													// Inertia enabled: And not moving away from ground
-        : !character.IsSlopeTooSteep(character.GetGroundNormal())))			// Inertia disabled: And not on a slope that is too steep
-    {
-      // Assume velocity of ground when on ground
-      newVelocity = groundVelocity;
-
-      // Jump
-      if (jump && movingTowardsGround)
-        newVelocity.add(characterUp.multiplyScalar(jumpSpeed));
-    }
-    else
-      newVelocity = currentVerticalVelocity.clone();
-
-    // Gravity
-    newVelocity.add(gravity.multiplyScalar(deltaTime).applyQuaternion(upRotation));
-
-    if (playerControlsHorizontalVelocity) {
-      // Player input
-      newVelocity.add(desiredVelocity.clone().applyQuaternion(upRotation));
-    } else {
-      // Preserve horizontal velocity
-      const currentHorizontalVelocity = linearVelocity.sub(currentVerticalVelocity);
-      newVelocity.add(currentHorizontalVelocity);
-    }
-
-    _tmpVec3.Set(newVelocity.x, newVelocity.y, newVelocity.z);
-    character.SetLinearVelocity(_tmpVec3);
-  }
-  if (allowSliding) { }
-  data.node.add(getThreeObjectForBody(character, 0xFFFFFF));
-  return { prePhysicsUpdate, handleInput, character }
+export function createFloor(jolt: JoltPhysics, scene: Scene, size = 50) {
+	var shape = new Jolt.BoxShape(new Jolt.Vec3(size, 0.5, size), 0.05);
+	var creationSettings = new Jolt.BodyCreationSettings(shape, new Jolt.RVec3(0, -0.5, 0), new Jolt.Quat(0, 0, 0, 1), Jolt.EMotionType_Static, LAYER_NON_MOVING);
+	let body = jolt.bodyInterface.CreateBody(creationSettings);
+	Jolt.destroy(creationSettings);
+  const plane = new PlaneGeometry(size*2, size*2);
+  const mesh = new Mesh(plane, TILE_MATERIAL);
+  mesh.rotateX(-Math.PI/2)
+  scene.add(mesh)
+	addJoltBodyToScene(scene, jolt, body, 0xc7c7c7, Jolt.EMotionType_Static);
+	return body;
 }

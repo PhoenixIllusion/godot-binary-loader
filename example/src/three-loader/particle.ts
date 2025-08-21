@@ -19,7 +19,7 @@ export class ThreeParticleEmitter {
   async build() {
     registerShaderChunks();
     const particlesNode = this.particlesNode;
-    if(particlesNode.type == 'CPUParticles3D') {
+    if (particlesNode.type == 'CPUParticles3D') {
       const particle3d: CPUParticles3D = particlesNode.properties;
       const mesh = await loadMesh({ properties: { mesh: particle3d.mesh } as any as MeshInstance3D, type: 'MeshInstance3D' });
       let ps = new ParticleSystem({
@@ -47,7 +47,7 @@ export class ThreeParticleEmitter {
   }
 }
 export function registerShaderChunks() {
-  for(const [key,val] of Object.entries(ShaderChunkT)) {
+  for (const [key, val] of Object.entries(ShaderChunkT)) {
     (<any>ShaderChunk)[key] = val;
   }
 }

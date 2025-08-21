@@ -2,20 +2,20 @@ import { Object3D } from "three/src/core/Object3D.js";
 import { FileLoader } from "three/src/loaders/FileLoader.js";
 import { Loader } from "three/src/loaders/Loader.js";
 import { LoadingManager } from "three/src/loaders/LoadingManager.js";
-import { PckLoader } from "../../../src/pck-loader";
-import { buildScene } from "./scene-builder";
 import { Camera } from "three/src/cameras/Camera.js";
 import { Texture } from "three/src/textures/Texture.js";
 import { Mesh } from "three/src/objects/Mesh.js";
 import { ThreeAnimation } from "./animation";
 import { Skeleton } from "three/src/objects/Skeleton.js";
 import { DefaultPhysicsData, PhysicsData } from "./physics";
+import { ThreeAnimationTree } from "./animation-tree";
 import { BinResource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 import { cTexFile } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
-import { ThreeAnimationTree } from "./animation-tree";
-
 import { SceneInstance } from "@phoenixillusion/godot-binary-loader/instance/scene.js";
+import { PckLoader } from "@phoenixillusion/godot-binary-loader/pck-loader.js";
+
 import { ThreeParticleEmitter } from "./particle";
+import { LightmapGIInstance } from "@phoenixillusion/godot-binary-loader/instance/lightmap_gi.js";
 
 export interface GodotPck {
   scene: Object3D | null;
@@ -27,6 +27,7 @@ export interface GodotPck {
   animationTrees: ThreeAnimationTree[];
   particles: ThreeParticleEmitter[];
   physics: PhysicsData;
+  lightmapGI: LightmapGIInstance[];
   maps: {
     object3d: Map<SceneInstance.Node, Object3D>
   }
@@ -67,10 +68,10 @@ export class GodotPckLoader extends Loader<GodotPck> {
   }
 
   async parse(url: string, buffer: ArrayBuffer): Promise<GodotPck> {
-
     const pckData = await PckLoader.load({ path: url, allowed_extensions: this.compressed_texture_formats, buffer, resolve_scene: this.main_scene, worker_count: this.worker_count })
     const scene: GodotPck = {
-      scene: null, camera: [], mesh: [], textures: [], skeletons: [], animations: [], animationTrees: [], particles: [],
+      scene: null, camera: [], mesh: [], textures: [], skeletons: [], animations: [],
+       animationTrees: [], particles: [], lightmapGI: [],
       physics: DefaultPhysicsData(), maps: { object3d: new Map() }
     };
     if (pckData.resolved_scene) {
@@ -85,6 +86,7 @@ export class GodotPckLoader extends Loader<GodotPck> {
           },
         });
         instance.bindParents();
+        const { buildScene } = await import("./scene-builder");
         scene.scene = await buildScene(scene, new Object3D(), instance.root);
       }
     }

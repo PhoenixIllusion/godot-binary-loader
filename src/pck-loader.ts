@@ -1,4 +1,4 @@
-import { cTexFile, try_open_ctex } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
+import { cTexFile, try_open_ctex, try_open_ctexarray } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
 import { BinResource, try_open_bin_resource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 import { parse_remap } from "@phoenixillusion/godot-scene-reader/parse/text/remap/parse.js";
 import { PckEntry, PckFile, try_open_pack } from "@phoenixillusion/godot-scene-reader/pck/parser.js";
@@ -10,12 +10,15 @@ import { ProjectSettings } from "./instance/types/gen";
 import { unwrap_properties, unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import { ProjectSettingsI } from "./instance/types/project_settings";
 import { generateUUID } from "./instance/math";
+import { decoder } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
 
 
 const UnpackWorker = () => new Worker(new URL('./binary_unpack.worker.js', import.meta.url), { type: 'module' });
 const LoadWorker = () => new Worker(new URL('./pck-loader.js', import.meta.url), { type: 'module' });
 
-export type PckResources = Record<string, BinResource | cTexFile>;
+export type GDShader = { type: 'Shader', path: string, text: string }
+export type ResourceType = BinResource | cTexFile | cTexFile[] | GDShader;
+export type PckResources = Record<string, ResourceType>;
 export type PckScenes = Record<string, PackedScene>;
 
 interface LoadRequest {
@@ -39,7 +42,7 @@ export class PckLoader {
   worker_count = 0;
   current_worker = 0;
   workers: Worker[] = [];
-  worker_results: Record<string, (result: BinResource | cTexFile | BinResource | undefined) => void> = {}
+  worker_results: Record<string, (result: ResourceType | undefined) => void> = {}
 
   constructor(private pack: PckFile) { /* */ }
 
@@ -133,8 +136,18 @@ export class PckLoader {
       this.queue_worker_task('try_open_ctex3d', guid, arrayBuffer);
     })
   }
+  async try_open_ctexarray(arrayBuffer: ArrayBuffer): Promise<cTexFile[]> {
+    if (this.worker_count == 0) {
+      return try_open_ctexarray(arrayBuffer);
+    }
+    return new Promise<cTexFile[]>(resolve => {
+      const guid = generateUUID();
+      this.worker_results[guid] = resolve as any;
+      this.queue_worker_task('try_open_ctexarray', guid, arrayBuffer);
+    })
+  }
 
-  private async cacheResource<T extends BinResource | cTexFile>(path: string, entry: PckEntry, func: (entry: PckEntry) => Promise<T>): Promise<T> {
+  private async cacheResource<T extends ResourceType>(path: string, entry: PckEntry, func: (entry: PckEntry) => Promise<T>): Promise<T> {
     const data = await func(entry);
     this.resourceCache[path] = data;
     return data;
@@ -144,7 +157,7 @@ export class PckLoader {
       return this.resourceCache[path];
     }
     let isBinary = false;
-    ['.scn', '.res', '.mesh', '.material', '.occ', '.ogg', '.wav'].forEach(ext => {
+    ['.scn', '.res', '.mesh', '.material', '.occ', '.ogg', '.wav','.fontdata','.lmbake'].forEach(ext => {
       if (path.endsWith(ext) || entry.path.endsWith(ext)) {
         isBinary = true;
       }
@@ -160,6 +173,16 @@ export class PckLoader {
       }
       return data;
     }
+    if (entry.path.endsWith('.gdshader')) {
+      const data = await this.cacheResource(path, entry, async (entry): Promise<GDShader> => {
+        return {
+          type: 'Shader',
+          path,
+          text: decoder.decode(new Uint8Array(entry.getData()))
+        }
+      });
+      return data;
+    }
     if (entry.path.endsWith('.gdc')) {
       console.log("Skipping GdScript Binary")
       return undefined;
@@ -169,6 +192,7 @@ export class PckLoader {
       await Promise.all(data?.external_resources?.map(ext =>
         this.resolve(ext.path)) || []
       );
+      return data;
     }
     if (entry.path.endsWith('.ctex')) {
       const data = await this.cacheResource(path, entry, entry => this.try_open_ctex(entry.getData()));
@@ -176,6 +200,10 @@ export class PckLoader {
     }
     if (entry.path.endsWith('.ctex3d')) {
       const data = await this.cacheResource(path, entry, entry => this.try_open_ctex3d(entry.getData()));
+      return data;
+    }
+    if (entry.path.endsWith('.ctexarray')) {
+      const data = await this.cacheResource(path, entry, entry => this.try_open_ctexarray(entry.getData()));
       return data;
     }
     return undefined;

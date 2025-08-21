@@ -11,6 +11,7 @@ import { DataTexture } from "three/src/textures/DataTexture.js";
 
 import { Texture as TextureT } from "@phoenixillusion/godot-binary-loader/instance/types/gen/index.js";
 import { DataFormat } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2_format.js";
+import { convertTextureDataType, getThreeTextureFormat, getThreeTextureType } from "./three-tex-format";
 
 async function parseCTexEntry(file: cTexFile): Promise<Texture> {
   const entry = file.images[0];
@@ -20,10 +21,13 @@ async function parseCTexEntry(file: cTexFile): Promise<Texture> {
       if (internal_format > 0) {
         if (compressed)
           return new CompressedTexture(file.images.map(x => ({ width: x.width, height: x.height, data: x.buffer })),
-            entry.width, entry.height, <CompressedPixelFormat>internal_format, <TextureDataType>type);
+            entry.width, entry.height, <CompressedPixelFormat>internal_format, getThreeTextureType(type));
         else {
-          const data_tex = new DataTexture(entry.buffer, entry.width, entry.height, <PixelFormat>format, <TextureDataType>type)
-          data_tex.mipmaps = file.images.map(x => ({ width: x.width, height: x.height, data: x.buffer }));
+          const data_tex = new DataTexture(convertTextureDataType(type, entry.buffer), entry.width, entry.height, getThreeTextureFormat(format).format, getThreeTextureType(type))
+          if( format == 6407 && type == 5131) {
+            data_tex.internalFormat = 'RGB16F';
+          }
+          data_tex.mipmaps = file.images.map(x => ({ width: x.width, height: x.height, data: convertTextureDataType(type, x.buffer) }));
           return data_tex;
         }
       }

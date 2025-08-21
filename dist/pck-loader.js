@@ -1,4 +1,4 @@
-import { try_open_ctex } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
+import { try_open_ctex, try_open_ctexarray } from "@phoenixillusion/godot-scene-reader/parse/binary/gst2.js";
 import { try_open_bin_resource } from "@phoenixillusion/godot-scene-reader/parse/binary/resource.js";
 import { parse_remap } from "@phoenixillusion/godot-scene-reader/parse/text/remap/parse.js";
 import { try_open_pack } from "@phoenixillusion/godot-scene-reader/pck/parser.js";
@@ -7,6 +7,7 @@ import { try_open_bin_config } from "@phoenixillusion/godot-scene-reader/parse/b
 import { DefaultProjectSettings } from "./instance/types/gen/defaults/ProjectSettings.default";
 import { unwrap_properties, unwrap_property_paths } from "@phoenixillusion/godot-scene-reader/process/scene/unwrap.js";
 import { generateUUID } from "./instance/math";
+import { decoder } from "@phoenixillusion/godot-scene-reader/util/data-reader.js";
 const UnpackWorker = () => new Worker(new URL('./binary_unpack.worker.js', import.meta.url), { type: 'module' });
 const LoadWorker = () => new Worker(new URL('./pck-loader.js', import.meta.url), { type: 'module' });
 export class PckLoader {
@@ -106,6 +107,16 @@ export class PckLoader {
             this.queue_worker_task('try_open_ctex3d', guid, arrayBuffer);
         });
     }
+    async try_open_ctexarray(arrayBuffer) {
+        if (this.worker_count == 0) {
+            return try_open_ctexarray(arrayBuffer);
+        }
+        return new Promise(resolve => {
+            const guid = generateUUID();
+            this.worker_results[guid] = resolve;
+            this.queue_worker_task('try_open_ctexarray', guid, arrayBuffer);
+        });
+    }
     async cacheResource(path, entry, func) {
         const data = await func(entry);
         this.resourceCache[path] = data;
@@ -116,7 +127,7 @@ export class PckLoader {
             return this.resourceCache[path];
         }
         let isBinary = false;
-        ['.scn', '.res', '.mesh', '.material', '.occ', '.ogg', '.wav'].forEach(ext => {
+        ['.scn', '.res', '.mesh', '.material', '.occ', '.ogg', '.wav', '.fontdata', '.lmbake'].forEach(ext => {
             if (path.endsWith(ext) || entry.path.endsWith(ext)) {
                 isBinary = true;
             }
@@ -130,6 +141,16 @@ export class PckLoader {
             }
             return data;
         }
+        if (entry.path.endsWith('.gdshader')) {
+            const data = await this.cacheResource(path, entry, async (entry) => {
+                return {
+                    type: 'Shader',
+                    path,
+                    text: decoder.decode(new Uint8Array(entry.getData()))
+                };
+            });
+            return data;
+        }
         if (entry.path.endsWith('.gdc')) {
             console.log("Skipping GdScript Binary");
             return undefined;
@@ -137,6 +158,7 @@ export class PckLoader {
         if (entry.path.endsWith('.sample')) {
             const data = await this.cacheResource(path, entry, entry => this.try_open_bin_resource(path, entry.getData(), false, false));
             await Promise.all(data?.external_resources?.map(ext => this.resolve(ext.path)) || []);
+            return data;
         }
         if (entry.path.endsWith('.ctex')) {
             const data = await this.cacheResource(path, entry, entry => this.try_open_ctex(entry.getData()));
@@ -144,6 +166,10 @@ export class PckLoader {
         }
         if (entry.path.endsWith('.ctex3d')) {
             const data = await this.cacheResource(path, entry, entry => this.try_open_ctex3d(entry.getData()));
+            return data;
+        }
+        if (entry.path.endsWith('.ctexarray')) {
+            const data = await this.cacheResource(path, entry, entry => this.try_open_ctexarray(entry.getData()));
             return data;
         }
         return undefined;
