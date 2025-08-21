@@ -12,4 +12,30 @@ export function DefaultTabContainer(item) {
     item.tabs_rearrange_group ?? (item.tabs_rearrange_group = -1);
     item.tabs_visible ?? (item.tabs_visible = true);
     item.use_hidden_tabs_for_min_size ?? (item.use_hidden_tabs_for_min_size = false);
+    //drop_mark_color
+    //font_disabled_color
+    //font_hovered_color
+    //font_outline_color
+    //font_selected_color
+    //font_unselected_color
+    //icon_max_width
+    //icon_separation
+    //outline_size
+    //side_margin
+    //font
+    //font_size
+    //decrement
+    //decrement_highlight
+    //drop_mark
+    //increment
+    //increment_highlight
+    //menu
+    //menu_highlight
+    //panel
+    //tab_disabled
+    //tab_focus
+    //tab_hovered
+    //tab_selected
+    //tab_unselected
+    //tabbar_background  
 }

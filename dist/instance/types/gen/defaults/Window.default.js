@@ -39,4 +39,17 @@ export function DefaultWindow(item) {
     item.unresizable ?? (item.unresizable = false);
     item.visible ?? (item.visible = true);
     item.wrap_controls ?? (item.wrap_controls = false);
+    //title_color
+    //title_outline_modulate
+    //close_h_offset
+    //close_v_offset
+    //resize_margin
+    //title_height
+    //title_outline_size
+    //title_font
+    //title_font_size
+    //close
+    //close_pressed
+    //embedded_border
+    //embedded_unfocused_border  
 }

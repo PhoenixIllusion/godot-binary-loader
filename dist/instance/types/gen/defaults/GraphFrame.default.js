@@ -13,4 +13,9 @@ export function DefaultGraphFrame(item) {
     item.tint_color ?? (item.tint_color = create.Color(0.3, 0.3, 0.3, 0.75));
     item.tint_color_enabled ?? (item.tint_color_enabled = false);
     item.title ?? (item.title = "");
+    //resizer_color
+    //panel
+    //panel_selected
+    //titlebar
+    //titlebar_selected  
 }

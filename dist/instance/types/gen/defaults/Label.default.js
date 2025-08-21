@@ -28,4 +28,15 @@ export function DefaultLabel(item) {
     item.visible_characters ?? (item.visible_characters = -1);
     item.visible_characters_behavior ?? (item.visible_characters_behavior = 0);
     item.visible_ratio ?? (item.visible_ratio = 1.0);
+    //font_color
+    //font_outline_color
+    //font_shadow_color
+    //line_spacing
+    //outline_size
+    //shadow_offset_x
+    //shadow_offset_y
+    //shadow_outline_size
+    //font
+    //font_size
+    //normal  
 }

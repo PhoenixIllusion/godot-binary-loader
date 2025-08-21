@@ -7,4 +7,13 @@ export function DefaultSlider(item) {
     item.step ?? (item.step = 1.0);
     item.tick_count ?? (item.tick_count = 0);
     item.ticks_on_borders ?? (item.ticks_on_borders = false);
+    //center_grabber
+    //grabber_offset
+    //grabber
+    //grabber_disabled
+    //grabber_highlight
+    //tick
+    //grabber_area
+    //grabber_area_highlight
+    //slider  
 }

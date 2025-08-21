@@ -7,8 +7,6 @@ export interface PhysicsBody3D extends CollisionObject3D {
     axis_lock_linear_y: type.bool;
     axis_lock_linear_z: type.bool;
 }
-export declare namespace PhysicsBody3D {
-}
 export interface SpriteBase3D extends GeometryInstance3D {
     alpha_antialiasing_edge: type.float;
     alpha_antialiasing_mode: type.int;
@@ -64,15 +62,9 @@ export interface RDSamplerState extends RefCounted {
     unnormalized_uvw: type.bool;
     use_anisotropy: type.bool;
 }
-export declare namespace RDSamplerState {
-}
 export interface ResourcePreloader extends Node {
 }
-export declare namespace ResourcePreloader {
-}
 export interface FileSystemDock extends VBoxContainer {
-}
-export declare namespace FileSystemDock {
 }
 export interface BaseButton extends Control {
     action_mode: type.int;
@@ -117,8 +109,6 @@ export interface MeshInstance3D extends GeometryInstance3D {
         properties: Skin;
     };
 }
-export declare namespace MeshInstance3D {
-}
 export interface OccluderPolygon2D extends Resource {
     closed: type.bool;
     cull_mode: type.int;
@@ -161,11 +151,7 @@ export interface TextureLayeredRD extends TextureLayered {
         properties: RID;
     };
 }
-export declare namespace TextureLayeredRD {
-}
 export interface StreamPeerExtension extends StreamPeer {
-}
-export declare namespace StreamPeerExtension {
 }
 export interface Viewport extends Node {
     audio_listener_enable_2d: type.bool;
@@ -375,8 +361,6 @@ export declare namespace AudioStreamPlayer3D {
 }
 export interface SphereShape3D extends Shape3D {
     radius: type.float;
-}
-export declare namespace SphereShape3D {
 }
 export interface ParticleProcessMaterial extends Material {
     alpha_curve: {
@@ -604,8 +588,36 @@ export interface Slider extends Range {
     step: type.float;
     tick_count: type.int;
     ticks_on_borders: type.bool;
-}
-export declare namespace Slider {
+    center_grabber: type.int;
+    grabber_offset: type.int;
+    grabber: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    grabber_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    grabber_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    tick: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    grabber_area: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    grabber_area_highlight: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    slider: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface TextureProgressBar extends Range {
     fill_mode: type.int;
@@ -653,24 +665,18 @@ export declare namespace TextureProgressBar {
 export interface Translation extends Resource {
     locale: type.String;
 }
-export declare namespace Translation {
-}
 export interface PropertyTweener extends Tweener {
 }
-export declare namespace PropertyTweener {
-}
 export interface Expression extends RefCounted {
-}
-export declare namespace Expression {
 }
 export interface VisualShaderNodeFloatConstant extends VisualShaderNodeConstant {
     constant: type.float;
 }
-export declare namespace VisualShaderNodeFloatConstant {
-}
 export interface MarginContainer extends Container {
-}
-export declare namespace MarginContainer {
+    margin_bottom: type.int;
+    margin_left: type.int;
+    margin_right: type.int;
+    margin_top: type.int;
 }
 export interface AudioEffectDistortion extends AudioEffect {
     drive: type.float;
@@ -689,8 +695,6 @@ export declare namespace AudioEffectDistortion {
     }
 }
 export interface EditorSelection extends Object {
-}
-export declare namespace EditorSelection {
 }
 export interface TextMesh extends PrimitiveMesh {
     autowrap_mode: type.int;
@@ -715,19 +719,11 @@ export interface TextMesh extends PrimitiveMesh {
     vertical_alignment: type.int;
     width: type.float;
 }
-export declare namespace TextMesh {
-}
 export interface AnimationNodeSub2 extends AnimationNodeSync {
-}
-export declare namespace AnimationNodeSub2 {
 }
 export interface ImporterMesh extends Resource {
 }
-export declare namespace ImporterMesh {
-}
 export interface Semaphore extends RefCounted {
-}
-export declare namespace Semaphore {
 }
 export interface ProjectSettings extends Object {
     'animation/warnings/check_angle_interpolation_type_conflicting': type.bool;
@@ -1778,8 +1774,6 @@ export interface ProjectSettings extends Object {
     'xr/openxr/view_configuration': type.int;
     'xr/shaders/enabled': type.bool;
 }
-export declare namespace ProjectSettings {
-}
 export interface TextEdit extends Control {
     autowrap_mode: type.int;
     caret_blink: type.bool;
@@ -1830,6 +1824,47 @@ export interface TextEdit extends Control {
     use_default_word_separators: type.bool;
     virtual_keyboard_enabled: type.bool;
     wrap_mode: type.int;
+    background_color: type.Color;
+    caret_background_color: type.Color;
+    caret_color: type.Color;
+    current_line_color: type.Color;
+    font_color: type.Color;
+    font_outline_color: type.Color;
+    font_placeholder_color: type.Color;
+    font_readonly_color: type.Color;
+    font_selected_color: type.Color;
+    search_result_border_color: type.Color;
+    search_result_color: type.Color;
+    selection_color: type.Color;
+    word_highlighted_color: type.Color;
+    caret_width: type.int;
+    line_spacing: type.int;
+    outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    space: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    tab: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    read_only: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace TextEdit {
     const enum MenuItems {
@@ -1934,24 +1969,16 @@ export declare namespace TileMap {
 }
 export interface VisualShaderNodeLinearSceneDepth extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeLinearSceneDepth {
-}
 export interface TextureCubemapArrayRD extends TextureLayeredRD {
-}
-export declare namespace TextureCubemapArrayRD {
 }
 export interface SubViewportContainer extends Container {
     focus_mode: type.int;
     stretch: type.bool;
     stretch_shrink: type.int;
 }
-export declare namespace SubViewportContainer {
-}
 export interface XRVRS extends Object {
     vrs_min_radius: type.float;
     vrs_strength: type.float;
-}
-export declare namespace XRVRS {
 }
 export interface VisualShaderNodeParticleRandomness extends VisualShaderNode {
     op_type: type.int;
@@ -1967,8 +1994,6 @@ export declare namespace VisualShaderNodeParticleRandomness {
 }
 export interface CompressedTexture2DArray extends CompressedTextureLayered {
 }
-export declare namespace CompressedTexture2DArray {
-}
 export interface CanvasLayer extends Node {
     custom_viewport: {
         type: "Node";
@@ -1983,12 +2008,8 @@ export interface CanvasLayer extends Node {
     transform: type.Transform2D;
     visible: type.bool;
 }
-export declare namespace CanvasLayer {
-}
 export interface ConvexPolygonShape3D extends Shape3D {
     points: type.PackedVector3Array;
-}
-export declare namespace ConvexPolygonShape3D {
 }
 export interface CanvasTexture extends Texture2D {
     diffuse_texture: {
@@ -2009,11 +2030,7 @@ export interface CanvasTexture extends Texture2D {
     texture_filter: type.int;
     texture_repeat: type.int;
 }
-export declare namespace CanvasTexture {
-}
 export interface EditorInspectorPlugin extends RefCounted {
-}
-export declare namespace EditorInspectorPlugin {
 }
 export interface NavigationServer3D extends Object {
 }
@@ -2074,12 +2091,8 @@ export declare namespace VisualShaderNodeVectorFunc {
 }
 export interface TileMapPattern extends Resource {
 }
-export declare namespace TileMapPattern {
-}
 export interface Marker2D extends Node2D {
     gizmo_extents: type.float;
-}
-export declare namespace Marker2D {
 }
 export interface NavigationLink2D extends Node2D {
     bidirectional: type.bool;
@@ -2090,11 +2103,7 @@ export interface NavigationLink2D extends Node2D {
     start_position: type.Vector2;
     travel_cost: type.float;
 }
-export declare namespace NavigationLink2D {
-}
 export interface Marshalls extends Object {
-}
-export declare namespace Marshalls {
 }
 export interface VisualShaderNodeUIntOp extends VisualShaderNode {
     operator: type.int;
@@ -2145,13 +2154,9 @@ export interface Node2D extends CanvasItem {
     skew: type.float;
     transform: type.Transform2D;
 }
-export declare namespace Node2D {
-}
 export interface RandomNumberGenerator extends RefCounted {
     seed: type.int;
     state: type.int;
-}
-export declare namespace RandomNumberGenerator {
 }
 export interface LightmapGIData extends Resource {
     light_texture: {
@@ -2163,8 +2168,6 @@ export interface LightmapGIData extends Resource {
         properties: TextureLayered[];
     };
 }
-export declare namespace LightmapGIData {
-}
 export interface Container extends Control {
     mouse_filter: type.int;
 }
@@ -2174,25 +2177,17 @@ export declare namespace Container {
 }
 export interface CallbackTweener extends Tweener {
 }
-export declare namespace CallbackTweener {
-}
 export interface ImageTexture3D extends Texture3D {
 }
-export declare namespace ImageTexture3D {
-}
 export interface VisualShaderNodeRotationByAxis extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeRotationByAxis {
 }
 export interface ImageTexture extends Texture2D {
     resource_local_to_scene: type.bool;
 }
-export declare namespace ImageTexture {
-}
 export interface GridContainer extends Container {
     columns: type.int;
-}
-export declare namespace GridContainer {
+    h_separation: type.int;
+    v_separation: type.int;
 }
 export interface World3D extends Resource {
     camera_attributes: {
@@ -2224,16 +2219,12 @@ export interface World3D extends Resource {
         properties: RID;
     };
 }
-export declare namespace World3D {
-}
 export interface InputEventMouseButton extends InputEventMouse {
     button_index: type.int;
     canceled: type.bool;
     double_click: type.bool;
     factor: type.float;
     pressed: type.bool;
-}
-export declare namespace InputEventMouseButton {
 }
 export interface ResourceUID extends Object {
 }
@@ -2248,11 +2239,7 @@ export interface PanoramaSkyMaterial extends Material {
         properties: Texture2D;
     };
 }
-export declare namespace PanoramaSkyMaterial {
-}
 export interface PhysicsDirectSpaceState2D extends Object {
-}
-export declare namespace PhysicsDirectSpaceState2D {
 }
 export interface CanvasItemMaterial extends Material {
     blend_mode: type.int;
@@ -2280,12 +2267,8 @@ export interface SeparationRayShape3D extends Shape3D {
     length: type.float;
     slide_on_slope: type.bool;
 }
-export declare namespace SeparationRayShape3D {
-}
 export interface VideoStream extends Resource {
     file: type.String;
-}
-export declare namespace VideoStream {
 }
 export interface CollisionPolygon3D extends Node3D {
     depth: type.float;
@@ -2293,17 +2276,11 @@ export interface CollisionPolygon3D extends Node3D {
     margin: type.float;
     polygon: type.PackedVector2Array;
 }
-export declare namespace CollisionPolygon3D {
-}
 export interface InputEventPanGesture extends InputEventGesture {
     delta: type.Vector2;
 }
-export declare namespace InputEventPanGesture {
-}
 export interface StreamPeerBuffer extends StreamPeer {
     data_array: type.PackedByteArray;
-}
-export declare namespace StreamPeerBuffer {
 }
 export interface StaticBody3D extends PhysicsBody3D {
     constant_angular_velocity: type.Vector3;
@@ -2312,8 +2289,6 @@ export interface StaticBody3D extends PhysicsBody3D {
         type: "PhysicsMaterial";
         properties: PhysicsMaterial;
     };
-}
-export declare namespace StaticBody3D {
 }
 export interface EditorFileDialog extends ConfirmationDialog {
     access: type.int;
@@ -2351,11 +2326,7 @@ export interface VisualShaderNodeVec2Parameter extends VisualShaderNodeParameter
     default_value: type.Vector2;
     default_value_enabled: type.bool;
 }
-export declare namespace VisualShaderNodeVec2Parameter {
-}
 export interface Texture2D extends Texture {
-}
-export declare namespace Texture2D {
 }
 export interface Engine extends Object {
     max_fps: type.int;
@@ -2366,15 +2337,9 @@ export interface Engine extends Object {
     print_to_stdout: type.bool;
     time_scale: type.float;
 }
-export declare namespace Engine {
-}
 export interface EditorNode3DGizmo extends Node3DGizmo {
 }
-export declare namespace EditorNode3DGizmo {
-}
 export interface RenderSceneData extends Object {
-}
-export declare namespace RenderSceneData {
 }
 export interface Camera3D extends Node3D {
     attributes: {
@@ -2430,50 +2395,30 @@ export declare namespace VisualShaderNodeUIntFunc {
 }
 export interface RenderSceneBuffers extends RefCounted {
 }
-export declare namespace RenderSceneBuffers {
-}
 export interface JavaClass extends RefCounted {
-}
-export declare namespace JavaClass {
 }
 export interface ConcavePolygonShape3D extends Shape3D {
     backface_collision: type.bool;
 }
-export declare namespace ConcavePolygonShape3D {
-}
 export interface Crypto extends RefCounted {
-}
-export declare namespace Crypto {
 }
 export interface WorldBoundaryShape3D extends Shape3D {
     plane: type.Plane;
-}
-export declare namespace WorldBoundaryShape3D {
 }
 export interface SkeletonModification2DLookAt extends SkeletonModification2D {
     bone2d_node: type.NodePath;
     bone_index: type.int;
     target_nodepath: type.NodePath;
 }
-export declare namespace SkeletonModification2DLookAt {
-}
 export interface PhysicsTestMotionResult3D extends RefCounted {
-}
-export declare namespace PhysicsTestMotionResult3D {
 }
 export interface VisualShaderNodeParticleEmitter extends VisualShaderNode {
     mode_2d: type.bool;
 }
-export declare namespace VisualShaderNodeParticleEmitter {
-}
 export interface VFlowContainer extends FlowContainer {
-}
-export declare namespace VFlowContainer {
 }
 export interface AnimatableBody3D extends StaticBody3D {
     sync_to_physics: type.bool;
-}
-export declare namespace AnimatableBody3D {
 }
 export interface FogMaterial extends Material {
     albedo: type.Color;
@@ -2486,8 +2431,6 @@ export interface FogMaterial extends Material {
     emission: type.Color;
     height_falloff: type.float;
 }
-export declare namespace FogMaterial {
-}
 export interface TextLine extends RefCounted {
     alignment: type.int;
     direction: type.int;
@@ -2499,8 +2442,6 @@ export interface TextLine extends RefCounted {
     text_overrun_behavior: type.int;
     width: type.float;
 }
-export declare namespace TextLine {
-}
 export interface MenuButton extends Button {
     action_mode: type.int;
     flat: type.bool;
@@ -2509,16 +2450,12 @@ export interface MenuButton extends Button {
     switch_on_hover: type.bool;
     toggle_mode: type.bool;
 }
-export declare namespace MenuButton {
-}
 export interface RootMotionView extends VisualInstance3D {
     animation_path: type.NodePath;
     cell_size: type.float;
     color: type.Color;
     radius: type.float;
     zero_y: type.bool;
-}
-export declare namespace RootMotionView {
 }
 export interface PhysicsShapeQueryParameters3D extends RefCounted {
     collide_with_areas: type.bool;
@@ -2540,8 +2477,6 @@ export interface PhysicsShapeQueryParameters3D extends RefCounted {
     };
     transform: type.Transform3D;
 }
-export declare namespace PhysicsShapeQueryParameters3D {
-}
 export interface AudioStreamPlaybackPolyphonic extends AudioStreamPlayback {
 }
 export declare namespace AudioStreamPlaybackPolyphonic {
@@ -2549,15 +2484,9 @@ export declare namespace AudioStreamPlaybackPolyphonic {
 }
 export interface VisualShaderNodeTexture3DParameter extends VisualShaderNodeTextureParameter {
 }
-export declare namespace VisualShaderNodeTexture3DParameter {
-}
 export interface AudioEffectHighPassFilter extends AudioEffectFilter {
 }
-export declare namespace AudioEffectHighPassFilter {
-}
 export interface Callable {
-}
-export declare namespace Callable {
 }
 export interface VisualShaderNodeParticleEmit extends VisualShaderNode {
     flags: type.int;
@@ -2574,13 +2503,9 @@ export declare namespace VisualShaderNodeParticleEmit {
 export interface StreamPeer extends RefCounted {
     big_endian: type.bool;
 }
-export declare namespace StreamPeer {
-}
 export interface ResourceImporterBitMap extends ResourceImporter {
     create_from: type.int;
     threshold: type.float;
-}
-export declare namespace ResourceImporterBitMap {
 }
 export interface LinkButton extends BaseButton {
     focus_mode: type.int;
@@ -2592,6 +2517,24 @@ export interface LinkButton extends BaseButton {
     text_direction: type.int;
     underline: type.int;
     uri: type.String;
+    font_color: type.Color;
+    font_disabled_color: type.Color;
+    font_focus_color: type.Color;
+    font_hover_color: type.Color;
+    font_hover_pressed_color: type.Color;
+    font_outline_color: type.Color;
+    font_pressed_color: type.Color;
+    outline_size: type.int;
+    underline_spacing: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace LinkButton {
     const enum UnderlineMode {
@@ -2603,8 +2546,6 @@ export declare namespace LinkButton {
 export interface ButtonGroup extends Resource {
     allow_unpress: type.bool;
     resource_local_to_scene: type.bool;
-}
-export declare namespace ButtonGroup {
 }
 export interface PhysicsShapeQueryParameters2D extends RefCounted {
     collide_with_areas: type.bool;
@@ -2626,8 +2567,6 @@ export interface PhysicsShapeQueryParameters2D extends RefCounted {
     };
     transform: type.Transform2D;
 }
-export declare namespace PhysicsShapeQueryParameters2D {
-}
 export interface ThemeDB extends Object {
     fallback_base_scale: type.float;
     fallback_font: {
@@ -2643,8 +2582,6 @@ export interface ThemeDB extends Object {
         type: "StyleBox";
         properties: StyleBox;
     };
-}
-export declare namespace ThemeDB {
 }
 export interface StreamPeerTCP extends StreamPeer {
 }
@@ -2811,8 +2748,6 @@ export declare namespace XRFaceTracker {
 export interface AnimatableBody2D extends StaticBody2D {
     sync_to_physics: type.bool;
 }
-export declare namespace AnimatableBody2D {
-}
 export interface MultiMesh extends Resource {
     buffer: type.PackedFloat32Array;
     color_array: type.PackedColorArray;
@@ -2846,21 +2781,13 @@ export interface VisualInstance3D extends Node3D {
     sorting_offset: type.float;
     sorting_use_aabb_center: type.bool;
 }
-export declare namespace VisualInstance3D {
-}
 export interface WorldBoundaryShape2D extends Shape2D {
     distance: type.float;
     normal: type.Vector2;
 }
-export declare namespace WorldBoundaryShape2D {
-}
 export interface FramebufferCacheRD extends Object {
 }
-export declare namespace FramebufferCacheRD {
-}
 export interface PhysicsTestMotionResult2D extends RefCounted {
-}
-export declare namespace PhysicsTestMotionResult2D {
 }
 export interface LabelSettings extends Resource {
     font: {
@@ -2876,12 +2803,8 @@ export interface LabelSettings extends Resource {
     shadow_offset: type.Vector2;
     shadow_size: type.int;
 }
-export declare namespace LabelSettings {
-}
 export interface ConcavePolygonShape2D extends Shape2D {
     segments: type.PackedVector2Array;
-}
-export declare namespace ConcavePolygonShape2D {
 }
 export interface Camera2D extends Node2D {
     anchor_mode: type.int;
@@ -2926,8 +2849,6 @@ export declare namespace Camera2D {
     }
 }
 export interface PacketPeerUDP extends PacketPeer {
-}
-export declare namespace PacketPeerUDP {
 }
 export interface LightmapGI extends VisualInstance3D {
     bias: type.float;
@@ -3029,8 +2950,6 @@ export declare namespace AStarGrid2D {
 }
 export interface Texture3D extends Texture {
 }
-export declare namespace Texture3D {
-}
 export interface Time extends Object {
 }
 export declare namespace Time {
@@ -3076,8 +2995,6 @@ export interface VehicleBody3D extends RigidBody3D {
     mass: type.float;
     steering: type.float;
 }
-export declare namespace VehicleBody3D {
-}
 export interface AudioStreamRandomizer extends AudioStream {
     playback_mode: type.int;
     random_pitch: type.float;
@@ -3093,23 +3010,15 @@ export declare namespace AudioStreamRandomizer {
 }
 export interface PhysicsDirectSpaceState3DExtension extends PhysicsDirectSpaceState3D {
 }
-export declare namespace PhysicsDirectSpaceState3DExtension {
-}
 export interface VisualShaderNodeOutput extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeOutput {
 }
 export interface VisualShaderNodeParameterRef extends VisualShaderNode {
     parameter_name: type.String;
-}
-export declare namespace VisualShaderNodeParameterRef {
 }
 export interface AudioEffectStereoEnhance extends AudioEffect {
     pan_pullout: type.float;
     surround: type.float;
     time_pullout_ms: type.float;
-}
-export declare namespace AudioEffectStereoEnhance {
 }
 export interface ResourceImporterImageFont extends ResourceImporter {
     ascent: type.int;
@@ -3124,20 +3033,14 @@ export interface ResourceImporterImageFont extends ResourceImporter {
     rows: type.int;
     scaling_mode: type.int;
 }
-export declare namespace ResourceImporterImageFont {
-}
 export interface PhysicsMaterial extends Resource {
     absorbent: type.bool;
     bounce: type.float;
     friction: type.float;
     rough: type.bool;
 }
-export declare namespace PhysicsMaterial {
-}
 export interface Bone2D extends Node2D {
     rest: type.Transform2D;
-}
-export declare namespace Bone2D {
 }
 export interface StaticBody2D extends PhysicsBody2D {
     constant_angular_velocity: type.float;
@@ -3147,11 +3050,7 @@ export interface StaticBody2D extends PhysicsBody2D {
         properties: PhysicsMaterial;
     };
 }
-export declare namespace StaticBody2D {
-}
 export interface TLSOptions extends RefCounted {
-}
-export declare namespace TLSOptions {
 }
 export interface AudioEffectPhaser extends AudioEffect {
     depth: type.float;
@@ -3160,11 +3059,7 @@ export interface AudioEffectPhaser extends AudioEffect {
     range_min_hz: type.float;
     rate_hz: type.float;
 }
-export declare namespace AudioEffectPhaser {
-}
 export interface VisualShaderNodeReroute extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeReroute {
 }
 export interface VisualShaderNodeSwitch extends VisualShaderNode {
     op_type: type.int;
@@ -3204,8 +3099,6 @@ export declare namespace NativeMenu {
 export interface SeparationRayShape2D extends Shape2D {
     length: type.float;
     slide_on_slope: type.bool;
-}
-export declare namespace SeparationRayShape2D {
 }
 export interface XRBodyTracker extends XRPositionalTracker {
     body_flags: type.int;
@@ -3323,8 +3216,6 @@ export interface AudioEffectLimiter extends AudioEffect {
     soft_clip_ratio: type.float;
     threshold_db: type.float;
 }
-export declare namespace AudioEffectLimiter {
-}
 export interface Polygon2D extends Node2D {
     antialiased: type.bool;
     color: type.Color;
@@ -3345,15 +3236,9 @@ export interface Polygon2D extends Node2D {
     uv: type.PackedVector2Array;
     vertex_colors: type.PackedColorArray;
 }
-export declare namespace Polygon2D {
-}
 export interface PhysicsDirectSpaceState3D extends Object {
 }
-export declare namespace PhysicsDirectSpaceState3D {
-}
 export interface Dictionary {
-}
-export declare namespace Dictionary {
 }
 export interface World2D extends Resource {
     canvas: {
@@ -3373,20 +3258,12 @@ export interface World2D extends Resource {
         properties: RID;
     };
 }
-export declare namespace World2D {
-}
 export interface InputEventGesture extends InputEventWithModifiers {
     position: type.Vector2;
 }
-export declare namespace InputEventGesture {
-}
 export interface VBoxContainer extends BoxContainer {
 }
-export declare namespace VBoxContainer {
-}
 export interface AudioStreamGeneratorPlayback extends AudioStreamPlaybackResampled {
-}
-export declare namespace AudioStreamGeneratorPlayback {
 }
 export interface HTTPRequest extends Node {
     accept_gzip: type.bool;
@@ -3418,26 +3295,18 @@ export declare namespace HTTPRequest {
 export interface VisualShaderNodeVec3Constant extends VisualShaderNodeConstant {
     constant: type.Vector3;
 }
-export declare namespace VisualShaderNodeVec3Constant {
-}
 export interface VisualShaderNodeTexture2DArray extends VisualShaderNodeSample3D {
     texture_array: {
         type: "TextureLayered";
         properties: TextureLayered;
     };
 }
-export declare namespace VisualShaderNodeTexture2DArray {
-}
 export interface MissingNode extends Node {
     original_class: type.String;
     original_scene: type.String;
     recording_properties: type.bool;
 }
-export declare namespace MissingNode {
-}
 export interface EditorScript extends RefCounted {
-}
-export declare namespace EditorScript {
 }
 export interface AnimationNodeBlendSpace2D extends AnimationRootNode {
     auto_triangles: type.bool;
@@ -3457,8 +3326,6 @@ export declare namespace AnimationNodeBlendSpace2D {
     }
 }
 export interface AnimationNodeOutput extends AnimationNode {
-}
-export declare namespace AnimationNodeOutput {
 }
 export interface GeometryInstance3D extends VisualInstance3D {
     cast_shadow: type.int;
@@ -3581,13 +3448,9 @@ export interface Compositor extends Resource {
         properties: CompositorEffect[];
     };
 }
-export declare namespace Compositor {
-}
 export interface VisualShaderNodeVec4Parameter extends VisualShaderNodeParameter {
     default_value: type.Vector4;
     default_value_enabled: type.bool;
-}
-export declare namespace VisualShaderNodeVec4Parameter {
 }
 export interface VisualShaderNodeColorFunc extends VisualShaderNode {
     function: type.int;
@@ -3603,8 +3466,6 @@ export declare namespace VisualShaderNodeColorFunc {
 }
 export interface ConfigFile extends RefCounted {
 }
-export declare namespace ConfigFile {
-}
 export interface NavigationLink3D extends Node3D {
     bidirectional: type.bool;
     enabled: type.bool;
@@ -3614,39 +3475,25 @@ export interface NavigationLink3D extends Node3D {
     start_position: type.Vector3;
     travel_cost: type.float;
 }
-export declare namespace NavigationLink3D {
-}
 export interface VisualShaderNodeVec3Parameter extends VisualShaderNodeParameter {
     default_value: type.Vector3;
     default_value_enabled: type.bool;
 }
-export declare namespace VisualShaderNodeVec3Parameter {
-}
 export interface RefCounted extends Object {
-}
-export declare namespace RefCounted {
 }
 export interface Marker3D extends Node3D {
     gizmo_extents: type.float;
 }
-export declare namespace Marker3D {
-}
 export interface ConvexPolygonShape2D extends Shape2D {
     points: type.PackedVector2Array;
 }
-export declare namespace ConvexPolygonShape2D {
-}
 export interface NavigationServer2D extends Object {
-}
-export declare namespace NavigationServer2D {
 }
 export interface JSON extends Resource {
     data: {
         type: "Variant";
         properties: Variant;
     };
-}
-export declare namespace JSON {
 }
 export interface MultiplayerPeer extends PacketPeer {
     refuse_new_connections: type.bool;
@@ -3670,28 +3517,18 @@ export declare namespace MultiplayerPeer {
 export interface AudioEffectAmplify extends AudioEffect {
     volume_db: type.float;
 }
-export declare namespace AudioEffectAmplify {
-}
 export interface ScriptExtension extends Script {
-}
-export declare namespace ScriptExtension {
 }
 export interface InputEventMagnifyGesture extends InputEventGesture {
     factor: type.float;
 }
-export declare namespace InputEventMagnifyGesture {
-}
 export interface AudioEffectEQ10 extends AudioEffectEQ {
-}
-export declare namespace AudioEffectEQ10 {
 }
 export interface VisualShaderNodeTexture3D extends VisualShaderNodeSample3D {
     texture: {
         type: "Texture3D";
         properties: Texture3D;
     };
-}
-export declare namespace VisualShaderNodeTexture3D {
 }
 export interface TextureButton extends BaseButton {
     flip_h: type.bool;
@@ -3782,8 +3619,6 @@ export interface SkeletonIK3D extends SkeletonModifier3D {
     tip_bone: type.StringName;
     use_magnet: type.bool;
 }
-export declare namespace SkeletonIK3D {
-}
 export interface MultiplayerAPI extends RefCounted {
     multiplayer_peer: {
         type: "MultiplayerPeer";
@@ -3815,12 +3650,8 @@ export interface AudioStreamPlayer2D extends Node2D {
     stream_paused: type.bool;
     volume_db: type.float;
 }
-export declare namespace AudioStreamPlayer2D {
-}
 export interface VisualShaderNodeParticleMultiplyByAxisAngle extends VisualShaderNode {
     degrees_mode: type.bool;
-}
-export declare namespace VisualShaderNodeParticleMultiplyByAxisAngle {
 }
 export interface VisualShaderNodeFrame extends VisualShaderNodeResizableBase {
     attached_nodes: type.PackedInt32Array;
@@ -3828,8 +3659,6 @@ export interface VisualShaderNodeFrame extends VisualShaderNodeResizableBase {
     tint_color: type.Color;
     tint_color_enabled: type.bool;
     title: type.String;
-}
-export declare namespace VisualShaderNodeFrame {
 }
 export interface VoxelGI extends VisualInstance3D {
     camera_attributes: {
@@ -3855,8 +3684,6 @@ export declare namespace VoxelGI {
 export interface VisualShaderNodeInput extends VisualShaderNode {
     input_name: type.String;
 }
-export declare namespace VisualShaderNodeInput {
-}
 export interface VisualShaderNodeParticleMeshEmitter extends VisualShaderNodeParticleEmitter {
     mesh: {
         type: "Mesh";
@@ -3865,25 +3692,15 @@ export interface VisualShaderNodeParticleMeshEmitter extends VisualShaderNodePar
     surface_index: type.int;
     use_all_surfaces: type.bool;
 }
-export declare namespace VisualShaderNodeParticleMeshEmitter {
-}
 export interface ScriptEditorBase extends VBoxContainer {
 }
-export declare namespace ScriptEditorBase {
-}
 export interface EditorTranslationParserPlugin extends RefCounted {
-}
-export declare namespace EditorTranslationParserPlugin {
 }
 export interface RectangleShape2D extends Shape2D {
     size: type.Vector2;
 }
-export declare namespace RectangleShape2D {
-}
 export interface PacketPeer extends RefCounted {
     encode_buffer_max_size: type.int;
-}
-export declare namespace PacketPeer {
 }
 export interface MeshInstance2D extends Node2D {
     mesh: {
@@ -3894,8 +3711,6 @@ export interface MeshInstance2D extends Node2D {
         type: "Texture2D";
         properties: Texture2D;
     };
-}
-export declare namespace MeshInstance2D {
 }
 export interface NinePatchRect extends Control {
     axis_stretch_horizontal: type.int;
@@ -3954,19 +3769,13 @@ export declare namespace FileAccess {
 export interface PhysicsBody2D extends CollisionObject2D {
     input_pickable: type.bool;
 }
-export declare namespace PhysicsBody2D {
-}
 export interface VisualShaderNodeCurveTexture extends VisualShaderNodeResizableBase {
     texture: {
         type: "CurveTexture";
         properties: CurveTexture;
     };
 }
-export declare namespace VisualShaderNodeCurveTexture {
-}
 export interface OptimizedTranslation extends Translation {
-}
-export declare namespace OptimizedTranslation {
 }
 export interface RDTextureView extends RefCounted {
     format_override: type.int;
@@ -3974,8 +3783,6 @@ export interface RDTextureView extends RefCounted {
     swizzle_b: type.int;
     swizzle_g: type.int;
     swizzle_r: type.int;
-}
-export declare namespace RDTextureView {
 }
 export interface Light3D extends VisualInstance3D {
     distance_fade_begin: type.float;
@@ -4052,8 +3859,6 @@ export interface PhysicsTestMotionParameters2D extends RefCounted {
     motion: type.Vector2;
     recovery_as_collision: type.bool;
 }
-export declare namespace PhysicsTestMotionParameters2D {
-}
 export interface VisibleOnScreenEnabler3D extends VisibleOnScreenNotifier3D {
     enable_mode: type.int;
     enable_node_path: type.NodePath;
@@ -4067,22 +3872,14 @@ export declare namespace VisibleOnScreenEnabler3D {
 }
 export interface PhysicsServer3DManager extends Object {
 }
-export declare namespace PhysicsServer3DManager {
-}
 export interface CenterContainer extends Container {
     use_top_left: type.bool;
 }
-export declare namespace CenterContainer {
-}
 export interface XRAnchor3D extends XRNode3D {
-}
-export declare namespace XRAnchor3D {
 }
 export interface SkeletonModification2DFABRIK extends SkeletonModification2D {
     fabrik_data_chain_length: type.int;
     target_nodepath: type.NodePath;
-}
-export declare namespace SkeletonModification2DFABRIK {
 }
 export interface AnimatedSprite2D extends Node2D {
     animation: type.StringName;
@@ -4099,11 +3896,7 @@ export interface AnimatedSprite2D extends Node2D {
         properties: SpriteFrames;
     };
 }
-export declare namespace AnimatedSprite2D {
-}
 export interface VisualShaderNodeIf extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeIf {
 }
 export interface AudioEffectCompressor extends AudioEffect {
     attack_us: type.float;
@@ -4113,8 +3906,6 @@ export interface AudioEffectCompressor extends AudioEffect {
     release_ms: type.float;
     sidechain: type.StringName;
     threshold: type.float;
-}
-export declare namespace AudioEffectCompressor {
 }
 export interface RDPipelineColorBlendStateAttachment extends RefCounted {
     alpha_blend_op: type.int;
@@ -4129,11 +3920,7 @@ export interface RDPipelineColorBlendStateAttachment extends RefCounted {
     write_g: type.bool;
     write_r: type.bool;
 }
-export declare namespace RDPipelineColorBlendStateAttachment {
-}
 export interface HFlowContainer extends FlowContainer {
-}
-export declare namespace HFlowContainer {
 }
 export interface VisualShaderNodeMix extends VisualShaderNode {
     op_type: type.int;
@@ -4154,8 +3941,6 @@ export interface XRFaceModifier3D extends Node3D {
     face_tracker: type.StringName;
     target: type.NodePath;
 }
-export declare namespace XRFaceModifier3D {
-}
 export interface InputEvent extends Resource {
     device: type.int;
 }
@@ -4164,8 +3949,6 @@ export declare namespace InputEvent {
 }
 export interface CircleShape2D extends Shape2D {
     radius: type.float;
-}
-export declare namespace CircleShape2D {
 }
 export interface XRBodyModifier3D extends SkeletonModifier3D {
     body_tracker: type.StringName;
@@ -4192,8 +3975,12 @@ export interface OptionButton extends Button {
     item_count: type.int;
     selected: type.int;
     toggle_mode: type.bool;
-}
-export declare namespace OptionButton {
+    arrow_margin: type.int;
+    modulate_arrow: type.int;
+    arrow: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export interface ClassDB extends Object {
 }
@@ -4220,37 +4007,23 @@ export declare namespace AnimationNodeStateMachine {
 }
 export interface AudioEffectEQ extends AudioEffect {
 }
-export declare namespace AudioEffectEQ {
-}
 export interface ResourceImporterTextureAtlas extends ResourceImporter {
     atlas_file: type.String;
     crop_to_region: type.bool;
     import_mode: type.int;
     trim_alpha_border_from_region: type.bool;
 }
-export declare namespace ResourceImporterTextureAtlas {
-}
 export interface KinematicCollision2D extends RefCounted {
-}
-export declare namespace KinematicCollision2D {
 }
 export interface ViewportTexture extends Texture2D {
     viewport_path: type.NodePath;
 }
-export declare namespace ViewportTexture {
-}
 export interface VisualShaderNodeVectorRefract extends VisualShaderNodeVectorBase {
-}
-export declare namespace VisualShaderNodeVectorRefract {
 }
 export interface SkeletonModification2DPhysicalBones extends SkeletonModification2D {
     physical_bone_chain_length: type.int;
 }
-export declare namespace SkeletonModification2DPhysicalBones {
-}
 export interface Signal {
-}
-export declare namespace Signal {
 }
 export interface GraphElement extends Container {
     draggable: type.bool;
@@ -4258,8 +4031,10 @@ export interface GraphElement extends Container {
     resizable: type.bool;
     selectable: type.bool;
     selected: type.bool;
-}
-export declare namespace GraphElement {
+    resizer: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export interface PhysicsDirectBodyState3D extends Object {
     angular_velocity: type.Vector3;
@@ -4276,8 +4051,6 @@ export interface PhysicsDirectBodyState3D extends Object {
     total_gravity: type.Vector3;
     total_linear_damp: type.float;
     transform: type.Transform3D;
-}
-export declare namespace PhysicsDirectBodyState3D {
 }
 export interface Area2D extends CollisionObject2D {
     angular_damp: type.float;
@@ -4331,8 +4104,6 @@ export interface SkeletonModification2DJiggle extends SkeletonModification2D {
     stiffness: type.float;
     target_nodepath: type.NodePath;
     use_gravity: type.bool;
-}
-export declare namespace SkeletonModification2DJiggle {
 }
 export interface Control extends CanvasItem {
     anchor_bottom: type.float;
@@ -4532,8 +4303,6 @@ export interface VisualShaderNodeCurveXYZTexture extends VisualShaderNodeResizab
         properties: CurveXYZTexture;
     };
 }
-export declare namespace VisualShaderNodeCurveXYZTexture {
-}
 export interface PointLight2D extends Light2D {
     height: type.float;
     offset: type.Vector2;
@@ -4543,16 +4312,12 @@ export interface PointLight2D extends Light2D {
     };
     texture_scale: type.float;
 }
-export declare namespace PointLight2D {
-}
 export interface GPUParticlesAttractorVectorField3D extends GPUParticlesAttractor3D {
     size: type.Vector3;
     texture: {
         type: "Texture3D";
         properties: Texture3D;
     };
-}
-export declare namespace GPUParticlesAttractorVectorField3D {
 }
 export interface XRPositionalTracker extends XRTracker {
     hand: type.int;
@@ -4567,8 +4332,6 @@ export declare namespace XRPositionalTracker {
     }
 }
 export interface NavigationMeshGenerator extends Object {
-}
-export declare namespace NavigationMeshGenerator {
 }
 export interface Skeleton3D extends Node3D {
     animate_physical_bones: type.bool;
@@ -4585,15 +4348,9 @@ export declare namespace Skeleton3D {
 }
 export interface VisualShaderNodeUVPolarCoord extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeUVPolarCoord {
-}
 export interface HSlider extends Slider {
 }
-export declare namespace HSlider {
-}
 export interface CryptoKey extends Resource {
-}
-export declare namespace CryptoKey {
 }
 export interface VisualShaderNodeFloatFunc extends VisualShaderNode {
     function: type.int;
@@ -4644,15 +4401,11 @@ export interface InputEventMouseMotion extends InputEventMouse {
     tilt: type.Vector2;
     velocity: type.Vector2;
 }
-export declare namespace InputEventMouseMotion {
-}
 export interface Path3D extends Node3D {
     curve: {
         type: "Curve3D";
         properties: Curve3D;
     };
-}
-export declare namespace Path3D {
 }
 export interface Line2D extends Node2D {
     antialiased: type.bool;
@@ -4743,12 +4496,25 @@ export interface Label extends Control {
     visible_characters: type.int;
     visible_characters_behavior: type.int;
     visible_ratio: type.float;
-}
-export declare namespace Label {
+    font_color: type.Color;
+    font_outline_color: type.Color;
+    font_shadow_color: type.Color;
+    line_spacing: type.int;
+    outline_size: type.int;
+    shadow_offset_x: type.int;
+    shadow_offset_y: type.int;
+    shadow_outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface EngineProfiler extends RefCounted {
-}
-export declare namespace EngineProfiler {
 }
 export interface CharacterBody3D extends PhysicsBody3D {
     floor_block_on_wall: type.bool;
@@ -4781,13 +4547,9 @@ export declare namespace CharacterBody3D {
 export interface CanvasModulate extends Node2D {
     color: type.Color;
 }
-export declare namespace CanvasModulate {
-}
 export interface Shape3D extends Resource {
     custom_solver_bias: type.float;
     margin: type.float;
-}
-export declare namespace Shape3D {
 }
 export interface RDShaderSource extends RefCounted {
     language: type.int;
@@ -4797,12 +4559,12 @@ export interface RDShaderSource extends RefCounted {
     source_tesselation_evaluation: type.String;
     source_vertex: type.String;
 }
-export declare namespace RDShaderSource {
-}
 export interface PanelContainer extends Container {
     mouse_filter: type.int;
-}
-export declare namespace PanelContainer {
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface CameraAttributes extends Resource {
     auto_exposure_enabled: type.bool;
@@ -4811,11 +4573,7 @@ export interface CameraAttributes extends Resource {
     exposure_multiplier: type.float;
     exposure_sensitivity: type.float;
 }
-export declare namespace CameraAttributes {
-}
 export interface EditorNode3DGizmoPlugin extends Resource {
-}
-export declare namespace EditorNode3DGizmoPlugin {
 }
 export interface PhysicsPointQueryParameters2D extends RefCounted {
     canvas_instance_id: type.int;
@@ -4828,18 +4586,12 @@ export interface PhysicsPointQueryParameters2D extends RefCounted {
     };
     position: type.Vector2;
 }
-export declare namespace PhysicsPointQueryParameters2D {
-}
 export interface PlaceholderMaterial extends Material {
-}
-export declare namespace PlaceholderMaterial {
 }
 export interface AudioEffectHardLimiter extends AudioEffect {
     ceiling_db: type.float;
     pre_gain_db: type.float;
     release: type.float;
-}
-export declare namespace AudioEffectHardLimiter {
 }
 export interface AcceptDialog extends Window {
     dialog_autowrap: type.bool;
@@ -4853,8 +4605,13 @@ export interface AcceptDialog extends Window {
     transient: type.bool;
     visible: type.bool;
     wrap_controls: type.bool;
-}
-export declare namespace AcceptDialog {
+    buttons_min_height: type.int;
+    buttons_min_width: type.int;
+    buttons_separation: type.int;
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface VisualShaderNode extends Resource {
     linked_parent_graph_frame: type.int;
@@ -4933,8 +4690,6 @@ export declare namespace ResourceFormatLoader {
 }
 export interface PhysicsDirectBodyState2DExtension extends PhysicsDirectBodyState2D {
 }
-export declare namespace PhysicsDirectBodyState2DExtension {
-}
 export interface StyleBoxFlat extends StyleBox {
     anti_aliasing: type.bool;
     anti_aliasing_size: type.float;
@@ -4959,8 +4714,6 @@ export interface StyleBoxFlat extends StyleBox {
     shadow_offset: type.Vector2;
     shadow_size: type.int;
     skew: type.Vector2;
-}
-export declare namespace StyleBoxFlat {
 }
 export interface CPUParticles3D extends GeometryInstance3D {
     amount: type.int;
@@ -5150,25 +4903,15 @@ export interface RayCast3D extends Node3D {
     hit_from_inside: type.bool;
     target_position: type.Vector3;
 }
-export declare namespace RayCast3D {
-}
 export interface PhysicsServer2DExtension extends PhysicsServer2D {
-}
-export declare namespace PhysicsServer2DExtension {
 }
 export interface VisualShaderNodeResizableBase extends VisualShaderNode {
     size: type.Vector2;
 }
-export declare namespace VisualShaderNodeResizableBase {
-}
 export interface UniformSetCacheRD extends Object {
-}
-export declare namespace UniformSetCacheRD {
 }
 export interface PlaceholderMesh extends Mesh {
     aabb: type.AABB;
-}
-export declare namespace PlaceholderMesh {
 }
 export interface PhysicalBone2D extends RigidBody2D {
     auto_configure_joint: type.bool;
@@ -5176,8 +4919,6 @@ export interface PhysicalBone2D extends RigidBody2D {
     bone2d_nodepath: type.NodePath;
     follow_bone_when_simulating: type.bool;
     simulate_physics: type.bool;
-}
-export declare namespace PhysicalBone2D {
 }
 export interface ResourceImporterLayeredTexture extends ResourceImporter {
     'compress/channel_pack': type.int;
@@ -5189,8 +4930,6 @@ export interface ResourceImporterLayeredTexture extends ResourceImporter {
     'mipmaps/limit': type.int;
     'slices/arrangement': type.int;
 }
-export declare namespace ResourceImporterLayeredTexture {
-}
 export interface SpotLight3D extends Light3D {
     shadow_bias: type.float;
     shadow_normal_bias: type.float;
@@ -5198,8 +4937,6 @@ export interface SpotLight3D extends Light3D {
     spot_angle_attenuation: type.float;
     spot_attenuation: type.float;
     spot_range: type.float;
-}
-export declare namespace SpotLight3D {
 }
 export interface VisualShaderNodeVectorOp extends VisualShaderNodeVectorBase {
     operator: type.int;
@@ -5306,34 +5043,20 @@ export interface RDPipelineRasterizationState extends RefCounted {
     patch_control_points: type.int;
     wireframe: type.bool;
 }
-export declare namespace RDPipelineRasterizationState {
-}
 export interface CompressedTexture2D extends Texture2D {
     load_path: type.String;
     resource_local_to_scene: type.bool;
 }
-export declare namespace CompressedTexture2D {
-}
 export interface AudioEffectCapture extends AudioEffect {
     buffer_length: type.float;
 }
-export declare namespace AudioEffectCapture {
-}
 export interface VisualShaderNodeVaryingGetter extends VisualShaderNodeVarying {
-}
-export declare namespace VisualShaderNodeVaryingGetter {
 }
 export interface VisualShaderNodeSDFToScreenUV extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeSDFToScreenUV {
-}
 export interface MultiplayerAPIExtension extends MultiplayerAPI {
 }
-export declare namespace MultiplayerAPIExtension {
-}
 export interface VisualShaderNodeVectorDistance extends VisualShaderNodeVectorBase {
-}
-export declare namespace VisualShaderNodeVectorDistance {
 }
 export interface Theme extends Resource {
     default_base_scale: type.float;
@@ -5355,8 +5078,6 @@ export declare namespace Theme {
     }
 }
 export interface MovieWriter extends Object {
-}
-export declare namespace MovieWriter {
 }
 export interface AudioEffectSpectrumAnalyzer extends AudioEffect {
     buffer_length: type.float;
@@ -5382,8 +5103,6 @@ export interface InputEventKey extends InputEventWithModifiers {
     pressed: type.bool;
     unicode: type.int;
 }
-export declare namespace InputEventKey {
-}
 export interface VisualShaderNodeFloatParameter extends VisualShaderNodeParameter {
     default_value: type.float;
     default_value_enabled: type.bool;
@@ -5401,8 +5120,6 @@ export declare namespace VisualShaderNodeFloatParameter {
     }
 }
 export interface ORMMaterial3D extends BaseMaterial3D {
-}
-export declare namespace ORMMaterial3D {
 }
 export interface RenderingServer extends Object {
     render_loop_enabled: type.bool;
@@ -6058,6 +5775,22 @@ export interface ProgressBar extends Range {
     fill_mode: type.int;
     indeterminate: type.bool;
     show_percentage: type.bool;
+    font_color: type.Color;
+    font_outline_color: type.Color;
+    outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    background: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    fill: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace ProgressBar {
     const enum FillMode {
@@ -6096,6 +5829,56 @@ export interface RichTextLabel extends Control {
     visible_characters: type.int;
     visible_characters_behavior: type.int;
     visible_ratio: type.float;
+    default_color: type.Color;
+    font_outline_color: type.Color;
+    font_selected_color: type.Color;
+    font_shadow_color: type.Color;
+    selection_color: type.Color;
+    table_border: type.Color;
+    table_even_row_bg: type.Color;
+    table_odd_row_bg: type.Color;
+    line_separation: type.int;
+    outline_size: type.int;
+    shadow_offset_x: type.int;
+    shadow_offset_y: type.int;
+    shadow_outline_size: type.int;
+    table_h_separation: type.int;
+    table_v_separation: type.int;
+    text_highlight_h_padding: type.int;
+    text_highlight_v_padding: type.int;
+    bold_font: {
+        type: "Font";
+        properties: Font;
+    };
+    bold_italics_font: {
+        type: "Font";
+        properties: Font;
+    };
+    italics_font: {
+        type: "Font";
+        properties: Font;
+    };
+    mono_font: {
+        type: "Font";
+        properties: Font;
+    };
+    normal_font: {
+        type: "Font";
+        properties: Font;
+    };
+    bold_font_size: type.int;
+    bold_italics_font_size: type.int;
+    italics_font_size: type.int;
+    mono_font_size: type.int;
+    normal_font_size: type.int;
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace RichTextLabel {
     const enum ListType {
@@ -6139,8 +5922,6 @@ export interface CapsuleShape3D extends Shape3D {
     height: type.float;
     radius: type.float;
 }
-export declare namespace CapsuleShape3D {
-}
 export interface VisualShaderNodeColorOp extends VisualShaderNode {
     operator: type.int;
 }
@@ -6160,11 +5941,7 @@ export declare namespace VisualShaderNodeColorOp {
 }
 export interface PointMesh extends PrimitiveMesh {
 }
-export declare namespace PointMesh {
-}
 export interface JavaScriptBridge extends Object {
-}
-export declare namespace JavaScriptBridge {
 }
 export interface CanvasItem extends Node {
     clip_children: type.int;
@@ -6222,8 +5999,6 @@ export interface CylinderShape3D extends Shape3D {
     height: type.float;
     radius: type.float;
 }
-export declare namespace CylinderShape3D {
-}
 export interface NavigationPolygon extends Resource {
     agent_radius: type.float;
     baking_rect: type.Rect2;
@@ -6272,13 +6047,9 @@ export declare namespace VisualShaderNodeRemap {
 }
 export interface AudioEffectNotchFilter extends AudioEffectFilter {
 }
-export declare namespace AudioEffectNotchFilter {
-}
 export interface EditorInspector extends ScrollContainer {
     follow_focus: type.bool;
     horizontal_scroll_mode: type.int;
-}
-export declare namespace EditorInspector {
 }
 export interface PinJoint3D extends Joint3D {
     'params/bias': type.float;
@@ -6323,8 +6094,6 @@ export declare namespace SceneTree {
     }
 }
 export interface VisualShaderNodeParticleBoxEmitter extends VisualShaderNodeParticleEmitter {
-}
-export declare namespace VisualShaderNodeParticleBoxEmitter {
 }
 export interface HTTPClient extends RefCounted {
     blocking_mode_enabled: type.bool;
@@ -6431,8 +6200,6 @@ export interface PinJoint2D extends Joint2D {
     motor_target_velocity: type.float;
     softness: type.float;
 }
-export declare namespace PinJoint2D {
-}
 export interface Texture2DRD extends Texture2D {
     resource_local_to_scene: type.bool;
     texture_rd_rid: {
@@ -6440,12 +6207,8 @@ export interface Texture2DRD extends Texture2D {
         properties: RID;
     };
 }
-export declare namespace Texture2DRD {
-}
 export interface EncodedObjectAsID extends RefCounted {
     object_id: type.int;
-}
-export declare namespace EncodedObjectAsID {
 }
 export interface EditorScenePostImportPlugin extends RefCounted {
 }
@@ -6464,8 +6227,6 @@ export declare namespace EditorScenePostImportPlugin {
 export interface CapsuleShape2D extends Shape2D {
     height: type.float;
     radius: type.float;
-}
-export declare namespace CapsuleShape2D {
 }
 export interface SurfaceTool extends RefCounted {
 }
@@ -6503,19 +6264,11 @@ export declare namespace PortableCompressedTexture2D {
 }
 export interface VisualShaderNodeGroupBase extends VisualShaderNodeResizableBase {
 }
-export declare namespace VisualShaderNodeGroupBase {
-}
 export interface OfflineMultiplayerPeer extends MultiplayerPeer {
-}
-export declare namespace OfflineMultiplayerPeer {
 }
 export interface AnimationRootNode extends AnimationNode {
 }
-export declare namespace AnimationRootNode {
-}
 export interface TileSetSource extends Resource {
-}
-export declare namespace TileSetSource {
 }
 export interface AnimationMixer extends Node {
     active: type.bool;
@@ -6573,26 +6326,49 @@ export interface ArrayOccluder3D extends Occluder3D {
     indices: type.PackedInt32Array;
     vertices: type.PackedVector3Array;
 }
-export declare namespace ArrayOccluder3D {
-}
 export interface AnimationLibrary extends Resource {
-}
-export declare namespace AnimationLibrary {
 }
 export interface CheckButton extends Button {
     alignment: type.int;
     toggle_mode: type.bool;
-}
-export declare namespace CheckButton {
+    check_v_offset: type.int;
+    checked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked_disabled_mirrored: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked_mirrored: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked_disabled_mirrored: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked_mirrored: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export interface Shortcut extends Resource {
     events: type.Array;
 }
-export declare namespace Shortcut {
-}
 export interface ImmediateMesh extends Mesh {
-}
-export declare namespace ImmediateMesh {
 }
 export interface EditorScriptPicker extends EditorResourcePicker {
     script_owner: {
@@ -6600,12 +6376,8 @@ export interface EditorScriptPicker extends EditorResourcePicker {
         properties: Node;
     };
 }
-export declare namespace EditorScriptPicker {
-}
 export interface CompressedTexture3D extends Texture3D {
     load_path: type.String;
-}
-export declare namespace CompressedTexture3D {
 }
 export interface StyleBoxTexture extends StyleBox {
     axis_stretch_horizontal: type.int;
@@ -6635,8 +6407,6 @@ export declare namespace StyleBoxTexture {
 }
 export interface VisualShaderNodeConstant extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeConstant {
-}
 export interface GraphFrame extends GraphElement {
     autoshrink_enabled: type.bool;
     autoshrink_margin: type.int;
@@ -6645,8 +6415,23 @@ export interface GraphFrame extends GraphElement {
     tint_color: type.Color;
     tint_color_enabled: type.bool;
     title: type.String;
-}
-export declare namespace GraphFrame {
+    resizer_color: type.Color;
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    panel_selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    titlebar: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    titlebar_selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface GPUParticles3D extends GeometryInstance3D {
     amount: type.int;
@@ -6736,8 +6521,6 @@ export interface CodeHighlighter extends SyntaxHighlighter {
     number_color: type.Color;
     symbol_color: type.Color;
 }
-export declare namespace CodeHighlighter {
-}
 export interface AnimationNode extends Resource {
     filter_enabled: type.bool;
 }
@@ -6751,15 +6534,9 @@ export declare namespace AnimationNode {
 }
 export interface VisualShaderNodeDeterminant extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeDeterminant {
-}
 export interface RenderSceneDataRD extends RenderSceneData {
 }
-export declare namespace RenderSceneDataRD {
-}
 export interface VisualShaderNodeOuterProduct extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeOuterProduct {
 }
 export interface AudioEffectFilter extends AudioEffect {
     cutoff_hz: type.float;
@@ -6776,8 +6553,6 @@ export declare namespace AudioEffectFilter {
     }
 }
 export interface AudioEffectHighShelfFilter extends AudioEffectFilter {
-}
-export declare namespace AudioEffectHighShelfFilter {
 }
 export interface CompositorEffect extends Resource {
     access_resolved_color: type.bool;
@@ -6845,8 +6620,6 @@ export interface VehicleWheel3D extends Node3D {
     wheel_radius: type.float;
     wheel_rest_length: type.float;
     wheel_roll_influence: type.float;
-}
-export declare namespace VehicleWheel3D {
 }
 export interface XRHandTracker extends XRPositionalTracker {
     hand: type.int;
@@ -6929,16 +6702,10 @@ export interface TextParagraph extends RefCounted {
     text_overrun_behavior: type.int;
     width: type.float;
 }
-export declare namespace TextParagraph {
-}
 export interface VisualShaderNodeIntConstant extends VisualShaderNodeConstant {
     constant: type.int;
 }
-export declare namespace VisualShaderNodeIntConstant {
-}
 export interface RenderDataExtension extends RenderData {
-}
-export declare namespace RenderDataExtension {
 }
 export interface CPUParticles2D extends Node2D {
     amount: type.int;
@@ -7094,8 +6861,6 @@ export declare namespace CPUParticles2D {
 export interface CompressedTextureLayered extends TextureLayered {
     load_path: type.String;
 }
-export declare namespace CompressedTextureLayered {
-}
 export interface RayCast2D extends Node2D {
     collide_with_areas: type.bool;
     collide_with_bodies: type.bool;
@@ -7104,8 +6869,6 @@ export interface RayCast2D extends Node2D {
     exclude_parent: type.bool;
     hit_from_inside: type.bool;
     target_position: type.Vector2;
-}
-export declare namespace RayCast2D {
 }
 export interface ResourceImporterTexture extends ResourceImporter {
     'compress/channel_pack': type.int;
@@ -7129,11 +6892,7 @@ export interface ResourceImporterTexture extends ResourceImporter {
     'roughness/src_normal': type.String;
     'svg/scale': type.float;
 }
-export declare namespace ResourceImporterTexture {
-}
 export interface AudioStreamMicrophone extends AudioStream {
-}
-export declare namespace AudioStreamMicrophone {
 }
 export interface VisualShaderNodeMultiplyAdd extends VisualShaderNode {
     op_type: type.int;
@@ -7179,6 +6938,8 @@ export interface FlowContainer extends Container {
     last_wrap_alignment: type.int;
     reverse_fill: type.bool;
     vertical: type.bool;
+    h_separation: type.int;
+    v_separation: type.int;
 }
 export declare namespace FlowContainer {
     const enum AlignmentMode {
@@ -7195,11 +6956,7 @@ export declare namespace FlowContainer {
 }
 export interface AudioBusLayout extends Resource {
 }
-export declare namespace AudioBusLayout {
-}
 export interface TileSetScenesCollectionSource extends TileSetSource {
-}
-export declare namespace TileSetScenesCollectionSource {
 }
 export interface MeshConvexDecompositionSettings extends RefCounted {
     convex_hull_approximation: type.bool;
@@ -7224,8 +6981,6 @@ export declare namespace MeshConvexDecompositionSettings {
 }
 export interface VisualShaderNodeWorldPositionFromDepth extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeWorldPositionFromDepth {
-}
 export interface PhysicsPointQueryParameters3D extends RefCounted {
     collide_with_areas: type.bool;
     collide_with_bodies: type.bool;
@@ -7235,8 +6990,6 @@ export interface PhysicsPointQueryParameters3D extends RefCounted {
         properties: RID[];
     };
     position: type.Vector3;
-}
-export declare namespace PhysicsPointQueryParameters3D {
 }
 export interface CharacterBody2D extends PhysicsBody2D {
     floor_block_on_wall: type.bool;
@@ -7268,12 +7021,8 @@ export declare namespace CharacterBody2D {
 }
 export interface VisualShaderNodeTransformCompose extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeTransformCompose {
-}
 export interface Shape2D extends Resource {
     custom_solver_bias: type.float;
-}
-export declare namespace Shape2D {
 }
 export interface NavigationMesh extends Resource {
     agent_height: type.float;
@@ -7729,12 +7478,8 @@ export declare namespace EditorSettings {
 }
 export interface MeshDataTool extends RefCounted {
 }
-export declare namespace MeshDataTool {
-}
 export interface VisualShaderNodeColorConstant extends VisualShaderNodeConstant {
     constant: type.Color;
-}
-export declare namespace VisualShaderNodeColorConstant {
 }
 export interface StatusIndicator extends Node {
     icon: {
@@ -7745,15 +7490,9 @@ export interface StatusIndicator extends Node {
     tooltip: type.String;
     visible: type.bool;
 }
-export declare namespace StatusIndicator {
-}
 export interface AudioSample extends RefCounted {
 }
-export declare namespace AudioSample {
-}
 export interface HMACContext extends RefCounted {
-}
-export declare namespace HMACContext {
 }
 export interface TorusMesh extends PrimitiveMesh {
     inner_radius: type.float;
@@ -7761,23 +7500,17 @@ export interface TorusMesh extends PrimitiveMesh {
     ring_segments: type.int;
     rings: type.int;
 }
-export declare namespace TorusMesh {
-}
 export interface Path2D extends Node2D {
     curve: {
         type: "Curve2D";
         properties: Curve2D;
     };
 }
-export declare namespace Path2D {
-}
 export interface InputEventAction extends InputEvent {
     action: type.StringName;
     event_index: type.int;
     pressed: type.bool;
     strength: type.float;
-}
-export declare namespace InputEventAction {
 }
 export interface PopupMenu extends Popup {
     allow_search: type.bool;
@@ -7788,8 +7521,91 @@ export interface PopupMenu extends Popup {
     prefer_native_menu: type.bool;
     submenu_popup_delay: type.float;
     system_menu_id: type.int;
-}
-export declare namespace PopupMenu {
+    font_accelerator_color: type.Color;
+    font_color: type.Color;
+    font_disabled_color: type.Color;
+    font_hover_color: type.Color;
+    font_outline_color: type.Color;
+    font_separator_color: type.Color;
+    font_separator_outline_color: type.Color;
+    h_separation: type.int;
+    icon_max_width: type.int;
+    indent: type.int;
+    item_end_padding: type.int;
+    item_start_padding: type.int;
+    outline_size: type.int;
+    separator_outline_size: type.int;
+    v_separation: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_separator: {
+        type: "Font";
+        properties: Font;
+    };
+    font_separator_size: type.int;
+    font_size: type.int;
+    checked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_checked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_checked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_unchecked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_unchecked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    submenu: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    submenu_mirrored: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    hover: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    labeled_separator_left: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    labeled_separator_right: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    separator: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface VoxelGIData extends Resource {
     bias: type.float;
@@ -7799,8 +7615,6 @@ export interface VoxelGIData extends Resource {
     normal_bias: type.float;
     propagation: type.float;
     use_two_bounces: type.bool;
-}
-export declare namespace VoxelGIData {
 }
 export interface ImageFormatLoader extends RefCounted {
 }
@@ -7813,19 +7627,13 @@ export declare namespace ImageFormatLoader {
 }
 export interface TCPServer extends RefCounted {
 }
-export declare namespace TCPServer {
-}
 export interface ConfirmationDialog extends AcceptDialog {
     cancel_button_text: type.String;
     min_size: type.Vector2i;
     size: type.Vector2i;
     title: type.String;
 }
-export declare namespace ConfirmationDialog {
-}
 export interface TextureCubemapRD extends TextureLayeredRD {
-}
-export declare namespace TextureCubemapRD {
 }
 export interface VideoStreamPlayer extends Control {
     audio_track: type.int;
@@ -7843,8 +7651,6 @@ export interface VideoStreamPlayer extends Control {
     volume: type.float;
     volume_db: type.float;
 }
-export declare namespace VideoStreamPlayer {
-}
 export interface VisualShaderNodeUVFunc extends VisualShaderNode {
     function: type.int;
 }
@@ -7857,24 +7663,14 @@ export declare namespace VisualShaderNodeUVFunc {
 }
 export interface Skeleton2D extends Node2D {
 }
-export declare namespace Skeleton2D {
-}
 export interface GPUParticlesCollisionSphere3D extends GPUParticlesCollision3D {
     radius: type.float;
 }
-export declare namespace GPUParticlesCollisionSphere3D {
-}
 export interface EditorScenePostImport extends RefCounted {
-}
-export declare namespace EditorScenePostImport {
 }
 export interface PhysicalBoneSimulator3D extends SkeletonModifier3D {
 }
-export declare namespace PhysicalBoneSimulator3D {
-}
 export interface VisualShaderNodeVaryingSetter extends VisualShaderNodeVarying {
-}
-export declare namespace VisualShaderNodeVaryingSetter {
 }
 export interface AESContext extends RefCounted {
 }
@@ -7889,16 +7685,12 @@ export declare namespace AESContext {
 }
 export interface Variant {
 }
-export declare namespace Variant {
-}
 export interface InputEventWithModifiers extends InputEventFromWindow {
     alt_pressed: type.bool;
     command_or_control_autoremap: type.bool;
     ctrl_pressed: type.bool;
     meta_pressed: type.bool;
     shift_pressed: type.bool;
-}
-export declare namespace InputEventWithModifiers {
 }
 export interface EditorSceneFormatImporter extends RefCounted {
 }
@@ -7913,8 +7705,6 @@ export declare namespace EditorSceneFormatImporter {
 }
 export interface PacketPeerExtension extends PacketPeer {
 }
-export declare namespace PacketPeerExtension {
-}
 export interface PhysicsDirectBodyState2D extends Object {
     angular_velocity: type.float;
     center_of_mass: type.Vector2;
@@ -7928,8 +7718,6 @@ export interface PhysicsDirectBodyState2D extends Object {
     total_gravity: type.Vector2;
     total_linear_damp: type.float;
     transform: type.Transform2D;
-}
-export declare namespace PhysicsDirectBodyState2D {
 }
 export interface Area3D extends CollisionObject3D {
     angular_damp: type.float;
@@ -7969,25 +7757,15 @@ export interface ResourceImporterBMFont extends ResourceImporter {
     fallbacks: type.Array;
     scaling_mode: type.int;
 }
-export declare namespace ResourceImporterBMFont {
-}
 export interface QuadMesh extends PlaneMesh {
     orientation: type.int;
     size: type.Vector2;
 }
-export declare namespace QuadMesh {
-}
 export interface PhysicsServer3DRenderingServerHandler extends Object {
-}
-export declare namespace PhysicsServer3DRenderingServerHandler {
 }
 export interface KinematicCollision3D extends RefCounted {
 }
-export declare namespace KinematicCollision3D {
-}
 export interface ResourceFormatSaver extends RefCounted {
-}
-export declare namespace ResourceFormatSaver {
 }
 export interface RDPipelineSpecializationConstant extends RefCounted {
     constant_id: type.int;
@@ -7995,8 +7773,6 @@ export interface RDPipelineSpecializationConstant extends RefCounted {
         type: "Variant";
         properties: Variant;
     };
-}
-export declare namespace RDPipelineSpecializationConstant {
 }
 export interface MeshTexture extends Texture2D {
     base_texture: {
@@ -8010,16 +7786,12 @@ export interface MeshTexture extends Texture2D {
     };
     resource_local_to_scene: type.bool;
 }
-export declare namespace MeshTexture {
-}
 export interface RDVertexAttribute extends RefCounted {
     format: type.int;
     frequency: type.int;
     location: type.int;
     offset: type.int;
     stride: type.int;
-}
-export declare namespace RDVertexAttribute {
 }
 export interface GDExtension extends Resource {
 }
@@ -8046,8 +7818,6 @@ export interface EditorInterface extends Object {
     distraction_free_mode: type.bool;
     movie_maker_enabled: type.bool;
 }
-export declare namespace EditorInterface {
-}
 export interface VisualShaderNodeIntFunc extends VisualShaderNode {
     function: type.int;
 }
@@ -8063,8 +7833,6 @@ export declare namespace VisualShaderNodeIntFunc {
 export interface VisualShaderNodeUIntParameter extends VisualShaderNodeParameter {
     default_value: type.int;
     default_value_enabled: type.bool;
-}
-export declare namespace VisualShaderNodeUIntParameter {
 }
 export interface CurveXYZTexture extends Texture2D {
     curve_x: {
@@ -8082,8 +7850,6 @@ export interface CurveXYZTexture extends Texture2D {
     resource_local_to_scene: type.bool;
     width: type.int;
 }
-export declare namespace CurveXYZTexture {
-}
 export interface AnimatedSprite3D extends SpriteBase3D {
     animation: type.StringName;
     autoplay: type.String;
@@ -8095,27 +7861,17 @@ export interface AnimatedSprite3D extends SpriteBase3D {
         properties: SpriteFrames;
     };
 }
-export declare namespace AnimatedSprite3D {
-}
 export interface VSlider extends Slider {
     size_flags_horizontal: type.int;
     size_flags_vertical: type.int;
 }
-export declare namespace VSlider {
-}
 export interface JNISingleton extends Object {
-}
-export declare namespace JNISingleton {
 }
 export interface GrooveJoint2D extends Joint2D {
     initial_offset: type.float;
     length: type.float;
 }
-export declare namespace GrooveJoint2D {
-}
 export interface CubemapArray extends ImageTextureLayered {
-}
-export declare namespace CubemapArray {
 }
 export interface PhysicsTestMotionParameters3D extends RefCounted {
     collide_separation_ray: type.bool;
@@ -8129,8 +7885,6 @@ export interface PhysicsTestMotionParameters3D extends RefCounted {
     max_collisions: type.int;
     motion: type.Vector3;
     recovery_as_collision: type.bool;
-}
-export declare namespace PhysicsTestMotionParameters3D {
 }
 export interface TileSetAtlasSource extends TileSetSource {
     margins: type.Vector2i;
@@ -8169,11 +7923,7 @@ export interface GPUParticlesAttractor3D extends VisualInstance3D {
     directionality: type.float;
     strength: type.float;
 }
-export declare namespace GPUParticlesAttractor3D {
-}
 export interface JavaObject extends RefCounted {
-}
-export declare namespace JavaObject {
 }
 export interface CameraAttributesPractical extends CameraAttributes {
     auto_exposure_max_sensitivity: type.float;
@@ -8185,8 +7935,6 @@ export interface CameraAttributesPractical extends CameraAttributes {
     dof_blur_near_distance: type.float;
     dof_blur_near_enabled: type.bool;
     dof_blur_near_transition: type.float;
-}
-export declare namespace CameraAttributesPractical {
 }
 export interface Light2D extends Node2D {
     blend_mode: type.int;
@@ -8219,15 +7967,11 @@ export declare namespace Light2D {
 }
 export interface VisualShaderNodeGlobalExpression extends VisualShaderNodeExpression {
 }
-export declare namespace VisualShaderNodeGlobalExpression {
-}
 export interface StyleBox extends Resource {
     content_margin_bottom: type.float;
     content_margin_left: type.float;
     content_margin_right: type.float;
     content_margin_top: type.float;
-}
-export declare namespace StyleBox {
 }
 export interface IP extends Object {
 }
@@ -8268,23 +8012,15 @@ export interface Font extends Resource {
         properties: Font[];
     };
 }
-export declare namespace Font {
-}
 export interface SkeletonProfileHumanoid extends SkeletonProfile {
     bone_size: type.int;
     group_size: type.int;
     root_bone: type.StringName;
     scale_base_bone: type.StringName;
 }
-export declare namespace SkeletonProfileHumanoid {
-}
 export interface LightmapperRD extends Lightmapper {
 }
-export declare namespace LightmapperRD {
-}
 export interface StandardMaterial3D extends BaseMaterial3D {
-}
-export declare namespace StandardMaterial3D {
 }
 export interface XRPose extends RefCounted {
     angular_velocity: type.Vector3;
@@ -8354,21 +8090,13 @@ export declare namespace SliderJoint3D {
 }
 export interface AnimationNodeBlend2 extends AnimationNodeSync {
 }
-export declare namespace AnimationNodeBlend2 {
-}
 export interface AudioEffectLowShelfFilter extends AudioEffectFilter {
 }
-export declare namespace AudioEffectLowShelfFilter {
-}
 export interface VisualShaderNodeTexture2DArrayParameter extends VisualShaderNodeTextureParameter {
-}
-export declare namespace VisualShaderNodeTexture2DArrayParameter {
 }
 export interface VisualShaderNodeTransformParameter extends VisualShaderNodeParameter {
     default_value: type.Transform3D;
     default_value_enabled: type.bool;
-}
-export declare namespace VisualShaderNodeTransformParameter {
 }
 export interface NavigationPathQueryParameters2D extends RefCounted {
     map: {
@@ -8402,17 +8130,11 @@ export declare namespace NavigationPathQueryParameters2D {
 }
 export interface AudioEffectEQ6 extends AudioEffectEQ {
 }
-export declare namespace AudioEffectEQ6 {
-}
 export interface VisualShaderNodeBooleanConstant extends VisualShaderNodeConstant {
     constant: type.bool;
 }
-export declare namespace VisualShaderNodeBooleanConstant {
-}
 export interface ColorRect extends Control {
     color: type.Color;
-}
-export declare namespace ColorRect {
 }
 export interface RDPipelineDepthStencilState extends RefCounted {
     back_op_compare: type.int;
@@ -8437,17 +8159,11 @@ export interface RDPipelineDepthStencilState extends RefCounted {
     front_op_reference: type.int;
     front_op_write_mask: type.int;
 }
-export declare namespace RDPipelineDepthStencilState {
-}
 export interface EditorExportPlatformExtension extends EditorExportPlatform {
-}
-export declare namespace EditorExportPlatformExtension {
 }
 export interface XROrigin3D extends Node3D {
     current: type.bool;
     world_scale: type.float;
-}
-export declare namespace XROrigin3D {
 }
 export interface TubeTrailMesh extends PrimitiveMesh {
     cap_bottom: type.bool;
@@ -8461,8 +8177,6 @@ export interface TubeTrailMesh extends PrimitiveMesh {
     section_length: type.float;
     section_rings: type.int;
     sections: type.int;
-}
-export declare namespace TubeTrailMesh {
 }
 export interface VisualShaderNodeCubemap extends VisualShaderNode {
     cube_map: {
@@ -8487,8 +8201,6 @@ export declare namespace VisualShaderNodeCubemap {
 }
 export interface TextServerManager extends Object {
 }
-export declare namespace TextServerManager {
-}
 export interface Timer extends Node {
     autostart: type.bool;
     one_shot: type.bool;
@@ -8510,23 +8222,69 @@ export interface MenuBar extends Control {
     start_index: type.int;
     switch_on_hover: type.bool;
     text_direction: type.int;
-}
-export declare namespace MenuBar {
+    font_color: type.Color;
+    font_disabled_color: type.Color;
+    font_focus_color: type.Color;
+    font_hover_color: type.Color;
+    font_hover_pressed_color: type.Color;
+    font_outline_color: type.Color;
+    font_pressed_color: type.Color;
+    h_separation: type.int;
+    outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    disabled: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    disabled_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover_pressed_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    pressed_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface VisibleOnScreenNotifier3D extends VisualInstance3D {
     aabb: type.AABB;
 }
-export declare namespace VisibleOnScreenNotifier3D {
-}
 export interface ShaderInclude extends Resource {
     code: type.String;
 }
-export declare namespace ShaderInclude {
-}
 export interface AudioStreamPolyphonic extends AudioStream {
     polyphony: type.int;
-}
-export declare namespace AudioStreamPolyphonic {
 }
 export interface SkeletonModification2DTwoBoneIK extends SkeletonModification2D {
     flip_bend_direction: type.bool;
@@ -8534,18 +8292,39 @@ export interface SkeletonModification2DTwoBoneIK extends SkeletonModification2D 
     target_minimum_distance: type.float;
     target_nodepath: type.NodePath;
 }
-export declare namespace SkeletonModification2DTwoBoneIK {
-}
 export interface GraphNode extends GraphElement {
     ignore_invalid_connection_type: type.bool;
     mouse_filter: type.int;
     title: type.String;
-}
-export declare namespace GraphNode {
+    resizer_color: type.Color;
+    port_h_offset: type.int;
+    separation: type.int;
+    port: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    panel_selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    slot: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    titlebar: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    titlebar_selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface Cubemap extends ImageTextureLayered {
-}
-export declare namespace Cubemap {
 }
 export interface PlaneMesh extends PrimitiveMesh {
     center_offset: type.Vector3;
@@ -8693,15 +8472,9 @@ export interface PhysicsRayQueryParameters3D extends RefCounted {
     hit_from_inside: type.bool;
     to: type.Vector3;
 }
-export declare namespace PhysicsRayQueryParameters3D {
-}
 export interface PCKPacker extends RefCounted {
 }
-export declare namespace PCKPacker {
-}
 export interface EditorResourceConversionPlugin extends RefCounted {
-}
-export declare namespace EditorResourceConversionPlugin {
 }
 export interface VisualShaderNodeClamp extends VisualShaderNode {
     op_type: type.int;
@@ -8729,18 +8502,12 @@ export declare namespace VisualShaderNodeTransformFunc {
 }
 export interface AnimationNodeBlend3 extends AnimationNodeSync {
 }
-export declare namespace AnimationNodeBlend3 {
-}
 export interface ScriptCreateDialog extends ConfirmationDialog {
     dialog_hide_on_ok: type.bool;
     ok_button_text: type.String;
     title: type.String;
 }
-export declare namespace ScriptCreateDialog {
-}
 export interface JavaClassWrapper extends Object {
-}
-export declare namespace JavaClassWrapper {
 }
 export interface Popup extends Window {
     borderless: type.bool;
@@ -8750,11 +8517,7 @@ export interface Popup extends Window {
     visible: type.bool;
     wrap_controls: type.bool;
 }
-export declare namespace Popup {
-}
 export interface CompressedCubemapArray extends CompressedTextureLayered {
-}
-export declare namespace CompressedCubemapArray {
 }
 export interface Object {
 }
@@ -8771,33 +8534,21 @@ export declare namespace Object {
 }
 export interface IntervalTweener extends Tweener {
 }
-export declare namespace IntervalTweener {
-}
 export interface TranslationServer extends Object {
     pseudolocalization_enabled: type.bool;
 }
-export declare namespace TranslationServer {
-}
 export interface VisualShaderNodeScreenUVToSDF extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeScreenUVToSDF {
 }
 export interface SkeletonModificationStack2D extends Resource {
     enabled: type.bool;
     modification_count: type.int;
     strength: type.float;
 }
-export declare namespace SkeletonModificationStack2D {
-}
 export interface VisualShaderNodeDotProduct extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeDotProduct {
 }
 export interface VisualShaderNodeColorParameter extends VisualShaderNodeParameter {
     default_value: type.Color;
     default_value_enabled: type.bool;
-}
-export declare namespace VisualShaderNodeColorParameter {
 }
 export interface CameraAttributesPhysical extends CameraAttributes {
     auto_exposure_max_exposure_value: type.float;
@@ -8808,8 +8559,6 @@ export interface CameraAttributesPhysical extends CameraAttributes {
     frustum_focal_length: type.float;
     frustum_focus_distance: type.float;
     frustum_near: type.float;
-}
-export declare namespace CameraAttributesPhysical {
 }
 export interface ResourceImporterDynamicFont extends ResourceImporter {
     allow_system_fallback: type.bool;
@@ -8839,16 +8588,10 @@ export interface ResourceImporterDynamicFont extends ResourceImporter {
     };
     subpixel_positioning: type.int;
 }
-export declare namespace ResourceImporterDynamicFont {
-}
 export interface AnimationNodeStateMachinePlayback extends Resource {
     resource_local_to_scene: type.bool;
 }
-export declare namespace AnimationNodeStateMachinePlayback {
-}
 export interface JavaScriptObject extends RefCounted {
-}
-export declare namespace JavaScriptObject {
 }
 export interface TextServer extends RefCounted {
 }
@@ -9004,8 +8747,6 @@ export declare namespace TextServer {
 }
 export interface VideoStreamPlayback extends Resource {
 }
-export declare namespace VideoStreamPlayback {
-}
 export interface InputEventScreenTouch extends InputEventFromWindow {
     canceled: type.bool;
     double_tap: type.bool;
@@ -9013,24 +8754,14 @@ export interface InputEventScreenTouch extends InputEventFromWindow {
     position: type.Vector2;
     pressed: type.bool;
 }
-export declare namespace InputEventScreenTouch {
-}
 export interface AudioEffect extends Resource {
 }
-export declare namespace AudioEffect {
-}
 export interface VisualShaderNodeProximityFade extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeProximityFade {
 }
 export interface VisualShaderNodeVec2Constant extends VisualShaderNodeConstant {
     constant: type.Vector2;
 }
-export declare namespace VisualShaderNodeVec2Constant {
-}
 export interface VSeparator extends Separator {
-}
-export declare namespace VSeparator {
 }
 export interface Generic6DOFJoint3D extends Joint3D {
     'angular_limit_x/damping': type.float;
@@ -9160,8 +8891,6 @@ export interface InputEventShortcut extends InputEvent {
         properties: Shortcut;
     };
 }
-export declare namespace InputEventShortcut {
-}
 export interface ItemList extends Control {
     allow_reselect: type.bool;
     allow_rmb_select: type.bool;
@@ -9180,6 +8909,49 @@ export interface ItemList extends Control {
     same_column_width: type.bool;
     select_mode: type.int;
     text_overrun_behavior: type.int;
+    font_color: type.Color;
+    font_hovered_color: type.Color;
+    font_outline_color: type.Color;
+    font_selected_color: type.Color;
+    guide_color: type.Color;
+    h_separation: type.int;
+    icon_margin: type.int;
+    line_separation: type.int;
+    outline_size: type.int;
+    v_separation: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    cursor: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    cursor_unfocused: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hovered: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    selected_focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace ItemList {
     const enum IconMode {
@@ -9205,8 +8977,6 @@ export interface RenderSceneBuffersConfiguration extends RefCounted {
     texture_mipmap_bias: type.float;
     view_count: type.int;
 }
-export declare namespace RenderSceneBuffersConfiguration {
-}
 export interface OccluderInstance3D extends VisualInstance3D {
     bake_mask: type.int;
     bake_simplification_distance: type.float;
@@ -9215,16 +8985,10 @@ export interface OccluderInstance3D extends VisualInstance3D {
         properties: Occluder3D;
     };
 }
-export declare namespace OccluderInstance3D {
-}
 export interface XRControllerTracker extends XRPositionalTracker {
     type: type.int;
 }
-export declare namespace XRControllerTracker {
-}
 export interface Lightmapper extends RefCounted {
-}
-export declare namespace Lightmapper {
 }
 export interface CapsuleMesh extends PrimitiveMesh {
     height: type.float;
@@ -9232,24 +8996,16 @@ export interface CapsuleMesh extends PrimitiveMesh {
     radius: type.float;
     rings: type.int;
 }
-export declare namespace CapsuleMesh {
-}
 export interface MultiMeshInstance3D extends GeometryInstance3D {
     multimesh: {
         type: "MultiMesh";
         properties: MultiMesh;
     };
 }
-export declare namespace MultiMeshInstance3D {
-}
 export interface Script extends Resource {
     source_code: type.String;
 }
-export declare namespace Script {
-}
 export interface EditorResourceTooltipPlugin extends RefCounted {
-}
-export declare namespace EditorResourceTooltipPlugin {
 }
 export interface NavigationAgent3D extends Node {
     avoidance_enabled: type.bool;
@@ -9282,11 +9038,7 @@ export interface NavigationAgent3D extends Node {
     use_3d_avoidance: type.bool;
     velocity: type.Vector3;
 }
-export declare namespace NavigationAgent3D {
-}
 export interface EditorExportPlatformPC extends EditorExportPlatform {
-}
-export declare namespace EditorExportPlatformPC {
 }
 export interface ArrayMesh extends Mesh {
     blend_shape_mode: type.int;
@@ -9296,17 +9048,11 @@ export interface ArrayMesh extends Mesh {
         properties: ArrayMesh;
     };
 }
-export declare namespace ArrayMesh {
-}
 export interface SkeletonModifier3D extends Node3D {
     active: type.bool;
     influence: type.float;
 }
-export declare namespace SkeletonModifier3D {
-}
 export interface AudioEffectBandLimitFilter extends AudioEffectFilter {
-}
-export declare namespace AudioEffectBandLimitFilter {
 }
 export interface ScrollContainer extends Container {
     clip_contents: type.bool;
@@ -9318,6 +9064,10 @@ export interface ScrollContainer extends Container {
     scroll_vertical: type.int;
     scroll_vertical_custom_step: type.float;
     vertical_scroll_mode: type.int;
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace ScrollContainer {
     const enum ScrollMode {
@@ -9344,15 +9094,9 @@ export interface ShapeCast3D extends Node3D {
     };
     target_position: type.Vector3;
 }
-export declare namespace ShapeCast3D {
-}
 export interface InputMap extends Object {
 }
-export declare namespace InputMap {
-}
 export interface EditorExportPlugin extends RefCounted {
-}
-export declare namespace EditorExportPlugin {
 }
 export interface EditorResourcePicker extends HBoxContainer {
     base_type: type.String;
@@ -9363,19 +9107,11 @@ export interface EditorResourcePicker extends HBoxContainer {
     };
     toggle_mode: type.bool;
 }
-export declare namespace EditorResourcePicker {
-}
 export interface XRInterfaceExtension extends XRInterface {
-}
-export declare namespace XRInterfaceExtension {
 }
 export interface MeshLibrary extends Resource {
 }
-export declare namespace MeshLibrary {
-}
 export interface EditorResourcePreviewGenerator extends RefCounted {
-}
-export declare namespace EditorResourcePreviewGenerator {
 }
 export interface RigidBody2D extends PhysicsBody2D {
     angular_damp: type.float;
@@ -9618,8 +9354,6 @@ export interface VScrollBar extends ScrollBar {
     size_flags_horizontal: type.int;
     size_flags_vertical: type.int;
 }
-export declare namespace VScrollBar {
-}
 export interface TouchScreenButton extends Node2D {
     action: type.String;
     bitmask: {
@@ -9661,14 +9395,10 @@ export interface RDShaderSPIRV extends Resource {
     compile_error_tesselation_evaluation: type.String;
     compile_error_vertex: type.String;
 }
-export declare namespace RDShaderSPIRV {
-}
 export interface ReferenceRect extends Control {
     border_color: type.Color;
     border_width: type.float;
     editor_only: type.bool;
-}
-export declare namespace ReferenceRect {
 }
 export interface CollisionShape2D extends Node2D {
     debug_color: type.Color;
@@ -9680,8 +9410,6 @@ export interface CollisionShape2D extends Node2D {
         properties: Shape2D;
     };
 }
-export declare namespace CollisionShape2D {
-}
 export interface NavigationObstacle3D extends Node3D {
     affect_navigation_mesh: type.bool;
     avoidance_enabled: type.bool;
@@ -9692,8 +9420,6 @@ export interface NavigationObstacle3D extends Node3D {
     use_3d_avoidance: type.bool;
     velocity: type.Vector3;
     vertices: type.PackedVector3Array;
-}
-export declare namespace NavigationObstacle3D {
 }
 export interface CollisionObject3D extends Node3D {
     collision_layer: type.int;
@@ -9715,11 +9441,7 @@ export interface HeightMapShape3D extends Shape3D {
     map_depth: type.int;
     map_width: type.int;
 }
-export declare namespace HeightMapShape3D {
-}
 export interface AudioStreamPlayback extends RefCounted {
-}
-export declare namespace AudioStreamPlayback {
 }
 export interface Window extends Viewport {
     always_on_top: type.bool;
@@ -9758,6 +9480,34 @@ export interface Window extends Viewport {
     unresizable: type.bool;
     visible: type.bool;
     wrap_controls: type.bool;
+    title_color: type.Color;
+    title_outline_modulate: type.Color;
+    close_h_offset: type.int;
+    close_v_offset: type.int;
+    resize_margin: type.int;
+    title_height: type.int;
+    title_outline_size: type.int;
+    title_font: {
+        type: "Font";
+        properties: Font;
+    };
+    title_font_size: type.int;
+    close: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    close_pressed: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    embedded_border: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    embedded_unfocused_border: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace Window {
     const NOTIFICATION_VISIBILITY_CHANGED = 30;
@@ -9822,8 +9572,6 @@ export interface RemoteTransform3D extends Node3D {
     update_scale: type.bool;
     use_global_coordinates: type.bool;
 }
-export declare namespace RemoteTransform3D {
-}
 export interface CurveTexture extends Texture2D {
     curve: {
         type: "Curve";
@@ -9841,8 +9589,6 @@ export declare namespace CurveTexture {
 }
 export interface VisualShaderNodeParticleRingEmitter extends VisualShaderNodeParticleEmitter {
 }
-export declare namespace VisualShaderNodeParticleRingEmitter {
-}
 export interface InputEventMIDI extends InputEvent {
     channel: type.int;
     controller_number: type.int;
@@ -9853,8 +9599,6 @@ export interface InputEventMIDI extends InputEvent {
     pressure: type.int;
     velocity: type.int;
 }
-export declare namespace InputEventMIDI {
-}
 export interface RemoteTransform2D extends Node2D {
     remote_path: type.NodePath;
     update_position: type.bool;
@@ -9862,14 +9606,10 @@ export interface RemoteTransform2D extends Node2D {
     update_scale: type.bool;
     use_global_coordinates: type.bool;
 }
-export declare namespace RemoteTransform2D {
-}
 export interface InputEventMouse extends InputEventWithModifiers {
     button_mask: type.int;
     global_position: type.Vector2;
     position: type.Vector2;
-}
-export declare namespace InputEventMouse {
 }
 export interface AudioEffectChorus extends AudioEffect {
     dry: type.float;
@@ -9900,19 +9640,11 @@ export interface AudioEffectChorus extends AudioEffect {
     voice_count: type.int;
     wet: type.float;
 }
-export declare namespace AudioEffectChorus {
-}
 export interface MultiplayerPeerExtension extends MultiplayerPeer {
-}
-export declare namespace MultiplayerPeerExtension {
 }
 export interface LightmapProbe extends Node3D {
 }
-export declare namespace LightmapProbe {
-}
 export interface HScrollBar extends ScrollBar {
-}
-export declare namespace HScrollBar {
 }
 export interface Sky extends Resource {
     process_mode: type.int;
@@ -9947,8 +9679,6 @@ export interface StyleBoxLine extends StyleBox {
     thickness: type.int;
     vertical: type.bool;
 }
-export declare namespace StyleBoxLine {
-}
 export interface NavigationObstacle2D extends Node2D {
     affect_navigation_mesh: type.bool;
     avoidance_enabled: type.bool;
@@ -9957,8 +9687,6 @@ export interface NavigationObstacle2D extends Node2D {
     radius: type.float;
     velocity: type.Vector2;
     vertices: type.PackedVector2Array;
-}
-export declare namespace NavigationObstacle2D {
 }
 export interface CollisionObject2D extends Node2D {
     collision_layer: type.int;
@@ -9981,15 +9709,13 @@ export interface SphereMesh extends PrimitiveMesh {
     radius: type.float;
     rings: type.int;
 }
-export declare namespace SphereMesh {
-}
 export interface AnimationNodeTimeScale extends AnimationNode {
 }
-export declare namespace AnimationNodeTimeScale {
-}
 export interface PopupPanel extends Popup {
-}
-export declare namespace PopupPanel {
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface CollisionShape3D extends Node3D {
     disabled: type.bool;
@@ -9997,8 +9723,6 @@ export interface CollisionShape3D extends Node3D {
         type: "Shape3D";
         properties: Shape3D;
     };
-}
-export declare namespace CollisionShape3D {
 }
 export interface EditorSpinSlider extends Range {
     flat: type.bool;
@@ -10009,12 +9733,20 @@ export interface EditorSpinSlider extends Range {
     size_flags_vertical: type.int;
     step: type.float;
     suffix: type.String;
-}
-export declare namespace EditorSpinSlider {
+    updown: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    updown_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export interface Panel extends Control {
-}
-export declare namespace Panel {
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface FileDialog extends ConfirmationDialog {
     access: type.int;
@@ -10032,6 +9764,45 @@ export interface FileDialog extends ConfirmationDialog {
     size: type.Vector2i;
     title: type.String;
     use_native_dialog: type.bool;
+    file_disabled_color: type.Color;
+    file_icon_color: type.Color;
+    folder_icon_color: type.Color;
+    back_folder: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    create_folder: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    file: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    folder: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    forward_folder: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    parent_folder: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    reload: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    toggle_filename_filter: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    toggle_hidden: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export declare namespace FileDialog {
     const enum FileMode {
@@ -10056,8 +9827,6 @@ export interface AudioEffectReverb extends AudioEffect {
     room_size: type.float;
     spread: type.float;
     wet: type.float;
-}
-export declare namespace AudioEffectReverb {
 }
 export interface AnimationNodeOneShot extends AnimationNodeSync {
     autorestart: type.bool;
@@ -10260,8 +10029,6 @@ export declare namespace Shader {
 export interface VisualShaderNodeComment extends VisualShaderNodeFrame {
     description: type.String;
 }
-export declare namespace VisualShaderNodeComment {
-}
 export interface WorldEnvironment extends Node {
     camera_attributes: {
         type: "CameraAttributes";
@@ -10275,8 +10042,6 @@ export interface WorldEnvironment extends Node {
         type: "Environment";
         properties: Environment;
     };
-}
-export declare namespace WorldEnvironment {
 }
 export interface ShapeCast2D extends Node2D {
     collide_with_areas: type.bool;
@@ -10293,8 +10058,6 @@ export interface ShapeCast2D extends Node2D {
     };
     target_position: type.Vector2;
 }
-export declare namespace ShapeCast2D {
-}
 export interface SpinBox extends Range {
     alignment: type.int;
     custom_arrow_step: type.float;
@@ -10305,8 +10068,94 @@ export interface SpinBox extends Range {
     step: type.float;
     suffix: type.String;
     update_on_text_changed: type.bool;
-}
-export declare namespace SpinBox {
+    down_disabled_icon_modulate: type.Color;
+    down_hover_icon_modulate: type.Color;
+    down_icon_modulate: type.Color;
+    down_pressed_icon_modulate: type.Color;
+    up_disabled_icon_modulate: type.Color;
+    up_hover_icon_modulate: type.Color;
+    up_icon_modulate: type.Color;
+    up_pressed_icon_modulate: type.Color;
+    buttons_vertical_separation: type.int;
+    buttons_width: type.int;
+    field_and_buttons_separation: type.int;
+    set_min_buttons_width_from_icons: type.int;
+    down: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    down_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    down_hover: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    down_pressed: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    up: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    up_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    up_hover: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    up_pressed: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    updown: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    down_background: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    down_background_disabled: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    down_background_hovered: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    down_background_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    field_and_buttons_separator: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    up_background: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    up_background_disabled: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    up_background_hovered: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    up_background_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    up_down_buttons_separator: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface GradientTexture1D extends Texture2D {
     gradient: {
@@ -10316,8 +10165,6 @@ export interface GradientTexture1D extends Texture2D {
     resource_local_to_scene: type.bool;
     use_hdr: type.bool;
     width: type.int;
-}
-export declare namespace GradientTexture1D {
 }
 export interface ResourceImporterOBJ extends ResourceImporter {
     force_disable_mesh_compression: type.bool;
@@ -10329,8 +10176,6 @@ export interface ResourceImporterOBJ extends ResourceImporter {
     offset_mesh: type.Vector3;
     scale_mesh: type.Vector3;
 }
-export declare namespace ResourceImporterOBJ {
-}
 export interface MultiMeshInstance2D extends Node2D {
     multimesh: {
         type: "MultiMesh";
@@ -10340,8 +10185,6 @@ export interface MultiMeshInstance2D extends Node2D {
         type: "Texture2D";
         properties: Texture2D;
     };
-}
-export declare namespace MultiMeshInstance2D {
 }
 export interface XRHandModifier3D extends SkeletonModifier3D {
     bone_update: type.int;
@@ -10391,11 +10234,7 @@ export interface NavigationAgent2D extends Node {
     time_horizon_obstacles: type.float;
     velocity: type.Vector2;
 }
-export declare namespace NavigationAgent2D {
-}
 export interface StreamPeerGZIP extends StreamPeer {
-}
-export declare namespace StreamPeerGZIP {
 }
 export interface InputEventScreenDrag extends InputEventFromWindow {
     index: type.int;
@@ -10408,19 +10247,13 @@ export interface InputEventScreenDrag extends InputEventFromWindow {
     tilt: type.Vector2;
     velocity: type.Vector2;
 }
-export declare namespace InputEventScreenDrag {
-}
 export interface VisualShaderNodeFresnel extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeFresnel {
 }
 export interface ParallaxLayer extends Node2D {
     motion_mirroring: type.Vector2;
     motion_offset: type.Vector2;
     motion_scale: type.Vector2;
     physics_interpolation_mode: type.int;
-}
-export declare namespace ParallaxLayer {
 }
 export interface Parallax2D extends Node2D {
     autoscroll: type.Vector2;
@@ -10435,18 +10268,12 @@ export interface Parallax2D extends Node2D {
     scroll_offset: type.Vector2;
     scroll_scale: type.Vector2;
 }
-export declare namespace Parallax2D {
-}
 export interface ResourceImporterShaderFile extends ResourceImporter {
-}
-export declare namespace ResourceImporterShaderFile {
 }
 export interface CanvasGroup extends Node2D {
     clear_margin: type.float;
     fit_margin: type.float;
     use_mipmaps: type.bool;
-}
-export declare namespace CanvasGroup {
 }
 export interface AnimatedTexture extends Texture2D {
     current_frame: type.int;
@@ -10461,11 +10288,7 @@ export declare namespace AnimatedTexture {
 }
 export interface MethodTweener extends Tweener {
 }
-export declare namespace MethodTweener {
-}
 export interface HBoxContainer extends BoxContainer {
-}
-export declare namespace HBoxContainer {
 }
 export interface AnimationNodeStateMachineTransition extends Resource {
     advance_condition: type.StringName;
@@ -10497,8 +10320,6 @@ export interface MissingResource extends Resource {
     original_class: type.String;
     recording_properties: type.bool;
 }
-export declare namespace MissingResource {
-}
 export interface Tree extends Control {
     allow_reselect: type.bool;
     allow_rmb_select: type.bool;
@@ -10514,6 +10335,161 @@ export interface Tree extends Control {
     scroll_horizontal_enabled: type.bool;
     scroll_vertical_enabled: type.bool;
     select_mode: type.int;
+    children_hl_line_color: type.Color;
+    custom_button_font_highlight: type.Color;
+    drop_position_color: type.Color;
+    font_color: type.Color;
+    font_disabled_color: type.Color;
+    font_hovered_color: type.Color;
+    font_hovered_dimmed_color: type.Color;
+    font_outline_color: type.Color;
+    font_selected_color: type.Color;
+    guide_color: type.Color;
+    parent_hl_line_color: type.Color;
+    relationship_line_color: type.Color;
+    title_button_color: type.Color;
+    button_margin: type.int;
+    children_hl_line_width: type.int;
+    draw_guides: type.int;
+    draw_relationship_lines: type.int;
+    h_separation: type.int;
+    icon_max_width: type.int;
+    inner_item_margin_bottom: type.int;
+    inner_item_margin_left: type.int;
+    inner_item_margin_right: type.int;
+    inner_item_margin_top: type.int;
+    item_margin: type.int;
+    outline_size: type.int;
+    parent_hl_line_margin: type.int;
+    parent_hl_line_width: type.int;
+    relationship_line_width: type.int;
+    scroll_border: type.int;
+    scroll_speed: type.int;
+    scrollbar_h_separation: type.int;
+    scrollbar_margin_bottom: type.int;
+    scrollbar_margin_left: type.int;
+    scrollbar_margin_right: type.int;
+    scrollbar_margin_top: type.int;
+    scrollbar_v_separation: type.int;
+    v_separation: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    title_button_font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    title_button_font_size: type.int;
+    arrow: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    arrow_collapsed: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    arrow_collapsed_mirrored: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    indeterminate: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    indeterminate_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    select_arrow: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    updown: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    button_hover: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    button_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    cursor: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    cursor_unfocused: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    custom_button: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    custom_button_hover: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    custom_button_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hovered: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hovered_dimmed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    selected_focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    title_button_hover: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    title_button_normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    title_button_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace Tree {
     const enum SelectMode {
@@ -10529,8 +10505,6 @@ export declare namespace Tree {
 }
 export interface HSeparator extends Separator {
 }
-export declare namespace HSeparator {
-}
 export interface RDFramebufferPass extends RefCounted {
     color_attachments: type.PackedInt32Array;
     depth_attachment: type.int;
@@ -10543,21 +10517,13 @@ export declare namespace RDFramebufferPass {
 }
 export interface VisualShaderNodeCustom extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeCustom {
-}
 export interface ResourceImporterCSVTranslation extends ResourceImporter {
     compress: type.bool;
     delimiter: type.int;
 }
-export declare namespace ResourceImporterCSVTranslation {
-}
 export interface EditorSyntaxHighlighter extends SyntaxHighlighter {
 }
-export declare namespace EditorSyntaxHighlighter {
-}
 export interface VisualShaderNodeFaceForward extends VisualShaderNodeVectorBase {
-}
-export declare namespace VisualShaderNodeFaceForward {
 }
 export interface RDPipelineColorBlendState extends RefCounted {
     attachments: {
@@ -10567,8 +10533,6 @@ export interface RDPipelineColorBlendState extends RefCounted {
     blend_constant: type.Color;
     enable_logic_op: type.bool;
     logic_op: type.int;
-}
-export declare namespace RDPipelineColorBlendState {
 }
 export interface AudioStreamWAV extends AudioStream {
     data: type.PackedByteArray;
@@ -10618,8 +10582,6 @@ export interface SkeletonModification2DCCDIK extends SkeletonModification2D {
     target_nodepath: type.NodePath;
     tip_nodepath: type.NodePath;
 }
-export declare namespace SkeletonModification2DCCDIK {
-}
 export interface TranslationDomain extends RefCounted {
     pseudolocalization_accents_enabled: type.bool;
     pseudolocalization_double_vowels_enabled: type.bool;
@@ -10631,11 +10593,7 @@ export interface TranslationDomain extends RefCounted {
     pseudolocalization_skip_placeholders_enabled: type.bool;
     pseudolocalization_suffix: type.String;
 }
-export declare namespace TranslationDomain {
-}
 export interface VisualShaderNodeCubemapParameter extends VisualShaderNodeTextureParameter {
-}
-export declare namespace VisualShaderNodeCubemapParameter {
 }
 export interface PacketPeerStream extends PacketPeer {
     input_buffer_max_size: type.int;
@@ -10645,11 +10603,7 @@ export interface PacketPeerStream extends PacketPeer {
         properties: StreamPeer;
     };
 }
-export declare namespace PacketPeerStream {
-}
 export interface RichTextEffect extends Resource {
-}
-export declare namespace RichTextEffect {
 }
 export interface VisualShaderNodeTexture extends VisualShaderNode {
     source: type.int;
@@ -10696,20 +10650,12 @@ export interface ImporterMeshInstance3D extends Node3D {
     visibility_range_end_margin: type.float;
     visibility_range_fade_mode: type.int;
 }
-export declare namespace ImporterMeshInstance3D {
-}
 export interface Texture2DArray extends ImageTextureLayered {
-}
-export declare namespace Texture2DArray {
 }
 export interface AudioEffectPanner extends AudioEffect {
     pan: type.float;
 }
-export declare namespace AudioEffectPanner {
-}
 export interface PlaceholderTexture2DArray extends PlaceholderTextureLayered {
-}
-export declare namespace PlaceholderTexture2DArray {
 }
 export interface VisualShaderNodeParticleAccelerator extends VisualShaderNode {
     mode: type.int;
@@ -10734,26 +10680,18 @@ export interface PhysicsRayQueryParameters2D extends RefCounted {
     hit_from_inside: type.bool;
     to: type.Vector2;
 }
-export declare namespace PhysicsRayQueryParameters2D {
-}
 export interface BoxMesh extends PrimitiveMesh {
     size: type.Vector3;
     subdivide_depth: type.int;
     subdivide_height: type.int;
     subdivide_width: type.int;
 }
-export declare namespace BoxMesh {
-}
 export interface VisualShaderNodeUIntConstant extends VisualShaderNodeConstant {
     constant: type.int;
-}
-export declare namespace VisualShaderNodeUIntConstant {
 }
 export interface AudioStreamGenerator extends AudioStream {
     buffer_length: type.float;
     mix_rate: type.float;
-}
-export declare namespace AudioStreamGenerator {
 }
 export interface AtlasTexture extends Texture2D {
     atlas: {
@@ -10765,47 +10703,29 @@ export interface AtlasTexture extends Texture2D {
     region: type.Rect2;
     resource_local_to_scene: type.bool;
 }
-export declare namespace AtlasTexture {
-}
 export interface UDPServer extends RefCounted {
     max_pending_connections: type.int;
 }
-export declare namespace UDPServer {
-}
 export interface RenderSceneDataExtension extends RenderSceneData {
 }
-export declare namespace RenderSceneDataExtension {
-}
 export interface EditorDebuggerPlugin extends RefCounted {
-}
-export declare namespace EditorDebuggerPlugin {
 }
 export interface XRTracker extends RefCounted {
     description: type.String;
     name: type.StringName;
     type: type.int;
 }
-export declare namespace XRTracker {
-}
 export interface XRCamera3D extends Camera3D {
-}
-export declare namespace XRCamera3D {
 }
 export interface VisualShaderNodeExpression extends VisualShaderNodeGroupBase {
     expression: type.String;
-}
-export declare namespace VisualShaderNodeExpression {
 }
 export interface ExternalTexture extends Texture2D {
     resource_local_to_scene: type.bool;
     size: type.Vector2;
 }
-export declare namespace ExternalTexture {
-}
 export interface VisibleOnScreenNotifier2D extends Node2D {
     rect: type.Rect2;
-}
-export declare namespace VisibleOnScreenNotifier2D {
 }
 export interface BackBufferCopy extends Node2D {
     copy_mode: type.int;
@@ -10836,25 +10756,15 @@ export declare namespace EditorFeatureProfile {
 }
 export interface VisualShaderNodeTextureSDFNormal extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeTextureSDFNormal {
-}
 export interface Texture2DArrayRD extends TextureLayeredRD {
-}
-export declare namespace Texture2DArrayRD {
 }
 export interface EditorResourcePreview extends Node {
 }
-export declare namespace EditorResourcePreview {
-}
 export interface AudioStream extends Resource {
-}
-export declare namespace AudioStream {
 }
 export interface VisualShaderNodeBooleanParameter extends VisualShaderNodeParameter {
     default_value: type.bool;
     default_value_enabled: type.bool;
-}
-export declare namespace VisualShaderNodeBooleanParameter {
 }
 export interface TreeItem extends Object {
     collapsed: type.bool;
@@ -10873,8 +10783,6 @@ export declare namespace TreeItem {
 }
 export interface GPUParticlesCollisionBox3D extends GPUParticlesCollision3D {
     size: type.Vector3;
-}
-export declare namespace GPUParticlesCollisionBox3D {
 }
 export interface CodeEdit extends TextEdit {
     auto_brace_completion_enabled: type.bool;
@@ -10902,6 +10810,62 @@ export interface CodeEdit extends TextEdit {
     line_length_guidelines: type.int[];
     symbol_lookup_on_click: type.bool;
     text_direction: type.int;
+    bookmark_color: type.Color;
+    brace_mismatch_color: type.Color;
+    breakpoint_color: type.Color;
+    code_folding_color: type.Color;
+    completion_background_color: type.Color;
+    completion_existing_color: type.Color;
+    completion_scroll_color: type.Color;
+    completion_scroll_hovered_color: type.Color;
+    completion_selected_color: type.Color;
+    executing_line_color: type.Color;
+    folded_code_region_color: type.Color;
+    line_length_guideline_color: type.Color;
+    line_number_color: type.Color;
+    completion_lines: type.int;
+    completion_max_width: type.int;
+    completion_scroll_width: type.int;
+    bookmark: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    breakpoint: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    can_fold: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    can_fold_code_region: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    completion_color_bg: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    executing_line: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    folded: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    folded_code_region: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    folded_eol_icon: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    completion: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace CodeEdit {
     const enum CodeCompletionKind {
@@ -10925,8 +10889,6 @@ export declare namespace CodeEdit {
 }
 export interface Skin extends Resource {
 }
-export declare namespace Skin {
-}
 export interface FontVariation extends Font {
     base_font: {
         type: "Font";
@@ -10948,8 +10910,6 @@ export interface FontVariation extends Font {
         properties: Dictionary;
     };
     variation_transform: type.Transform2D;
-}
-export declare namespace FontVariation {
 }
 export interface NavigationPathQueryParameters3D extends RefCounted {
     map: {
@@ -10999,8 +10959,6 @@ export interface InputEventJoypadButton extends InputEvent {
     pressed: type.bool;
     pressure: type.float;
 }
-export declare namespace InputEventJoypadButton {
-}
 export interface UndoRedo extends Object {
     max_steps: type.int;
 }
@@ -11012,8 +10970,6 @@ export declare namespace UndoRedo {
     }
 }
 export interface PhysicsDirectBodyState3DExtension extends PhysicsDirectBodyState3D {
-}
-export declare namespace PhysicsDirectBodyState3DExtension {
 }
 export interface CameraServer extends Object {
 }
@@ -11027,11 +10983,7 @@ export declare namespace CameraServer {
 }
 export interface Texture extends Resource {
 }
-export declare namespace Texture {
-}
 export interface PhysicsServer3DExtension extends PhysicsServer3D {
-}
-export declare namespace PhysicsServer3DExtension {
 }
 export interface ProceduralSkyMaterial extends Material {
     energy_multiplier: type.float;
@@ -11052,8 +11004,6 @@ export interface ProceduralSkyMaterial extends Material {
     sun_curve: type.float;
     use_debanding: type.bool;
 }
-export declare namespace ProceduralSkyMaterial {
-}
 export interface CylinderMesh extends PrimitiveMesh {
     bottom_radius: type.float;
     cap_bottom: type.bool;
@@ -11063,11 +11013,7 @@ export interface CylinderMesh extends PrimitiveMesh {
     rings: type.int;
     top_radius: type.float;
 }
-export declare namespace CylinderMesh {
-}
 export interface InstancePlaceholder extends Node {
-}
-export declare namespace InstancePlaceholder {
 }
 export interface NavigationPathQueryResult3D extends RefCounted {
     path: type.PackedVector3Array;
@@ -11086,8 +11032,6 @@ export declare namespace NavigationPathQueryResult3D {
 }
 export interface PlaceholderCubemapArray extends PlaceholderTextureLayered {
 }
-export declare namespace PlaceholderCubemapArray {
-}
 export interface SpringArm3D extends Node3D {
     collision_mask: type.int;
     margin: type.float;
@@ -11096,8 +11040,6 @@ export interface SpringArm3D extends Node3D {
         properties: Shape3D;
     };
     spring_length: type.float;
-}
-export declare namespace SpringArm3D {
 }
 export interface OS extends Object {
     delta_smoothing: type.bool;
@@ -11154,16 +11096,10 @@ export declare namespace TextureRect {
 }
 export interface SpriteFrames extends Resource {
 }
-export declare namespace SpriteFrames {
-}
 export interface VisualShaderNodeSDFRaymarch extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeSDFRaymarch {
 }
 export interface BoxShape3D extends Shape3D {
     size: type.Vector3;
-}
-export declare namespace BoxShape3D {
 }
 export interface AudioEffectPitchShift extends AudioEffect {
     fft_size: type.int;
@@ -11191,8 +11127,6 @@ export interface ResourceImporterWAV extends ResourceImporter {
     'force/max_rate': type.bool;
     'force/max_rate_hz': type.float;
     'force/mono': type.bool;
-}
-export declare namespace ResourceImporterWAV {
 }
 export interface Mesh extends Resource {
     lightmap_size_hint: type.Vector2i;
@@ -11268,8 +11202,6 @@ export declare namespace Mesh {
 }
 export interface VSplitContainer extends SplitContainer {
 }
-export declare namespace VSplitContainer {
-}
 export interface Input extends Object {
     emulate_mouse_from_touch: type.bool;
     emulate_touch_from_mouse: type.bool;
@@ -11306,8 +11238,6 @@ export declare namespace Input {
 }
 export interface AudioStreamPlaybackResampled extends AudioStreamPlayback {
 }
-export declare namespace AudioStreamPlaybackResampled {
-}
 export interface AudioEffectDelay extends AudioEffect {
     dry: type.float;
     feedback_active: type.bool;
@@ -11323,8 +11253,6 @@ export interface AudioEffectDelay extends AudioEffect {
     tap2_level_db: type.float;
     tap2_pan: type.float;
 }
-export declare namespace AudioEffectDelay {
-}
 export interface RDTextureFormat extends RefCounted {
     array_layers: type.int;
     depth: type.int;
@@ -11336,11 +11264,7 @@ export interface RDTextureFormat extends RefCounted {
     usage_bits: type.int;
     width: type.int;
 }
-export declare namespace RDTextureFormat {
-}
 export interface RenderDataRD extends RenderData {
-}
-export declare namespace RenderDataRD {
 }
 export interface PrimitiveMesh extends Mesh {
     add_uv2: type.bool;
@@ -11352,13 +11276,9 @@ export interface PrimitiveMesh extends Mesh {
     };
     uv2_padding: type.float;
 }
-export declare namespace PrimitiveMesh {
-}
 export interface PlaceholderTexture2D extends Texture2D {
     resource_local_to_scene: type.bool;
     size: type.Vector2;
-}
-export declare namespace PlaceholderTexture2D {
 }
 export interface ColorPicker extends VBoxContainer {
     can_add_swatches: type.bool;
@@ -11372,6 +11292,68 @@ export interface ColorPicker extends VBoxContainer {
     presets_visible: type.bool;
     sampler_visible: type.bool;
     sliders_visible: type.bool;
+    center_slider_grabbers: type.int;
+    h_width: type.int;
+    label_width: type.int;
+    margin: type.int;
+    sv_height: type.int;
+    sv_width: type.int;
+    add_preset: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    bar_arrow: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    color_hue: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    color_okhsl_hue: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    expanded_arrow: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    folded_arrow: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    overbright_indicator: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    picker_cursor: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    sample_bg: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    sample_revert: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    screen_picker: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    shape_circle: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    shape_rect: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    shape_rect_wheel: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export declare namespace ColorPicker {
     const enum ColorModeType {
@@ -11390,23 +11372,13 @@ export declare namespace ColorPicker {
 }
 export interface Geometry3D extends Object {
 }
-export declare namespace Geometry3D {
-}
 export interface AudioListener2D extends Node2D {
-}
-export declare namespace AudioListener2D {
 }
 export interface AnimationNodeTimeSeek extends AnimationNode {
 }
-export declare namespace AnimationNodeTimeSeek {
-}
 export interface VisualShaderNodeTextureSDF extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeTextureSDF {
-}
 export interface EditorPaths extends Object {
-}
-export declare namespace EditorPaths {
 }
 export interface Tween extends RefCounted {
 }
@@ -11455,6 +11427,72 @@ export interface TabBar extends Control {
     tab_close_display_policy: type.int;
     tab_count: type.int;
     tabs_rearrange_group: type.int;
+    drop_mark_color: type.Color;
+    font_disabled_color: type.Color;
+    font_hovered_color: type.Color;
+    font_outline_color: type.Color;
+    font_selected_color: type.Color;
+    font_unselected_color: type.Color;
+    h_separation: type.int;
+    icon_max_width: type.int;
+    outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    close: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    decrement: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    decrement_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    drop_mark: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    button_highlight: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    button_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_disabled: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_hovered: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_unselected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace TabBar {
     const enum AlignmentMode {
@@ -11479,8 +11517,6 @@ export interface EditorProperty extends Container {
     label: type.String;
     read_only: type.bool;
 }
-export declare namespace EditorProperty {
-}
 export interface AspectRatioContainer extends Container {
     alignment_horizontal: type.int;
     alignment_vertical: type.int;
@@ -11501,8 +11537,6 @@ export declare namespace AspectRatioContainer {
     }
 }
 export interface AStar3D extends RefCounted {
-}
-export declare namespace AStar3D {
 }
 export interface SubViewport extends Viewport {
     render_target_clear_mode: type.int;
@@ -11576,8 +11610,6 @@ export declare namespace TileSet {
     }
 }
 export interface AudioEffectEQ21 extends AudioEffectEQ {
-}
-export declare namespace AudioEffectEQ21 {
 }
 export interface RenderingDevice extends Object {
 }
@@ -12206,8 +12238,6 @@ export declare namespace VisualShaderNodeBillboard {
 }
 export interface PhysicsDirectSpaceState2DExtension extends PhysicsDirectSpaceState2D {
 }
-export declare namespace PhysicsDirectSpaceState2DExtension {
-}
 export interface Range extends Control {
     allow_greater: type.bool;
     allow_lesser: type.bool;
@@ -12221,11 +12251,7 @@ export interface Range extends Control {
     step: type.float;
     value: type.float;
 }
-export declare namespace Range {
-}
 export interface EngineDebugger extends Object {
-}
-export declare namespace EngineDebugger {
 }
 export interface BoneMap extends Resource {
     profile: {
@@ -12233,12 +12259,8 @@ export interface BoneMap extends Resource {
         properties: SkeletonProfile;
     };
 }
-export declare namespace BoneMap {
-}
 export interface AnimationNodeSync extends AnimationNode {
     sync: type.bool;
-}
-export declare namespace AnimationNodeSync {
 }
 export interface Label3D extends GeometryInstance3D {
     alpha_antialiasing_edge: type.float;
@@ -12295,8 +12317,6 @@ export declare namespace Label3D {
     }
 }
 export interface VisualShaderNodeDistanceFade extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeDistanceFade {
 }
 export interface BaseMaterial3D extends Material {
     albedo_color: type.Color;
@@ -12619,8 +12639,6 @@ export declare namespace BaseMaterial3D {
 }
 export interface Node3DGizmo extends RefCounted {
 }
-export declare namespace Node3DGizmo {
-}
 export interface RibbonTrailMesh extends PrimitiveMesh {
     curve: {
         type: "Curve";
@@ -12640,8 +12658,6 @@ export declare namespace RibbonTrailMesh {
 }
 export interface VisualShaderNodeTransformDecompose extends VisualShaderNode {
 }
-export declare namespace VisualShaderNodeTransformDecompose {
-}
 export interface Thread extends RefCounted {
 }
 export declare namespace Thread {
@@ -12653,13 +12669,42 @@ export declare namespace Thread {
 }
 export interface CompressedCubemap extends CompressedTextureLayered {
 }
-export declare namespace CompressedCubemap {
-}
 export interface CheckBox extends Button {
     alignment: type.int;
     toggle_mode: type.bool;
-}
-export declare namespace CheckBox {
+    check_v_offset: type.int;
+    checked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    checked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_checked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_checked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_unchecked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    radio_unchecked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    unchecked_disabled: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export interface Decal extends VisualInstance3D {
     albedo_mix: type.float;
@@ -12708,8 +12753,6 @@ export interface ParallaxBackground extends CanvasLayer {
     scroll_limit_end: type.Vector2;
     scroll_offset: type.Vector2;
 }
-export declare namespace ParallaxBackground {
-}
 export interface ConeTwistJoint3D extends Joint3D {
     bias: type.float;
     relaxation: type.float;
@@ -12729,8 +12772,6 @@ export declare namespace ConeTwistJoint3D {
 }
 export interface AudioEffectRecord extends AudioEffect {
     format: type.int;
-}
-export declare namespace AudioEffectRecord {
 }
 export interface AudioStreamPlayer extends Node {
     autoplay: type.bool;
@@ -12780,6 +12821,52 @@ export interface GraphEdit extends Control {
     zoom_max: type.float;
     zoom_min: type.float;
     zoom_step: type.float;
+    activity: type.Color;
+    connection_hover_tint_color: type.Color;
+    connection_rim_color: type.Color;
+    connection_valid_target_tint_color: type.Color;
+    grid_major: type.Color;
+    grid_minor: type.Color;
+    selection_fill: type.Color;
+    selection_stroke: type.Color;
+    port_hotzone_inner_extent: type.int;
+    port_hotzone_outer_extent: type.int;
+    grid_toggle: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    layout: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    minimap_toggle: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    snapping_toggle: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    zoom_in: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    zoom_out: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    zoom_reset: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    menu_panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace GraphEdit {
     const enum PanningScheme {
@@ -12808,8 +12895,6 @@ export interface Sprite2D extends Node2D {
     };
     vframes: type.int;
 }
-export declare namespace Sprite2D {
-}
 export interface LightOccluder2D extends Node2D {
     occluder: {
         type: "OccluderPolygon2D";
@@ -12818,23 +12903,13 @@ export interface LightOccluder2D extends Node2D {
     occluder_light_mask: type.int;
     sdf_collision: type.bool;
 }
-export declare namespace LightOccluder2D {
-}
 export interface PlaceholderCubemap extends PlaceholderTextureLayered {
-}
-export declare namespace PlaceholderCubemap {
 }
 export interface Mutex extends RefCounted {
 }
-export declare namespace Mutex {
-}
 export interface Occluder3D extends Resource {
 }
-export declare namespace Occluder3D {
-}
 export interface HSplitContainer extends SplitContainer {
-}
-export declare namespace HSplitContainer {
 }
 export interface StreamPeerTLS extends StreamPeer {
 }
@@ -12849,19 +12924,11 @@ export declare namespace StreamPeerTLS {
 }
 export interface TriangleMesh extends RefCounted {
 }
-export declare namespace TriangleMesh {
-}
 export interface ResourceImporterImage extends ResourceImporter {
-}
-export declare namespace ResourceImporterImage {
 }
 export interface PackedDataContainerRef extends RefCounted {
 }
-export declare namespace PackedDataContainerRef {
-}
 export interface AnimationNodeAdd2 extends AnimationNodeSync {
-}
-export declare namespace AnimationNodeAdd2 {
 }
 export interface SplitContainer extends Container {
     collapsed: type.bool;
@@ -12873,6 +12940,25 @@ export interface SplitContainer extends Container {
     dragging_enabled: type.bool;
     split_offset: type.int;
     vertical: type.bool;
+    autohide: type.int;
+    minimum_grab_thickness: type.int;
+    separation: type.int;
+    grabber: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    h_grabber: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    v_grabber: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    split_bar_background: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace SplitContainer {
     const enum DraggerVisibility {
@@ -12906,14 +12992,10 @@ export interface FontFile extends Font {
     style_name: type.String;
     subpixel_positioning: type.int;
 }
-export declare namespace FontFile {
-}
 export interface RDAttachmentFormat extends RefCounted {
     format: type.int;
     samples: type.int;
     usage_flags: type.int;
-}
-export declare namespace RDAttachmentFormat {
 }
 export interface EditorExportPreset extends RefCounted {
 }
@@ -12941,8 +13023,10 @@ export interface ColorPickerButton extends Button {
     color: type.Color;
     edit_alpha: type.bool;
     toggle_mode: type.bool;
-}
-export declare namespace ColorPickerButton {
+    bg: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
 }
 export interface EditorContextMenuPlugin extends RefCounted {
 }
@@ -12955,8 +13039,6 @@ export declare namespace EditorContextMenuPlugin {
     }
 }
 export interface EditorImportPlugin extends ResourceImporter {
-}
-export declare namespace EditorImportPlugin {
 }
 export interface CharFXTransform extends RefCounted {
     color: type.Color;
@@ -12979,11 +13061,7 @@ export interface CharFXTransform extends RefCounted {
     transform: type.Transform2D;
     visible: type.bool;
 }
-export declare namespace CharFXTransform {
-}
 export interface VisualShaderNodeVectorCompose extends VisualShaderNodeVectorBase {
-}
-export declare namespace VisualShaderNodeVectorCompose {
 }
 export interface VisualShaderNodeIntOp extends VisualShaderNode {
     operator: type.int;
@@ -13025,11 +13103,7 @@ export declare namespace EditorExportPlatform {
 export interface GPUParticlesCollision3D extends VisualInstance3D {
     cull_mask: type.int;
 }
-export declare namespace GPUParticlesCollision3D {
-}
 export interface NavigationMeshSourceGeometryData3D extends Resource {
-}
-export declare namespace NavigationMeshSourceGeometryData3D {
 }
 export interface ResourceImporterScene extends ResourceImporter {
     _subresources: {
@@ -13056,13 +13130,9 @@ export interface ResourceImporterScene extends ResourceImporter {
     'nodes/use_node_type_suffixes': type.bool;
     'skins/use_named_skins': type.bool;
 }
-export declare namespace ResourceImporterScene {
-}
 export interface PlaceholderTextureLayered extends TextureLayered {
     layers: type.int;
     size: type.Vector2i;
-}
-export declare namespace PlaceholderTextureLayered {
 }
 export interface TextureLayered extends Texture {
 }
@@ -13084,11 +13154,7 @@ export interface NavigationRegion2D extends Node2D {
     travel_cost: type.float;
     use_edge_connections: type.bool;
 }
-export declare namespace NavigationRegion2D {
-}
 export interface PolygonPathFinder extends Resource {
-}
-export declare namespace PolygonPathFinder {
 }
 export interface TileData extends Object {
     flip_h: type.bool;
@@ -13105,8 +13171,6 @@ export interface TileData extends Object {
     transpose: type.bool;
     y_sort_origin: type.int;
     z_index: type.int;
-}
-export declare namespace TileData {
 }
 export interface VisualShaderNodeTransformOp extends VisualShaderNode {
     operator: type.int;
@@ -13150,8 +13214,6 @@ export declare namespace DirectionalLight3D {
 }
 export interface VisualShaderNodeVectorDecompose extends VisualShaderNodeVectorBase {
 }
-export declare namespace VisualShaderNodeVectorDecompose {
-}
 export interface JSONRPC extends Object {
 }
 export declare namespace JSONRPC {
@@ -13171,11 +13233,7 @@ export interface FogVolume extends VisualInstance3D {
     shape: type.int;
     size: type.Vector3;
 }
-export declare namespace FogVolume {
-}
 export interface VisualShaderNodeParticleOutput extends VisualShaderNodeOutput {
-}
-export declare namespace VisualShaderNodeParticleOutput {
 }
 export interface SystemFont extends Font {
     allow_system_fallback: type.bool;
@@ -13194,8 +13252,6 @@ export interface SystemFont extends Font {
     oversampling: type.float;
     subpixel_positioning: type.int;
 }
-export declare namespace SystemFont {
-}
 export interface RDPipelineMultisampleState extends RefCounted {
     enable_alpha_to_coverage: type.bool;
     enable_alpha_to_one: type.bool;
@@ -13204,12 +13260,8 @@ export interface RDPipelineMultisampleState extends RefCounted {
     sample_count: type.int;
     sample_masks: type.int[];
 }
-export declare namespace RDPipelineMultisampleState {
-}
 export interface SphereOccluder3D extends Occluder3D {
     radius: type.float;
-}
-export declare namespace SphereOccluder3D {
 }
 export interface LineEdit extends Control {
     alignment: type.int;
@@ -13247,6 +13299,39 @@ export interface LineEdit extends Control {
     text_direction: type.int;
     virtual_keyboard_enabled: type.bool;
     virtual_keyboard_type: type.int;
+    caret_color: type.Color;
+    clear_button_color: type.Color;
+    clear_button_color_pressed: type.Color;
+    font_color: type.Color;
+    font_outline_color: type.Color;
+    font_placeholder_color: type.Color;
+    font_selected_color: type.Color;
+    font_uneditable_color: type.Color;
+    selection_color: type.Color;
+    caret_width: type.int;
+    minimum_character_width: type.int;
+    outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    clear: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    read_only: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace LineEdit {
     const enum MenuItems {
@@ -13295,8 +13380,6 @@ export declare namespace LineEdit {
 }
 export interface StyleBoxEmpty extends StyleBox {
 }
-export declare namespace StyleBoxEmpty {
-}
 export interface HingeJoint3D extends Joint3D {
     'angular_limit/bias': type.float;
     'angular_limit/enable': type.bool;
@@ -13332,8 +13415,6 @@ export interface Curve3D extends Resource {
     point_count: type.int;
     up_vector_enabled: type.bool;
 }
-export declare namespace Curve3D {
-}
 export interface ResourceSaver extends Object {
 }
 export declare namespace ResourceSaver {
@@ -13354,11 +13435,7 @@ export interface Joint3D extends Node3D {
     node_b: type.NodePath;
     solver_priority: type.int;
 }
-export declare namespace Joint3D {
-}
 export interface EditorFileSystemImportFormatSupportQuery extends RefCounted {
-}
-export declare namespace EditorFileSystemImportFormatSupportQuery {
 }
 export interface PathFollow2D extends Node2D {
     cubic_interp: type.bool;
@@ -13369,16 +13446,10 @@ export interface PathFollow2D extends Node2D {
     rotates: type.bool;
     v_offset: type.float;
 }
-export declare namespace PathFollow2D {
-}
 export interface X509Certificate extends Resource {
-}
-export declare namespace X509Certificate {
 }
 export interface VisualShaderNodeVec4Constant extends VisualShaderNodeConstant {
     constant: type.Quaternion;
-}
-export declare namespace VisualShaderNodeVec4Constant {
 }
 export interface GPUParticlesCollisionSDF3D extends GPUParticlesCollision3D {
     bake_mask: type.int;
@@ -13404,11 +13475,7 @@ export declare namespace GPUParticlesCollisionSDF3D {
 export interface QuadOccluder3D extends Occluder3D {
     size: type.Vector2;
 }
-export declare namespace QuadOccluder3D {
-}
 export interface VisualShaderNodeParticleConeVelocity extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeParticleConeVelocity {
 }
 export interface ScriptLanguageExtension extends ScriptLanguage {
 }
@@ -13447,8 +13514,6 @@ export declare namespace ScriptLanguageExtension {
 }
 export interface AnimationNodeAdd3 extends AnimationNodeSync {
 }
-export declare namespace AnimationNodeAdd3 {
-}
 export interface ResourceLoader extends Object {
 }
 export declare namespace ResourceLoader {
@@ -13473,8 +13538,6 @@ export interface PrismMesh extends PrimitiveMesh {
     subdivide_height: type.int;
     subdivide_width: type.int;
 }
-export declare namespace PrismMesh {
-}
 export interface AnimationNodeBlendTree extends AnimationRootNode {
     graph_offset: type.Vector2;
 }
@@ -13489,13 +13552,9 @@ export declare namespace AnimationNodeBlendTree {
 export interface GPUParticlesAttractorBox3D extends GPUParticlesAttractor3D {
     size: type.Vector3;
 }
-export declare namespace GPUParticlesAttractorBox3D {
-}
 export interface RDUniform extends RefCounted {
     binding: type.int;
     uniform_type: type.int;
-}
-export declare namespace RDUniform {
 }
 export interface AnimationNodeBlendSpace1D extends AnimationRootNode {
     blend_mode: type.int;
@@ -13513,21 +13572,18 @@ export declare namespace AnimationNodeBlendSpace1D {
     }
 }
 export interface Separator extends Control {
-}
-export declare namespace Separator {
+    separation: type.int;
+    separator: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface XRController3D extends XRNode3D {
 }
-export declare namespace XRController3D {
-}
 export interface ShaderGlobalsOverride extends Node {
-}
-export declare namespace ShaderGlobalsOverride {
 }
 export interface SceneTreeTimer extends RefCounted {
     time_left: type.float;
-}
-export declare namespace SceneTreeTimer {
 }
 export interface HashingContext extends RefCounted {
 }
@@ -13542,12 +13598,8 @@ export interface InputEventJoypadMotion extends InputEvent {
     axis: type.int;
     axis_value: type.float;
 }
-export declare namespace InputEventJoypadMotion {
-}
 export interface InputEventFromWindow extends InputEvent {
     window_id: type.int;
-}
-export declare namespace InputEventFromWindow {
 }
 export interface PhysicalSkyMaterial extends Material {
     energy_multiplier: type.float;
@@ -13564,8 +13616,6 @@ export interface PhysicalSkyMaterial extends Material {
     sun_disk_scale: type.float;
     turbidity: type.float;
     use_debanding: type.bool;
-}
-export declare namespace PhysicalSkyMaterial {
 }
 export interface AudioServer extends Object {
     bus_count: type.int;
@@ -13590,8 +13640,6 @@ export declare namespace AudioServer {
 export interface EditorCommandPalette extends ConfirmationDialog {
     dialog_hide_on_ok: type.bool;
 }
-export declare namespace EditorCommandPalette {
-}
 export interface VisualShaderNodeSample3D extends VisualShaderNode {
     source: type.int;
 }
@@ -13606,15 +13654,11 @@ export interface SegmentShape2D extends Shape2D {
     a: type.Vector2;
     b: type.Vector2;
 }
-export declare namespace SegmentShape2D {
-}
 export interface Joint2D extends Node2D {
     bias: type.float;
     disable_collision: type.bool;
     node_a: type.NodePath;
     node_b: type.NodePath;
-}
-export declare namespace Joint2D {
 }
 export interface PathFollow3D extends Node3D {
     cubic_interp: type.bool;
@@ -13641,19 +13685,13 @@ export interface BoneAttachment3D extends Node3D {
     bone_name: type.String;
     override_pose: type.bool;
 }
-export declare namespace BoneAttachment3D {
-}
 export interface VisualShaderNodeVarying extends VisualShaderNode {
     varying_name: type.String;
     varying_type: type.int;
 }
-export declare namespace VisualShaderNodeVarying {
-}
 export interface Curve2D extends Resource {
     bake_interval: type.float;
     point_count: type.int;
-}
-export declare namespace Curve2D {
 }
 export interface XRServer extends Object {
     primary_interface: {
@@ -13688,15 +13726,9 @@ export interface Resource extends RefCounted {
     resource_path: type.String;
     resource_scene_unique_id: type.String;
 }
-export declare namespace Resource {
-}
 export interface WorkerThreadPool extends Object {
 }
-export declare namespace WorkerThreadPool {
-}
 export interface EditorFileSystemDirectory extends Object {
-}
-export declare namespace EditorFileSystemDirectory {
 }
 export interface EditorPlugin extends Node {
 }
@@ -13781,11 +13813,10 @@ export interface DirectionalLight2D extends Light2D {
     height: type.float;
     max_distance: type.float;
 }
-export declare namespace DirectionalLight2D {
-}
 export interface BoxContainer extends Container {
     alignment: type.int;
     vertical: type.bool;
+    separation: type.int;
 }
 export declare namespace BoxContainer {
     const enum AlignmentMode {
@@ -13805,21 +13836,13 @@ export interface NavigationRegion3D extends Node3D {
     travel_cost: type.float;
     use_edge_connections: type.bool;
 }
-export declare namespace NavigationRegion3D {
-}
 export interface DirAccess extends RefCounted {
     include_hidden: type.bool;
     include_navigational: type.bool;
 }
-export declare namespace DirAccess {
-}
 export interface RenderData extends Object {
 }
-export declare namespace RenderData {
-}
 export interface NavigationMeshSourceGeometryData2D extends Resource {
-}
-export declare namespace NavigationMeshSourceGeometryData2D {
 }
 export interface DampedSpringJoint2D extends Joint2D {
     damping: type.float;
@@ -13827,21 +13850,57 @@ export interface DampedSpringJoint2D extends Joint2D {
     rest_length: type.float;
     stiffness: type.float;
 }
-export declare namespace DampedSpringJoint2D {
-}
 export interface BitMap extends Resource {
 }
-export declare namespace BitMap {
-}
 export interface VisualShaderNodeRandomRange extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeRandomRange {
 }
 export interface ScrollBar extends Range {
     custom_step: type.float;
     step: type.float;
-}
-export declare namespace ScrollBar {
+    decrement: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    decrement_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    decrement_pressed: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment_pressed: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    grabber: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    grabber_highlight: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    grabber_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    scroll: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    scroll_focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface AudioEffectSpectrumAnalyzerInstance extends AudioEffectInstance {
 }
@@ -13853,21 +13912,13 @@ export declare namespace AudioEffectSpectrumAnalyzerInstance {
 }
 export interface AudioSamplePlayback extends RefCounted {
 }
-export declare namespace AudioSamplePlayback {
-}
 export interface PackedDataContainer extends Resource {
 }
-export declare namespace PackedDataContainer {
-}
 export interface RID {
-}
-export declare namespace RID {
 }
 export interface SkeletonModification2D extends Resource {
     enabled: type.bool;
     execution_mode: type.int;
-}
-export declare namespace SkeletonModification2D {
 }
 export interface Curve extends Resource {
     bake_resolution: type.int;
@@ -13884,11 +13935,7 @@ export declare namespace Curve {
 }
 export interface AudioEffectLowPassFilter extends AudioEffectFilter {
 }
-export declare namespace AudioEffectLowPassFilter {
-}
 export interface SyntaxHighlighter extends Resource {
-}
-export declare namespace SyntaxHighlighter {
 }
 export interface TabContainer extends Container {
     all_tabs_in_front: type.bool;
@@ -13902,6 +13949,77 @@ export interface TabContainer extends Container {
     tabs_rearrange_group: type.int;
     tabs_visible: type.bool;
     use_hidden_tabs_for_min_size: type.bool;
+    drop_mark_color: type.Color;
+    font_disabled_color: type.Color;
+    font_hovered_color: type.Color;
+    font_outline_color: type.Color;
+    font_selected_color: type.Color;
+    font_unselected_color: type.Color;
+    icon_max_width: type.int;
+    icon_separation: type.int;
+    outline_size: type.int;
+    side_margin: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    decrement: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    decrement_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    drop_mark: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    increment_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    menu: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    menu_highlight: {
+        type: "Texture2D";
+        properties: Texture2D;
+    };
+    panel: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_disabled: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_hovered: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_selected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tab_unselected: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    tabbar_background: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export declare namespace TabContainer {
     const enum TabPosition {
@@ -13912,11 +14030,7 @@ export declare namespace TabContainer {
 }
 export interface ImageFormatLoaderExtension extends ImageFormatLoader {
 }
-export declare namespace ImageFormatLoaderExtension {
-}
 export interface ImageTextureLayered extends TextureLayered {
-}
-export declare namespace ImageTextureLayered {
 }
 export interface PacketPeerDTLS extends PacketPeer {
 }
@@ -13935,33 +14049,19 @@ export interface CameraTexture extends Texture2D {
     resource_local_to_scene: type.bool;
     which_feed: type.int;
 }
-export declare namespace CameraTexture {
-}
 export interface ScriptEditor extends PanelContainer {
-}
-export declare namespace ScriptEditor {
 }
 export interface GPUParticlesAttractorSphere3D extends GPUParticlesAttractor3D {
     radius: type.float;
 }
-export declare namespace GPUParticlesAttractorSphere3D {
-}
 export interface RDShaderFile extends Resource {
     base_error: type.String;
 }
-export declare namespace RDShaderFile {
-}
 export interface SkinReference extends RefCounted {
-}
-export declare namespace SkinReference {
 }
 export interface Tweener extends RefCounted {
 }
-export declare namespace Tweener {
-}
 export interface VisualShaderNodeScreenNormalWorldSpace extends VisualShaderNode {
-}
-export declare namespace VisualShaderNodeScreenNormalWorldSpace {
 }
 export interface VisualShaderNodeSmoothStep extends VisualShaderNode {
     op_type: type.int;
@@ -13980,11 +14080,7 @@ export declare namespace VisualShaderNodeSmoothStep {
 }
 export interface VisualShaderNodeParticleSphereEmitter extends VisualShaderNodeParticleEmitter {
 }
-export declare namespace VisualShaderNodeParticleSphereEmitter {
-}
 export interface TextServerExtension extends TextServer {
-}
-export declare namespace TextServerExtension {
 }
 export interface AnimationNodeTransition extends AnimationNodeSync {
     allow_transition_to_self: type.bool;
@@ -13994,8 +14090,6 @@ export interface AnimationNodeTransition extends AnimationNodeSync {
         properties: Curve;
     };
     xfade_time: type.float;
-}
-export declare namespace AnimationNodeTransition {
 }
 export interface VisualShaderNodeParameter extends VisualShaderNode {
     parameter_name: type.String;
@@ -14021,16 +14115,10 @@ export interface Sprite3D extends SpriteBase3D {
     };
     vframes: type.int;
 }
-export declare namespace Sprite3D {
-}
 export interface VisualShaderNodeTexture2DParameter extends VisualShaderNodeTextureParameter {
-}
-export declare namespace VisualShaderNodeTexture2DParameter {
 }
 export interface PolygonOccluder3D extends Occluder3D {
     polygon: type.PackedVector2Array;
-}
-export declare namespace PolygonOccluder3D {
 }
 export interface DisplayServer extends Object {
 }
@@ -14174,8 +14262,6 @@ export declare namespace DisplayServer {
     }
 }
 export interface VisualShaderNodeTextureParameterTriplanar extends VisualShaderNodeTextureParameter {
-}
-export declare namespace VisualShaderNodeTextureParameterTriplanar {
 }
 export interface Environment extends Resource {
     adjustment_brightness: type.float;
@@ -14332,12 +14418,8 @@ export declare namespace Environment {
 }
 export interface RenderSceneBuffersExtension extends RenderSceneBuffers {
 }
-export declare namespace RenderSceneBuffersExtension {
-}
 export interface BoxOccluder3D extends Occluder3D {
     size: type.Vector3;
-}
-export declare namespace BoxOccluder3D {
 }
 export interface CameraFeed extends RefCounted {
     feed_is_active: type.bool;
@@ -14359,8 +14441,6 @@ export declare namespace CameraFeed {
     }
 }
 export interface RenderSceneBuffersRD extends RenderSceneBuffers {
-}
-export declare namespace RenderSceneBuffersRD {
 }
 export interface Image extends Resource {
     data: {
@@ -14453,22 +14533,14 @@ export declare namespace Image {
 }
 export interface WeakRef extends RefCounted {
 }
-export declare namespace WeakRef {
-}
 export interface XRNode3D extends Node3D {
     pose: type.StringName;
     show_when_tracked: type.bool;
     tracker: type.StringName;
 }
-export declare namespace XRNode3D {
-}
 export interface AudioEffectBandPassFilter extends AudioEffectFilter {
 }
-export declare namespace AudioEffectBandPassFilter {
-}
 export interface VisualShaderNodeVectorLen extends VisualShaderNodeVectorBase {
-}
-export declare namespace VisualShaderNodeVectorLen {
 }
 export interface VisualShaderNodeTextureParameter extends VisualShaderNodeParameter {
     color_default: type.int;
@@ -14517,8 +14589,6 @@ export declare namespace VisualShaderNodeTextureParameter {
 }
 export interface SkeletonModification2DStackHolder extends SkeletonModification2D {
 }
-export declare namespace SkeletonModification2DStackHolder {
-}
 export interface VisualShaderNodeCompare extends VisualShaderNode {
     condition: type.int;
     function: type.int;
@@ -14557,15 +14627,9 @@ export interface ShaderMaterial extends Material {
         properties: Shader;
     };
 }
-export declare namespace ShaderMaterial {
-}
 export interface DTLSServer extends RefCounted {
 }
-export declare namespace DTLSServer {
-}
 export interface AStar2D extends RefCounted {
-}
-export declare namespace AStar2D {
 }
 export interface Geometry2D extends Object {
 }
@@ -14591,23 +14655,15 @@ export declare namespace Geometry2D {
 }
 export interface PhysicsServer2DManager extends Object {
 }
-export declare namespace PhysicsServer2DManager {
-}
 export interface Texture3DRD extends Texture3D {
     texture_rd_rid: {
         type: "RID";
         properties: RID;
     };
 }
-export declare namespace Texture3DRD {
-}
 export interface AudioListener3D extends Node3D {
 }
-export declare namespace AudioListener3D {
-}
 export interface TextServerDummy extends TextServerExtension {
-}
-export declare namespace TextServerDummy {
 }
 export interface EditorVCSInterface extends Object {
 }
@@ -14628,8 +14684,6 @@ export declare namespace EditorVCSInterface {
 }
 export interface PlaceholderTexture3D extends Texture3D {
     size: type.Vector3i;
-}
-export declare namespace PlaceholderTexture3D {
 }
 export interface PackedScene extends Resource {
 }
@@ -14657,8 +14711,68 @@ export interface Button extends BaseButton {
     text_direction: type.int;
     text_overrun_behavior: type.int;
     vertical_icon_alignment: type.int;
-}
-export declare namespace Button {
+    font_color: type.Color;
+    font_disabled_color: type.Color;
+    font_focus_color: type.Color;
+    font_hover_color: type.Color;
+    font_hover_pressed_color: type.Color;
+    font_outline_color: type.Color;
+    font_pressed_color: type.Color;
+    icon_disabled_color: type.Color;
+    icon_focus_color: type.Color;
+    icon_hover_color: type.Color;
+    icon_hover_pressed_color: type.Color;
+    icon_normal_color: type.Color;
+    icon_pressed_color: type.Color;
+    align_to_largest_stylebox: type.int;
+    h_separation: type.int;
+    icon_max_width: type.int;
+    outline_size: type.int;
+    font: {
+        type: "Font";
+        properties: Font;
+    };
+    font_size: type.int;
+    disabled_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    focus: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover_pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    hover_pressed_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    normal_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    pressed: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
+    pressed_mirrored: {
+        type: "StyleBox";
+        properties: StyleBox;
+    };
 }
 export interface TileMapLayer extends Node2D {
     collision_enabled: type.bool;
@@ -14686,20 +14800,12 @@ export declare namespace TileMapLayer {
 }
 export interface EditorFileSystem extends Node {
 }
-export declare namespace EditorFileSystem {
-}
 export interface AudioEffectInstance extends RefCounted {
-}
-export declare namespace AudioEffectInstance {
 }
 export interface EditorDebuggerSession extends RefCounted {
 }
-export declare namespace EditorDebuggerSession {
-}
 export interface VisualShaderNodeTransformConstant extends VisualShaderNodeConstant {
     constant: type.Transform3D;
-}
-export declare namespace VisualShaderNodeTransformConstant {
 }
 export interface NodeProperties {
     PhysicsBody3D: PhysicsBody3D;
@@ -15034,6 +15140,67 @@ export type Node3DTypeMap = {
     };
 };
 export type Node3DType = Node3DTypeMap[keyof Node3DTypeMap];
+export interface Node2DProperties {
+    TileMap: TileMap;
+    Marker2D: Marker2D;
+    NavigationLink2D: NavigationLink2D;
+    Node2D: Node2D;
+    AnimatableBody2D: AnimatableBody2D;
+    Camera2D: Camera2D;
+    Bone2D: Bone2D;
+    StaticBody2D: StaticBody2D;
+    CollisionPolygon2D: CollisionPolygon2D;
+    Polygon2D: Polygon2D;
+    AudioStreamPlayer2D: AudioStreamPlayer2D;
+    MeshInstance2D: MeshInstance2D;
+    PhysicsBody2D: PhysicsBody2D;
+    AnimatedSprite2D: AnimatedSprite2D;
+    Area2D: Area2D;
+    PointLight2D: PointLight2D;
+    Line2D: Line2D;
+    CanvasModulate: CanvasModulate;
+    PhysicalBone2D: PhysicalBone2D;
+    GPUParticles2D: GPUParticles2D;
+    PinJoint2D: PinJoint2D;
+    CPUParticles2D: CPUParticles2D;
+    RayCast2D: RayCast2D;
+    CharacterBody2D: CharacterBody2D;
+    Path2D: Path2D;
+    Skeleton2D: Skeleton2D;
+    GrooveJoint2D: GrooveJoint2D;
+    VisibleOnScreenEnabler2D: VisibleOnScreenEnabler2D;
+    Light2D: Light2D;
+    RigidBody2D: RigidBody2D;
+    TouchScreenButton: TouchScreenButton;
+    CollisionShape2D: CollisionShape2D;
+    RemoteTransform2D: RemoteTransform2D;
+    NavigationObstacle2D: NavigationObstacle2D;
+    CollisionObject2D: CollisionObject2D;
+    ShapeCast2D: ShapeCast2D;
+    MultiMeshInstance2D: MultiMeshInstance2D;
+    ParallaxLayer: ParallaxLayer;
+    Parallax2D: Parallax2D;
+    CanvasGroup: CanvasGroup;
+    VisibleOnScreenNotifier2D: VisibleOnScreenNotifier2D;
+    BackBufferCopy: BackBufferCopy;
+    AudioListener2D: AudioListener2D;
+    Sprite2D: Sprite2D;
+    LightOccluder2D: LightOccluder2D;
+    NavigationRegion2D: NavigationRegion2D;
+    PathFollow2D: PathFollow2D;
+    Joint2D: Joint2D;
+    DirectionalLight2D: DirectionalLight2D;
+    DampedSpringJoint2D: DampedSpringJoint2D;
+    TileMapLayer: TileMapLayer;
+}
+type Node2DTypeNames = keyof Node2DProperties;
+export type Node2DTypeMap = {
+    [K in Node2DTypeNames]: {
+        type: K;
+        properties: Node2DProperties[K];
+    };
+};
+export type Node2DType = Node2DTypeMap[keyof Node2DTypeMap];
 export interface CollisionObject3DProperties {
     PhysicsBody3D: PhysicsBody3D;
     StaticBody3D: StaticBody3D;
@@ -15605,4 +15772,138 @@ export type AnimationRootNodeTypeMap = {
     };
 };
 export type AnimationRootNodeType = AnimationRootNodeTypeMap[keyof AnimationRootNodeTypeMap];
+export interface ControlProperties {
+    FileSystemDock: FileSystemDock;
+    BaseButton: BaseButton;
+    Slider: Slider;
+    TextureProgressBar: TextureProgressBar;
+    MarginContainer: MarginContainer;
+    TextEdit: TextEdit;
+    SubViewportContainer: SubViewportContainer;
+    Container: Container;
+    GridContainer: GridContainer;
+    VFlowContainer: VFlowContainer;
+    MenuButton: MenuButton;
+    LinkButton: LinkButton;
+    VBoxContainer: VBoxContainer;
+    TextureButton: TextureButton;
+    ScriptEditorBase: ScriptEditorBase;
+    NinePatchRect: NinePatchRect;
+    CenterContainer: CenterContainer;
+    HFlowContainer: HFlowContainer;
+    OptionButton: OptionButton;
+    GraphElement: GraphElement;
+    Control: Control;
+    HSlider: HSlider;
+    Label: Label;
+    PanelContainer: PanelContainer;
+    ProgressBar: ProgressBar;
+    RichTextLabel: RichTextLabel;
+    EditorInspector: EditorInspector;
+    CheckButton: CheckButton;
+    EditorScriptPicker: EditorScriptPicker;
+    GraphFrame: GraphFrame;
+    FlowContainer: FlowContainer;
+    VideoStreamPlayer: VideoStreamPlayer;
+    VSlider: VSlider;
+    ColorRect: ColorRect;
+    MenuBar: MenuBar;
+    GraphNode: GraphNode;
+    VSeparator: VSeparator;
+    ItemList: ItemList;
+    ScrollContainer: ScrollContainer;
+    EditorResourcePicker: EditorResourcePicker;
+    VScrollBar: VScrollBar;
+    ReferenceRect: ReferenceRect;
+    HScrollBar: HScrollBar;
+    EditorSpinSlider: EditorSpinSlider;
+    Panel: Panel;
+    SpinBox: SpinBox;
+    HBoxContainer: HBoxContainer;
+    Tree: Tree;
+    HSeparator: HSeparator;
+    CodeEdit: CodeEdit;
+    TextureRect: TextureRect;
+    VSplitContainer: VSplitContainer;
+    ColorPicker: ColorPicker;
+    TabBar: TabBar;
+    EditorProperty: EditorProperty;
+    AspectRatioContainer: AspectRatioContainer;
+    Range: Range;
+    CheckBox: CheckBox;
+    GraphEdit: GraphEdit;
+    HSplitContainer: HSplitContainer;
+    SplitContainer: SplitContainer;
+    ColorPickerButton: ColorPickerButton;
+    LineEdit: LineEdit;
+    Separator: Separator;
+    BoxContainer: BoxContainer;
+    ScrollBar: ScrollBar;
+    TabContainer: TabContainer;
+    ScriptEditor: ScriptEditor;
+    Button: Button;
+}
+type ControlTypeNames = keyof ControlProperties;
+export type ControlTypeMap = {
+    [K in ControlTypeNames]: {
+        type: K;
+        properties: ControlProperties[K];
+    };
+};
+export type ControlType = ControlTypeMap[keyof ControlTypeMap];
+export interface ButtonProperties {
+    MenuButton: MenuButton;
+    OptionButton: OptionButton;
+    CheckButton: CheckButton;
+    CheckBox: CheckBox;
+    ColorPickerButton: ColorPickerButton;
+    Button: Button;
+}
+type ButtonTypeNames = keyof ButtonProperties;
+export type ButtonTypeMap = {
+    [K in ButtonTypeNames]: {
+        type: K;
+        properties: ButtonProperties[K];
+    };
+};
+export type ButtonType = ButtonTypeMap[keyof ButtonTypeMap];
+export interface ContainerProperties {
+    FileSystemDock: FileSystemDock;
+    MarginContainer: MarginContainer;
+    SubViewportContainer: SubViewportContainer;
+    Container: Container;
+    GridContainer: GridContainer;
+    VFlowContainer: VFlowContainer;
+    VBoxContainer: VBoxContainer;
+    ScriptEditorBase: ScriptEditorBase;
+    CenterContainer: CenterContainer;
+    HFlowContainer: HFlowContainer;
+    GraphElement: GraphElement;
+    PanelContainer: PanelContainer;
+    EditorInspector: EditorInspector;
+    EditorScriptPicker: EditorScriptPicker;
+    GraphFrame: GraphFrame;
+    FlowContainer: FlowContainer;
+    GraphNode: GraphNode;
+    ScrollContainer: ScrollContainer;
+    EditorResourcePicker: EditorResourcePicker;
+    HBoxContainer: HBoxContainer;
+    VSplitContainer: VSplitContainer;
+    ColorPicker: ColorPicker;
+    EditorProperty: EditorProperty;
+    AspectRatioContainer: AspectRatioContainer;
+    HSplitContainer: HSplitContainer;
+    SplitContainer: SplitContainer;
+    BoxContainer: BoxContainer;
+    TabContainer: TabContainer;
+    ScriptEditor: ScriptEditor;
+}
+type ContainerTypeNames = keyof ContainerProperties;
+export type ContainerTypeMap = {
+    [K in ContainerTypeNames]: {
+        type: K;
+        properties: ContainerProperties[K];
+    };
+};
+export type ContainerType = ContainerTypeMap[keyof ContainerTypeMap];
 export {};

@@ -14,4 +14,28 @@ export function DefaultTabBar(item) {
     item.tab_close_display_policy ?? (item.tab_close_display_policy = 0);
     item.tab_count ?? (item.tab_count = 0);
     item.tabs_rearrange_group ?? (item.tabs_rearrange_group = -1);
+    //drop_mark_color
+    //font_disabled_color
+    //font_hovered_color
+    //font_outline_color
+    //font_selected_color
+    //font_unselected_color
+    //h_separation
+    //icon_max_width
+    //outline_size
+    //font
+    //font_size
+    //close
+    //decrement
+    //decrement_highlight
+    //drop_mark
+    //increment
+    //increment_highlight
+    //button_highlight
+    //button_pressed
+    //tab_disabled
+    //tab_focus
+    //tab_hovered
+    //tab_selected
+    //tab_unselected  
 }

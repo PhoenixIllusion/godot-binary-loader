@@ -9,4 +9,5 @@ export function DefaultColorPickerButton(item) {
     item.color ?? (item.color = create.Color(0, 0, 0, 1));
     item.edit_alpha ?? (item.edit_alpha = true);
     item.toggle_mode ?? (item.toggle_mode = true);
+    //bg  
 }

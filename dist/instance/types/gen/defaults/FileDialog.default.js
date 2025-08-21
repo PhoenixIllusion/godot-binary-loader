@@ -21,4 +21,16 @@ export function DefaultFileDialog(item) {
     item.size ?? (item.size = create.Vector2i(640, 360));
     item.title ?? (item.title = "Save a File");
     item.use_native_dialog ?? (item.use_native_dialog = false);
+    //file_disabled_color
+    //file_icon_color
+    //folder_icon_color
+    //back_folder
+    //create_folder
+    //file
+    //folder
+    //forward_folder
+    //parent_folder
+    //reload
+    //toggle_filename_filter
+    //toggle_hidden  
 }

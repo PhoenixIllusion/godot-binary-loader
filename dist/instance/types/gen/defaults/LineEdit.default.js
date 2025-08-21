@@ -33,4 +33,22 @@ export function DefaultLineEdit(item) {
     item.text_direction ?? (item.text_direction = 0);
     item.virtual_keyboard_enabled ?? (item.virtual_keyboard_enabled = true);
     item.virtual_keyboard_type ?? (item.virtual_keyboard_type = 0);
+    //caret_color
+    //clear_button_color
+    //clear_button_color_pressed
+    //font_color
+    //font_outline_color
+    //font_placeholder_color
+    //font_selected_color
+    //font_uneditable_color
+    //selection_color
+    //caret_width
+    //minimum_character_width
+    //outline_size
+    //font
+    //font_size
+    //clear
+    //focus
+    //normal
+    //read_only  
 }

@@ -10,4 +10,5 @@ export function DefaultScrollContainer(item) {
     item.scroll_vertical ?? (item.scroll_vertical = 0);
     item.scroll_vertical_custom_step ?? (item.scroll_vertical_custom_step = -1.0);
     item.vertical_scroll_mode ?? (item.vertical_scroll_mode = 1);
+    //panel  
 }

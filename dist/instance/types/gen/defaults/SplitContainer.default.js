@@ -10,4 +10,11 @@ export function DefaultSplitContainer(item) {
     item.dragging_enabled ?? (item.dragging_enabled = true);
     item.split_offset ?? (item.split_offset = 0);
     item.vertical ?? (item.vertical = false);
+    //autohide
+    //minimum_grab_thickness
+    //separation
+    //grabber
+    //h_grabber
+    //v_grabber
+    //split_bar_background  
 }

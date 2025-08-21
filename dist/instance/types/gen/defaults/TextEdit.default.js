@@ -47,4 +47,27 @@ export function DefaultTextEdit(item) {
     item.use_default_word_separators ?? (item.use_default_word_separators = true);
     item.virtual_keyboard_enabled ?? (item.virtual_keyboard_enabled = true);
     item.wrap_mode ?? (item.wrap_mode = 0);
+    //background_color
+    //caret_background_color
+    //caret_color
+    //current_line_color
+    //font_color
+    //font_outline_color
+    //font_placeholder_color
+    //font_readonly_color
+    //font_selected_color
+    //search_result_border_color
+    //search_result_color
+    //selection_color
+    //word_highlighted_color
+    //caret_width
+    //line_spacing
+    //outline_size
+    //font
+    //font_size
+    //space
+    //tab
+    //focus
+    //normal
+    //read_only  
 }

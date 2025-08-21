@@ -31,4 +31,23 @@ export function DefaultGraphEdit(item) {
     item.zoom_max ?? (item.zoom_max = 2.0736);
     item.zoom_min ?? (item.zoom_min = 0.232568);
     item.zoom_step ?? (item.zoom_step = 1.2);
+    //activity
+    //connection_hover_tint_color
+    //connection_rim_color
+    //connection_valid_target_tint_color
+    //grid_major
+    //grid_minor
+    //selection_fill
+    //selection_stroke
+    //port_hotzone_inner_extent
+    //port_hotzone_outer_extent
+    //grid_toggle
+    //layout
+    //minimap_toggle
+    //snapping_toggle
+    //zoom_in
+    //zoom_out
+    //zoom_reset
+    //menu_panel
+    //panel  
 }

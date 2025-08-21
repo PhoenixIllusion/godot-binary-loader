@@ -23,4 +23,30 @@ export function DefaultCodeEdit(item) {
     item.line_length_guidelines ?? (item.line_length_guidelines = []);
     item.symbol_lookup_on_click ?? (item.symbol_lookup_on_click = false);
     item.text_direction ?? (item.text_direction = 1);
+    //bookmark_color
+    //brace_mismatch_color
+    //breakpoint_color
+    //code_folding_color
+    //completion_background_color
+    //completion_existing_color
+    //completion_scroll_color
+    //completion_scroll_hovered_color
+    //completion_selected_color
+    //executing_line_color
+    //folded_code_region_color
+    //line_length_guideline_color
+    //line_number_color
+    //completion_lines
+    //completion_max_width
+    //completion_scroll_width
+    //bookmark
+    //breakpoint
+    //can_fold
+    //can_fold_code_region
+    //completion_color_bg
+    //executing_line
+    //folded
+    //folded_code_region
+    //folded_eol_icon
+    //completion  
 }

@@ -10,4 +10,16 @@ export function DefaultLinkButton(item) {
     item.text_direction ?? (item.text_direction = 0);
     item.underline ?? (item.underline = 0);
     item.uri ?? (item.uri = "");
+    //font_color
+    //font_disabled_color
+    //font_focus_color
+    //font_hover_color
+    //font_hover_pressed_color
+    //font_outline_color
+    //font_pressed_color
+    //outline_size
+    //underline_spacing
+    //font
+    //font_size
+    //focus  
 }

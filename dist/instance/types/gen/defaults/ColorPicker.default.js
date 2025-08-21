@@ -17,4 +17,24 @@ export function DefaultColorPicker(item) {
     item.presets_visible ?? (item.presets_visible = true);
     item.sampler_visible ?? (item.sampler_visible = true);
     item.sliders_visible ?? (item.sliders_visible = true);
+    //center_slider_grabbers
+    //h_width
+    //label_width
+    //margin
+    //sv_height
+    //sv_width
+    //add_preset
+    //bar_arrow
+    //color_hue
+    //color_okhsl_hue
+    //expanded_arrow
+    //folded_arrow
+    //overbright_indicator
+    //picker_cursor
+    //sample_bg
+    //sample_revert
+    //screen_picker
+    //shape_circle
+    //shape_rect
+    //shape_rect_wheel  
 }

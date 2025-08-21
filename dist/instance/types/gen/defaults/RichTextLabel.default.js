@@ -34,4 +34,33 @@ export function DefaultRichTextLabel(item) {
     item.visible_characters ?? (item.visible_characters = -1);
     item.visible_characters_behavior ?? (item.visible_characters_behavior = 0);
     item.visible_ratio ?? (item.visible_ratio = 1.0);
+    //default_color
+    //font_outline_color
+    //font_selected_color
+    //font_shadow_color
+    //selection_color
+    //table_border
+    //table_even_row_bg
+    //table_odd_row_bg
+    //line_separation
+    //outline_size
+    //shadow_offset_x
+    //shadow_offset_y
+    //shadow_outline_size
+    //table_h_separation
+    //table_v_separation
+    //text_highlight_h_padding
+    //text_highlight_v_padding
+    //bold_font
+    //bold_italics_font
+    //italics_font
+    //mono_font
+    //normal_font
+    //bold_font_size
+    //bold_italics_font_size
+    //italics_font_size
+    //mono_font_size
+    //normal_font_size
+    //focus
+    //normal  
 }

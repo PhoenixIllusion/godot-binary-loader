@@ -11,4 +11,5 @@ export function DefaultGraphElement(item) {
     item.resizable ?? (item.resizable = false);
     item.selectable ?? (item.selectable = true);
     item.selected ?? (item.selected = false);
+    //resizer  
 }

@@ -9,4 +9,6 @@ export function DefaultEditorSpinSlider(item) {
     item.size_flags_vertical ?? (item.size_flags_vertical = 1);
     item.step ?? (item.step = 1.0);
     item.suffix ?? (item.suffix = "");
+    //updown
+    //updown_disabled  
 }

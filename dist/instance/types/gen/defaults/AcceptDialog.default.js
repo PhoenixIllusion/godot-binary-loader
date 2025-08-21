@@ -12,4 +12,8 @@ export function DefaultAcceptDialog(item) {
     item.transient ?? (item.transient = true);
     item.visible ?? (item.visible = false);
     item.wrap_controls ?? (item.wrap_controls = true);
+    //buttons_min_height
+    //buttons_min_width
+    //buttons_separation
+    //panel  
 }

@@ -23,4 +23,23 @@ export function DefaultItemList(item) {
     item.same_column_width ?? (item.same_column_width = false);
     item.select_mode ?? (item.select_mode = 0);
     item.text_overrun_behavior ?? (item.text_overrun_behavior = 3);
+    //font_color
+    //font_hovered_color
+    //font_outline_color
+    //font_selected_color
+    //guide_color
+    //h_separation
+    //icon_margin
+    //line_separation
+    //outline_size
+    //v_separation
+    //font
+    //font_size
+    //cursor
+    //cursor_unfocused
+    //focus
+    //hovered
+    //panel
+    //selected
+    //selected_focus  
 }
