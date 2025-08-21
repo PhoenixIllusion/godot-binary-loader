@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@phoenixillusion/godot-binary-loader": "file:..",
-    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.4",
+    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.5",
     "gl-matrix": "3.4.1",
     "jolt-physics": "0.36.0",
     "three": "0.176.0",

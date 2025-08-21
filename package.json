@@ -1,7 +1,7 @@
 {
   "name": "@phoenixillusion/godot-binary-loader",
   "private": true,
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "author": "Phoenix Illusion",
   "license": "MIT",
@@ -30,7 +30,7 @@
     "typescript": "5.8.3"
   },
   "dependencies": {
-    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.4",
+    "@phoenixillusion/godot-scene-reader": "github:PhoenixIllusion/godot-scene-reader#v1.0.5",
     "delaunator": "5.0.1",
     "gl-matrix": "3.4.1"
   }
